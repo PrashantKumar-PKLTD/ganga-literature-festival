@@ -1,44 +1,53 @@
+const FEATURES = [
+  { icon: "📚", title: "200+ Authors", desc: "National & international voices", bg: "#FEF0EB" },
+  { icon: "🎤", title: "40+ Sessions", desc: "Panels, workshops & readings", bg: "#EBF1FC" },
+  { icon: "🌍", title: "30+ Languages", desc: "Literature across cultures", bg: "#E6FAF9" },
+  { icon: "🏆", title: "5th Edition", desc: "A decade of literary legacy", bg: "#FFFBEB" },
+];
+
 export default function About() {
   return (
-    <section id="about" className="glf-section glf-about">
-      <div className="glf-container">
-        <div className="glf-about-grid">
-          <div className="glf-about-visual">
-            <div className="glf-about-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&q=85"
-                alt="Literature Festival"
-              />
-              <div className="glf-about-img-border" />
-              <div className="glf-about-badge">
-                <div className="glf-about-badge-num">5th</div>
-                <div className="glf-about-badge-text">Edition 2026</div>
-              </div>
+    <section id="about" className="c-section c-about">
+      <div className="c-container">
+        <div className="c-about-grid">
+          <div className="c-about-img">
+            <img
+              className="c-about-img-main"
+              src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&q=85"
+              alt="Festival"
+            />
+            <div className="c-about-img-badge">
+              <div className="c-about-img-badge-num">5th</div>
+              <div className="c-about-img-badge-text">Edition</div>
             </div>
-            <div className="glf-about-stats">
-              {[["200+", "Authors"], ["40+", "Sessions"], ["15K+", "Attendees"], ["30+", "Languages"]].map(([n, l]) => (
-                <div className="glf-about-stat" key={l}>
-                  <div className="glf-about-stat-num">{n}</div>
-                  <div className="glf-about-stat-label">{l}</div>
-                </div>
-              ))}
+            <div className="c-about-img-card">
+              <div className="c-about-img-card-icon">🏅</div>
+              <div>
+                <div className="c-about-img-card-num">15,000+</div>
+                <div className="c-about-img-card-label">Past Attendees</div>
+              </div>
             </div>
           </div>
           <div>
-            <div className="glf-section-tag">About the Festival</div>
-            <h2 className="glf-section-title">
-              A Confluence of <span>Words & Ideas</span>
-            </h2>
-            <p className="glf-section-sub" style={{ marginBottom: 24 }}>
-              The Ganga Literature Festival is Bihar's premier annual celebration of the written and spoken word. Held in the historic city of Patna on the banks of the Ganga, it brings together Nobel laureates, Booker Prize winners, debut novelists, translators, and readers in intimate conversation.
+            <div className="c-tag">About the Festival</div>
+            <h2 className="c-title">Bihar's Premier <span>Literary Gathering</span></h2>
+            <p className="c-sub" style={{ marginBottom: 16 }}>
+              The Ganga Literature Festival is an annual celebration of the written and spoken word, held in the historic city of Patna on the banks of the sacred Ganga.
             </p>
-            <p className="glf-section-sub" style={{ marginBottom: 24 }}>
-              Born from the belief that literature is the most democratic form of human expression, GLF has grown from a small gathering of writers into a landmark cultural event that draws participants from across India and around the world.
+            <p className="c-sub" style={{ marginBottom: 32 }}>
+              Bringing together Nobel laureates, Booker Prize winners, debut novelists, translators, and readers — every session sparks conversation and forges new connections between authors and their audiences.
             </p>
-            <p className="glf-section-sub" style={{ marginBottom: 40 }}>
-              From poetry readings at dusk to panel discussions on the future of storytelling, from translation workshops to children's literature showcases — every session is crafted to spark conversation and forge new connections between authors and their audiences.
-            </p>
-            <a href="#register" className="glf-btn-primary">Join the Festival →</a>
+            <div className="c-about-features">
+              {FEATURES.map((f) => (
+                <div className="c-about-feature" key={f.title}>
+                  <div className="c-about-feature-icon" style={{ background: f.bg }}>{f.icon}</div>
+                  <div>
+                    <div className="c-about-feature-title">{f.title}</div>
+                    <div className="c-about-feature-desc">{f.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

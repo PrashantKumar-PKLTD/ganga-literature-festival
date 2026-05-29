@@ -4,42 +4,40 @@ const NAV_LINKS = ["About", "Speakers", "Schedule", "Gallery", "Register", "FAQ"
 
 export default function Navbar({ menuOpen, setMenuOpen }) {
   const [scrolled, setScrolled] = useState(false);
-
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   return (
     <>
-      <nav className={`glf-nav${scrolled ? " scrolled" : ""}`}>
-        <div className="glf-nav-inner">
-          <a href="#home" className="glf-logo">
-            <div className="glf-logo-emblem">G</div>
-            <div className="glf-logo-text">
-              <span className="glf-logo-name">Ganga Lit Fest</span>
-              <span className="glf-logo-sub">Patna 2026</span>
+      <nav className={`c-nav${scrolled ? " scrolled" : ""}`}>
+        <div className="c-nav-inner">
+          <a href="#home" className="c-logo">
+            <div className="c-logo-box">G</div>
+            <div>
+              <div className="c-logo-name">Ganga Lit Fest</div>
+              <div className="c-logo-sub">Patna 2026</div>
             </div>
           </a>
-          <ul className="glf-nav-links">
+          <ul className="c-nav-links">
             {NAV_LINKS.map((l) => (
-              <li key={l}>
-                <a href={`#${l.toLowerCase()}`}>{l}</a>
-              </li>
+              <li key={l}><a href={`#${l.toLowerCase()}`}>{l}</a></li>
             ))}
           </ul>
-          <div className="glf-hamburger" onClick={() => setMenuOpen(true)}>
+          <a href="#register" className="btn-primary" style={{ fontSize: 13, padding: "10px 20px" }}>Register Now</a>
+          <button className="c-hamburger" onClick={() => setMenuOpen(true)}>
             <span /><span /><span />
-          </div>
+          </button>
         </div>
       </nav>
-
-      <div className={`glf-mobile-menu${menuOpen ? " open" : ""}`}>
-        <button className="glf-mobile-close" onClick={() => setMenuOpen(false)}>✕</button>
+      <div className={`c-mobile-menu${menuOpen ? " open" : ""}`}>
+        <button className="c-mobile-close" onClick={() => setMenuOpen(false)}>✕</button>
         {NAV_LINKS.map((l) => (
           <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{l}</a>
         ))}
+        <a href="#register" className="btn-primary" onClick={() => setMenuOpen(false)}>Register Now</a>
       </div>
     </>
   );

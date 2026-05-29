@@ -1,17 +1,17 @@
-import { GALLERY_IMGS } from "../data/misc";
+import { GALLERY_IMGS } from "./misc";
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="glf-section glf-gallery">
-      <div className="glf-container">
-        <div className="glf-section-tag">Photo Gallery</div>
-        <h2 className="glf-section-title">Moments from <span>Past Editions</span></h2>
-        <div className="glf-gallery-grid">
+    <section id="gallery" className="c-section c-gallery">
+      <div className="c-container">
+        <div className="c-tag">Gallery</div>
+        <h2 className="c-title">Moments from <span>Past Editions</span></h2>
+        <div className="c-gallery-grid">
           {GALLERY_IMGS.map((img, i) => (
-            <div className="glf-gallery-item" key={i}>
+            <div className="c-gallery-item" key={i}>
               <img src={img.src} alt={img.alt} />
-              <div className="glf-gallery-item-overlay">
-                <span className="glf-gallery-item-label">{img.alt}</span>
+              <div className="c-gallery-overlay">
+                <span className="c-gallery-label">{img.alt}</span>
               </div>
             </div>
           ))}
