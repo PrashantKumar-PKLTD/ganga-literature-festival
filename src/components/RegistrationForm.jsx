@@ -23,14 +23,8 @@ function Label({ text }) {
 export default function Registration() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", category: "visitor", org: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!form.name || !form.email) return;
-    setSubmitted(true);
-  };
+  const handleSubmit = (e) => { e.preventDefault(); if (form.name && form.email) setSubmitted(true); };
 
   return (
     <section id="register" className="py-24 bg-white border-b border-gray-100" style={{ fontFamily: "'Poppins', sans-serif" }}>

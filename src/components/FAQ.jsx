@@ -17,7 +17,6 @@ function Label({ text }) {
 
 export default function FAQ() {
   const [open, setOpen] = useState(null);
-
   return (
     <section id="faq" className="py-24 bg-white border-b border-gray-100" style={{ fontFamily: "'Poppins', sans-serif" }}>
       <div className="max-w-4xl mx-auto px-6 md:px-10">
