@@ -144,8 +144,8 @@ export default function About() {
           White panel over fixed bg
       ════════════════════════════════════════ */}
       <Panel>
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
 
             {/* Image + quote */}
             <div className="flex flex-col">
@@ -235,7 +235,7 @@ export default function About() {
         />
 
         {/* Transparent content — sits above the image */}
-        <div className="relative z-[2] max-w-7xl mx-auto px-6 md:px-10 py-24">
+        <div className="relative z-[2] max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
           <div className="text-center mb-14">
             <Label text="Star Exhibitions" />
             <h2
@@ -273,10 +273,10 @@ export default function About() {
           White panel
       ════════════════════════════════════════ */}
       <Panel>
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
 
           {/* Header */}
-          <div className="flex flex-col items-center text-center mb-16">
+          <div className="flex flex-col items-center text-center mb-12 md:mb-16">
             <Label text="Product Classification" />
             <h2
               className="text-[26px] md:text-[30px] font-semibold text-[#0a1a3c] mt-1 mb-3"
@@ -292,11 +292,11 @@ export default function About() {
           </div>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-100 rounded-sm overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border border-gray-100 rounded-sm overflow-hidden">
             {PRODUCT_ZONES.map((zone, i) => (
               <div
                 key={zone.title}
-                className="group relative flex flex-col p-7 bg-white hover:bg-[#0a1a3c] transition-all duration-500 border-r border-b border-gray-100 last:border-r-0 cursor-default"
+                className="group relative flex flex-col p-7 bg-white hover:bg-[#0a1a3c] transition-all duration-500 cursor-default"
               >
                 {/* Top amber bar — grows on hover */}
                 <div className="absolute top-0 left-0 h-[3px] w-0 bg-amber-400 group-hover:w-full transition-all duration-500" />
@@ -333,7 +333,7 @@ export default function About() {
           Dark glass panel — full-width table
       ════════════════════════════════════════ */}
       <DarkPanel>
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
           <div className="text-center flex flex-col items-center justify-center mb-14">
             <Label text="B2B & B2P Trading Hub" />
             <h2
@@ -349,8 +349,9 @@ export default function About() {
             </p>
           </div>
 
-          {/* Full-width two-column table */}
-          <div className="border border-white/10 rounded-sm overflow-hidden">
+          {/* Full-width two-column table with horizontal scroll for mobile */}
+          <div className="border border-white/10 rounded-sm overflow-x-auto">
+            <div className="min-w-[600px] flex flex-col">
 
             {/* Table header */}
             <div className="grid grid-cols-2">
@@ -409,6 +410,7 @@ export default function About() {
               </div>
             </div>
           </div>
+          </div>
 
           {/* B2B exchange label */}
           <div className="flex justify-center mt-6">
@@ -431,7 +433,7 @@ export default function About() {
           White panel
       ════════════════════════════════════════ */}
       <Panel>
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
             {/* Who Should Attend */}
@@ -467,7 +469,7 @@ export default function About() {
                   Why Exhibit?
                 </h3>
               </div>
-              <div className="flex-1 grid grid-cols-2 gap-px bg-gray-100">
+              <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-px bg-gray-100">
                 {exhibitBenefits.map((eb) => (
                   <div
                     key={eb.title}

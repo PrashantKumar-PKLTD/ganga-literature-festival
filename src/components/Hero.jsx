@@ -129,16 +129,16 @@ export default function Hero() {
       />
 
       {/* Main content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-8 pt-28 pb-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-8 pt-48 md:pt-32 lg:pt-28 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* ── LEFT ── */}
           <div className="flex flex-col items-start">
 
             {/* H1 */}
-            <h1 className="hero-anim hero-d2 text-5xl lg:text-[54px] font-extrabold text-white leading-tight tracking-[0.04em] uppercase mb-1.5">
+            <h1 className="hero-anim hero-d2 text-4xl md:text-5xl lg:text-[54px] font-extrabold text-white leading-tight tracking-[0.04em] uppercase mb-1.5">
               Bihar
-              <span className="block text-amber-400 tracking-[0.06em] text-[46px] lg:text-[50px]">
+              <span className="block text-amber-400 tracking-[0.06em] text-[40px] md:text-[46px] lg:text-[50px]">
                 Medical Expo
               </span>
               2026

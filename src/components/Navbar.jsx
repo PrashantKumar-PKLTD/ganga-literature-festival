@@ -104,17 +104,30 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
 
       {/* Mobile Drawer menu */}
       <div
-        className={`lg:hidden fixed top-[80px] md:top-[72px] right-0 w-full h-[calc(100vh-80px)] bg-white shadow-2xl transition-transform duration-300 ease-in-out transform ${
+        className={`lg:hidden fixed inset-0 z-[60] bg-white transition-transform duration-300 ease-in-out transform flex flex-col ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col p-6 gap-4">
+        <div className="flex justify-between items-center p-6 border-b border-gray-100 bg-[#f8f9fb]">
+          <span className="font-extrabold text-[#0a1a3c] text-lg tracking-wide uppercase">Menu</span>
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="text-gray-500 hover:text-red-500 bg-white border border-gray-200 p-1 rounded-sm shadow-sm transition-colors"
+            aria-label="Close menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        <div className="flex-1 overflow-y-auto flex flex-col p-6 gap-2">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-gray-800 hover:text-govblue font-bold text-lg border-b border-gray-100 pb-2 transition-colors"
+              className="text-gray-800 hover:text-[#0a1a3c] hover:bg-gray-50 font-bold text-lg border-b border-gray-100 py-4 px-2 transition-all"
             >
               {link.label}
             </a>
@@ -122,7 +135,7 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
           <a
             href="#register"
             onClick={(e) => handleNavClick(e, "#register")}
-            className="bg-accentgreen hover:bg-accentgreen-dark text-white text-center font-bold uppercase py-3 rounded shadow mt-4 transition-all"
+            className="bg-[#0a1a3c] text-white text-center font-bold tracking-widest uppercase py-4 rounded-sm shadow mt-6 transition-all"
           >
             Register Pass
           </a>

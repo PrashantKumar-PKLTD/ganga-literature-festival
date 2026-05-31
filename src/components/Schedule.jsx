@@ -145,13 +145,13 @@ export default function Schedule() {
 
           {/* Centre vertical line */}
           <div
-            className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"
+            className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"
             style={{ background: "linear-gradient(to bottom, transparent, #e2e8f0 6%, #e2e8f0 94%, transparent)" }}
           />
 
           {/* Animated golden line */}
           <div
-            className="absolute left-1/2 top-0 w-1 -translate-x-1/2 rounded-full z-0"
+            className="hidden md:block absolute left-1/2 top-0 w-1 -translate-x-1/2 rounded-full z-0"
             style={{ 
               height: `${scrollHeight}%`,
               background: "linear-gradient(to bottom, #fcd34d, #f59e0b)",
@@ -159,36 +159,42 @@ export default function Schedule() {
             }}
           />
 
-          <div className="flex flex-col gap-0">
+          <div className="flex flex-col gap-6 md:gap-0">
             {filtered.map((item, i) => {
               const isLeft = i % 2 === 0;   // even → card on LEFT, time on right side of node
               const { dot, badge } = getType(item.type);
 
               return (
-                <div key={i} className="relative grid grid-cols-[1fr_80px_1fr] items-center min-h-[100px]">
+                <div key={i} className="relative flex flex-col md:grid md:grid-cols-[1fr_80px_1fr] md:items-center min-h-[100px] mb-8 md:mb-0 bg-[#f8f9fb] md:bg-transparent p-5 md:p-0 rounded-sm border border-gray-100 md:border-none">
+                  
+                  {/* MOBILE VIEW: Time and Title stacked */}
+                  <div className="md:hidden flex flex-col gap-2 mb-3">
+                    <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase border px-2 py-0.5 rounded-sm w-fit bg-amber-50 text-amber-700 border-amber-200">
+                      {item.time} • {item.type}
+                    </span>
+                  </div>
 
-                  {/* ── LEFT CARD or empty ── */}
+                  {/* ── LEFT CARD or empty (DESKTOP) ── */}
                   {isLeft ? (
-                    <div className="pr-8 flex justify-end">
+                    <div className="md:pr-8 flex md:justify-end">
                       <div
-                        className="tl-card bg-white border border-gray-100 rounded-sm p-5 w-full max-w-[380px]"
+                        className="tl-card bg-white border border-gray-100 rounded-sm p-5 w-full md:max-w-[380px]"
                         style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.06)" }}
                       >
-                        {/* Type badge */}
-                        <span className={`inline-block text-[9px] font-bold tracking-[0.2em] uppercase border px-2 py-0.5 rounded-sm mb-3 ${badge}`}>
+                        <span className={`hidden md:inline-block text-[9px] font-bold tracking-[0.2em] uppercase border px-2 py-0.5 rounded-sm mb-3 ${badge}`}>
                           {item.type}
                         </span>
-                        <h4 className="text-[16.5px] font-semibold text-[#0a1a3c] leading-snug mb-1.5"
+                        <h4 className="text-[15px] md:text-[16.5px] font-semibold text-[#0a1a3c] leading-snug mb-1.5"
                           style={{ letterSpacing: "0.01em" }}>
                           {item.session}
                         </h4>
-                        <p className="text-[14px] text-gray-400 font-light leading-relaxed">
+                        <p className="text-[13px] md:text-[14px] text-gray-500 font-light leading-relaxed">
                           {item.desc}
                         </p>
                       </div>
                     </div>
                   ) : (
-                    <div className="pr-8 flex justify-end">
+                    <div className="hidden md:flex pr-8 justify-end">
                       <span className="text-[13px] font-semibold text-gray-500 tracking-wide text-right"
                         style={{ fontFamily: "'Poppins', sans-serif" }}>
                         {item.time}
@@ -196,8 +202,8 @@ export default function Schedule() {
                     </div>
                   )}
 
-                  {/* ── Centre node ── */}
-                  <div className="flex flex-col items-center justify-center z-10 gap-1.5">
+                  {/* ── Centre node (DESKTOP) ── */}
+                  <div className="hidden md:flex flex-col items-center justify-center z-10 gap-1.5">
                     <div
                       className="tl-node w-9 h-9 rounded-full border-2 border-white flex items-center justify-center"
                       style={{
@@ -211,27 +217,27 @@ export default function Schedule() {
                     </div>
                   </div>
 
-                  {/* ── RIGHT CARD or empty ── */}
+                  {/* ── RIGHT CARD or empty (DESKTOP) ── */}
                   {!isLeft ? (
-                    <div className="pl-8 flex justify-start">
+                    <div className="md:pl-8 flex md:justify-start mt-2 md:mt-0">
                       <div
-                        className="tl-card bg-white border border-gray-100 rounded-sm p-5 w-full max-w-[380px]"
+                        className="tl-card bg-white border border-gray-100 rounded-sm p-5 w-full md:max-w-[380px]"
                         style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.06)" }}
                       >
-                        <span className={`inline-block text-[9px] font-bold tracking-[0.2em] uppercase border px-2 py-0.5 rounded-sm mb-3 ${badge}`}>
+                        <span className={`hidden md:inline-block text-[9px] font-bold tracking-[0.2em] uppercase border px-2 py-0.5 rounded-sm mb-3 ${badge}`}>
                           {item.type}
                         </span>
-                        <h4 className="text-[14.5px] font-semibold text-[#0a1a3c] leading-snug mb-1.5"
+                        <h4 className="text-[15px] md:text-[16.5px] font-semibold text-[#0a1a3c] leading-snug mb-1.5"
                           style={{ letterSpacing: "0.01em" }}>
                           {item.session}
                         </h4>
-                        <p className="text-[12px] text-gray-400 font-light leading-relaxed">
+                        <p className="text-[13px] md:text-[14px] text-gray-500 font-light leading-relaxed">
                           {item.desc}
                         </p>
                       </div>
                     </div>
                   ) : (
-                    <div className="pl-8 flex justify-start">
+                    <div className="hidden md:flex pl-8 justify-start">
                       <span className="text-[13px] font-semibold text-gray-500 tracking-wide text-left"
                         style={{ fontFamily: "'Poppins', sans-serif" }}>
                         {item.time}
