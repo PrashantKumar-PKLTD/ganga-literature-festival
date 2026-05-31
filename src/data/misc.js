@@ -1,31 +1,45 @@
 export const FAQS = [
   {
-    q: "Who can attend the Ganga Literature Festival?",
-    a: "The festival is open to everyone — students, authors, researchers, publishers, journalists, and literature enthusiasts. Some sessions require prior registration due to limited seating capacity.",
+    q: "Who should attend the Bihar Medical Expo?",
+    a: "The expo is designed for doctors, surgeons, clinicians, hospital owners, administrators, medical device manufacturers, dealers, distributors, laboratory technicians, clinical scientists, and healthcare decision-makers across Eastern India.",
   },
   {
-    q: "Is there a registration fee?",
-    a: "General festival passes are free for students with valid ID. Delegate passes (₹999) and VIP passes (₹2,999) are available for priority seating, exclusive workshops, and gala dinner access.",
+    q: "Is there an entry fee for visitors?",
+    a: "General visitor entry is completely free with prior online registration. Exhibitor badges and VIP access passes with priority networking and B2B matchmaking features are available separately.",
   },
   {
     q: "Where exactly is the venue?",
-    a: "The festival is held at Gyan Bhawan, Beer Chand Patel Marg, Patna — situated in the heart of Bihar's capital city. It's easily accessible via Patna Junction railway station and multiple bus routes.",
+    a: "The expo is held at Gyan Bhawan Exhibition Centre, North Gandhi Maidan Road, Muradpur, Patna, Bihar — 800001. It is well-connected by road, rail (Patna Junction), and air (Jay Prakash Narayan Airport).",
   },
   {
-    q: "Will sessions be recorded or livestreamed?",
-    a: "Selected keynotes and panels will be livestreamed on our YouTube channel. Workshop recordings will be available to registered participants post-event within 7 business days.",
+    q: "What product categories are featured at the expo?",
+    a: "The exhibition showcases Medical & Surgical Equipment (OT/ICU tech, life-support), Diagnostics (imaging, lab equipment, x-ray), Infrastructure & Consumables (hospital furniture, facility management, clinical consumables), and Digital Health solutions.",
   },
   {
-    q: "Are there opportunities for debut authors?",
-    a: "Yes! We have dedicated open-mic slots, a 'New Voices' panel, and a manuscript consultation programme. First-time authors can apply through the registration form.",
+    q: "How can I book an exhibitor stall?",
+    a: "Contact Star Exhibitions directly at +91 72085 22614 or email info@starexhibitions.in. Stall sizes range from 9 sqm to premium island booths. Early bird pricing is available until September 2026.",
   },
 ];
 
-export const GALLERY_IMGS = [
-  { src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80", alt: "Festival Opening" },
-  { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80", alt: "Panel Discussion" },
-  { src: "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=600&q=80", alt: "Riverside Reading" },
-  { src: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80", alt: "Book Launches" },
-  { src: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80", alt: "Workshop Session" },
-  { src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80", alt: "Cultural Evening" },
+export const PRODUCT_ZONES = [
+  {
+    icon: "🔬",
+    title: "Medical & Surgical Equipment",
+    desc: "Advanced surgical gear, OT/ICU technologies, life-support devices, patient monitoring systems",
+  },
+  {
+    icon: "🩺",
+    title: "Diagnostics & Imaging",
+    desc: "Clinical imaging, laboratory equipment, x-ray components, diagnostic software, pathology tools",
+  },
+  {
+    icon: "🏥",
+    title: "Infrastructure & Consumables",
+    desc: "Healthcare facility management, hospital furniture, sterilization systems, daily clinical consumables",
+  },
+  {
+    icon: "💊",
+    title: "Pharma & Digital Health",
+    desc: "Pharmaceutical innovations, telemedicine platforms, EHR systems, remote patient monitoring",
+  },
 ];
