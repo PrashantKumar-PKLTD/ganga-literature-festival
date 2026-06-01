@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FAQS } from "./misc";
+import { FAQS } from "./data/misc";
 
 export default function FAQ() {
   const [open, setOpen] = useState(null);
