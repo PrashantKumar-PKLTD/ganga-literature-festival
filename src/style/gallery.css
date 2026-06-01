@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
+
+/* ================= DESKTOP BASE STYLES ================= */
+.gallery-pin-wrapper {
+    background-color: #000000;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 60px;
+    box-sizing: border-box;
+    border-top: 1px solid #111111;
+}
+
+.gallery-static-header {
+    position: absolute;
+    left: 60px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: linear-gradient(90deg, #000000 75%, transparent);
+    padding-right: 60px;
+}
+
+.gallery-tag {
+    font-size: 0.8rem;
+    color: #ffcc00;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.gallery-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: -1px;
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 40px;
+    padding-left: 450px; /* Leaves space for desktop title */
+    height: 55vh;
+    align-items: flex-start;
+    will-change: transform;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 450px;
+    flex-shrink: 0;
+}
+
+.gallery-image-box {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 10;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover .gallery-image-box img {
+    transform: scale(1.04);
+}
+
+.gallery-hud-index {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 3px 8px;
+    border-radius: 2px;
+}
+
+.gallery-item-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #aaaaaa;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ================= PERFECT MOBILE & TABLET BREAKDOWN ================= */
+@media (max-width: 768px) {
+    .gallery-pin-wrapper {
+        height: auto; /* Allow section to grow naturally with the list */
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 20px;
+    }
+
+    .gallery-static-header {
+        position: relative; /* Remove absolute positioning */
+        left: 0;
+        background: none;
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .gallery-title {
+        font-size: 2.4rem;
+    }
+
+    /* Transform horizontal row track into a dynamic vertical grid feed */
+    .gallery-track {
+        display: grid;
+        grid-template-columns: 1fr; /* 1 clean card per row on mobile */
+        gap: 35px;
+        padding-left: 0; 
+        height: auto;
+        width: 100%;
+    }
+
+    .gallery-item {
+        width: 100%; /* Force image container to fill phone screens completely */
+    }
+
+    .gallery-item-name {
+        white-space: normal; /* Allow title strings to wrap instead of cutting off */
+        font-size: 0.95rem;
+    }
+}

@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
+
+/* Pure Void Black Base */
+.event-section {
+    background-color: #000000;
+    min-height: 100vh;
+    width: 100%;
+    padding: 60px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #ffffff;
+    box-sizing: border-box;
+    border-top: 1px solid #111111;
+}
+
+/* Flex layout handles mobile stretching much better than rigid grids */
+.event-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 40px;
+}
+
+/* Reusable block structure */
+.event-block {
+    flex: 1;
+    min-width: 280px; /* Prevents shrinking past readable limits */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* ================= LEFT CONTENT ================= */
+.section-tag {
+    font-size: 0.8rem;
+    color: #ffcc00; /* Minimal gold indicator asset */
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.event-heading {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+}
+
+.event-description {
+    font-size: 1.1rem;
+    color: #888888;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 500px;
+}
+
+/* ================= RIGHT PRIZE BLOCK (No Color/No Heavy Boxes) ================= */
+.prize-block {
+    background: #0a0a0a; /* Extreme dark gray, barely visible from black */
+    border: 1px solid #1a1a1a; /* Hard camera-style matte border */
+    padding: 40px;
+    position: relative;
+}
+
+.prize-tag {
+    font-size: 0.75rem;
+    color: #888888;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.prize-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    margin: 0 0 15px 0;
+    letter-spacing: 0.5px;
+}
+
+.prize-description {
+    font-size: 1rem;
+    color: #aaaaaa;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.prize-description strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Minimalist Lens Bracket details */
+.lens-bracket-top, .lens-bracket-bottom {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.lens-bracket-top {
+    top: 20px; right: 20px; border-left: none; border-bottom: none;
+}
+.lens-bracket-bottom {
+    bottom: 20px; left: 20px; border-right: none; border-top: none;
+}
+
+/* ================= COMPLETE RESPONSIVE BREAKDOWN ================= */
+@media (max-width: 868px) {
+    .event-container {
+        flex-direction: column; /* Stack vertically cleanly on tablets/phones */
+        gap: 50px;
+    }
+    
+    .event-heading {
+        font-size: 2.8rem;
+    }
+    
+    .event-block {
+        width: 100%; /* Take full horizontal width */
+    }
+
+    .prize-block {
+        padding: 30px 20px; /* Tighter padding for smaller viewport sizes */
+    }
+}
+
+@media (max-width: 480px) {
+    .event-heading {
+        font-size: 2.2rem;
+    }
+    
+    .event-description, .prize-description {
+        font-size: 0.95rem;
+    }
+}

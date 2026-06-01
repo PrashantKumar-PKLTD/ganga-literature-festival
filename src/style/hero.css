@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@700;800&display=swap');
+
+.hero-box {
+    background-image: url("https://i.pinimg.com/736x/e3/d8/a9/e3d8a9d7fa2a8ed5ced0741ab91a5dca.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+   min-height: 100vh;
+    width: 100%;
+    position: relative;
+    background-color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* Dark, sleek cinematic overlay */
+.hero-overlay {
+    background: linear-gradient(180deg, rgba(13, 13, 13, 0.4) 0%, rgba(13, 13, 13, 0.85) 100%);
+  min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+    z-index: 2;
+    position: relative;
+}
+
+/* Viewfinder UI Corners */
+.viewfinder-frame {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    z-index: 3;
+    pointer-events: none;
+}
+.tl { top: 25px; left: 25px; border-right: none; border-bottom: none; }
+.tr { top: 25px; right: 25px; border-left: none; border-bottom: none; }
+.bl { bottom: 25px; left: 25px; border-right: none; border-top: none; }
+.br { bottom: 25px; right: 25px; border-left: none; border-top: none; }
+
+/* Camera Settings Top Bar */
+.hero-meta-top {
+    display: flex;
+    gap: 30px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.shutter-live {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.shutter-dot {
+    width: 8px;
+    height: 8px;
+    background: #ff3b30; /* Camera Recording Red Dot */
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ff3b30;
+}
+
+/* Central Typography Block */
+.hero-content {
+    text-align: center;
+    max-width: 850px;
+}
+
+.hero-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: #ffcc00; /* Subtle warm lens-accent color */
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 5.5rem;
+    font-weight: 800;
+    line-height: 0.95;
+    color: #ffffff;
+    margin: 0 0 25px 0;
+    letter-spacing: -2px;
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1.5px #ffffff;
+}
+
+.hero-description {
+    color: #cccccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 35px auto;
+    font-weight: 300;
+}
+
+/* Action Center */
+.hero-action-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.hero-action-row button {
+    padding: 16px 36px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.cta-shutter {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
+}
+
+.cta-shutter:hover {
+    background: transparent;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.cta-outline {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cta-outline:hover {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Technical Details Footer Grid */
+.hero-technical-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+}
+
+.tech-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tech-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+
+.tech-val {
+    font-size: 0.95rem;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.tech-border {
+    height: 30px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Responsiveness overrides for Mobile viewports */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3.2rem;
+    }
+    .hero-action-row {
+        flex-direction: column;
+        width: 100%;
+    }
+    .hero-technical-footer {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        text-align: center;
+    }
+    .tech-block {
+        align-items: center;
+    }
+    .tech-border {
+        display: none;
+    }
+    .viewfinder-frame {
+        display: none; /* Drop camera ticks on mobile to clean space */
+    }
+}
