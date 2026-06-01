@@ -1,17 +1,16 @@
 {
-  "name": "ganga-literature-festival",
-  "version": "2.0.0",
-  "private": true,
+  "name": "bihar-medical-expo",
+  "version": "1.0.0",
   "dependencies": {
+    "lucide-react": "^1.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^7.16.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build"
   },
   "browserslist": {
     "production": [
@@ -24,5 +23,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.1"
   }
 }

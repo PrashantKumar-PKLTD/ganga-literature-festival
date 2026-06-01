@@ -1,3 +1,6 @@
+
+node_modules
+.env
 # Dependencies
 node_modules/
 
@@ -26,3 +29,4 @@ Thumbs.db
 
 # Test and coverage output
 coverage/
+

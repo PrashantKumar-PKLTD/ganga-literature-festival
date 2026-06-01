@@ -1,44 +1,145 @@
 import { useState, useEffect } from "react";
 
-const NAV_LINKS = ["About", "Speakers", "Schedule", "Gallery", "Register", "FAQ", "Contact"];
+const NAV_LINKS = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Speakers", href: "#speakers" },
+  { label: "Schedule", href: "#schedule" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Register", href: "#register" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Navbar({ menuOpen, setMenuOpen }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <>
-      <nav className={`c-nav${scrolled ? " scrolled" : ""}`}>
-        <div className="c-nav-inner">
-          <a href="#home" className="c-logo">
-            <div className="c-logo-box">G</div>
-            <div>
-              <div className="c-logo-name">Ganga Lit Fest</div>
-              <div className="c-logo-sub">Patna 2026</div>
+    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+      {/* Top Banner Bar for Government/Corporate Style */}
+      <div className="bg-govblue text-white text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-2 border-b border-govblue-dark">
+        <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
+          <span className="flex items-center gap-1">
+            <span>📅</span> 21–23 November 2026
+          </span>
+          <span className="flex items-center gap-1">
+            <span>📍</span> Gyan Bhawan Exhibition Centre, Patna
+          </span>
+        </div>
+        <div className="flex items-center gap-4 justify-center md:justify-end">
+          <a href="tel:+917208522614" className="hover:underline flex items-center gap-1">
+            <span>📞</span> +91 72085 23454
+          </a>
+          <a href="mailto:info@starexhibitions.in" className="hover:underline flex items-center gap-1">
+            <span>✉️</span> admin@gmail.com
+          </a>
+        </div>
+      </div>
+
+      {/* Main Nav Bar */}
+      <nav className={`w-full bg-white shadow-md transition-all duration-300 ${scrolled ? "py-2" : "py-4"}`}>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+          {/* Logo / Brand */}
+          <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-3 group">
+            <div className="flex flex-col">
+              <span className="text-govblue font-extrabold text-base md:text-lg leading-tight uppercase tracking-wider">
+                Bihar Medical Expo
+              </span>
+              <span className="text-[10px] md:text-xs text-gray-500 font-semibold uppercase tracking-widest">
+                5th Edition • Eastern India's Largest B2B Fair
+              </span>
             </div>
           </a>
-          <ul className="c-nav-links">
-            {NAV_LINKS.map((l) => (
-              <li key={l}><a href={`#${l.toLowerCase()}`}>{l}</a></li>
+
+          {/* Desktop Nav Links */}
+          <div className="hidden lg:flex items-center gap-6">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-gray-700 hover:text-govblue font-semibold text-sm uppercase tracking-wider transition-colors duration-150 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-govblue hover:after:w-full after:transition-all"
+              >
+                {link.label}
+              </a>
             ))}
-          </ul>
-          <a href="#register" className="btn-primary" style={{ fontSize: 13, padding: "10px 20px" }}>Register Now</a>
-          <button className="c-hamburger" onClick={() => setMenuOpen(true)}>
-            <span /><span /><span />
+            <a
+              href="#register"
+              onClick={(e) => handleNavClick(e, "#register")}
+              className="bg-accentgreen hover:bg-accentgreen-dark text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded shadow transition-all hover:scale-105"
+            >
+              Register Pass
+            </a>
+          </div>
+
+          {/* Hamburger Menu button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="lg:hidden text-gray-700 hover:text-govblue focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {menuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
           </button>
         </div>
       </nav>
-      <div className={`c-mobile-menu${menuOpen ? " open" : ""}`}>
-        <button className="c-mobile-close" onClick={() => setMenuOpen(false)}>✕</button>
-        {NAV_LINKS.map((l) => (
-          <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{l}</a>
-        ))}
-        <a href="#register" className="btn-primary" onClick={() => setMenuOpen(false)}>Register Now</a>
+
+      {/* Mobile Drawer menu */}
+      <div
+        className={`lg:hidden fixed inset-0 z-[60] bg-white transition-transform duration-300 ease-in-out transform flex flex-col ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex justify-between items-center p-6 border-b border-gray-100 bg-[#f8f9fb]">
+          <span className="font-extrabold text-[#0a1a3c] text-lg tracking-wide uppercase">Menu</span>
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="text-gray-500 hover:text-red-500 bg-white border border-gray-200 p-1 rounded-sm shadow-sm transition-colors"
+            aria-label="Close menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        <div className="flex-1 overflow-y-auto flex flex-col p-6 gap-2">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="text-gray-800 hover:text-[#0a1a3c] hover:bg-gray-50 font-bold text-lg border-b border-gray-100 py-4 px-2 transition-all"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#register"
+            onClick={(e) => handleNavClick(e, "#register")}
+            className="bg-[#0a1a3c] text-white text-center font-bold tracking-widest uppercase py-4 rounded-sm shadow mt-6 transition-all"
+          >
+            Register Pass
+          </a>
+        </div>
       </div>
-    </>
+    </header>
   );
 }
