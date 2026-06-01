@@ -1,4 +1,4 @@
-import SPEAKERS from "../data/speakers";
+import SPEAKERS from "./data/speakers";
 
 export function SpeakerCard({ speaker }) {
   return (
