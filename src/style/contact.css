@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
 
-/* Void Base Layout */
+/* Off-White Base Layout */
 .contact-section {
-    background-color: #000000;
+    background-color: #f5f5f7; /* Premium off-white background */
     min-height: 100vh;
     width: 100%;
     padding: 100px 24px;
@@ -11,8 +11,8 @@
     align-items: center;
     justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-    color: #ffffff;
-    border-top: 1px solid #111111;
+    color: #1d1d1f; /* Dark charcoal for excellent readability */
+    border-top: 1px solid #e5e5e7;
 }
 
 .contact-container {
@@ -27,7 +27,7 @@
 
 .contact-tag {
     font-size: 0.8rem;
-    color: #ffcc00; /* Signature gold indicator marker */
+    color: #bf9b00; /* Darker gold/bronze for better contrast on light background */
     letter-spacing: 2px;
     font-weight: 700;
 }
@@ -39,16 +39,17 @@
     margin: 0;
     line-height: 1;
     letter-spacing: -1px;
+    color: #1d1d1f;
 }
 
 .outline-text {
     color: transparent;
-    -webkit-text-stroke: 1px #ffffff;
+    -webkit-text-stroke: 1px #1d1d1f; /* Dark stroke for outline effect */
 }
 
 .contact-description {
     font-size: 1.1rem;
-    color: #888888;
+    color: #515154; /* Muted slate gray for description */
     line-height: 1.6;
     max-width: 550px;
     margin: 0 0 20px 0;
@@ -67,19 +68,20 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-    background-color: #050505;
-    border: 1px solid #1a1a1a;
+    background-color: #ffffff; /* Pure white card */
+    border: 1px solid #d2d2d7; /* Soft border */
     padding: 30px 50px;
-    border-radius: 4px;
+    border-radius: 8px; /* Slightly rounder for a modern clean look */
     text-decoration: none;
-    color: #ffffff;
-    transition: background-color 0.3s, border-color 0.3s;
-    will-change: transform; /* Boosts layout performance rendering */
+    color: #1d1d1f;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    will-change: transform; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* Subtle premium shadow */
 }
 
 .email-hud-text {
     font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(0, 0, 0, 0.5); /* Muted label text */
     letter-spacing: 1.5px;
 }
 
@@ -91,8 +93,9 @@
 
 /* Hover Accent Changes */
 .contact-email-link:hover {
-    background-color: #0a0a0a;
-    border-color: rgba(255, 255, 255, 0.4);
+    background-color: #fafafa;
+    border-color: #86868b;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06); /* Smooth elevation on hover */
 }
 
 /* ================= COMPACT MOBILE RESPONSIVE ADAPTATION ================= */
@@ -106,7 +109,7 @@
     }
 
     .magnetic-wrapper {
-        padding: 10px; /* Pull margins tight so it can't clip screen boundaries */
+        padding: 10px; 
         width: 100%;
         box-sizing: border-box;
     }

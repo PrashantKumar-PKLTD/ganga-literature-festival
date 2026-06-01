@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
 
-/* Pure Void Black Base */
+/* Off-White Base Layout */
 .event-section {
-    background-color: #000000;
+    background-color: #f5f5f7; /* Matching premium off-white background */
     min-height: 100vh;
     width: 100%;
     padding: 60px 20px;
@@ -10,9 +10,9 @@
     align-items: center;
     justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-    color: #ffffff;
+    color: #1d1d1f; /* Premium dark charcoal text */
     box-sizing: border-box;
-    border-top: 1px solid #111111;
+    border-top: 1px solid #e5e5e7; /* Soft divider line */
 }
 
 /* Flex layout handles mobile stretching much better than rigid grids */
@@ -39,7 +39,7 @@
 /* ================= LEFT CONTENT ================= */
 .section-tag {
     font-size: 0.8rem;
-    color: #ffcc00; /* Minimal gold indicator asset */
+    color: #bf9b00; /* Darker gold/bronze for proper contrast on white */
     letter-spacing: 2px;
     font-weight: 700;
     margin-bottom: 15px;
@@ -52,32 +52,35 @@
     margin: 0 0 20px 0;
     text-transform: uppercase;
     letter-spacing: -1px;
+    color: #1d1d1f;
 }
 
 .outline-text {
     color: transparent;
-    -webkit-text-stroke: 1px #ffffff;
+    -webkit-text-stroke: 1px #1d1d1f; /* Charcoal stroke for clean light cut-out */
 }
 
 .event-description {
     font-size: 1.1rem;
-    color: #888888;
+    color: #515154; /* Slate gray for soft readability */
     line-height: 1.6;
     margin: 0;
     max-width: 500px;
 }
 
-/* ================= RIGHT PRIZE BLOCK (No Color/No Heavy Boxes) ================= */
+/* ================= RIGHT PRIZE BLOCK (Modern Clean Card) ================= */
 .prize-block {
-    background: #0a0a0a; /* Extreme dark gray, barely visible from black */
-    border: 1px solid #1a1a1a; /* Hard camera-style matte border */
+    background: #ffffff; /* Pure white card to stand out from off-white background */
+    border: 1px solid #d2d2d7; /* Modern clean borderline */
     padding: 40px;
     position: relative;
+    border-radius: 8px; /* Smooth professional round corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); /* Subtle premium elevation shadow */
 }
 
 .prize-tag {
     font-size: 0.75rem;
-    color: #888888;
+    color: #86868b; /* Muted label tone */
     letter-spacing: 2px;
     margin-bottom: 10px;
 }
@@ -87,17 +90,18 @@
     font-size: 1.8rem;
     margin: 0 0 15px 0;
     letter-spacing: 0.5px;
+    color: #1d1d1f;
 }
 
 .prize-description {
     font-size: 1rem;
-    color: #aaaaaa;
+    color: #515154;
     line-height: 1.6;
     margin: 0;
 }
 
 .prize-description strong {
-    color: #ffffff;
+    color: #1d1d1f; /* Strong text highlighted in dark charcoal */
     font-weight: 700;
 }
 
@@ -106,7 +110,7 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.15); /* Soft dark brackets for camera lens aesthetic */
 }
 .lens-bracket-top {
     top: 20px; right: 20px; border-left: none; border-bottom: none;

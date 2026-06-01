@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
 
-/* Void Block Layout */
+/* Off-White Block Layout */
 .faq-section {
-    background-color: #000000;
+    background-color: #f5f5f7; /* Matching premium off-white background */
     min-height: 100vh;
     width: 100%;
     padding: 100px 24px;
@@ -11,8 +11,8 @@
     align-items: center;
     justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-    color: #ffffff;
-    border-top: 1px solid #111111;
+    color: #1d1d1f; /* Premium dark charcoal text */
+    border-top: 1px solid #e5e5e7; /* Soft divider line */
 }
 
 .faq-container {
@@ -32,7 +32,7 @@
 
 .faq-tag {
     font-size: 0.8rem;
-    color: #ffcc00; /* Subtle warm lens indicator tag */
+    color: #bf9b00; /* Darker gold/bronze for proper contrast on light background */
     letter-spacing: 2px;
     font-weight: 700;
 }
@@ -44,11 +44,12 @@
     margin: 0;
     line-height: 1.05;
     letter-spacing: -1px;
+    color: #1d1d1f;
 }
 
 .outline-text {
     color: transparent;
-    -webkit-text-stroke: 1px #ffffff;
+    -webkit-text-stroke: 1px #1d1d1f; /* Charcoal stroke for clean light cut-out */
 }
 
 /* ================= ACCORDION STRUCTURAL MECHANICS ================= */
@@ -59,7 +60,7 @@
 }
 
 .faq-item {
-    border-bottom: 1px solid #1a1a1a; /* Clean framing horizontal lines */
+    border-bottom: 1px solid #d2d2d7; /* Soft clean framing horizontal lines */
     padding: 24px 0;
     cursor: pointer;
     display: flex;
@@ -68,7 +69,7 @@
 }
 
 .faq-item:first-child {
-    border-top: 1px solid #1a1a1a;
+    border-top: 1px solid #d2d2d7;
 }
 
 .faq-question-row {
@@ -84,13 +85,14 @@
     font-weight: 500;
     margin: 0;
     letter-spacing: 0.5px;
+    color: #1d1d1f;
 }
 
 /* Structural Minimal Arrow Asset using CSS masks */
 .faq-icon-arrow {
     width: 18px;
     height: 18px;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(0, 0, 0, 0.4); /* Dark muted state for light theme */
     display: block;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
     mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='12' y1='5' x2='12' y2='19'></line><line x1='5' y1='12' x2='19' y2='12'></line></svg>");
@@ -100,7 +102,7 @@
 
 /* Active Hover row highlight */
 .faq-item:hover .faq-icon-arrow {
-    background-color: #ffffff;
+    background-color: #1d1d1f; /* Becomes dark charcoal on hover */
 }
 
 /* ================= EXPANSION ANIMATION SYSTEM ================= */
@@ -115,7 +117,7 @@
 .faq-answer-text {
     min-height: 0;
     font-size: 1rem;
-    color: #888888;
+    color: #515154; /* Slate gray for soft readability on answer texts */
     line-height: 1.6;
     margin: 0;
     padding-top: 0px;
@@ -134,7 +136,7 @@
 
 .faq-item.active .faq-icon-arrow {
     transform: rotate(135deg); /* Flips asset cross line to become a close marker */
-    background-color: #ffcc00; /* Gold highlight on active answer open */
+    background-color: #bf9b00; /* Darker gold highlight on active answer open */
 }
 
 /* ================= MOBILE OPTIMIZATION OVERRIDES ================= */

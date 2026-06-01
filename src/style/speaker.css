@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
 
-/* Pure Void Black Base */
+/* Pure Off-White Light Base */
 .speaker-section {
-    background-color: #000000;
+    background-color: #f5f5f7; /* Premium off-white background */
     width: 100%;
     padding: 100px 24px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-    color: #ffffff;
-    border-top: 1px solid #111111;
+    color: #1d1d1f; /* Rich charcoal black for modern readability */
+    border-top: 1px solid #e5e5e7; /* Soft structural divider line */
 }
 
 .speaker-container {
@@ -30,7 +30,7 @@
 
 .speaker-tag {
     font-size: 0.8rem;
-    color: #ffcc00; /* Minimal gold tag */
+    color: #bf9b00; /* Rich gold/bronze for crisp light contrast */
     letter-spacing: 2px;
     font-weight: 700;
 }
@@ -42,14 +42,15 @@
     margin: 0;
     letter-spacing: -1px;
     line-height: 1;
+    color: #1d1d1f;
 }
 
 .outline-text {
     color: transparent;
-    -webkit-text-stroke: 1px #ffffff;
+    -webkit-text-stroke: 1px #1d1d1f; /* Clean sharp dark stroke */
 }
 
-/* ================= GRID MECHANICS (FLUID RESPONSIRE) ================= */
+/* ================= GRID MECHANICS (FLUID RESPONSIVE) ================= */
 .speaker-grid {
     display: grid;
     /* Automatically creates columns that wrap cleanly when space runs tight */
@@ -63,17 +64,18 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    group: hover;
 }
 
 /* Hard Camera Matte Frame Wrapper */
 .image-frame {
     width: 100%;
     aspect-ratio: 4 / 5; /* Professional portrait ratio */
-    background: #0d0d0d;
+    background: #ffffff; /* Crisp white base backdrop for images */
     overflow: hidden;
     position: relative;
-    border: 1px solid #1a1a1a;
+    border: 1px solid #d2d2d7; /* Ultra-thin light border */
+    border-radius: 8px; /* Slightly curved corners for a modern device frame feel */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); /* Extremely fine drop shadow */
 }
 
 /* Portrait Image setup */
@@ -81,7 +83,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%); /* High contrast monochrome portrait look */
+    filter: grayscale(100%) contrast(1.05); /* Premium clean monochrome look */
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -95,16 +97,17 @@
     border: 1px solid transparent;
     pointer-events: none;
     transition: all 0.4s ease;
+    border-radius: 4px; /* Matches inner card aesthetics */
 }
 
 /* Hover States */
 .speaker-card:hover .speaker-img {
-    filter: grayscale(0%); /* Brings color back on hover */
-    transform: scale(1.05); /* Minimal camera lens zoom simulation */
+    filter: grayscale(0%); /* Brings vibrant natural color back on hover */
+    transform: scale(1.04); /* Minimal luxury camera lens zoom simulation */
 }
 
 .speaker-card:hover .frame-viewfinder {
-    border-color: rgba(255, 255, 255, 0.15); /* Frame lights up lightly */
+    border-color: rgba(0, 0, 0, 0.15); /* Frame line illuminates softly in dark contrast */
 }
 
 /* Details Section */
@@ -112,6 +115,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    padding-left: 2px; /* Slight alignment calibration */
 }
 
 .speaker-name {
@@ -121,11 +125,12 @@
     margin: 0;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    color: #1d1d1f;
 }
 
 .speaker-role {
     font-size: 0.85rem;
-    color: #666666;
+    color: #6e6e73; /* Smooth corporate slate gray for subtitles */
     letter-spacing: 0.5px;
 }
 

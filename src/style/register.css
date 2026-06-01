@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
 
-/* Void Base Styling */
+/* Off-White Base Styling */
 .register-section {
-    background-color: #000000;
+    background-color: #f5f5f7; /* Premium off-white background */
     min-height: 100vh;
     width: 100%;
     padding: 100px 24px;
@@ -11,8 +11,8 @@
     align-items: center;
     justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-    color: #ffffff;
-    border-top: 1px solid #111111;
+    color: #1d1d1f; /* Premium dark charcoal text */
+    border-top: 1px solid #e5e5e7; /* Soft divider line */
 }
 
 .register-container {
@@ -33,7 +33,7 @@
 
 .register-tag {
     font-size: 0.8rem;
-    color: #ffcc00; /* Signature minimal gold accent */
+    color: #bf9b00; /* Darker gold/bronze for proper contrast */
     letter-spacing: 2px;
     font-weight: 700;
 }
@@ -45,29 +45,30 @@
     margin: 0;
     line-height: 1.05;
     letter-spacing: -1px;
+    color: #1d1d1f;
 }
 
 .outline-text {
     color: transparent;
-    -webkit-text-stroke: 1px #ffffff;
+    -webkit-text-stroke: 1px #1d1d1f; /* Dark stroke for layout contrast */
 }
 
 .register-notice {
     font-size: 1.05rem;
-    color: #888888;
+    color: #515154; /* Slate gray for elegant description lines */
     line-height: 1.6;
     max-width: 480px;
     margin: 10px 0;
 }
 
 .register-notice b, .register-notice strong {
-    color: #ffffff;
+    color: #1d1d1f; /* Highlight phrases in dark charcoal */
 }
 
 .portal-status {
     font-size: 0.75rem;
     letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.6); /* Clear dark metadata */
     display: flex;
     align-items: center;
     gap: 8px;
@@ -77,9 +78,9 @@
 .status-indicator {
     width: 6px;
     height: 6px;
-    background-color: #00ff66; /* Flashing gateway active color */
+    background-color: #00cc52; /* Adjusted slightly darker vivid green for light surfaces */
     border-radius: 50%;
-    box-shadow: 0 0 8px #00ff66;
+    box-shadow: 0 0 8px rgba(0, 204, 82, 0.4);
 }
 
 /* ================= RIGHT FORM COMPONENT ================= */
@@ -92,10 +93,11 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-    background-color: #050505; /* Charcoal block */
-    border: 1px solid #1a1a1a;
+    background-color: #ffffff; /* Pure white crisp card block */
+    border: 1px solid #d2d2d7; /* Modern thin borderline */
     padding: 40px;
-    border-radius: 4px;
+    border-radius: 8px; /* Professional slightly rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); /* Subtle premium elevation shadow */
 }
 
 .input-group {
@@ -106,40 +108,43 @@
 
 .input-group label {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: #6e6e73; /* Refined gray for field labels */
     letter-spacing: 1.5px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* Form Fields Core Reset */
 .input-group input, 
 .input-group select {
-    background-color: #000000;
-    border: 1px solid #222222;
+    background-color: #f5f5f7; /* Subtle tint input background for high depth contrast */
+    border: 1px solid #d2d2d7;
     padding: 14px;
     font-family: 'Space Grotesk', sans-serif;
-    color: #ffffff;
+    color: #1d1d1f;
     font-size: 0.95rem;
     outline: none;
-    transition: border-color 0.3s ease;
-    border-radius: 0; /* Clean industrial sharp edges */
+    transition: all 0.3s ease;
+    border-radius: 4px; /* Clean look with slightly soft industrial edges */
 }
 
 .input-group input::placeholder {
-    color: #444444;
+    color: #86868b; /* Medium gray placeholder text */
 }
 
 /* Active Highlight Input State */
 .input-group input:focus, 
 .input-group select:focus {
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: #86868b;
+    background-color: #ffffff; /* Whitens the active element smoothly on click */
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.02);
 }
 
 /* Select specific styling overrides */
 .input-group select {
     cursor: pointer;
     appearance: none; /* Strip browser native drop down arrows */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    /* Updated drop arrow color token to black for visibility on white fields */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
     background-repeat: no-repeat;
     background-position: right 14px center;
     background-size: 16px;
@@ -148,9 +153,9 @@
 
 /* Shutter Release styled Button */
 .submit-shutter-btn {
-    background-color: #ffffff;
-    color: #000000;
-    border: 1px solid #ffffff;
+    background-color: #1d1d1f; /* Charcoal dark background for elite priority action button */
+    color: #ffffff;
+    border: 1px solid #1d1d1f;
     padding: 16px;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.95rem;
@@ -159,11 +164,12 @@
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 10px;
+    border-radius: 4px;
 }
 
 .submit-shutter-btn:hover {
     background-color: transparent;
-    color: #ffffff;
+    color: #1d1d1f; /* Inverts layout smoothly on focus */
 }
 
 /* ================= MOBILE ADAPTATION SYSTEM ================= */

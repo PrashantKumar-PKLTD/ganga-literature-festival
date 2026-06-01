@@ -7,10 +7,10 @@
     left: 0;
     width: 100%;
     height: 80px;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(255, 255, 255, 0.8); /* Premium transparent white frost */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06); /* Ultra-thin crisp light border */
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -32,13 +32,13 @@
     font-family: 'Syne', sans-serif;
     font-size: 1.4rem;
     font-weight: 800;
-    color: #ffffff;
+    color: #1d1d1f; /* Premium dark charcoal */
     text-decoration: none;
     letter-spacing: -0.5px;
 }
 
 .logo-dot {
-    color: #ffcc00;
+    color: #bf9b00; /* Rich gold/bronze for better light mode visibility */
 }
 
 /* ================= INTERACTIVE HAMBURGER TRIGGER ================= */
@@ -59,7 +59,7 @@
 .trigger-line {
     width: 100%;
     height: 2px;
-    background-color: #ffffff;
+    background-color: #1d1d1f; /* Charcoal lines for sharp definition */
     display: block;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
 }
@@ -67,12 +67,12 @@
 /* Morphing animation states handled via React active class toggling */
 .nav-trigger-btn.menu-active .line-top {
     transform: translateY(4px) rotate(45deg);
-    background-color: #ffcc00;
+    background-color: #bf9b00;
 }
 
 .nav-trigger-btn.menu-active .line-bottom {
     transform: translateY(-4px) rotate(-45deg);
-    background-color: #ffcc00;
+    background-color: #bf9b00;
 }
 
 /* ================= GSAP FULLSCREEN OVERLAY PORTAL ================= */
@@ -82,7 +82,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #000000;
+    background-color: #f5f5f7; /* Off-white canvas for the fullscreen takeover */
     z-index: 1000;
     clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
     display: flex;
@@ -91,14 +91,15 @@
     box-sizing: border-box;
 }
 
-/* Dark Tactical Overlay Film Grain Effect */
+/* Dark Tactical Overlay Film Grain Effect (Inverted for light mode) */
 .menu-bg-grain {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0.02;
+    opacity: 0.04; /* Slightly increased for visibility on light surfaces */
     pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='noiseFilter'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23noiseFilter)'/></svg>");
+    /* Generates organic dark texture particles instead of light ones */
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='noiseFilter'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><feColorMatrix type='matrix' values='0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 1 0'/><rect width='100%' height='100%' filter='url(%23noiseFilter)'/></svg>");
 }
 
 .menu-content-box {
@@ -114,7 +115,7 @@
 
 .menu-hud-tag {
     font-size: 0.8rem;
-    color: #ffcc00;
+    color: #bf9b00;
     letter-spacing: 2px;
     font-weight: 700;
 }
@@ -131,7 +132,7 @@
     font-size: clamp(2.5rem, 5.5vw, 4.8rem);
     font-weight: 800;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.15); /* Soft dark stroke for empty brutalist text */
     text-transform: uppercase;
     text-decoration: none;
     line-height: 1.1;
@@ -146,11 +147,12 @@
     font-size: clamp(1rem, 1.8vw, 1.4rem);
     font-weight: 500;
     letter-spacing: 1px;
+    color: #86868b; /* Muted serial number style */
 }
 
 .menu-link-item:hover {
-    color: #ffffff;
-    -webkit-text-stroke: 1px #ffffff;
+    color: #1d1d1f; /* Fills up with solid charcoal on hover */
+    -webkit-text-stroke: 1px #1d1d1f;
     padding-left: 20px;
 }
 
@@ -159,9 +161,9 @@
     justify-content: space-between;
     font-family: monospace;
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(0, 0, 0, 0.4); /* Clear readable metadata footer */
     letter-spacing: 1px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
     padding-top: 20px;
 }
 
@@ -187,7 +189,7 @@
         gap: 14px;
         /* Dynamic scale preventing the wide 'Syne' font from bleeding out */
         font-size: clamp(1.4rem, 7.2vw, 2.2rem); 
-        color: #ffffff;    
+        color: #1d1d1f;    
         -webkit-text-stroke: unset; /* Drop translucent border for maximum crispness on mobile panels */
         line-height: 1;
         letter-spacing: -0.7px; /* Tighten font tracking to force items into single track boundaries */
@@ -195,7 +197,7 @@
 
     .link-num {
         font-size: 0.75rem;
-        color: #ffcc00;
+        color: #bf9b00;
         opacity: 0.9;
         margin-top: 2px; /* Vertically aligns indicator sequence labels with headings */
         font-family: monospace;

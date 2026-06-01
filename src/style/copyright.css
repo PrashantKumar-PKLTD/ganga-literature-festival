@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&display=swap');
 
-/* Void Base Layout */
+/* Off-White Base Layout */
 .copyright-section {
-    background-color: #000000;
+    background-color: #f5f5f7; /* Matching premium off-white background */
     width: 100%;
     padding: 30px 40px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-    border-top: 1px solid #111111; /* Thin HUD separator divider */
+    border-top: 1px solid #e5e5e7; /* Soft divider instead of harsh dark borders */
 }
 
 .copyright-container {
@@ -30,14 +30,14 @@
 
 .copyright-text {
     font-size: 0.8rem;
-    color: #555555; /* Muted corporate tone */
+    color: #6e6e73; /* Clear gray for readable copyright info */
     letter-spacing: 0.5px;
     margin: 0;
 }
 
 .system-pulse-stamp {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.45); /* Muted layout system stamp */
     letter-spacing: 1px;
     display: flex;
     align-items: center;
@@ -48,9 +48,9 @@
 .pulse-dot {
     width: 4px;
     height: 4px;
-    background-color: #ffcc00; /* Minimal gold system marker */
+    background-color: #bf9b00; /* Darker gold/bronze for proper contrast */
     border-radius: 50%;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 /* ================= RIGHT AREA ================= */
@@ -61,14 +61,14 @@
 
 .footer-link {
     font-size: 0.75rem;
-    color: #555555;
+    color: #6e6e73; /* Matches the corporate gray tone */
     text-decoration: none;
     letter-spacing: 0.5px;
     transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-    color: #ffffff; /* Illuminates fully on focus */
+    color: #1d1d1f; /* Illuminates to premium charcoal dark on focus */
 }
 
 /* ================= MOBILE ADAPTATION SYSTEM ================= */
