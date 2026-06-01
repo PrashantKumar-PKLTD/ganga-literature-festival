@@ -1,4 +1,4 @@
-import { GALLERY_IMGS } from "../data/misc";
+import { GALLERY_IMGS } from "./data/misc";
 
 export default function Gallery() {
   return (
