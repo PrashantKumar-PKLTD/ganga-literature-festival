@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
+
+/* Pure Void Black Base */
+.speaker-section {
+    background-color: #000000;
+    width: 100%;
+    padding: 100px 24px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #ffffff;
+    border-top: 1px solid #111111;
+}
+
+.speaker-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+/* ================= HEADER SECTION ================= */
+.speaker-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.speaker-tag {
+    font-size: 0.8rem;
+    color: #ffcc00; /* Minimal gold tag */
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.speaker-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+}
+
+/* ================= GRID MECHANICS (FLUID RESPONSIRE) ================= */
+.speaker-grid {
+    display: grid;
+    /* Automatically creates columns that wrap cleanly when space runs tight */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+/* ================= CARD DESIGNS ================= */
+.speaker-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    group: hover;
+}
+
+/* Hard Camera Matte Frame Wrapper */
+.image-frame {
+    width: 100%;
+    aspect-ratio: 4 / 5; /* Professional portrait ratio */
+    background: #0d0d0d;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #1a1a1a;
+}
+
+/* Portrait Image setup */
+.speaker-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%); /* High contrast monochrome portrait look */
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Camera Lens Frame simulation on card hover */
+.frame-viewfinder {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid transparent;
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
+
+/* Hover States */
+.speaker-card:hover .speaker-img {
+    filter: grayscale(0%); /* Brings color back on hover */
+    transform: scale(1.05); /* Minimal camera lens zoom simulation */
+}
+
+.speaker-card:hover .frame-viewfinder {
+    border-color: rgba(255, 255, 255, 0.15); /* Frame lights up lightly */
+}
+
+/* Details Section */
+.speaker-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.speaker-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.speaker-role {
+    font-size: 0.85rem;
+    color: #666666;
+    letter-spacing: 0.5px;
+}
+
+/* ================= DEVICE OPTIMIZATION ================= */
+@media (max-width: 600px) {
+    .speaker-section {
+        padding: 60px 16px;
+    }
+    .speaker-container {
+        gap: 40px;
+    }
+    .speaker-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 24px;
+    }
+}

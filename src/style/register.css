@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
+
+/* Void Base Styling */
+.register-section {
+    background-color: #000000;
+    min-height: 100vh;
+    width: 100%;
+    padding: 100px 24px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #ffffff;
+    border-top: 1px solid #111111;
+}
+
+.register-container {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+/* ================= LEFT SIDE DETAILS ================= */
+.register-info-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.register-tag {
+    font-size: 0.8rem;
+    color: #ffcc00; /* Signature minimal gold accent */
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.register-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.05;
+    letter-spacing: -1px;
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+}
+
+.register-notice {
+    font-size: 1.05rem;
+    color: #888888;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 10px 0;
+}
+
+.register-notice b, .register-notice strong {
+    color: #ffffff;
+}
+
+.portal-status {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.status-indicator {
+    width: 6px;
+    height: 6px;
+    background-color: #00ff66; /* Flashing gateway active color */
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff66;
+}
+
+/* ================= RIGHT FORM COMPONENT ================= */
+.register-form-side {
+    flex: 1;
+    width: 100%;
+}
+
+.summit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background-color: #050505; /* Charcoal block */
+    border: 1px solid #1a1a1a;
+    padding: 40px;
+    border-radius: 4px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+
+/* Form Fields Core Reset */
+.input-group input, 
+.input-group select {
+    background-color: #000000;
+    border: 1px solid #222222;
+    padding: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    border-radius: 0; /* Clean industrial sharp edges */
+}
+
+.input-group input::placeholder {
+    color: #444444;
+}
+
+/* Active Highlight Input State */
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Select specific styling overrides */
+.input-group select {
+    cursor: pointer;
+    appearance: none; /* Strip browser native drop down arrows */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* Shutter Release styled Button */
+.submit-shutter-btn {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
+    padding: 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit-shutter-btn:hover {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+/* ================= MOBILE ADAPTATION SYSTEM ================= */
+@media (max-width: 868px) {
+    .register-section {
+        padding: 60px 16px;
+    }
+
+    .register-container {
+        flex-direction: column; /* Stacks column sections on screens like iPads/Mobiles */
+        gap: 40px;
+    }
+
+    .register-info-side {
+        text-align: center;
+        align-items: center;
+    }
+
+    .summit-form {
+        padding: 25px 20px; /* Compress the inner form block padding for tight screen widths */
+    }
+}

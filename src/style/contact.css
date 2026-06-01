@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@800&display=swap');
+
+/* Void Base Layout */
+.contact-section {
+    background-color: #000000;
+    min-height: 100vh;
+    width: 100%;
+    padding: 100px 24px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #ffffff;
+    border-top: 1px solid #111111;
+}
+
+.contact-container {
+    max-width: 800px; 
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.contact-tag {
+    font-size: 0.8rem;
+    color: #ffcc00; /* Signature gold indicator marker */
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.contact-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+}
+
+.contact-description {
+    font-size: 1.1rem;
+    color: #888888;
+    line-height: 1.6;
+    max-width: 550px;
+    margin: 0 0 20px 0;
+}
+
+/* Container defining magnetic boundary range */
+.magnetic-wrapper {
+    padding: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The Interactive Target Box */
+.contact-email-link {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: #050505;
+    border: 1px solid #1a1a1a;
+    padding: 30px 50px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.3s, border-color 0.3s;
+    will-change: transform; /* Boosts layout performance rendering */
+}
+
+.email-hud-text {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1.5px;
+}
+
+.email-address {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Hover Accent Changes */
+.contact-email-link:hover {
+    background-color: #0a0a0a;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ================= COMPACT MOBILE RESPONSIVE ADAPTATION ================= */
+@media (max-width: 600px) {
+    .contact-section {
+        padding: 60px 16px;
+    }
+
+    .contact-container {
+        gap: 16px;
+    }
+
+    .magnetic-wrapper {
+        padding: 10px; /* Pull margins tight so it can't clip screen boundaries */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .contact-email-link {
+        width: 100%;
+        padding: 24px 20px;
+        box-sizing: border-box;
+    }
+}
