@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SCHEDULE from "./schedule";
+import SCHEDULE from "../data/schedule";
 
 export function ScheduleCard({ item }) {
   return (
