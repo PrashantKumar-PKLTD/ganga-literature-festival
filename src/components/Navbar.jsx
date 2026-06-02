@@ -12,8 +12,6 @@ const NAV_LINKS = [
       { label: "Register to Attend", to: "/festival/register-to-attend" },
       { label: "Book your Festival Hotel", to: "/festival/book-your-festival-hotel" },
       { label: "Speakers", to: "/festival/speakers" },
-      { label: "Jaipur BookMark", to: "/festival/jaipur-bookmark" },
-      { label: "Jaipur Music Stage", to: "/festival/jaipur-music-stage" },
     ],
   },
   { label: "Programme", to: "/programme" },
@@ -32,18 +30,14 @@ const NAV_LINKS = [
     label: "Media",
     to: "/media",
     items: [
-      { label: "News & Updates", to: "/media/news-updates" },
       { label: "Blogs", to: "/media/blogs" },
-      { label: "Press Release", to: "/media/press-release" },
     ],
   },
   {
     label: "About",
     to: "/about",
     items: [
-      { label: "About the festival", to: "/about/festival" },
-      { label: "Teamwork Arts", to: "/about/teamwork-arts" },
-      { label: "Archive", to: "/about/archive" },
+      { label: "About the festival", to: "/about" },
       { label: "Contact us", to: "/about/contact-us" },
     ],
   },
@@ -107,13 +101,7 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
           ))}
         </div>
 
-        <div className="ml-auto hidden items-center gap-7 xl:flex 2xl:gap-12">
-          <Link
-            to="/#register"
-            className="text-[15px] font-bold uppercase tracking-[0.06em] text-black transition hover:text-[#b58b32]"
-          >
-            Login / Join
-          </Link>
+        <div className="ml-auto hidden items-center xl:flex">
           <Link
             to="/#register"
             className="bg-[#b58b32] px-9 py-5 text-[15px] font-black uppercase tracking-[0.12em] text-white transition hover:bg-black hover:text-white"

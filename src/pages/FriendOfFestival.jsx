@@ -1,0 +1,228 @@
+import { Link } from "react-router-dom";
+
+const benefits = [
+  {
+    title: "Exclusive Festival Access",
+    image: "/gangaimg1.png",
+    items: [
+      "Receive your gate pass in advance.",
+      "Enjoy exclusive access badges and a welcome kit.",
+      "Avail transport assistance with the festival team.",
+    ],
+  },
+  {
+    title: "Dedicated Hospitality",
+    image: "/gangaimg3.png",
+    items: [
+      "Access the private Friend of the Festival Lounge.",
+      "All-day tea and coffee bar with like-minded guests.",
+      "Private lunch and dinner hospitality during festival days.",
+      "Festival programme brochure and merchandise.",
+    ],
+  },
+  {
+    title: "Specially Curated Evenings",
+    image: "/gangaimg5.png",
+    items: [
+      "Entry to selected evening cultural programmes.",
+      "Cocktail hours with musical performances.",
+      "Author interviews and intimate conversations.",
+      "Heritage evening and writers' ball experiences.",
+    ],
+  },
+];
+
+const packages = [
+  {
+    date: "15th, 16th & 17th Jan 2026",
+    price: "INR 14,000 per day",
+    desc: "Festival lounge access, priority support, refreshments, and selected music stage programming.",
+  },
+  {
+    date: "18th Jan 2026",
+    price: "INR 18,000",
+    desc: "A majestic evening inclusive of cultural performances, dinner, and premium hospitality.",
+  },
+  {
+    date: "19th Jan 2026",
+    price: "INR 18,000",
+    desc: "A closing celebration with authors, speakers, readers, cultural performances, and dinner.",
+  },
+];
+
+const hotels = [
+  {
+    name: "Clarks Amer",
+    image: "/gangaimg2.png",
+    note: "Jawahar Lal Nehru Marg, opposite Fortis Escorts Hospital",
+  },
+  {
+    name: "Marriott",
+    image: "/gangaimg4.png",
+    note: "Distance from festival venue: 3 mins drive",
+  },
+];
+
+function Ornament() {
+  return (
+    <div className="mx-auto my-5 h-10 w-28 bg-[#b58b32] [clip-path:polygon(50%_0,62%_35%,100%_45%,62%_55%,50%_100%,38%_55%,0_45%,38%_35%)]" />
+  );
+}
+
+function Flower({ className = "" }) {
+  return (
+    <span
+      className={`pointer-events-none absolute h-14 w-14 text-5xl font-black leading-none text-[#b58b32] ${className}`}
+      aria-hidden="true"
+    >
+      *
+    </span>
+  );
+}
+
+export default function FriendOfFestival() {
+  return (
+    <main className="pt-[78px] md:pt-[82px]">
+      <section className="relative overflow-hidden bg-[#f8f6f1] px-5 py-20 text-center text-black md:px-8 md:py-28">
+        <Flower className="left-10 top-28 text-[#b58b32]" />
+        <Flower className="right-10 top-48 text-[#b58b32]" />
+
+        <div className="mx-auto max-w-5xl">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#b58b32]">
+            Friend of the Festival
+          </p>
+          <h1 className="mx-auto mt-5 max-w-2xl font-serif text-5xl font-black leading-[0.9] text-black md:text-7xl">
+            What your Experience includes
+          </h1>
+          <p className="mx-auto mt-10 max-w-2xl text-base font-bold leading-7">
+            Become a Friend of the Festival and access the finest hospitality,
+            curated evenings, lounge benefits, and premium festival support.
+          </p>
+          <Link
+            to="/#register"
+            className="mt-8 inline-flex rounded-md bg-[#b58b32] px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:bg-black"
+          >
+            Book Package
+          </Link>
+        </div>
+
+        <div className="mx-auto mt-20 grid max-w-6xl gap-12 lg:grid-cols-3 lg:items-start">
+          {benefits.map((benefit, index) => (
+            <article key={benefit.title} className={index === 1 ? "lg:-mt-14" : ""}>
+              <Ornament />
+              <img
+                src={benefit.image}
+                alt={benefit.title}
+                className="mx-auto aspect-[4/3] w-full max-w-sm object-cover"
+              />
+              <Ornament />
+              <h2 className="font-serif text-3xl font-black leading-tight text-black">
+                {benefit.title}
+              </h2>
+              <div className="mx-auto mt-6 grid max-w-sm gap-4 text-sm font-semibold leading-6">
+                {benefit.items.map((item) => (
+                  <p key={item} className="border-b border-[#7d5c24]/45 pb-4">
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mx-auto mt-16 max-w-3xl rounded-2xl bg-black px-7 py-8 text-white">
+          <p className="text-sm font-bold leading-7">
+            First India News Jaipur Music Stage offers programming on selected
+            festival days. Guests must book packages for those dates to avail
+            the offer.
+          </p>
+          <p className="mt-3 text-sm font-black text-[#b58b32]">
+            Heritage Evening will be on 18th January and Writers' Ball will be on 19th January.
+          </p>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-black px-5 py-20 text-center text-white md:px-8 md:py-28">
+        <Flower className="bottom-10 left-8 text-[#b58b32]" />
+        <Flower className="right-10 top-20 text-[#b58b32]" />
+
+        <h2 className="mx-auto max-w-xl font-serif text-5xl font-black leading-[0.9] text-[#b58b32] md:text-6xl">
+          FOF Packages and pricing
+        </h2>
+        <p className="mx-auto mt-8 max-w-2xl text-base font-semibold leading-7">
+          Before booking your package, check the schedule of exclusive evening
+          programmes available as part of the Friend of the Festival packages.
+        </p>
+
+        <div className="mx-auto mt-14 grid max-w-5xl gap-8 lg:grid-cols-3 lg:items-center">
+          {packages.map((pkg, index) => (
+            <article
+              key={pkg.price}
+              className={`rounded-[2rem] border border-[#b58b32] bg-[#f8f6f1] px-7 py-10 text-black ${
+                index === 1 ? "lg:translate-y-8" : ""
+              }`}
+            >
+              <p className="text-sm font-black text-[#b58b32]">{pkg.date}</p>
+              <h3 className="mt-3 font-serif text-3xl font-black">{pkg.price}</h3>
+              <p className="mt-4 text-sm font-semibold leading-7">{pkg.desc}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="mx-auto mt-16 flex max-w-3xl flex-col gap-5 text-lg font-bold md:flex-row md:items-center md:justify-center">
+          <p>10% discount<br /><span className="text-sm font-normal">book any 2-3 days</span></p>
+          <span className="hidden h-16 w-px bg-white/50 md:block" />
+          <p>15% discount<br /><span className="text-sm font-normal">book any 4 days</span></p>
+          <span className="hidden h-16 w-px bg-white/50 md:block" />
+          <p>20% discount<br /><span className="text-sm font-normal">book all 5 days</span></p>
+        </div>
+
+        <p className="mx-auto mt-14 max-w-xl text-sm font-semibold leading-7">
+          For any queries related to your Friend of the Festival experience,
+          please email us at <span className="text-[#b58b32]">info@gangalitfest.in</span>
+        </p>
+      </section>
+
+      <section className="relative overflow-hidden bg-white px-5 py-20 text-center text-black md:px-8 md:py-28">
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-black [clip-path:polygon(0_45%,5%_35%,8%_60%,12%_38%,18%_62%,26%_40%,34%_58%,42%_32%,52%_60%,62%_38%,72%_60%,84%_35%,100%_58%,100%_100%,0_100%)]" />
+
+        <h2 className="mx-auto max-w-lg font-serif text-5xl font-black leading-[0.9] md:text-6xl">
+          Festival Partner Hotels
+        </h2>
+        <div className="mx-auto mt-10 max-w-3xl text-base font-semibold leading-8 text-black">
+          <p>
+            Choose from official partner hotels to make your festival experience
+            comfortable and memorable. These hotels support authors, guests, and
+            Friends of the Festival.
+          </p>
+          <p className="mt-5">
+            Guests staying at partner hotels may receive discounted rates,
+            airport transfers, and transport support between hotel and festival venues.
+          </p>
+        </div>
+
+        <div className="relative z-10 mx-auto mt-14 grid max-w-4xl gap-8 md:grid-cols-2">
+          {hotels.map((hotel) => (
+            <article key={hotel.name}>
+              <img
+                src={hotel.image}
+                alt={hotel.name}
+                className="aspect-[4/3] w-full rounded-md object-cover"
+              />
+              <h3 className="mt-4 font-serif text-3xl font-black">{hotel.name}</h3>
+              <p className="mt-2 text-sm font-semibold leading-6 text-black">{hotel.note}</p>
+              <p className="mt-2 text-xl text-[#b58b32]">*****</p>
+            </article>
+          ))}
+        </div>
+
+        <Link
+          to="/festival/book-your-festival-hotel"
+          className="relative z-10 mt-12 inline-flex rounded-md bg-[#b58b32] px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:bg-black"
+        >
+          View Hotels
+        </Link>
+      </section>
+    </main>
+  );
+}

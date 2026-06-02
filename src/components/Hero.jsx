@@ -8,10 +8,10 @@ export default function Hero() {
         <img
           src={heroBgSrc}
           alt="Ganga riverfront at sunrise"
-          className="hero-bg-animate absolute inset-0 z-0 h-full w-full object-cover object-center opacity-95"
+          className="hero-bg-animate absolute inset-0 z-0 h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/25 via-black/10 to-black/35" />
-        <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(181,139,50,0.1),transparent_46%)]" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/10 via-black/5 to-black/20" />
+        <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(181,139,50,0.08),transparent_46%)]" />
 
         <div className="relative z-10 mx-auto flex min-h-[650px] max-w-7xl flex-col items-center justify-center px-5 pt-32 text-center md:pt-36">
           <div className="festival-arch relative mx-auto flex h-[440px] w-full max-w-[760px] items-center justify-center px-8 pb-14 pt-28 md:h-[500px] md:px-14">
