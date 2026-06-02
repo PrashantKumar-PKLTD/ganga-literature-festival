@@ -1,69 +1,78 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { FAQS } from "../data/misc";
 
-function Label({ text }) {
-  return (
-    <div className="inline-flex items-center gap-2 mb-3 justify-center">
-      <div className="w-5 h-px bg-amber-400" />
-      <span className="text-[10px] font-bold tracking-[0.28em] uppercase text-amber-400"
-        style={{ fontFamily: "'Poppins', sans-serif" }}>
-        {text}
-      </span>
-      <div className="w-5 h-px bg-amber-400" />
-    </div>
-  );
-}
+const FAQS = [
+  {
+    q: "Is registration required to attend the Ganga Literature Festival?",
+    a: "Yes. Visitors should register before arriving so entry, seating, and session access can be managed smoothly. Some intimate workshops or special sessions may have limited capacity.",
+  },
+  {
+    q: "Where will the festival take place in Patna?",
+    a: "The festival is planned in Patna, Bihar. Final venue details, entry gates, and session room information will be shared with registered visitors before the event.",
+  },
+  {
+    q: "Can students and young readers attend the sessions?",
+    a: "Yes. The festival is open to readers, students, writers, educators, publishers, and anyone interested in literature, culture, language, and public conversations.",
+  },
+  {
+    q: "How can authors, speakers, or publishers participate?",
+    a: "Authors, speakers, publishers, and cultural organisations can contact the festival team through the enquiry form or official email for programming, partnership, and book launch opportunities.",
+  },
+  {
+    q: "Will books and festival merchandise be available at the venue?",
+    a: "Yes. The festival will include curated book counters and partner stalls where visitors can browse books, meet publishers, and purchase selected festival merchandise.",
+  },
+  {
+    q: "Can I volunteer for the festival?",
+    a: "Yes. Volunteer applications are welcome for venue support, session coordination, registration, guest assistance, and media operations. Selected volunteers will receive a detailed briefing before the festival.",
+  },
+];
 
 export default function FAQ() {
   const [open, setOpen] = useState(null);
+
   return (
-    <section id="faq" className="py-24 bg-white border-b border-gray-100" style={{ fontFamily: "'Poppins', sans-serif" }}>
-      <div className="max-w-4xl mx-auto px-6 md:px-10">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <Label text="Help Center" />
-          <h2 className="text-[32px] md:text-[38px] font-semibold text-[#0a1a3c] leading-tight mb-4"
-              style={{ letterSpacing: "0.01em" }}>
+    <section id="faq" className="bg-white px-5 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16 flex items-center justify-center gap-8 md:mb-20">
+          <span className="hidden h-px w-20 bg-black/40 md:block" />
+          <h2 className="text-center font-serif text-5xl font-medium uppercase leading-none text-black md:text-7xl">
             Frequently Asked Questions
           </h2>
-          <div className="w-12 h-[2px] bg-amber-400 mx-auto mb-6" />
-          <p className="text-[14px] text-gray-500 leading-relaxed font-light">
-            Find quick answers to common queries regarding visitor registration, stall availability, venue connectivity, and amenities.
-          </p>
+          <span className="hidden h-px w-20 bg-black/40 md:block" />
         </div>
 
-        {/* FAQ List */}
-        <div className="flex flex-col gap-4">
-          {FAQS.map((faq, i) => {
-            const isOpen = open === i;
+        <div className="mx-auto max-w-6xl border-t border-black/15">
+          {FAQS.map((faq, index) => {
+            const isOpen = open === index;
+
             return (
-              <div
-                className={`bg-white border rounded-sm transition-all duration-300 ${isOpen ? 'border-amber-400 shadow-md' : 'border-gray-200 hover:border-gray-300 shadow-sm'}`}
-                key={i}
-              >
-                {/* Question Row */}
+              <div key={faq.q} className="border-b border-black/15">
                 <button
-                  className="w-full text-left px-6 py-5 flex justify-between items-center gap-6 focus:outline-none bg-[#f8f9fb] hover:bg-slate-100 transition-colors"
-                  onClick={() => setOpen(isOpen ? null : i)}
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : index)}
+                  className="flex w-full items-center justify-between gap-8 py-8 text-left"
+                  aria-expanded={isOpen}
                 >
-                  <span className={`font-semibold text-[14.5px] leading-snug transition-colors duration-300 ${isOpen ? 'text-amber-500' : 'text-[#0a1a3c]'}`}>
+                  <span className="font-serif text-xl font-medium uppercase leading-snug text-black md:text-2xl">
                     {faq.q}
                   </span>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen ? 'bg-amber-400 text-white' : 'bg-gray-200 text-gray-500'}`}>
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} strokeWidth={2.5} />
-                  </div>
+                  <span className="relative h-8 w-8 shrink-0 text-black" aria-hidden="true">
+                    <span className="absolute left-1/2 top-1/2 h-px w-5 -translate-x-1/2 -translate-y-1/2 bg-black" />
+                    <span
+                      className={`absolute left-1/2 top-1/2 h-5 w-px -translate-x-1/2 -translate-y-1/2 bg-black transition-transform duration-300 ${
+                        isOpen ? "scale-y-0" : "scale-y-100"
+                      }`}
+                    />
+                  </span>
                 </button>
 
-                {/* Answer Row (with transition block) */}
                 <div
-                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                    isOpen ? "max-h-[300px]" : "max-h-0"
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                   }`}
                 >
-                  <div className="p-6 border-t border-gray-100 bg-white">
-                    <p className="text-[13.5px] text-gray-500 leading-relaxed font-light">
+                  <div className="overflow-hidden">
+                    <p className="max-w-3xl pb-8 text-base leading-8 text-black/70 md:text-lg">
                       {faq.a}
                     </p>
                   </div>

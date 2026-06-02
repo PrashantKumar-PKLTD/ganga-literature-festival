@@ -7,14 +7,14 @@ module.exports = {
     extend: {
       colors: {
         govblue: {
-          light: '#3b82f6',
-          DEFAULT: '#0b3c5d',
-          dark: '#002c4b',
+          light: '#0b0b0b',
+          DEFAULT: '#0b0b0b',
+          dark: '#000000',
         },
         accentgreen: {
-          light: '#10b981',
-          DEFAULT: '#059669',
-          dark: '#047857',
+          light: '#b58b32',
+          DEFAULT: '#b58b32',
+          dark: '#8f6f27',
         }
       }
     },

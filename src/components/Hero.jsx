@@ -1,232 +1,152 @@
-import { useState, useEffect, useRef } from "react";
-
-/* ── Poppins + keyframe animations injected once ── */
-if (typeof document !== "undefined" && !document.getElementById("hero-globals")) {
-  const style = document.createElement("style");
-  style.id = "hero-globals";
-  style.textContent = `
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
-    .font-poppins { font-family: 'Poppins', sans-serif; }
-
-    @keyframes heroPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: .4; transform: scale(.82); }
-    }
-    @keyframes heroFadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .hero-anim     { animation: heroFadeUp .7s cubic-bezier(.22,1,.36,1) both; }
-    .hero-d1       { animation-delay: .05s; }
-    .hero-d2       { animation-delay: .15s; }
-    .hero-d3       { animation-delay: .25s; }
-    .hero-d4       { animation-delay: .35s; }
-    .hero-d5       { animation-delay: .45s; }
-    .hero-dr1      { animation-delay: .10s; }
-    .hero-dr2      { animation-delay: .28s; }
-    .badge-dot     { animation: heroPulse 2s infinite; }
-    .btn-gold:hover    { background-color: #d97706 !important; transform: translateY(-2px); }
-    .btn-outline:hover { border-color: #f5a623 !important; background: rgba(245,166,35,.08) !important; transform: translateY(-2px); }
-  `;
-  document.head.appendChild(style);
-}
-
-const EVENT_DATE = new Date("2026-11-21T10:00:00+05:30");
-
-function getTimeLeft() {
-  const diff = EVENT_DATE - new Date();
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-  return {
-    days:    Math.floor(diff / 86400000),
-    hours:   Math.floor(diff / 3600000) % 24,
-    minutes: Math.floor(diff / 60000)   % 60,
-    seconds: Math.floor(diff / 1000)    % 60,
-  };
-}
-
-function useCountUp(target, duration = 1800, delay = 0) {
-  const [value, setValue] = useState(0);
-  const raf = useRef(null);
-  useEffect(() => {
-    let start = null;
-    const t = setTimeout(() => {
-      const step = (ts) => {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / duration, 1);
-        setValue(Math.floor((1 - Math.pow(1 - p, 3)) * target));
-        if (p < 1) raf.current = requestAnimationFrame(step);
-      };
-      raf.current = requestAnimationFrame(step);
-    }, delay);
-    return () => { clearTimeout(t); if (raf.current) cancelAnimationFrame(raf.current); };
-  }, [target, duration, delay]);
-  return value;
-}
-
-function StatCard({ value, suffix = "", label, delay }) {
-  const animated = useCountUp(value, 1800, delay);
-  return (
-    <div className="font-poppins bg-white/10 border border-white/10 border-l-4 border-l-amber-400 rounded-sm p-3.5">
-      <span className="block text-[26px] font-extrabold text-white leading-none tracking-tight">
-        {animated.toLocaleString()}{suffix}
-      </span>
-      <span className="block text-[9.5px] font-semibold text-white/50 tracking-widest uppercase mt-1">
-        {label}
-      </span>
-    </div>
-  );
-}
-
-function CountUnit({ val, label }) {
-  return (
-    <div className="font-poppins bg-white/10 border border-white/10 rounded-sm pt-3 pb-2 px-1.5 flex flex-col items-center gap-1">
-      <span className="text-[28px] font-extrabold text-white leading-none tracking-wider tabular-nums">
-        {String(val).padStart(2, "0")}
-      </span>
-      <span className="text-[8.5px] font-bold tracking-widest uppercase text-white/40">
-        {label}
-      </span>
-    </div>
-  );
-}
-
 export default function Hero() {
-  const [time, setTime] = useState(getTimeLeft());
-  useEffect(() => {
-    const id = setInterval(() => setTime(getTimeLeft()), 1000);
-    return () => clearInterval(id);
-  }, []);
+  const gangaMapSrc = "/gangamap.png";
+  const heroBgSrc = "/heroimage.png?v=3";
 
   return (
-    <section
-      id="home"
-      className="font-poppins relative min-h-screen flex items-center overflow-hidden border-b-4 border-amber-500 bg-[#0a1a3c]"
-    >
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80")`,
-          opacity: 1,
-        }}
-      />
+    <section id="home" className="relative overflow-hidden bg-white">
+      <div className="relative min-h-[720px] overflow-hidden bg-black text-white md:min-h-[760px]">
+        <img
+          src={heroBgSrc}
+          alt="Ganga riverfront at sunrise"
+          className="hero-bg-animate absolute inset-0 z-0 h-full w-full object-cover object-center opacity-95"
+        />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/25 via-black/10 to-black/35" />
+        <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(181,139,50,0.1),transparent_46%)]" />
 
-      {/* Deep navy gradient overlay — keeps text readable */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(110deg, rgba(46, 61, 93, 0.97) 0%, rgba(32, 42, 64, 0.91) 55%, rgba(8,45,92,0.87) 100%)",
-        }}
-      />
-
-      {/* Amber top accent stripe */}
-      <div
-        className="absolute top-0 left-0 w-full h-1.5 z-10"
-        style={{
-          background: "linear-gradient(90deg, #f5a623 0%, #d97706 45%, transparent 100%)",
-        }}
-      />
-
-      {/* Main content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-8 pt-48 md:pt-32 lg:pt-28 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-          {/* ── LEFT ── */}
-          <div className="flex flex-col items-start">
-
-            {/* H1 */}
-            <h1 className="hero-anim hero-d2 text-4xl md:text-5xl lg:text-[54px] font-extrabold text-white leading-tight tracking-[0.04em] uppercase mb-1.5">
-              Bihar
-              <span className="block text-amber-400 tracking-[0.06em] text-[40px] md:text-[46px] lg:text-[50px]">
-                Medical Expo
-              </span>
-              2026
-            </h1>
-
-            {/* Subtitle */}
-            <p className="hero-anim hero-d3 text-[12px] font-semibold text-white/50 tracking-widest uppercase mb-4">
-              Gyan Bhawan, Patna &nbsp;·&nbsp; Eastern India's Premier B2B Medical Trade Fair
-            </p>
-
-            {/* Divider */}
-            <div className="hero-anim hero-d3 w-14 h-[3px] bg-amber-400 rounded-full mb-5" />
-
-            {/* Description */}
-            <p className="hero-anim hero-d4 text-[14px] text-white/70 leading-loose max-w-[500px] mb-8 tracking-wide">
-              Bringing together world-class healthcare manufacturers, clinical practitioners,
-              hospital directors, and distributors. Three days of innovative product launches,
-              scientific sessions, and high-value networking.
-            </p>
-
-            {/* CTAs */}
-            <div className="hero-anim hero-d5 flex flex-wrap gap-3">
-              <a
-                href="#register"
-                className="btn-gold font-poppins font-bold text-[15px] tracking-widest uppercase text-[#0a1a3c] bg-amber-400 px-8 py-3.5 rounded-sm transition-all duration-200"
-              >
-                Register as Visitor
-              </a>
-              <a
-                href="#contact"
-                className="btn-outline font-poppins font-bold text-[15px] tracking-widest uppercase text-white border-2 border-white/40 px-8 py-3 rounded-sm transition-all duration-200"
-              >
-                Book a Stall
-              </a>
-            </div>
-          </div>
-
-          {/* ── RIGHT ── */}
-          <div className="flex flex-col gap-4">
-
-            {/* Stats board */}
-            <div className="hero-anim hero-dr1 bg-white/5 border border-white/10 rounded p-5 backdrop-blur-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-poppins text-[9.5px] font-bold tracking-widest uppercase text-white/40 whitespace-nowrap">
-                  Expo Highlights
-                </span>
-                <div className="flex-1 h-px bg-white/10" />
-              </div>
-
-              <div className="grid grid-cols-2 gap-2.5 mb-4">
-                <StatCard value={150}   suffix="+" label="Exhibitors"          delay={300} />
-                <StatCard value={5000}  suffix="+" label="Healthcare Buyers"   delay={450} />
-                <StatCard value={10000} suffix="+" label="Sq. Metres Area"     delay={600} />
-                <StatCard value={20}    suffix="+" label="Scientific Sessions" delay={750} />
-              </div>
-
-              {/* Organiser */}
-              <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-sm px-3 py-2.5">
-                <div className="font-poppins w-8 h-8 rounded-sm bg-[#1a3a6b] border border-amber-400/40 flex items-center justify-center text-[11px] font-extrabold text-amber-400 tracking-wider flex-shrink-0">
-                  SE
+        <div className="relative z-10 mx-auto flex min-h-[650px] max-w-7xl flex-col items-center justify-center px-5 pt-32 text-center md:pt-36">
+          <div className="festival-arch relative mx-auto flex h-[440px] w-full max-w-[760px] items-center justify-center px-8 pb-14 pt-28 md:h-[500px] md:px-14">
+            <div className="relative z-10 w-[min(92vw,920px)] max-w-none">
+              <div className="-mt-2 mb-5">
+                <div className="flex items-center justify-center gap-3 text-white">
+                  <span className="h-2 w-2 rotate-45 bg-current" />
+                  <span className="text-2xl font-black tracking-[0.32em] md:text-3xl">2026</span>
+                  <span className="h-2 w-2 rotate-45 bg-current" />
                 </div>
-                <div>
-                  <p className="font-poppins text-[12.5px] font-bold text-white tracking-wider leading-tight">
-                    Star Exhibitions
-                  </p>
-                  <p className="font-poppins text-[10.5px] text-white/40 leading-tight mt-0.5">
-                    Leading B2B Trade Show Organizers
-                  </p>
-                </div>
+                <p className="mt-2 font-serif text-sm font-black uppercase tracking-wide md:text-base">
+                  Patna, Bihar
+                </p>
               </div>
-            </div>
-
-            {/* Countdown */}
-            <div className="hero-anim hero-dr2 border border-amber-400/30 rounded p-5 backdrop-blur-md bg-[#0a1a3c]/80">
-              <p className="font-poppins text-[9.5px] font-bold tracking-widest uppercase text-amber-400 mb-3">
-                ⏱ Summit Commencing In
+              <p className="font-serif text-8xl font-black uppercase leading-[0.86] tracking-tight md:text-7xl">
+                Ganga
+                <span className="block whitespace-nowrap text-[clamp(2.5rem,4vw,4.5rem)]">Literature Festival</span>
               </p>
-              <div className="grid grid-cols-4 gap-2">
-                <CountUnit val={time.days}    label="Days"  />
-                <CountUnit val={time.hours}   label="Hours" />
-                <CountUnit val={time.minutes} label="Mins"  />
-                <CountUnit val={time.seconds} label="Secs"  />
-              </div>
+              <h1 className="mt-5 font-serif text-3xl font-black uppercase leading-[0.9] tracking-tight md:text-4xl">
+                Programme
+              </h1>
             </div>
-
           </div>
         </div>
+
+        <div className="absolute bottom-0 left-0 right-0 z-20 h-40 md:h-52">
+          <div className="festival-skyline absolute bottom-0 left-1/2 h-full w-[1250px] max-w-none -translate-x-1/2 md:w-[1500px]" />
+        </div>
       </div>
+
+      <div className="relative z-30 -mt-8 mx-auto max-w-5xl px-5 md:-mt-14">
+        <div className="flex flex-col gap-4 rounded-lg bg-white p-4 shadow-xl shadow-black/10 md:flex-row md:items-center md:justify-between">
+          <div className="grid grid-cols-5 gap-2">
+            {[
+              ["Thu", "15", "January"],
+              ["Fri", "16", "January"],
+              ["Sat", "17", "January"],
+              ["Sun", "18", "January"],
+              ["Mon", "19", "January"],
+            ].map(([day, date, month], index) => (
+              <button
+                key={day}
+                className={`min-w-0 rounded-md border border-[#b58b32] px-3 py-2 text-center leading-none ${
+                  index === 0 ? "bg-[#b58b32] text-white" : "bg-white text-black"
+                }`}
+              >
+                <span className="block text-[11px] font-bold">{day}</span>
+                <span className="block text-2xl font-black">{date}</span>
+                <span className="block text-[11px] font-semibold">{month}</span>
+              </button>
+            ))}
+          </div>
+          <div className="flex min-w-0 flex-1 items-center gap-3 md:max-w-md">
+            <input
+              className="h-12 min-w-0 flex-1 rounded-md border border-[#b58b32] bg-white px-4 text-sm text-black outline-none focus:border-[#b58b32]"
+              placeholder="Search by title, author, speaker..."
+            />
+            <button className="h-12 rounded-md bg-[#b58b32] px-5 text-sm font-bold text-white">
+              Search
+            </button>
+          </div>
+        </div>
+
+        <div className="relative left-1/2 mt-8 w-screen -translate-x-1/2 overflow-hidden bg-white">
+          <div className="mx-auto max-w-5xl px-5 py-6 md:px-8 md:py-8">
+            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
+              Ganga in Focus
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-black leading-tight text-black md:text-4xl">
+              The river behind the festival's name
+            </h2>
+            <p className="mt-4 max-w-xl text-sm leading-7 text-black/70">
+              This festival draws its identity from the Ganga, a river that carries memory,
+              culture, conflict, and renewal across northern India.
+            </p>
+          </div>
+          <figure className="relative bg-white">
+            <img
+              src={gangaMapSrc}
+              alt="Infographic map showing pollution data along the Ganga river"
+              className="block w-full object-cover"
+            />
+          </figure>
+        </div>
+      </div>
+
+      <style>{`
+        .festival-arch::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border: 9px solid #b58b32;
+          border-bottom-width: 0;
+          background: rgba(0, 0, 0, 0.08);
+          clip-path: polygon(
+            9% 100%, 9% 48%, 13% 48%, 16% 44%, 17% 36%, 22% 31%, 29% 29%,
+            33% 23%, 41% 21%, 46% 15%, 50% 3%, 54% 15%, 59% 21%, 67% 23%,
+            71% 29%, 78% 31%, 83% 36%, 84% 44%, 88% 48%, 91% 48%, 91% 100%
+          );
+          box-shadow: inset 0 0 0 7px rgba(181, 139, 50, 0.28);
+        }
+
+        .festival-arch::after {
+          content: "";
+          position: absolute;
+          inset: 9px;
+          border: 2px solid rgba(181, 139, 50, 0.45);
+          border-bottom: 0;
+          clip-path: polygon(
+            9% 100%, 9% 48%, 13% 48%, 16% 44%, 17% 36%, 22% 31%, 29% 29%,
+            33% 23%, 41% 21%, 46% 15%, 50% 3%, 54% 15%, 59% 21%, 67% 23%,
+            71% 29%, 78% 31%, 83% 36%, 84% 44%, 88% 48%, 91% 48%, 91% 100%
+          );
+        }
+
+        .festival-skyline {
+          background: #ffffff;
+          clip-path: polygon(
+            0 58%, 1.5% 52%, 3% 54%, 4% 47%, 5% 51%, 6% 48%, 7% 54%, 8% 58%,
+            10% 58%, 10.5% 54%, 12% 54%, 12.5% 59%, 14% 60%, 15% 50%, 16% 46%,
+            17% 52%, 17.8% 58%, 20% 58%, 20% 72%, 22% 72%, 22% 64%, 24% 64%,
+            24% 72%, 26% 72%, 26% 64%, 28% 64%, 28% 72%, 30% 72%, 30% 60%,
+            36% 60%, 36% 55%, 39% 55%, 39% 50%, 41% 50%, 41% 56%, 43% 56%,
+            43% 60%, 46% 60%, 46.8% 54%, 47.6% 60%, 50% 60%, 51% 55%, 52% 60%,
+            55% 60%, 55% 66%, 57% 66%, 57% 72%, 59% 72%, 59% 68%, 61% 68%,
+            61% 61%, 65% 61%, 65% 54%, 66% 49%, 67% 54%, 68% 49%, 69% 54%,
+            70% 49%, 71% 54%, 72% 54%, 72% 45%, 73% 42%, 74% 45%, 74% 55%,
+            77% 55%, 77% 60%, 82% 60%, 82% 78%, 83.2% 78%, 83.2% 65%,
+            84.5% 65%, 84.5% 78%, 86% 78%, 86% 65%, 87.3% 65%, 87.3% 78%,
+            89% 78%, 89% 58%, 91% 58%, 91% 42%, 92% 36%, 93% 42%, 93% 56%,
+            95% 56%, 95% 52%, 96.5% 52%, 96.5% 58%, 98% 58%, 98.5% 48%,
+            99.5% 45%, 100% 50%, 100% 100%, 0 100%
+          );
+        }
+      `}</style>
     </section>
   );
 }
