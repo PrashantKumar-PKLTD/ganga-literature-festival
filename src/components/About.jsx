@@ -2,10 +2,10 @@ import { BookOpen, Mic2, Music, Users } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
 const FEATURES = [
-  { icon: BookOpen, title: "Author Conversations", desc: "Long-form conversations with novelists, poets, translators, journalists, and public thinkers." },
-  { icon: Mic2, title: "Live Sessions", desc: "Keynotes, debates, readings, performances, and intimate workshops across curated stages." },
-  { icon: Music, title: "Cultural Evenings", desc: "Music, storytelling, language, and regional arts woven into the festival experience." },
-  { icon: Users, title: "Open Community", desc: "A welcoming gathering for readers, students, educators, publishers, and volunteers." },
+  { icon: BookOpen, title: "Civilisational Thought", desc: "Recovering and celebrating India's intellectual inheritance, from the Vedas to Chanakya's Arthashastra to the Bihar renaissance." },
+  { icon: Mic2, title: "National Discourse", desc: "Rigorous conversations on the challenges and possibilities before Bharat in its march toward Viksit Bharat @2047." },
+  { icon: Music, title: "Living Heritage", desc: "World-class classical music and arts evenings curated with SPIC MACAY to nourish the soul as much as the mind." },
+  { icon: Users, title: "Bihar Reborn", desc: "Placing Patna back at the centre of India's intellectual map and honouring Bihar's civilisational promise." },
 ];
 
 export default function About() {
@@ -26,7 +26,7 @@ export default function About() {
                 Patna, Bihar
               </p>
               <p className="mt-2 font-serif text-3xl leading-tight">
-                Where words flow like the Ganga.
+                The Ganga is our oldest library.
               </p>
             </div>
           </div>
@@ -35,9 +35,23 @@ export default function About() {
             <SectionHeading
               align="left"
               eyebrow="About The Festival"
-              title="A Literary Gathering On The River's Edge"
-              intro="Ganga Literature Festival brings together writers, readers, artists, publishers, and young voices for a refined celebration of books, language, memory, and contemporary culture."
+              title="India's Civilisation Has Always Been A Conversation"
+              intro="The Ganga Literature Festival was conceived from a simple conviction: Bihar, home to Pataliputra, Nalanda, Vikramashila, and Bodh Gaya, deserves a literature festival equal to its intellectual and spiritual heritage."
             />
+
+            <div className="mt-8 space-y-4 text-sm font-semibold leading-7 text-black/70">
+              <p>
+                Bihar is not the periphery of India's story. It is its centre. The
+                Arthashastra was written here, the first pan-Indian empire was
+                administered from here, the Buddha attained enlightenment here, and
+                Guru Gobind Singh was born here.
+              </p>
+              <p>
+                GLF brings authors, thinkers, historians, scientists, entrepreneurs,
+                artists, students, publishers, and readers to Patna for a
+                civilisational conversation on books, culture, and India's future.
+              </p>
+            </div>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {FEATURES.map((feature) => (
@@ -51,9 +65,9 @@ export default function About() {
 
             <div className="mt-10 grid grid-cols-3 border-y border-black/10 py-6 text-center">
               {[
-                ["60+", "Sessions"],
-                ["120+", "Speakers"],
-                ["5", "Festival Days"],
+                ["25+", "Sessions"],
+                ["40+", "Speakers"],
+                ["2", "Festival Days"],
               ].map(([value, label]) => (
                 <div key={label}>
                   <div className="font-serif text-4xl font-semibold text-[#b58b32]">{value}</div>

@@ -1,54 +1,45 @@
+import { useState } from "react";
 import { Download, Search, Share2 } from "lucide-react";
+import { SCHEDULE_DAYS } from "../data/schedule";
 
-const days = [
-  ["Thu", "15", "January"],
-  ["Fri", "16", "January"],
-  ["Sat", "17", "January"],
-  ["Sun", "18", "January"],
-  ["Mon", "19", "January"],
+const dayButtons = [
+  ["Wed", "11", "November"],
+  ["Thu", "12", "November"],
 ];
 
-const sessions = [
-  {
-    time: "10:00 AM - 10:35 AM",
-    title: "Morning Music: Nada - Between Sound & Silence",
-    theme: "Music",
-    venue: "Main Lawn",
-    desc: "A morning invocation led by vocalists and instrumentalists, opening the festival with sound, silence, and river memory.",
-    people: ["Ami Ganatra", "Nityananda Misra"],
-    support: "Ganga Literature Festival",
-  },
-  {
-    time: "11:00 AM - 11:50 AM",
-    title: "Civilisation, Story, and Public Memory",
-    theme: "Ideas",
-    venue: "Vedanta Front Lawn",
-    desc: "A conversation on civilisational narratives, history, literary culture, and the role of public debate in contemporary India.",
-    people: ["Rajiv Malhotra", "Vikram Sampath"],
-    support: "Knowledge Partners",
-    featured: true,
-  },
-  {
-    time: "12:15 PM - 1:00 PM",
-    title: "Rivers, Routes, and the Making of India",
-    theme: "History",
-    venue: "Charbagh",
-    desc: "A sweeping discussion on geography, sacred landscapes, trade routes, conflict, and cultural exchange along river corridors.",
-    people: ["Subhash Kak", "Makarand Paranjape"],
-    support: "Archive Desk",
-  },
-  {
-    time: "2:30 PM - 3:20 PM",
-    title: "Books, Podcasts, and the New Public Square",
-    theme: "Media",
-    venue: "Jaipur Bytes Podcast",
-    desc: "How long-form conversations, independent media, podcasts, and new reading communities are reshaping literary attention.",
-    people: ["Kushal Mehra", "Abhijit Majumder"],
-    support: "Media Partners",
-  },
-];
+function sessionId(dayIndex, session) {
+  return `session-${dayIndex + 1}-${session.title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")}`;
+}
 
 export default function ProgrammePage() {
+  const [shareStatus, setShareStatus] = useState("");
+
+  const shareSession = async (day, session, id) => {
+    const url = `${window.location.origin}${window.location.pathname}#${id}`;
+    const text = `${session.title} at Ganga Literature Festival, Patna. ${day.heading} at ${session.time}.`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: session.title,
+          text,
+          url,
+        });
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(url);
+        setShareStatus(session.title);
+        window.setTimeout(() => setShareStatus(""), 2200);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        setShareStatus("");
+      }
+    }
+  };
+
   return (
     <main className="pt-[78px] md:pt-[82px]">
       <section
@@ -67,6 +58,9 @@ export default function ProgrammePage() {
               <h1 className="mt-4 font-serif text-6xl font-black uppercase leading-[0.85] text-white md:text-8xl">
                 Programme
               </h1>
+              <p className="mt-5 text-sm font-black uppercase tracking-[0.22em] text-[#d9b45f]">
+                11 & 12 November 2026
+              </p>
             </div>
           </div>
         </div>
@@ -77,8 +71,8 @@ export default function ProgrammePage() {
         <div className="mx-auto max-w-6xl">
           <div className="rounded-md bg-[#f8f6f1] p-4">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-              <div className="grid grid-cols-5 gap-2">
-                {days.map(([day, date, month], index) => (
+              <div className="grid grid-cols-2 gap-2">
+                {dayButtons.map(([day, date, month], index) => (
                   <button
                     key={day}
                     className={`rounded-md border border-[#b58b32] px-3 py-2 text-center leading-none ${
@@ -118,13 +112,13 @@ export default function ProgrammePage() {
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[240px_1fr]">
             <aside className="grid h-fit gap-4">
-              {["Select Hall", "Select Theme", "Jaipur Bytes Podcast"].map((filter) => (
+              {["Select Hall", "Select Theme", "SPIC MACAY Evening"].map((filter) => (
                 <button
                   key={filter}
                   className="flex items-center justify-between rounded-md bg-[#f8f6f1] px-5 py-4 text-sm font-black text-black"
                 >
                   {filter}
-                  <span>⌄</span>
+                  <span>v</span>
                 </button>
               ))}
               <button className="mt-5 w-fit text-sm font-bold text-[#b58b32] underline underline-offset-4">
@@ -133,60 +127,90 @@ export default function ProgrammePage() {
             </aside>
 
             <div>
-              <div className="rounded-md bg-[#b58b32] px-6 py-4 text-center font-serif text-3xl font-black text-white">
-                Thursday, 15th January
-              </div>
+              {SCHEDULE_DAYS.map((day, dayIndex) => (
+                <div key={day.heading} className="mb-12">
+                  <div className="rounded-md bg-[#b58b32] px-6 py-4 text-center font-serif text-3xl font-black text-white">
+                    {day.heading}
+                  </div>
 
-              <div className="relative mt-8 border-l-2 border-[#b58b32]/35 pl-6">
-                {sessions.map((session, index) => (
-                  <article
-                    key={session.title}
-                    className={`relative mb-8 rounded-md border border-black/10 p-6 ${
-                      session.featured ? "bg-[#f8f6f1]" : "bg-white"
-                    }`}
-                  >
-                    <span className="absolute -left-[34px] top-8 h-4 w-4 rounded-full bg-[#b58b32]" />
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-xs font-bold text-black/65">Jan-15-2026 | {session.time}</p>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          <span className="rounded bg-[#b58b32]/10 px-2 py-1 text-xs font-bold text-[#b58b32]">
-                            {session.theme}
-                          </span>
-                        </div>
-                      </div>
-                      <button className="text-black" aria-label={`Share ${session.title}`}>
-                        <Share2 className="h-5 w-5" />
-                      </button>
-                    </div>
+                  <div className="relative mt-8 border-l-2 border-[#b58b32]/35 pl-6">
+                    {day.sessions.map((session, index) => {
+                      const id = sessionId(dayIndex, session);
 
-                    <h2 className="mt-4 font-serif text-3xl font-black leading-tight text-[#b58b32]">
-                      {index + 1}. {session.title}
-                    </h2>
-                    <p className="mt-3 text-sm leading-7 text-black/75">{session.desc}</p>
+                      return (
+                        <article
+                          id={id}
+                          key={session.title}
+                          className={`relative mb-8 scroll-mt-28 rounded-md border border-black/10 p-6 ${
+                            index === 1 ? "bg-[#f8f6f1]" : "bg-white"
+                          }`}
+                        >
+                          <span className="absolute -left-[34px] top-8 h-4 w-4 rounded-full bg-[#b58b32]" />
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <p className="text-xs font-bold text-black/65">
+                                {day.heading} | {session.time}
+                              </p>
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                <span className="rounded bg-[#b58b32]/10 px-2 py-1 text-xs font-bold text-[#b58b32]">
+                                  {session.type}
+                                </span>
+                              </div>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => shareSession(day, session, id)}
+                              className="rounded-full p-2 text-black transition hover:bg-[#b58b32]/10 hover:text-[#b58b32] focus:outline-none focus:ring-2 focus:ring-[#b58b32]"
+                              aria-label={`Share ${session.title}`}
+                            >
+                              <Share2 className="h-5 w-5" />
+                            </button>
+                          </div>
 
-                    <div className="mt-5 border-t border-black/10 pt-4">
-                      <p className="text-xs font-black uppercase tracking-[0.16em] text-black/50">Panel Members</p>
-                      <div className="mt-3 flex flex-wrap gap-3">
-                        {session.people.map((person) => (
-                          <span key={person} className="rounded-full bg-black px-4 py-2 text-xs font-bold text-white">
-                            {person}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                          <h2 className="mt-4 font-serif text-3xl font-black leading-tight text-[#b58b32]">
+                            {index + 1}. {session.title}
+                          </h2>
+                          <p className="mt-3 text-sm leading-7 text-black/75">{session.desc}</p>
 
-                    <div className="mt-5 flex flex-col gap-3 border-t border-black/10 pt-4 text-sm md:flex-row md:items-center md:justify-between">
-                      <p><span className="font-bold">Venue:</span> {session.venue}</p>
-                      <p><span className="font-bold">Supported by:</span> {session.support}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
+                          {session.people && (
+                            <div className="mt-5 border-t border-black/10 pt-4">
+                              <p className="text-xs font-black uppercase tracking-[0.16em] text-black/50">
+                                Participants
+                              </p>
+                              <p className="mt-3 text-sm font-semibold leading-7 text-black/75">
+                                {session.people}
+                              </p>
+                            </div>
+                          )}
+
+                          <div className="mt-5 flex flex-col gap-3 border-t border-black/10 pt-4 text-sm md:flex-row md:items-center md:justify-between">
+                            <p>
+                              <span className="font-bold">Venue:</span> Ganga Literature Festival, Patna
+                            </p>
+                            <p>
+                              <span className="font-bold">Supported by:</span> BIHAAN, BluOne Ink, SPIC MACAY
+                            </p>
+                          </div>
+                        </article>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
+
+      <div
+        className={`fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-md bg-black px-5 py-3 text-sm font-bold text-white shadow-xl transition ${
+          shareStatus ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+        }`}
+        role="status"
+        aria-live="polite"
+      >
+        Link copied: {shareStatus}
+      </div>
     </main>
   );
 }

@@ -3,16 +3,16 @@ import SectionHeading from "./SectionHeading";
 
 const TIERS = [
   {
-    name: "Title Partner",
-    note: "Festival-wide visibility across stages, media, signage, and digital communication.",
+    name: "Presenting Partner",
+    note: "Festival-wide association with a purposeful cultural platform dedicated to Bihar's intellectual life.",
   },
   {
-    name: "Stage Partner",
-    note: "Associate your organisation with curated conversations, launches, and performances.",
+    name: "Publishing Partner",
+    note: "Support books, authors, launches, translation, rights conversations, and purposeful publishing.",
   },
   {
-    name: "Community Partner",
-    note: "Support student access, reading programmes, workshops, and outreach initiatives.",
+    name: "Cultural Partner",
+    note: "Enable classical music, arts evenings, student outreach, and living heritage programming.",
   },
 ];
 
@@ -38,9 +38,9 @@ export default function Sponsorship() {
           <div>
             <SectionHeading
               align="left"
-              eyebrow="Sponsorship"
-              title="Partner With The Festival"
-              intro="Collaborate with Ganga Literature Festival to support books, culture, young readers, public conversations, and a growing literary community in Bihar."
+              eyebrow="Partners"
+              title="BIHAAN. BluOne Ink. SPIC MACAY."
+              intro="GLF is presented by BIHAAN, with BluOne Ink as publishing partner and SPIC MACAY as cultural partner, bringing books, national conversation, and classical heritage to Patna."
               inverted
             />
             <a

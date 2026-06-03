@@ -8,9 +8,9 @@ export default function Speakers() {
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             align="left"
-            eyebrow="Featured Voices"
-            title="Writers, Thinkers, Storytellers"
-            intro="A curated stage for voices shaping literature, language, publishing, and public imagination."
+            eyebrow="The Minds Of The Festival"
+            title="Speakers & Authors"
+            intro="India's compelling writers, thinkers, historians, journalists, and intellectuals, united by a shared commitment to truth, excellence, and the idea of India."
           />
           <a href="#schedule" className="inline-flex w-fit border border-[#b58b32] bg-black px-6 py-3 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:bg-[#b58b32]">
             View Programme

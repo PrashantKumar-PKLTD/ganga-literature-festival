@@ -1,4 +1,4 @@
-export default function Hero() {
+﻿export default function Hero() {
   const gangaMapSrc = "/gangamap.png";
   const heroBgSrc = "/heroimage.png?v=3";
 
@@ -23,16 +23,21 @@ export default function Hero() {
                   <span className="h-2 w-2 rotate-45 bg-current" />
                 </div>
                 <p className="mt-2 font-serif text-sm font-black uppercase tracking-wide md:text-base">
-                  Patna, Bihar
+                  11 & 12 November - Patna, Bihar
                 </p>
               </div>
               <p className="font-serif text-8xl font-black uppercase leading-[0.86] tracking-tight md:text-7xl">
                 Ganga
                 <span className="block whitespace-nowrap text-[clamp(2.5rem,4vw,4.5rem)]">Literature Festival</span>
               </p>
-              <h1 className="mt-5 font-serif text-3xl font-black uppercase leading-[0.9] tracking-tight md:text-4xl">
-                Programme
+              <h1 className="mt-5 font-serif text-2xl font-black uppercase leading-[0.9] tracking-tight md:text-4xl">
+                Where the river of thought meets the ocean of civilisation
               </h1>
+              <div className="mt-6 flex flex-wrap justify-center gap-2 text-[11px] font-black uppercase tracking-[0.12em]">
+                <span className="rounded-sm bg-white/90 px-3 py-2 text-black">Presented by BIHAAN</span>
+                <span className="rounded-sm bg-white/90 px-3 py-2 text-black">Publishing Partner BluOne Ink</span>
+                <span className="rounded-sm bg-white/90 px-3 py-2 text-black">Cultural Partner SPIC MACAY</span>
+              </div>
             </div>
           </div>
         </div>
@@ -44,13 +49,10 @@ export default function Hero() {
 
       <div className="relative z-30 -mt-8 mx-auto max-w-5xl px-5 md:-mt-14">
         <div className="flex flex-col gap-4 rounded-lg bg-white p-4 shadow-xl shadow-black/10 md:flex-row md:items-center md:justify-between">
-          <div className="grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-2 gap-2">
             {[
-              ["Thu", "15", "January"],
-              ["Fri", "16", "January"],
-              ["Sat", "17", "January"],
-              ["Sun", "18", "January"],
-              ["Mon", "19", "January"],
+              ["Wed", "11", "November"],
+              ["Thu", "12", "November"],
             ].map(([day, date, month], index) => (
               <button
                 key={day}
@@ -84,8 +86,8 @@ export default function Hero() {
               The river behind the festival's name
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-black/70">
-              This festival draws its identity from the Ganga, a river that carries memory,
-              culture, conflict, and renewal across northern India.
+              The Ganga Literature Festival is a civilisational conversation in Patna,
+              where books, ideas, classical arts, and the Viksit Bharat horizon meet.
             </p>
           </div>
           <figure className="relative bg-white">

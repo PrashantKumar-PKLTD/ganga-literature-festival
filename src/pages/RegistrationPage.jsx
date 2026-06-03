@@ -32,14 +32,14 @@ const categories = [
     to: "/festival/friend-of-the-festival",
   },
   {
-    title: "Music Stage",
+    title: "SPIC MACAY Evening",
     price: "INR 499",
     icon: "Live",
     accent: "Evening entry",
-    desc: "Entry to selected music performances and evening cultural programming.",
+    desc: "Entry to selected classical arts and evening cultural programming.",
   },
   {
-    title: "Jaipur BookMark",
+    title: "Publishing Track",
     price: "INR 1500",
     icon: "Rights",
     accent: "Publishing track",
@@ -55,14 +55,14 @@ const categories = [
 ];
 
 const speakers = [
-  { name: "Vivek Ranjan Agnihotri", image: "/vivek-ranjan-agnihotri.webp" },
-  { name: "Rajiv Malhotra", image: "/rajiv-malhotra.jpg" },
-  { name: "Anand Ranganathan", image: "/anand-ranganathan.jpg" },
-  { name: "Vikram Sampath", image: "/vikram-sampath.jpg" },
   { name: "Ami Ganatra", image: "/ani-ganatra.png" },
-  { name: "David Frawley", image: "/David+Frawley.png" },
-  { name: "Subhash Kak", image: "/subhash_kak.JPG" },
-  { name: "Makarand Paranjape", image: "/makarand-paranjape.jpg" },
+  { name: "Aditi Banerjee", image: "/aditi_banerjee.jpg" },
+  { name: "Anand Ranganathan", image: "/anand-ranganathan.jpg" },
+  { name: "Abhijit Majumder", image: "/abhijit_majumdar.jpg" },
+  { name: "Abhinav Agarwal", image: "/abhinav-agarwal.jpg" },
+  { name: "Aabhas Maldhiyar", image: "/heroimage.png" },
+  { name: "Amit Bagaria", image: "/heroimage.png" },
+  { name: "Ankur Kakkar", image: "/heroimage.png" },
 ];
 
 const hotels = [

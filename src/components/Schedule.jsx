@@ -1,32 +1,6 @@
 import { useState } from "react";
 import SectionHeading from "./SectionHeading";
-
-const DAYS = [
-  {
-    label: "Thu 15 Jan",
-    sessions: [
-      ["10:00", "Opening Ceremony", "Inaugural address, lamp lighting, and welcome performance."],
-      ["11:30", "The River As Archive", "A keynote on memory, migration, and literature along the Ganga."],
-      ["14:00", "Writing Bihar Now", "New fiction and nonfiction from the region's contemporary voices."],
-    ],
-  },
-  {
-    label: "Fri 16 Jan",
-    sessions: [
-      ["10:30", "Poetry In Translation", "A conversation on carrying rhythm across languages."],
-      ["13:00", "Publishing Clinic", "Editors and agents discuss manuscripts, markets, and readership."],
-      ["17:30", "Evening Mehfil", "Music, readings, and spoken-word performances."],
-    ],
-  },
-  {
-    label: "Sat 17 Jan",
-    sessions: [
-      ["11:00", "Young Readers Forum", "Schools, libraries, and student-led literary communities."],
-      ["15:00", "Book Launch Hour", "Selected launches with author signings."],
-      ["18:30", "Festival Finale", "Closing notes and cultural performance."],
-    ],
-  },
-];
+import { SCHEDULE_DAYS } from "../data/schedule";
 
 export default function Schedule() {
   const [active, setActive] = useState(0);
@@ -37,11 +11,11 @@ export default function Schedule() {
         <SectionHeading
           eyebrow="Programme"
           title="Festival Schedule"
-          intro="Move through keynotes, conversations, readings, performances, workshops, and book launches across curated festival days."
+          intro="Two days of transformative conversations, book launches, keynote addresses, panels, masterclasses, and classical arts."
         />
 
         <div className="mt-12 flex flex-wrap justify-center gap-3">
-          {DAYS.map((day, index) => (
+          {SCHEDULE_DAYS.map((day, index) => (
             <button
               key={day.label}
               onClick={() => setActive(index)}
@@ -55,12 +29,20 @@ export default function Schedule() {
         </div>
 
         <div className="mt-14 border-t border-black/15">
-          {DAYS[active].sessions.map(([time, title, desc]) => (
-            <div key={title} className="grid gap-4 border-b border-black/15 py-8 md:grid-cols-[150px_1fr] md:gap-10">
-              <div className="text-sm font-black uppercase tracking-[0.18em] text-[#b58b32]">{time}</div>
+          {SCHEDULE_DAYS[active].sessions.map((session) => (
+            <div key={session.title} className="grid gap-4 border-b border-black/15 py-8 md:grid-cols-[150px_1fr] md:gap-10">
               <div>
-                <h3 className="font-serif text-3xl font-semibold text-black">{title}</h3>
-                <p className="mt-3 max-w-2xl text-base leading-7 text-black/65">{desc}</p>
+                <div className="text-sm font-black uppercase tracking-[0.18em] text-[#b58b32]">{session.time}</div>
+                <div className="mt-2 w-fit rounded bg-[#b58b32]/10 px-2 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#b58b32]">
+                  {session.type}
+                </div>
+              </div>
+              <div>
+                <h3 className="font-serif text-3xl font-semibold text-black">{session.title}</h3>
+                {session.people && (
+                  <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-black/70">{session.people}</p>
+                )}
+                <p className="mt-3 max-w-3xl text-base leading-7 text-black/65">{session.desc}</p>
               </div>
             </div>
           ))}
