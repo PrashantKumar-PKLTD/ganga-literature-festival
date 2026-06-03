@@ -1,20 +1,27 @@
-import { MapPin, Mail, Phone, ArrowUpRight } from "lucide-react";
+import { useState, useRef } from "react";
+import { MapPin, Mail, Phone, ArrowUpRight, Send, Waves, BookOpen } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { GeometricBirds } from "./Decorations";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const CONTACT_INFO = [
   {
     icon: MapPin,
-    label: "Venue Location",
-    value: ["Gyan Bhawan Exhibition Centre", "North Gandhi Maidan Road, Muradpur", "Patna, Bihar — 800001"],
+    label: "Festival Venue",
+    value: ["Gyan Bhawan Exhibition Centre", "North Gandhi Maidan Road", "Patna, Bihar — 800001"],
   },
   {
     icon: Mail,
     label: "Email Enquiries",
-    value: ["info@starexhibitions.in", "sales@starexhibitions.in"],
+    value: ["info@gangalitfest.com", "media@gangalitfest.com"],
   },
   {
     icon: Phone,
-    label: "Helpline & Booking",
-    value: ["+91 72085 22614", "+91 91365 00849"],
+    label: "Helpline & Support",
+    value: ["+91 98765 43210", "+91 91234 56789"],
   },
 ];
 
@@ -27,46 +34,100 @@ const SOCIAL_LINKS = [
 
 function Label({ text }) {
   return (
-    <div className="inline-flex items-center gap-2 mb-3">
-      <div className="w-5 h-px bg-amber-400" />
-      <span className="text-[10px] font-bold tracking-[0.28em] uppercase text-amber-400"
-        style={{ fontFamily: "'Poppins', sans-serif" }}>
+    <div className="inline-flex items-center gap-2 mb-4">
+      <div className="w-8 h-[2px] bg-glf-gold" />
+      <span className="text-xs font-bold tracking-[0.2em] uppercase text-glf-gold">
         {text}
       </span>
-      <div className="w-5 h-px bg-amber-400" />
+      <div className="w-8 h-[2px] bg-glf-gold" />
     </div>
   );
 }
 
 export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const sectionRef = useRef(null);
+  const leftColRef = useRef(null);
+  const rightColRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.fromTo(
+      leftColRef.current,
+      { x: -50, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      rightColRef.current,
+      { x: 50, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      }
+    );
+  }, { scope: sectionRef });
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.message) return;
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setForm({ name: "", email: "", subject: "", message: "" });
+    }, 4000);
+  };
+
   return (
-    <section id="contact" className="py-24 bg-white border-b border-gray-100" style={{ fontFamily: "'Poppins', sans-serif" }}>
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <section id="contact" ref={sectionRef} className="py-24 bg-glf-cream relative overflow-hidden">
+      {/* Decorative Wave Background */}
+      <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(circle at 100% 100%, #1B6B6D 0%, transparent 60%)' }} />
+      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-glf-burgundy/5 rounded-full blur-[100px] pointer-events-none" />
+      
+      <GeometricBirds className="absolute left-[40%] top-20 w-48 hidden lg:block opacity-30" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12">
           
-          {/* Left Column: Details */}
-          <div className="lg:col-span-5 flex flex-col justify-center">
+          {/* Left Column: Details & Map */}
+          <div ref={leftColRef} className="lg:col-span-5 flex flex-col justify-center">
             <Label text="Get In Touch" />
-            <h2 className="text-[32px] md:text-[38px] font-semibold text-[#0a1a3c] leading-[1.15] mb-5"
-                style={{ letterSpacing: "0.01em" }}>
-              Expo Coordination & <span className="text-amber-400 font-bold">Help Desk</span>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-glf-charcoal leading-tight mb-5">
+              Connect with the <span className="text-glf-burgundy">Festival</span>
             </h2>
-            <div className="w-12 h-[2px] bg-amber-400 mb-6" />
-            <p className="text-[14px] text-gray-500 leading-relaxed font-light mb-10">
-              Have questions about exhibitor stall booking rates, early-bird options, sponsorship opportunities, or media guidelines? Get in touch with our team directly.
+            <p className="text-glf-slate leading-relaxed text-lg mb-10">
+              Whether you are an aspiring author, a potential sponsor, or a literature enthusiast, we would love to hear from you.
             </p>
 
             {/* Contacts Grid */}
-            <div className="flex flex-col gap-5 mb-10">
+            <div className="flex flex-col gap-6 mb-10">
               {CONTACT_INFO.map((item) => (
                 <div key={item.label} className="flex gap-5 items-start group">
-                  <div className="w-12 h-12 bg-[#f8f9fb] border border-gray-100 group-hover:border-amber-400 group-hover:bg-amber-400 group-hover:text-white text-[#0a1a3c] rounded-full flex items-center justify-center shrink-0 transition-all duration-300 shadow-sm">
+                  <div className="w-12 h-12 bg-white border border-gray-100 group-hover:border-glf-gold group-hover:bg-glf-gold group-hover:text-white text-glf-burgundy rounded-full flex items-center justify-center shrink-0 transition-all duration-300 shadow-[0_4px_20px_rgb(0,0,0,0.03)] group-hover:shadow-[0_4px_20px_rgb(201,168,76,0.4)]">
                     <item.icon className="w-5 h-5" strokeWidth={1.5} />
                   </div>
                   <div className="pt-1">
-                    <h4 className="font-semibold text-[#0a1a3c] text-[13px] tracking-widest uppercase mb-2">{item.label}</h4>
-                    <div className="text-[13.5px] text-gray-500 font-light leading-relaxed">
+                    <h4 className="font-heading font-bold text-glf-charcoal text-lg mb-1">{item.label}</h4>
+                    <div className="text-sm text-glf-slate leading-relaxed">
                       {item.value.map((line, idx) => (
                         <p key={idx}>{line}</p>
                       ))}
@@ -76,17 +137,30 @@ export default function Contact() {
               ))}
             </div>
 
+            {/* Google Maps Box (Embedded gracefully) */}
+            <div className="w-full h-48 bg-white rounded-xl overflow-hidden border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-8 relative group">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-glf-burgundy to-glf-gold z-10" />
+              <iframe
+                title="Gyan Bhawan Patna Map"
+                src="https://maps.google.com/maps?q=Gyan+Bhawan,+Patna,+Bihar&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                className="w-full h-full grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+
             {/* Social Links */}
             <div>
-              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">
-                Follow Updates
+              <p className="text-xs font-bold text-glf-slate uppercase tracking-widest mb-4">
+                Follow our Journey
               </p>
               <div className="flex flex-wrap gap-3">
                 {SOCIAL_LINKS.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
-                    className="flex items-center gap-2 bg-[#f8f9fb] border border-gray-100 text-gray-500 hover:bg-[#0a1a3c] hover:text-white hover:border-[#0a1a3c] text-[12px] font-medium px-4 py-2.5 rounded-sm transition-all duration-300"
+                    className="flex items-center gap-2 bg-white border border-gray-100 text-glf-slate hover:bg-glf-burgundy hover:text-white hover:border-glf-burgundy text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow-md"
                   >
                     {social.svg}
                     {social.label}
@@ -97,20 +171,107 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column: Google Maps */}
-          <div className="lg:col-span-7 w-full h-[500px] bg-slate-50 rounded-sm overflow-hidden border border-gray-100 p-2 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-400 to-[#f59e0b] z-10" />
-            <iframe
-              title="Gyan Bhawan Patna Map"
-              src="https://maps.google.com/maps?q=Gyan+Bhawan,+Patna,+Bihar&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              className="w-full h-full rounded-sm"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </div>
+          {/* Right Column: Beautiful Contact Form */}
+          <div ref={rightColRef} className="lg:col-span-7 relative flex items-center">
+            <div className="w-full bg-white rounded-2xl overflow-hidden shadow-[0_20px_50px_rgb(0,0,0,0.05)] border border-gray-100 p-8 md:p-12 relative">
+              
+              {/* Literary / Ganga watermarks */}
+              <BookOpen className="absolute -right-10 -bottom-10 w-64 h-64 text-glf-cream opacity-50 rotate-12 pointer-events-none" />
+              <Waves className="absolute -left-10 top-10 w-40 h-40 text-blue-50 opacity-50 -rotate-12 pointer-events-none" />
+              
+              <div className="relative z-10">
+                <h3 className="font-heading text-3xl font-bold text-glf-charcoal mb-2">Send a Message</h3>
+                <p className="text-glf-slate text-sm mb-8">We usually respond within 24 hours.</p>
 
+                {submitted ? (
+                  <div className="py-20 flex flex-col items-center justify-center text-center animate-fade-in">
+                    <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4">
+                      <Send className="w-8 h-8 text-green-500" />
+                    </div>
+                    <h4 className="font-heading text-2xl font-bold text-glf-charcoal mb-2">Message Sent!</h4>
+                    <p className="text-glf-slate">Thank you for reaching out. We will get back to you shortly.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Name */}
+                      <div className="flex flex-col gap-2">
+                        <label className="text-[11px] font-bold text-glf-slate uppercase tracking-widest">
+                          Your Name <span className="text-glf-burgundy">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="name"
+                          value={form.name}
+                          onChange={handleChange}
+                          placeholder="Rabindranath Tagore"
+                          required
+                          className="w-full bg-gray-50 border border-gray-200 text-glf-charcoal text-sm rounded-lg px-4 py-3.5 focus:bg-white focus:border-glf-burgundy focus:ring-1 focus:ring-glf-burgundy outline-none transition-all"
+                        />
+                      </div>
+                      
+                      {/* Email */}
+                      <div className="flex flex-col gap-2">
+                        <label className="text-[11px] font-bold text-glf-slate uppercase tracking-widest">
+                          Email Address <span className="text-glf-burgundy">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={form.email}
+                          onChange={handleChange}
+                          placeholder="hello@example.com"
+                          required
+                          className="w-full bg-gray-50 border border-gray-200 text-glf-charcoal text-sm rounded-lg px-4 py-3.5 focus:bg-white focus:border-glf-burgundy focus:ring-1 focus:ring-glf-burgundy outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Subject */}
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[11px] font-bold text-glf-slate uppercase tracking-widest">
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        name="subject"
+                        value={form.subject}
+                        onChange={handleChange}
+                        placeholder="How can we help you?"
+                        className="w-full bg-gray-50 border border-gray-200 text-glf-charcoal text-sm rounded-lg px-4 py-3.5 focus:bg-white focus:border-glf-burgundy focus:ring-1 focus:ring-glf-burgundy outline-none transition-all"
+                      />
+                    </div>
+
+                    {/* Message */}
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[11px] font-bold text-glf-slate uppercase tracking-widest">
+                        Your Message <span className="text-glf-burgundy">*</span>
+                      </label>
+                      <textarea
+                        name="message"
+                        value={form.message}
+                        onChange={handleChange}
+                        rows="5"
+                        placeholder="Write your message here..."
+                        required
+                        className="w-full bg-gray-50 border border-gray-200 text-glf-charcoal text-sm rounded-lg px-4 py-3.5 focus:bg-white focus:border-glf-burgundy focus:ring-1 focus:ring-glf-burgundy outline-none transition-all resize-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full group bg-glf-burgundy hover:bg-glf-burgundy-dark text-white font-bold text-sm tracking-widest uppercase py-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl mt-2"
+                    >
+                      <span>Send Message</span>
+                      <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

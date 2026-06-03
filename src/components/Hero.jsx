@@ -1,231 +1,255 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
-/* ── Poppins + keyframe animations injected once ── */
-if (typeof document !== "undefined" && !document.getElementById("hero-globals")) {
+import "swiper/css";
+
+/* ─── Slide Data ────────────────────────────────────────────── */
+const SLIDES = [
+  { image: "/Images/hero/Hero-1.webp" },
+  { image: "/Images/hero/Hero-2.webp" },
+];
+
+/* ─── Inject global hero styles ─────────────────────────────── */
+if (typeof document !== "undefined" && !document.getElementById("hero-glf-styles")) {
   const style = document.createElement("style");
-  style.id = "hero-globals";
+  style.id = "hero-glf-styles";
   style.textContent = `
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
-    .font-poppins { font-family: 'Poppins', sans-serif; }
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
-    @keyframes heroPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: .4; transform: scale(.82); }
+    .font-cormorant { font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif; }
+
+    @keyframes heroSlowZoom {
+      0%   { transform: scale(1.08); }
+      100% { transform: scale(1.14); }
     }
-    @keyframes heroFadeUp {
-      from { opacity: 0; transform: translateY(22px); }
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(30px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-anim     { animation: heroFadeUp .7s cubic-bezier(.22,1,.36,1) both; }
-    .hero-d1       { animation-delay: .05s; }
-    .hero-d2       { animation-delay: .15s; }
-    .hero-d3       { animation-delay: .25s; }
-    .hero-d4       { animation-delay: .35s; }
-    .hero-d5       { animation-delay: .45s; }
-    .hero-dr1      { animation-delay: .10s; }
-    .hero-dr2      { animation-delay: .28s; }
-    .badge-dot     { animation: heroPulse 2s infinite; }
-    .btn-gold:hover    { background-color: #d97706 !important; transform: translateY(-2px); }
-    .btn-outline:hover { border-color: #f5a623 !important; background: rgba(245,166,35,.08) !important; transform: translateY(-2px); }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes gentlePulse {
+      0%, 100% { opacity: 0.6; }
+      50%      { opacity: 1; }
+    }
+    @keyframes drawLine {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(8px); }
+    }
+    @keyframes progressFill {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes shimmerBtn {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes divaFlicker {
+      0%, 100% { opacity: 0.8; filter: brightness(1); }
+      25%      { opacity: 1; filter: brightness(1.2); }
+      50%      { opacity: 0.7; filter: brightness(0.9); }
+      75%      { opacity: 0.95; filter: brightness(1.1); }
+    }
+
+    .hero-glf .swiper-slide-active .hero-bg-img {
+      animation: heroSlowZoom 10s ease-out forwards;
+    }
+    .hero-glf .swiper-slide-active .anim-float-up {
+      animation: floatUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .hero-glf .swiper-slide-active .anim-d1 { animation-delay: 0.15s; }
+    .hero-glf .swiper-slide-active .anim-d2 { animation-delay: 0.35s; }
+    .hero-glf .swiper-slide-active .anim-d3 { animation-delay: 0.55s; }
+    .hero-glf .swiper-slide-active .anim-d4 { animation-delay: 0.75s; }
+    .hero-glf .swiper-slide-active .anim-d5 { animation-delay: 0.95s; }
+
+    .diya-glow {
+      animation: divaFlicker 3s ease-in-out infinite;
+    }
+    .line-draw {
+      animation: drawLine 1.2s ease-out 0.6s both;
+      transform-origin: left center;
+    }
   `;
   document.head.appendChild(style);
 }
 
-const EVENT_DATE = new Date("2026-11-21T10:00:00+05:30");
+/* ─── SVG Decorative Elements ───────────────────────────────── */
 
-function getTimeLeft() {
-  const diff = EVENT_DATE - new Date();
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-  return {
-    days:    Math.floor(diff / 86400000),
-    hours:   Math.floor(diff / 3600000) % 24,
-    minutes: Math.floor(diff / 60000)   % 60,
-    seconds: Math.floor(diff / 1000)    % 60,
-  };
-}
-
-function useCountUp(target, duration = 1800, delay = 0) {
-  const [value, setValue] = useState(0);
-  const raf = useRef(null);
-  useEffect(() => {
-    let start = null;
-    const t = setTimeout(() => {
-      const step = (ts) => {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / duration, 1);
-        setValue(Math.floor((1 - Math.pow(1 - p, 3)) * target));
-        if (p < 1) raf.current = requestAnimationFrame(step);
-      };
-      raf.current = requestAnimationFrame(step);
-    }, delay);
-    return () => { clearTimeout(t); if (raf.current) cancelAnimationFrame(raf.current); };
-  }, [target, duration, delay]);
-  return value;
-}
-
-function StatCard({ value, suffix = "", label, delay }) {
-  const animated = useCountUp(value, 1800, delay);
+/* Ganga waves — bottom of hero */
+function GangaWaves() {
   return (
-    <div className="font-poppins bg-white/10 border border-white/10 border-l-4 border-l-amber-400 rounded-sm p-3.5">
-      <span className="block text-[26px] font-extrabold text-white leading-none tracking-tight">
-        {animated.toLocaleString()}{suffix}
-      </span>
-      <span className="block text-[9.5px] font-semibold text-white/50 tracking-widest uppercase mt-1">
-        {label}
-      </span>
+    <div className="absolute bottom-0 left-0 w-full z-10 pointer-events-none overflow-hidden">
+      <svg
+        viewBox="0 0 1440 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-auto block"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,80 C120,100 240,40 360,60 C480,80 600,100 720,80 C840,60 960,20 1080,40 C1200,60 1320,100 1440,80 L1440,120 L0,120 Z"
+          fill="rgba(255,248,240,0.08)"
+        />
+        <path
+          d="M0,90 C160,110 320,60 480,75 C640,90 800,110 960,90 C1120,70 1280,50 1440,70 L1440,120 L0,120 Z"
+          fill="rgba(201,168,76,0.12)"
+        />
+        <path
+          d="M0,100 C200,115 400,85 600,95 C800,105 1000,115 1200,100 C1300,95 1400,90 1440,92 L1440,120 L0,120 Z"
+          fill="#ffffff"
+        />
+      </svg>
     </div>
   );
 }
 
-function CountUnit({ val, label }) {
+
+/* Mandala corner ornaments */
+function CornerOrnaments() {
   return (
-    <div className="font-poppins bg-white/10 border border-white/10 rounded-sm pt-3 pb-2 px-1.5 flex flex-col items-center gap-1">
-      <span className="text-[28px] font-extrabold text-white leading-none tracking-wider tabular-nums">
-        {String(val).padStart(2, "0")}
-      </span>
-      <span className="text-[8.5px] font-bold tracking-widest uppercase text-white/40">
-        {label}
-      </span>
+    <div className="absolute inset-0 z-[5] pointer-events-none hidden md:block">
+      {/* Top-left ornament */}
+      <svg className="absolute top-24 left-6 w-16 h-16 opacity-20" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="48" stroke="#C9A84C" strokeWidth="0.5" />
+        <circle cx="50" cy="50" r="38" stroke="#C9A84C" strokeWidth="0.5" />
+        <circle cx="50" cy="50" r="28" stroke="#C9A84C" strokeWidth="0.5" />
+        <path d="M50 2 L50 98 M2 50 L98 50" stroke="#C9A84C" strokeWidth="0.3" />
+        <path d="M15 15 L85 85 M85 15 L15 85" stroke="#C9A84C" strokeWidth="0.3" />
+      </svg>
+      {/* Top-right ornament */}
+      <svg className="absolute top-24 right-6 w-16 h-16 opacity-20" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="48" stroke="#C9A84C" strokeWidth="0.5" />
+        <circle cx="50" cy="50" r="38" stroke="#C9A84C" strokeWidth="0.5" />
+        <circle cx="50" cy="50" r="28" stroke="#C9A84C" strokeWidth="0.5" />
+        <path d="M50 2 L50 98 M2 50 L98 50" stroke="#C9A84C" strokeWidth="0.3" />
+        <path d="M15 15 L85 85 M85 15 L15 85" stroke="#C9A84C" strokeWidth="0.3" />
+      </svg>
     </div>
   );
 }
 
-export default function Hero() {
-  const [time, setTime] = useState(getTimeLeft());
-  useEffect(() => {
-    const id = setInterval(() => setTime(getTimeLeft()), 1000);
-    return () => clearInterval(id);
-  }, []);
-
+/* ─── Slide Component ───────────────────────────────────────── */
+function HeroSlide({ slide, index }) {
   return (
-    <section
-      id="home"
-      className="font-poppins relative min-h-screen flex items-center overflow-hidden border-b-4 border-amber-500 bg-[#0a1a3c]"
-    >
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80")`,
-          opacity: 1,
-        }}
+    <div className="relative w-full h-screen overflow-hidden">
+      <img
+        src={slide.image}
+        alt="Festival Background"
+        className="hero-bg-img absolute inset-0 w-full h-[110%] object-cover object-center will-change-transform"
+        fetchpriority={index === 0 ? "high" : "auto"}
+        loading={index === 0 ? "eager" : "lazy"}
       />
+    </div>
+  );
+}
 
-      {/* Deep navy gradient overlay — keeps text readable */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(110deg, rgba(46, 61, 93, 0.97) 0%, rgba(32, 42, 64, 0.91) 55%, rgba(8,45,92,0.87) 100%)",
-        }}
-      />
-
-      {/* Amber top accent stripe */}
-      <div
-        className="absolute top-0 left-0 w-full h-1.5 z-10"
-        style={{
-          background: "linear-gradient(90deg, #f5a623 0%, #d97706 45%, transparent 100%)",
-        }}
-      />
-
-      {/* Main content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-8 pt-48 md:pt-32 lg:pt-28 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-          {/* ── LEFT ── */}
-          <div className="flex flex-col items-start">
-
-            {/* H1 */}
-            <h1 className="hero-anim hero-d2 text-4xl md:text-5xl lg:text-[54px] font-extrabold text-white leading-tight tracking-[0.04em] uppercase mb-1.5">
-              Bihar
-              <span className="block text-amber-400 tracking-[0.06em] text-[40px] md:text-[46px] lg:text-[50px]">
-                Medical Expo
-              </span>
-              2026
-            </h1>
-
-            {/* Subtitle */}
-            <p className="hero-anim hero-d3 text-[12px] font-semibold text-white/50 tracking-widest uppercase mb-4">
-              Gyan Bhawan, Patna &nbsp;·&nbsp; Eastern India's Premier B2B Medical Trade Fair
-            </p>
-
-            {/* Divider */}
-            <div className="hero-anim hero-d3 w-14 h-[3px] bg-amber-400 rounded-full mb-5" />
-
-            {/* Description */}
-            <p className="hero-anim hero-d4 text-[14px] text-white/70 leading-loose max-w-[500px] mb-8 tracking-wide">
-              Bringing together world-class healthcare manufacturers, clinical practitioners,
-              hospital directors, and distributors. Three days of innovative product launches,
-              scientific sessions, and high-value networking.
-            </p>
-
-            {/* CTAs */}
-            <div className="hero-anim hero-d5 flex flex-wrap gap-3">
-              <a
-                href="#register"
-                className="btn-gold font-poppins font-bold text-[15px] tracking-widest uppercase text-[#0a1a3c] bg-amber-400 px-8 py-3.5 rounded-sm transition-all duration-200"
-              >
-                Register as Visitor
-              </a>
-              <a
-                href="#contact"
-                className="btn-outline font-poppins font-bold text-[15px] tracking-widest uppercase text-white border-2 border-white/40 px-8 py-3 rounded-sm transition-all duration-200"
-              >
-                Book a Stall
-              </a>
-            </div>
-          </div>
-
-          {/* ── RIGHT ── */}
-          <div className="flex flex-col gap-4">
-
-            {/* Stats board */}
-            <div className="hero-anim hero-dr1 bg-white/5 border border-white/10 rounded p-5 backdrop-blur-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-poppins text-[9.5px] font-bold tracking-widest uppercase text-white/40 whitespace-nowrap">
-                  Expo Highlights
-                </span>
-                <div className="flex-1 h-px bg-white/10" />
-              </div>
-
-              <div className="grid grid-cols-2 gap-2.5 mb-4">
-                <StatCard value={150}   suffix="+" label="Exhibitors"          delay={300} />
-                <StatCard value={5000}  suffix="+" label="Healthcare Buyers"   delay={450} />
-                <StatCard value={10000} suffix="+" label="Sq. Metres Area"     delay={600} />
-                <StatCard value={20}    suffix="+" label="Scientific Sessions" delay={750} />
-              </div>
-
-              {/* Organiser */}
-              <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-sm px-3 py-2.5">
-                <div className="font-poppins w-8 h-8 rounded-sm bg-[#1a3a6b] border border-amber-400/40 flex items-center justify-center text-[11px] font-extrabold text-amber-400 tracking-wider flex-shrink-0">
-                  SE
-                </div>
-                <div>
-                  <p className="font-poppins text-[12.5px] font-bold text-white tracking-wider leading-tight">
-                    Star Exhibitions
-                  </p>
-                  <p className="font-poppins text-[10.5px] text-white/40 leading-tight mt-0.5">
-                    Leading B2B Trade Show Organizers
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Countdown */}
-            <div className="hero-anim hero-dr2 border border-amber-400/30 rounded p-5 backdrop-blur-md bg-[#0a1a3c]/80">
-              <p className="font-poppins text-[9.5px] font-bold tracking-widest uppercase text-amber-400 mb-3">
-                ⏱ Summit Commencing In
-              </p>
-              <div className="grid grid-cols-4 gap-2">
-                <CountUnit val={time.days}    label="Days"  />
-                <CountUnit val={time.hours}   label="Hours" />
-                <CountUnit val={time.minutes} label="Mins"  />
-                <CountUnit val={time.seconds} label="Secs"  />
-              </div>
-            </div>
-
-          </div>
+/* ─── Custom Progress Indicators ────────────────────────────── */
+function SlideProgress({ activeIndex, total, duration }) {
+  return (
+    <div className="absolute bottom-[5.5rem] sm:bottom-24 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+      {Array.from({ length: total }).map((_, i) => (
+        <div
+          key={i}
+          className="relative rounded-full overflow-hidden transition-all duration-500 cursor-pointer"
+          style={{
+            width: i === activeIndex ? 52 : 24,
+            height: 4,
+          }}
+        >
+          <div className="absolute inset-0 bg-white/25 rounded-full" />
+          {i === activeIndex && (
+            <div
+              className="absolute inset-0 rounded-full origin-left"
+              style={{
+                background: "linear-gradient(90deg, #C9A84C, #E0C068)",
+                animation: `progressFill ${duration}ms linear forwards`,
+              }}
+            />
+          )}
         </div>
+      ))}
+    </div>
+  );
+}
+
+/* ─── Scroll Down Indicator ─────────────────────────────────── */
+function ScrollIndicator() {
+  return (
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1">
+      <span className="text-white/30 text-[9px] font-body font-semibold uppercase tracking-[0.25em]">
+        Explore
+      </span>
+      <div
+        className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5"
+      >
+        <div
+          className="w-1 h-2 bg-[#C9A84C] rounded-full"
+          style={{ animation: "scrollBounce 2s ease-in-out infinite" }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ─── Main Hero Component ───────────────────────────────────── */
+export default function Hero() {
+  const swiperRef = useRef(null);
+  const activeIndexRef = useRef(0);
+  const AUTOPLAY_DELAY = 7000;
+
+  const [, setTick] = useState(0);
+
+  return (
+    <section id="home" className="relative">
+      <div className="hero-glf">
+        <Swiper
+          modules={[Autoplay]}
+          effect="slide"
+          speed={1200}
+          cssMode={false}
+          autoplay={{
+            delay: AUTOPLAY_DELAY,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          allowTouchMove={true}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          onSlideChange={(swiper) => {
+            activeIndexRef.current = swiper.realIndex;
+            setTick((t) => t + 1);
+          }}
+          className="w-full h-screen"
+        >
+          {SLIDES.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <HeroSlide slide={slide} index={index} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Decorative Elements */}
+        <CornerOrnaments />
+        <GangaWaves />
+
+        {/* Progress Bar */}
+        <SlideProgress
+          activeIndex={activeIndexRef.current}
+          total={SLIDES.length}
+          duration={AUTOPLAY_DELAY}
+        />
+
+        {/* Scroll Indicator */}
+        <ScrollIndicator />
       </div>
     </section>
   );
