@@ -33,6 +33,9 @@ const NAV_LINKS = [
   { label: "Partners", to: "/partners" },
 ];
 
+const WHATSAPP_URL =
+  "https://api.whatsapp.com/send/?phone=918877088880&text=Hi%2C+I%27d+like+to+discuss+a+project.&type=phone_number&app_absent=0";
+
 export default function Navbar({ menuOpen, setMenuOpen }) {
   const [expandedMenu, setExpandedMenu] = useState("");
 
@@ -90,9 +93,17 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
           ))}
         </div>
 
-        <div className="ml-auto hidden items-center xl:flex">
+        <div className="ml-auto hidden items-center gap-3 xl:flex">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-[#b58b32] px-7 py-5 text-[15px] font-black uppercase tracking-[0.12em] text-[#b58b32] transition hover:bg-[#b58b32] hover:text-black"
+          >
+            Lets Talk
+          </a>
           <Link
-            to="/#register"
+            to="/festival/register-to-attend"
             className="bg-[#b58b32] px-9 py-5 text-[15px] font-black uppercase tracking-[0.12em] text-white transition hover:bg-black hover:text-white"
           >
             Register
@@ -184,12 +195,21 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
             </div>
           ))}
           <Link
-            to="/#register"
+            to="/festival/register-to-attend"
             onClick={closeMenu}
             className="mt-8 bg-[#b58b32] px-6 py-4 text-center text-base font-black uppercase tracking-[0.12em] text-white sm:px-8 sm:py-5 sm:text-lg sm:tracking-[0.14em]"
           >
             Register
           </Link>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="mt-3 border border-[#b58b32] px-6 py-4 text-center text-base font-black uppercase tracking-[0.12em] text-[#b58b32] sm:px-8 sm:py-5 sm:text-lg sm:tracking-[0.14em]"
+          >
+            Lets Talk
+          </a>
         </div>
       </div>
     </header>

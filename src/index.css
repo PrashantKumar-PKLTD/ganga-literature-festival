@@ -23,6 +23,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--site-white);
   color: var(--site-black);
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  overflow-x: clip;
 }
 
 h1,
@@ -279,7 +289,11 @@ html.lenis body {
 }
 
 .ganga-journey--homepage {
-  height: 300vh;
+  height: 760px;
+}
+
+.ganga-journey--homepage .ganga-journey__sticky {
+  height: 760px;
 }
 
 .ganga-journey__sticky {

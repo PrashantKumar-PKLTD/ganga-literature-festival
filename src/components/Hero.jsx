@@ -78,7 +78,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative mt-8 ml-[calc(50%-50vw)] w-screen bg-white">
+        <div className="relative left-1/2 mt-8 w-[100dvw] -translate-x-1/2 bg-white">
           <div className="mx-auto max-w-5xl px-5 py-6 md:px-8 md:py-8">
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
               Ganga in Focus

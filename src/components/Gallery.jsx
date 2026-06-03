@@ -16,7 +16,7 @@ export default function Gallery() {
           <SectionHeading
             align="left"
             inverted
-            eyebrow="Festival Moments"
+            eyebrow=""
             title="A Visual Journey"
             intro="The website experience uses river imagery, reading spaces, stage moments, and warm cultural scenes to feel like a real public festival."
           />

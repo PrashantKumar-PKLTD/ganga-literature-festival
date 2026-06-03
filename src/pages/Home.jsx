@@ -4,8 +4,10 @@ import Speakers from "../components/Speakers";
 import Schedule from "../components/Schedule";
 import ProgrammeSteps from "../components/ProgrammeSteps";
 import ExecutiveTeam from "../components/ExecutiveTeam";
+import TrustedPartners from "../components/TrustedPartners";
 import StudyDestinations from "../components/StudyDestinations";
 import FestivalTextRows from "../components/FestivalTextRows";
+import EventImageGallery from "../components/EventImageGallery";
 import FAQ from "../components/FAQ";
 import Reveal from "../components/Reveal";
 
@@ -18,8 +20,10 @@ export default function Home() {
       <Reveal><Schedule /></Reveal>
       <Reveal><ProgrammeSteps /></Reveal>
       <Reveal><ExecutiveTeam /></Reveal>
+      <Reveal><TrustedPartners /></Reveal>
       <Reveal><StudyDestinations /></Reveal>
       <FestivalTextRows />
+      <Reveal><EventImageGallery /></Reveal>
       <Reveal><FAQ /></Reveal>
     </main>
   );

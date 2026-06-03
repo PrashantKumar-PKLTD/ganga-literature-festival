@@ -3,18 +3,25 @@ import { X } from "lucide-react";
 
 const teamMembers = [
   {
+    id: 27,
+    name: "BL Santosh",
+    title: "Visionary Inspiration",
+    image: "/blsantosh.avif",
+    imagePosition: "center top",
+  },
+  {
+    id: 28,
+    name: "Maharaja Bahadur Mrigendra Pratap Shahi",
+    title: "Visionary Inspiration",
+    image: "/maharaja-mrigendra-pratap-shahi.jpg",
+    imagePosition: "center 18%",
+  },
+  {
     id: 3,
     name: "Dr. C.P. Thakur",
     title: "Visionary Inspiration",
     image: "/cpthakur.jpg",
     imagePosition: "center 18%",
-  },
-  {
-    id: 10,
-    name: "Dr Rajmohan Pillai",
-    title: "Visionary Inspiration",
-    image: "/rajmohan.jpeg",
-    imagePosition: "center 12%",
   },
   {
     id: 7,
@@ -130,7 +137,7 @@ const teamMembers = [
   },
   {
     id: 11,
-    name: "Satyajit Singh",
+    name: "Dr. Satyajit Singh",
     title: "Managing Partner",
     image: "/satayajit.jpeg",
     imagePosition: "center 14%",
@@ -184,7 +191,7 @@ const secondRowNames = [
   "Deepak Thakur",
   "Dr. Sandeep Bhardwaj",
   "Kumod Kumar",
-  "Satyajit Singh",
+  "Dr. Satyajit Singh",
   "Vikas Vaibhav, IPS",
   "Vishal Tiwari",
   "Ajit Kumar",
@@ -208,6 +215,11 @@ const teamMemberRowMembers = teamMemberNames
   .filter(Boolean)
   .sort((firstMember, secondMember) =>
     firstMember.name.localeCompare(secondMember.name),
+  )
+  .map((member) =>
+    member.title === "Managing Partner"
+      ? { ...member, title: "Associate Partner" }
+      : member,
   );
 const thirdRowMembers = sortByName(
   teamMembers.filter(
@@ -217,6 +229,8 @@ const thirdRowMembers = sortByName(
       !secondRowNames.includes(member.name) &&
       !teamMemberNames.includes(member.name),
   ),
+).map((member) =>
+  member.title === "Managing Partner" ? { ...member, title: "Partner" } : member,
 );
 const displayTeamMembers = [
   ...patronMembers,
@@ -324,7 +338,7 @@ export default function ExecutiveTeam() {
 
         <div className="mt-8 hidden sm:block">
           <p className="mb-3 text-xs font-black uppercase tracking-[0.24em] text-[#b58b32]">
-            Executive Community
+            Executive Committee
           </p>
           <div className="grid grid-cols-4 gap-2.5 lg:grid-cols-7 xl:grid-cols-8">
           {secondRowMembers.map((member) => (
