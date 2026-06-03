@@ -1,9 +1,10 @@
-﻿export default function Hero() {
-  const gangaMapSrc = "/gangamap.png";
+import GangaJourney from "./GangaJourney";
+
+export default function Hero() {
   const heroBgSrc = "/heroimage.png?v=3";
 
   return (
-    <section id="home" className="relative overflow-hidden bg-white">
+    <section id="home" className="relative bg-white">
       <div className="relative min-h-[720px] overflow-hidden bg-black text-white md:min-h-[760px]">
         <img
           src={heroBgSrc}
@@ -49,7 +50,7 @@
 
       <div className="relative z-30 -mt-8 mx-auto max-w-5xl px-5 md:-mt-14">
         <div className="flex flex-col gap-4 rounded-lg bg-white p-4 shadow-xl shadow-black/10 md:flex-row md:items-center md:justify-between">
-            <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             {[
               ["Wed", "11", "November"],
               ["Thu", "12", "November"],
@@ -77,7 +78,7 @@
           </div>
         </div>
 
-        <div className="relative left-1/2 mt-8 w-screen -translate-x-1/2 overflow-hidden bg-white">
+        <div className="relative mt-8 ml-[calc(50%-50vw)] w-screen bg-white">
           <div className="mx-auto max-w-5xl px-5 py-6 md:px-8 md:py-8">
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
               Ganga in Focus
@@ -90,13 +91,12 @@
               where books, ideas, classical arts, and the Viksit Bharat horizon meet.
             </p>
           </div>
-          <figure className="relative bg-white">
-            <img
-              src={gangaMapSrc}
-              alt="Infographic map showing pollution data along the Ganga river"
-              className="block w-full object-cover"
-            />
-          </figure>
+          <GangaJourney
+            className="ganga-journey--homepage"
+            scrollStart="top 70%"
+            scrollEnd="bottom bottom"
+            scrollScrub={1.35}
+          />
         </div>
       </div>
 
