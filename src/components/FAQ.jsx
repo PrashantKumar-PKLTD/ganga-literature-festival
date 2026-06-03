@@ -31,38 +31,54 @@ export default function FAQ() {
   const [open, setOpen] = useState(null);
 
   return (
-    <section id="faq" className="bg-white px-5 py-20 md:py-28">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-16 flex items-center justify-center gap-8 md:mb-20">
-          <span className="hidden h-px w-20 bg-black/40 md:block" />
-          <h2 className="text-center font-serif text-5xl font-medium uppercase leading-none text-black md:text-7xl">
-            Frequently Asked Questions
+    <section
+      id="faq"
+      className="relative overflow-hidden bg-white px-5 py-20 md:px-8 md:py-28"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-70"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(15,23,42,0.06) 1px, transparent 1px)",
+          backgroundSize: "22.5% 100%",
+        }}
+      />
+
+      <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.25fr] lg:gap-20">
+        <div className="lg:pt-2">
+          <h2 className="text-5xl font-black leading-none tracking-[-0.01em] text-black md:text-6xl">
+            Festival
+            <br />
+            FAQs
           </h2>
-          <span className="hidden h-px w-20 bg-black/40 md:block" />
+          <p className="mt-8 max-w-sm text-base leading-8 text-slate-600">
+            Have questions about attending the Ganga Literature Festival? Here
+            are the essentials for visitors, students, authors, and partners.
+          </p>
         </div>
 
-        <div className="mx-auto max-w-6xl border-t border-black/15">
+        <div>
           {FAQS.map((faq, index) => {
             const isOpen = open === index;
 
             return (
-              <div key={faq.q} className="border-b border-black/15">
+              <div key={faq.q} className="border-b-[5px] border-slate-300/80">
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-8 py-8 text-left"
+                  className="grid w-full grid-cols-[44px_1fr] items-start gap-5 py-7 text-left md:grid-cols-[54px_1fr] md:gap-6"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-serif text-xl font-medium uppercase leading-snug text-black md:text-2xl">
-                    {faq.q}
+                  <span
+                    className={`text-5xl font-light leading-none text-[#b58b32] transition-transform duration-300 ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
+                    aria-hidden="true"
+                  >
+                    +
                   </span>
-                  <span className="relative h-8 w-8 shrink-0 text-black" aria-hidden="true">
-                    <span className="absolute left-1/2 top-1/2 h-px w-5 -translate-x-1/2 -translate-y-1/2 bg-black" />
-                    <span
-                      className={`absolute left-1/2 top-1/2 h-5 w-px -translate-x-1/2 -translate-y-1/2 bg-black transition-transform duration-300 ${
-                        isOpen ? "scale-y-0" : "scale-y-100"
-                      }`}
-                    />
+                  <span className="text-3xl font-normal leading-tight text-black md:text-[2.45rem]">
+                    {faq.q}
                   </span>
                 </button>
 
@@ -72,7 +88,7 @@ export default function FAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-3xl pb-8 text-base leading-8 text-black/70 md:text-lg">
+                    <p className="ml-[64px] max-w-2xl pb-7 text-base leading-8 text-slate-600 md:ml-[78px] md:text-lg">
                       {faq.a}
                     </p>
                   </div>

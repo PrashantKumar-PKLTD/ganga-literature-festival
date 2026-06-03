@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Registration from "../components/RegistrationForm";
 
 const categories = [
   {
@@ -129,6 +130,8 @@ export default function RegistrationPage() {
           </div>
         </div>
       </section>
+
+      <Registration />
 
       <section className="relative overflow-hidden bg-white px-5 py-20 md:px-8 md:py-28">
         <div className="pointer-events-none absolute left-0 top-0 h-40 w-40 rounded-full border border-[#b58b32]/20" />

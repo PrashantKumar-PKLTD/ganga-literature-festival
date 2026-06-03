@@ -5,19 +5,19 @@ const partners = [
     name: "BIHAAN",
     role: "Presenting Organisation",
     text: "BIHAAN, meaning dawn or new beginning, is a movement dedicated to connecting India's vision for growth with global partnerships, community, culture, causes, and events. It believes that a rising Bharat requires not just economic growth, but civilisational confidence.",
-    image: "/logo.png",
+    image: "/bihaan-logo.png",
   },
   {
     name: "BluOne Ink",
     role: "Publishing Partner",
     text: "BluOne Ink is a purposeful publishing house bringing readers books across national security, civilisational history, political philosophy, Dharmic knowledge systems, fiction, and biography.",
-    image: "/gangaimg2.png",
+    image: "/bluone-logo.webp",
   },
   {
     name: "SPIC MACAY",
     role: "Cultural Partner",
     text: "SPIC MACAY has spent nearly five decades taking India's classical arts heritage to schools, colleges, and communities. Its evenings at GLF bring the festival's cultural spirit alive.",
-    image: "/gangaimg4.png",
+    image: "/spicmacay-logo.svg",
   },
 ];
 
@@ -43,58 +43,72 @@ const heritage = [
   ["Bodh Gaya", "The land where enlightenment became a civilisational force."],
 ];
 
-function ArchTitle() {
-  return (
-    <div className="relative mx-auto w-full max-w-2xl px-7 py-16 text-center md:px-12 md:py-20">
-      <div className="absolute inset-0 border-[8px] border-[#b58b32] opacity-90 [clip-path:polygon(12%_100%,12%_44%,17%_44%,20%_35%,28%_30%,36%_25%,44%_17%,50%_0,56%_17%,64%_25%,72%_30%,80%_35%,83%_44%,88%_44%,88%_100%)]" />
-      <div className="relative">
-        <p className="font-serif text-3xl font-black uppercase leading-none text-white md:text-4xl">
-          About
-        </p>
-        <h1 className="mt-4 font-serif text-5xl font-black uppercase leading-[0.88] text-white md:text-7xl">
-          Ganga Literature Festival
-        </h1>
-      </div>
-    </div>
-  );
-}
-
-function Skyline({ color = "#f8f6f1" }) {
-  return (
-    <div
-      className="absolute inset-x-0 bottom-0 h-32"
-      style={{ backgroundColor: color }}
-    >
-      <div
-        className="absolute inset-x-0 -top-1 h-28"
-        style={{
-          backgroundColor: color,
-          clipPath:
-            "polygon(0 62%,4% 42%,8% 64%,13% 43%,21% 63%,31% 38%,40% 58%,50% 40%,60% 62%,70% 38%,82% 58%,92% 40%,100% 60%,100% 100%,0 100%)",
-        }}
-      />
-    </div>
-  );
-}
+const heroWords = [
+  "Ganga",
+  "Patna",
+  "Pataliputra",
+  "Nalanda",
+  "Vikramashila",
+  "Bodh Gaya",
+  "Viksit Bharat",
+  "Literature",
+];
 
 export default function AboutPage() {
   return (
     <main className="pt-[78px] md:pt-[82px]">
-      <section className="relative min-h-[650px] overflow-hidden bg-black text-white">
-        <video
-          className="absolute inset-0 h-full w-full object-cover brightness-110"
-          src="/gangavid.mp4"
-          poster="/gangaimg1.png"
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
+      <section className="relative min-h-[calc(100vh-78px)] overflow-hidden bg-white md:min-h-[calc(100vh-82px)]">
+        <div
+          className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-80 md:block"
+          style={{
+            background:
+              "radial-gradient(50% 50% at 50% 50%, rgba(181,139,50,0.35) 0%, rgba(248,246,241,0.78) 36%, rgba(255,255,255,0) 72%)",
+          }}
         />
-        <div className="relative mx-auto flex min-h-[650px] max-w-6xl items-center justify-center px-5 md:px-8">
-          <ArchTitle />
+        <div className="relative mx-auto grid min-h-[calc(100vh-78px)] max-w-[1500px] px-5 py-10 md:min-h-[calc(100vh-82px)] md:px-10 md:py-0">
+          <div className="relative z-10 hidden min-h-[calc(100vh-82px)] items-stretch pb-20 pt-8 md:flex">
+            <div className="grid w-full grid-cols-8 items-stretch gap-4 lg:gap-7">
+              {heroWords.map((word, index) => (
+                <div
+                  key={word}
+                  className="flex min-w-0 justify-center border-l border-black/10 pl-3"
+                >
+                  <div className="relative h-full w-full overflow-visible">
+                    <span className="absolute left-1 top-0 text-[11px] font-black text-[#b58b32]/70">
+                      0{index + 1}
+                    </span>
+                    <span
+                      className={`absolute bottom-44 left-1/2 -translate-x-1/2 -rotate-90 origin-bottom whitespace-nowrap font-black leading-none tracking-[-0.03em] ${
+                        index === 4
+                          ? "text-white [-webkit-text-stroke:1px_#0b0b0b]"
+                          : "text-black"
+                      } text-[clamp(44px,5.6vw,82px)]`}
+                      style={{ transformOrigin: "bottom center" }}
+                    >
+                      {word}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative z-10 mt-10 grid gap-3 md:hidden">
+            {heroWords.map((word, index) => (
+              <div
+                key={word}
+                className="flex items-center justify-between border border-[#b58b32]/35 bg-[#f8f6f1] px-4 py-3"
+              >
+                <span className="font-serif text-3xl font-black leading-none text-black">
+                  {word}
+                </span>
+                <span className="text-xs font-black text-[#b58b32]">
+                  0{index + 1}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-        <Skyline />
       </section>
 
       <section className="relative overflow-hidden bg-[#f8f6f1] px-5 pb-20 pt-24 md:px-8 md:pb-28 md:pt-32">
@@ -157,10 +171,16 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-[#f8f6f1] px-5 py-20 text-center md:px-8 md:py-28">
+        <div className="mx-auto mb-10 flex h-28 w-28 items-center justify-center bg-white p-4 shadow-sm md:h-36 md:w-36">
+          <img
+            src="/logo.png"
+            alt="Ganga Literature Festival"
+            className="h-full w-full object-contain"
+          />
+        </div>
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
           Built By
         </p>
-        <img src="/logo.png" alt="Ganga Literature Festival" className="mx-auto mt-6 h-24 w-auto object-contain" />
         <h2 className="mt-6 font-serif text-5xl font-black leading-none text-black">
           BIHAAN, BluOne Ink, and SPIC MACAY
         </h2>
@@ -172,11 +192,13 @@ export default function AboutPage() {
         <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3">
           {partners.map((partner) => (
             <article key={partner.name} className="bg-white p-7 text-left shadow-sm">
-              <img
-                src={partner.image}
-                alt={partner.name}
-                className="h-20 w-full object-contain object-left"
-              />
+              <div className="flex h-24 items-center">
+                <img
+                  src={partner.image}
+                  alt={partner.name}
+                  className="max-h-24 max-w-[260px] object-contain object-left"
+                />
+              </div>
               <p className="mt-6 text-xs font-black uppercase tracking-[0.2em] text-[#b58b32]">
                 {partner.role}
               </p>
@@ -211,14 +233,14 @@ export default function AboutPage() {
 
           <div className="grid gap-5">
             {values.map((value, index) => (
-              <div key={value.title} className="border border-[#b58b32]/45 bg-white/5 p-6">
+              <div key={value.title} className="border border-[#b58b32]/45 bg-white p-6 shadow-sm">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#b58b32] text-sm font-black text-black">
                   {index + 1}
                 </span>
-                <h3 className="mt-5 font-serif text-3xl font-black text-white">
+                <h3 className="mt-5 font-serif text-3xl font-black text-black">
                   {value.title}
                 </h3>
-                <p className="mt-3 text-sm font-semibold leading-7 text-white/65">
+                <p className="mt-3 text-sm font-semibold leading-7 text-black/70">
                   {value.text}
                 </p>
               </div>

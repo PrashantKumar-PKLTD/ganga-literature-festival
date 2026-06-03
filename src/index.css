@@ -208,6 +208,15 @@ html.lenis body {
   }
 }
 
+@keyframes festivalMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
 .hero-bg-animate {
   animation: slowZoom 18s ease-in-out alternate infinite;
 }
@@ -231,10 +240,20 @@ html.lenis body {
   pointer-events: none;
 }
 
+.festival-marquee {
+  animation: festivalMarquee 32s linear infinite;
+}
+
+.festival-marquee-fast {
+  animation: festivalMarquee 24s linear infinite reverse;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .hero-bg-animate,
   .float-soft,
+  .festival-marquee,
+  .festival-marquee-fast,
   .gold-sweep::after {
     animation: none !important;
     transition: none !important;
