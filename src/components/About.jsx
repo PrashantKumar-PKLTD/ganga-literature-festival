@@ -19,11 +19,11 @@ export default function About() {
     // Left side slides in from left
     gsap.fromTo(
       leftContentRef.current,
-      { x: -100, opacity: 0 },
+      { x: 100, opacity: 0 },
       {
         x: 0,
         opacity: 1,
-        duration: 3,
+        duration: 3.5,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -58,19 +58,7 @@ export default function About() {
       {/* Lotus resting at the bottom */}
       <GeometricLotus className="absolute left-[5%] md:left-[3%] bottom-0 w-48 md:w-64 opacity-90 origin-bottom" />
       
-      {/* Custom Keyframes for background elements */}
-      <style>{`
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px) rotate(-20deg); }
-          50% { transform: translateY(-20px) rotate(-10deg); }
-        }
-        @keyframes float-delayed {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-25px); }
-        }
-        .animate-float-slow { animation: float-slow 10s ease-in-out infinite; }
-        .animate-float-delayed { animation: float-delayed 12s ease-in-out infinite; }
-      `}</style>
+
 
       {/* Moving Background Elements (Ganga & Literature inspired) */}
       <div className="absolute top-10 left-[-2rem] md:left-10 text-glf-gold/15 animate-float-slow hidden md:block pointer-events-none">
