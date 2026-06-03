@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 import AboutPage from "./pages/AboutPage";
+import BlogDetailPage from "./pages/BlogDetailPage";
 import BlogsPage from "./pages/BlogsPage";
+import ContactPage from "./pages/ContactPage";
 import SiteLayout from "./components/SiteLayout";
 import { PAGES } from "./data/pages";
 import ContentPage from "./pages/ContentPage";
@@ -29,7 +31,9 @@ export default function App() {
           <Route path="/programme" element={<ProgrammePage />} />
           <Route path="/media/news-updates" element={<NewsPage />} />
           <Route path="/media/blogs" element={<BlogsPage />} />
+          <Route path="/media/blogs/:slug" element={<BlogDetailPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/about/contact-us" element={<ContactPage />} />
           <Route path="/partners" element={<PartnersPage />} />
           {PAGES.filter((page) => ![
             "/festival/friend-of-the-festival",
@@ -40,6 +44,7 @@ export default function App() {
             "/media/news-updates",
             "/media/blogs",
             "/about",
+            "/about/contact-us",
             "/partners",
           ].includes(page.path)).map((page) => (
             <Route

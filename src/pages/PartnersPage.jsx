@@ -1,40 +1,57 @@
-﻿import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, PenLine, X } from "lucide-react";
 
-const years = ["2026", "2024", "2023", "2022", "2021", "2020", "2018"];
+const years = ["2026"];
 
 const partnerGroups = [
   {
     label: "Presenting Partner",
+    partners: [{ name: "Janata", logo: "/partner-logos/icon1.png" }],
+  },
+  {
+    label: "Government and Industry Partners",
     partners: [
-      { name: "Ganga Literature Festival", mark: "GLF" },
+      { name: "BIADA Department of Industries", logo: "/partner-logos/icon5.png" },
+      { name: "CII", logo: "/partner-logos/icon4.png" },
+      { name: "TiE Patna", logo: "/partner-logos/icon6.png" },
     ],
   },
   {
-    label: "State Partner",
+    label: "Institutional and Knowledge Partners",
     partners: [
-      { name: "Government of Bihar", mark: "Bihar" },
+      { name: "CIMP", logo: "/partner-logos/icon7.png" },
+      { name: "CIMP-BIIF", logo: "/partner-logos/icon8.png" },
+      { name: "Let's Inspire Bihar", logo: "/partner-logos/icon12.png" },
+      { name: "Vishwa Hindi Parishad", logo: "/partner-logos/icon17.png" },
     ],
   },
   {
-    label: "Impact Partner",
+    label: "Healthcare and Social Impact Partners",
     partners: [
-      { name: "Ganga Cultural Foundation", mark: "GCF" },
-    ],
-  },
-  {
-    label: "Supported By",
-    partners: [
-      { name: "Knowledge Forum", mark: "KF" },
-      { name: "River Arts Collective", mark: "RAC" },
-      { name: "Patna Reading Circle", mark: "PRC" },
+      { name: "QA Stem Cell Centre", logo: "/partner-logos/icon3.png" },
+      { name: "Sulabh", logo: "/partner-logos/icon10.png" },
+      { name: "Ruban", logo: "/partner-logos/icon9.png" },
+      { name: "Indian Medical Association", logo: "/partner-logos/icon11.png" },
+      { name: "eSSAA Foundation", logo: "/partner-logos/icon20.png" },
     ],
   },
   {
     label: "Media and Outreach Partners",
     partners: [
-      { name: "Literary Review Desk", mark: "LRD" },
-      { name: "Campus Voices", mark: "CV" },
-      { name: "Book City Network", mark: "BCN" },
+      { name: "MATV", logo: "/partner-logos/icon2.png" },
+      { name: "Earshot", logo: "/partner-logos/icon14.png" },
+      { name: "RBM News", logo: "/partner-logos/icon21.png" },
+      { name: "Apisode", logo: "/partner-logos/apisode.png" },
+    ],
+  },
+  {
+    label: "Innovation, Education and Business Partners",
+    partners: [
+      { name: "Digital for Humanity", logo: "/partner-logos/icon13.png" },
+      { name: "The Pro Educator", logo: "/partner-logos/icon15.png" },
+      { name: "Startup Legal", logo: "/partner-logos/icon16.png" },
+      { name: "B-Hub Maurya Lok", logo: "/partner-logos/icon18.png" },
+      { name: "Prashant Kumar LTD", logo: "/partner-logos/icon19.png" },
     ],
   },
 ];
@@ -56,20 +73,36 @@ function HeroArch() {
   );
 }
 
-function PartnerCard({ partner }) {
+function PartnerLogoCard({ partner }) {
   return (
-    <article className="group flex min-h-[150px] flex-col items-center justify-center border border-[#b58b32]/35 bg-white px-6 py-8 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10">
-      <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#b58b32]/45 bg-[#f8f6f1] font-serif text-2xl font-black text-black transition group-hover:bg-black group-hover:text-white">
-        {partner.mark}
-      </div>
-      <h3 className="mt-5 text-sm font-black uppercase tracking-[0.16em] text-black">
-        {partner.name}
-      </h3>
+    <article className="group flex min-h-[70px] items-center justify-center p-1 transition hover:-translate-y-1">
+      <img
+        src={partner.logo}
+        alt={partner.name}
+        loading="lazy"
+        className="max-h-24 w-full max-w-[220px] object-contain transition duration-300 group-hover:scale-105"
+      />
     </article>
   );
 }
 
+function PartnerCtaCard({ onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="group inline-flex items-center justify-end gap-3 bg-transparent px-0 py-2 text-right text-xs font-black uppercase tracking-[0.14em] text-black transition hover:-translate-y-1"
+      aria-label="Open partner form"
+    >
+      Partner with GLF
+      <PenLine className="h-4 w-4 shrink-0" />
+    </button>
+  );
+}
+
 export default function PartnersPage() {
+  const [formOpen, setFormOpen] = useState(false);
+
   return (
     <main className="pt-[78px] md:pt-[82px]">
       <section
@@ -123,32 +156,42 @@ export default function PartnersPage() {
             </a>
           </div>
 
-          <div className="mt-14 overflow-x-auto border-b border-[#b58b32]/35 pb-3">
-            <div className="flex min-w-max gap-9">
-              {years.map((year) => (
-                <button
-                  key={year}
-                  className={`pb-3 text-sm font-bold ${
-                    year === "2026"
-                      ? "border-b-2 border-[#b58b32] text-[#b58b32]"
-                      : "text-black"
-                  }`}
-                >
-                  {year}
-                </button>
-              ))}
+          <div className="mt-14 border-b border-[#b58b32]/35 pb-3">
+            <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+              <div className="flex gap-9">
+                {years.map((year) => (
+                  <button
+                    key={year}
+                    className={`pb-3 text-sm font-bold ${
+                      year === "2026"
+                        ? "border-b-2 border-[#b58b32] text-[#b58b32]"
+                        : "text-black"
+                    }`}
+                  >
+                    {year}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="mt-16 space-y-16">
+          <div className="mt-14 space-y-10 text-center">
             {partnerGroups.map((group) => (
-              <section key={group.label} className="text-center">
-                <p className="text-sm font-black uppercase tracking-[0.2em] text-black">
-                  {group.label}
-                </p>
-                <div className="mx-auto mt-8 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <section key={group.label}>
+                <div className="relative">
+                  <p className="text-sm font-black uppercase tracking-[0.2em] text-black">
+                    {group.label}
+                  </p>
+                  <div
+                    className="mt-4 flex justify-center lg:absolute lg:top-1/2 lg:mt-0 lg:-translate-y-1/2"
+                    style={{ right: "calc((100vw - 100%) / -2 + 2rem)" }}
+                  >
+                    <PartnerCtaCard onClick={() => setFormOpen(true)} />
+                  </div>
+                </div>
+                <div className="mx-auto mt-5 grid max-w-5xl grid-cols-2 items-center justify-center gap-x-4 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
                   {group.partners.map((partner) => (
-                    <PartnerCard key={partner.name} partner={partner} />
+                    <PartnerLogoCard key={partner.logo} partner={partner} />
                   ))}
                 </div>
               </section>
@@ -156,6 +199,61 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
+
+      {formOpen && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 px-5 py-8">
+          <div className="relative w-full max-w-xl bg-white p-6 shadow-2xl md:p-8">
+            <button
+              type="button"
+              onClick={() => setFormOpen(false)}
+              className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-black/15 text-black transition hover:bg-black hover:text-white"
+              aria-label="Close connect form"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#b58b32]">
+              Partner With Us
+            </p>
+            <h3 className="mt-3 font-serif text-4xl font-black leading-tight text-black">
+              Partner with Ganga Literature Festival
+            </h3>
+
+            <form className="mt-8 grid gap-4">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                className="border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
+              />
+              <input
+                type="tel"
+                name="number"
+                placeholder="Number"
+                className="border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
+              />
+              <textarea
+                name="message"
+                placeholder="Message"
+                rows="5"
+                className="resize-none border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
+              />
+              <button
+                type="submit"
+                className="mt-2 bg-[#b58b32] px-6 py-4 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-black"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

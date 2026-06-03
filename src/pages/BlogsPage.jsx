@@ -1,51 +1,8 @@
-﻿import { Search } from "lucide-react";
+import { Search } from "lucide-react";
+import { Link } from "react-router-dom";
+import { BLOGS } from "../data/blogs";
 
-const YEARS = ["2026", "2024", "2023", "2022", "2021", "2020", "2019", "2018"];
-
-const blogs = [
-  {
-    author: "Charumitra Sardana",
-    date: "Jan-21-2026",
-    title: "Internet, Culture and Gen-Z",
-    excerpt: "A slightly ironic reflection on internet culture, book conversations, and perpetual connection.",
-    image: "/gangaimg1.png",
-  },
-  {
-    author: "Stuti Bhatia",
-    date: "Jan-21-2026",
-    title: "Myths, Semantics and the Women Left Behind",
-    excerpt: "History is never neutral. A note on how stories travel through gender, memory, and translation.",
-    image: "/gangaimg3.png",
-  },
-  {
-    author: "Samiya Mishra",
-    date: "Jan-19-2026",
-    title: "Why the Constitution Still Matters",
-    excerpt: "A festival session on law, liberty, and the public imagination in contemporary India.",
-    image: "/gangaimg5.png",
-  },
-  {
-    author: "Amaya Morgan",
-    date: "Jan-19-2026",
-    title: "When Images Speak: Storytelling in Many Mediums",
-    excerpt: "How visual culture, oral history, cinema, and books meet on the same festival stage.",
-    image: "/gangaimg2.png",
-  },
-  {
-    author: "Victoria Harrison",
-    date: "Jan-19-2026",
-    title: "Bridging Voices",
-    excerpt: "A reflection on translation, literary friendship, and the many languages of a river city.",
-    image: "/gangaimg4.png",
-  },
-  {
-    author: "Gauri Yadav",
-    date: "Jan-19-2026",
-    title: "Artificial Intelligence Meets Tamil Mythology",
-    excerpt: "A short essay on technology, inheritance, and the new ways myths are being read.",
-    image: "/logo.png",
-  },
-];
+const YEARS = ["2026"];
 
 export default function BlogsPage() {
   return (
@@ -107,25 +64,30 @@ export default function BlogsPage() {
           </div>
 
           <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
-            {blogs.map((blog) => (
+            {BLOGS.map((blog) => (
               <article key={blog.title} className="group">
-                <div className="overflow-hidden rounded-md bg-[#f8f6f1]">
+                <Link to={`/media/blogs/${blog.slug}`} className="block overflow-hidden rounded-md bg-[#f8f6f1]">
                   <img
                     src={blog.image}
                     alt={blog.title}
                     className="aspect-[16/9] w-full object-cover transition duration-500 group-hover:scale-105"
                   />
-                </div>
+                </Link>
                 <p className="mt-4 text-xs font-bold text-black/45">
                   {blog.author} | {blog.date}
                 </p>
-                <h3 className="mt-2 font-serif text-2xl font-black leading-tight text-black">
-                  {blog.title}
-                </h3>
+                <Link to={`/media/blogs/${blog.slug}`}>
+                  <h3 className="mt-2 font-serif text-2xl font-black leading-tight text-black transition hover:text-[#b58b32]">
+                    {blog.title}
+                  </h3>
+                </Link>
                 <p className="mt-3 text-sm leading-7 text-black/65">{blog.excerpt}</p>
-                <button className="mt-5 text-sm font-black uppercase tracking-[0.14em] text-[#b58b32]">
+                <Link
+                  to={`/media/blogs/${blog.slug}`}
+                  className="mt-5 inline-flex text-sm font-black uppercase tracking-[0.14em] text-[#b58b32]"
+                >
                   Read More →
-                </button>
+                </Link>
               </article>
             ))}
           </div>

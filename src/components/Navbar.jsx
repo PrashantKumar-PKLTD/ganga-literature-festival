@@ -16,17 +16,6 @@ const NAV_LINKS = [
   },
   { label: "Programme", to: "/programme" },
   {
-    label: "GLF International",
-    to: "/glf-international",
-    items: [
-      { label: "GLF Island of Ireland", to: "/glf-international/island-of-ireland" },
-      { label: "London", to: "/glf-international/london" },
-      { label: "Spain", to: "/glf-international/spain" },
-      { label: "Toronto", to: "/glf-international/toronto" },
-      { label: "GLF USA", to: "/glf-international/usa" },
-    ],
-  },
-  {
     label: "Media",
     to: "/media",
     items: [
