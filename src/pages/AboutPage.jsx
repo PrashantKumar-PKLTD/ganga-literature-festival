@@ -57,7 +57,7 @@ const heroWords = [
 export default function AboutPage() {
   return (
     <main className="pt-[78px] md:pt-[82px]">
-      <section className="relative overflow-hidden bg-white">
+      <section className="relative min-h-[calc(100vh-78px)] overflow-hidden bg-white md:min-h-[calc(100vh-82px)]">
         <div
           className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-80 md:block"
           style={{
@@ -65,39 +65,24 @@ export default function AboutPage() {
               "radial-gradient(50% 50% at 50% 50%, rgba(181,139,50,0.35) 0%, rgba(248,246,241,0.78) 36%, rgba(255,255,255,0) 72%)",
           }}
         />
-        <div className="relative mx-auto grid min-h-[560px] max-w-[1500px] px-5 py-10 md:px-10 md:py-14 lg:grid-cols-[320px_1fr]">
-          <div className="z-10 flex flex-col justify-between gap-10">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
-                About The Festival
-              </p>
-              <h1 className="mt-5 font-serif text-5xl font-black uppercase leading-[0.86] text-black md:text-6xl">
-                Ganga Literature Festival
-              </h1>
-            </div>
-            <p className="max-w-sm text-base font-semibold leading-7 text-black/68">
-              A civilisational literature festival in Patna, shaped by the Ganga,
-              Bihar's knowledge heritage, and India's journey to Viksit Bharat.
-            </p>
-          </div>
-
-          <div className="relative z-10 mt-10 hidden items-end md:flex lg:mt-0">
-            <div className="grid w-full grid-cols-8 items-end gap-4 lg:gap-7">
+        <div className="relative mx-auto grid min-h-[calc(100vh-78px)] max-w-[1500px] px-5 py-10 md:min-h-[calc(100vh-82px)] md:px-10 md:py-0">
+          <div className="relative z-10 hidden min-h-[calc(100vh-82px)] items-stretch pb-20 pt-8 md:flex">
+            <div className="grid w-full grid-cols-8 items-stretch gap-4 lg:gap-7">
               {heroWords.map((word, index) => (
                 <div
                   key={word}
                   className="flex min-w-0 justify-center border-l border-black/10 pl-3"
                 >
-                  <div className="relative h-[420px] w-full overflow-visible">
+                  <div className="relative h-full w-full overflow-visible">
                     <span className="absolute left-1 top-0 text-[11px] font-black text-[#b58b32]/70">
                       0{index + 1}
                     </span>
                     <span
-                      className={`absolute bottom-10 left-1/2 -translate-x-1/2 -rotate-90 origin-bottom whitespace-nowrap font-black leading-none tracking-[-0.03em] ${
+                      className={`absolute bottom-44 left-1/2 -translate-x-1/2 -rotate-90 origin-bottom whitespace-nowrap font-black leading-none tracking-[-0.03em] ${
                         index === 4
                           ? "text-white [-webkit-text-stroke:1px_#0b0b0b]"
                           : "text-black"
-                      } text-[clamp(48px,6.2vw,92px)]`}
+                      } text-[clamp(44px,5.6vw,82px)]`}
                       style={{ transformOrigin: "bottom center" }}
                     >
                       {word}

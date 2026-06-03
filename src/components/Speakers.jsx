@@ -8,8 +8,8 @@ export default function Speakers() {
         <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             align="left"
-            eyebrow="The Minds Of The Festival"
-            title="Speakers & Authors"
+            eyebrow="The Minds Of The Festival Invited By Us"
+            title=""
             intro="India's compelling writers, thinkers, historians, journalists, and intellectuals, united by a shared commitment to truth, excellence, and the idea of India."
           />
           <a href="#schedule" className="inline-flex w-fit border border-[#b58b32] bg-black px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-[#b58b32]">
