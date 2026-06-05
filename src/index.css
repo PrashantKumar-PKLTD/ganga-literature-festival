@@ -73,3 +73,114 @@ html {
   border-radius: 5px;
   background: #FFD700;
 }
+
+.ganga-journey {
+  position: relative;
+  height: 220vh;
+  background: #ffffff;
+}
+
+.ganga-journey--homepage {
+  height: 760px;
+}
+
+.ganga-journey--homepage .ganga-journey__sticky {
+  height: 760px;
+}
+
+.ganga-journey__sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ganga-journey__cities {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ganga-city-layer {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+
+.ganga-city {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Thin elegant connector lines — storytelling branches */
+.ganga-city__connector {
+  stroke: rgba(11, 11, 11, 0.55);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Small refined marker dots — not heavy bullets */
+.ganga-city__marker circle {
+  fill: #1a1a1a;
+  stroke: none;
+  vector-effect: non-scaling-stroke;
+  transition:
+    fill 280ms ease,
+    r 280ms ease;
+}
+
+/* City names — clean serif font for storytelling elegance */
+.ganga-city__name {
+  fill: rgba(11, 11, 11, 0.88);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  transition: fill 280ms ease;
+}
+
+.ganga-city__image {
+  filter: none;
+  mix-blend-mode: multiply;
+  opacity: 1;
+}
+
+/* Active city gets subtle emphasis */
+.ganga-city.is-active .ganga-city__name {
+  fill: #0b0b0b;
+  font-weight: 700;
+}
+
+.ganga-city.is-active .ganga-city__marker circle {
+  fill: #0b0b0b;
+}
+
+.ganga-city.is-active .ganga-city__connector {
+  stroke: rgba(11, 11, 11, 0.72);
+}
+
+@media (max-width: 900px) {
+  .ganga-city__name {
+    font-size: 24px;
+    stroke-width: 5;
+  }
+
+  .ganga-city__connector {
+    stroke-width: 1.1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ganga-city__marker circle,
+  .ganga-city__name {
+    transition: none !important;
+  }
+}

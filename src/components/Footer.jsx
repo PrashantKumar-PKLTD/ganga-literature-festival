@@ -276,6 +276,24 @@ export default function Footer() {
 
             </div>
           </div>
+
+          <div className="grid w-full max-w-xl grid-cols-2 gap-4 sm:grid-cols-4 md:justify-self-end">
+            {footerLogos.map((logo) => (
+              <div key={logo.alt}>
+                <p className="mb-3 whitespace-nowrap text-[10px] font-black uppercase tracking-[0.18em] text-[#b58b32]">
+                  {logo.label}
+                </p>
+                <div className="flex h-24 items-center justify-center border border-[#b58b32]/30 bg-white p-3 shadow-sm">
+                  <img
+                    src={logo.image}
+                    alt={logo.alt}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ── Bottom Bar ── */}
