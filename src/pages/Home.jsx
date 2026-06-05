@@ -1,30 +1,30 @@
+import { useState } from "react";
+import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Speakers from "../components/Speakers";
-import Schedule from "../components/Schedule";
-import ProgrammeSteps from "../components/ProgrammeSteps";
-import ExecutiveTeam from "../components/ExecutiveTeam";
-import TrustedPartners from "../components/TrustedPartners";
-import StudyDestinations from "../components/StudyDestinations";
-import FestivalTextRows from "../components/FestivalTextRows";
-import EventImageGallery from "../components/EventImageGallery";
+import RegistrationCTA from "../components/RegistrationCTA";
 import FAQ from "../components/FAQ";
-import Reveal from "../components/Reveal";
+import SponsorCarousel from "../components/SponsorCarousel";
+import Contact from "../components/Contact";
+import Footer from "../components/Footer";
+import BackToTop from "../components/BackToTop";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <Reveal><About /></Reveal>
-      <Reveal><Speakers /></Reveal>
-      <Reveal><Schedule /></Reveal>
-      <Reveal><ProgrammeSteps /></Reveal>
-      <Reveal><ExecutiveTeam /></Reveal>
-      <Reveal><TrustedPartners /></Reveal>
-      <Reveal><StudyDestinations /></Reveal>
-      <FestivalTextRows />
-      <Reveal><EventImageGallery /></Reveal>
-      <Reveal><FAQ /></Reveal>
-    </main>
+    <div className="bg-white text-gray-800 min-h-screen font-sans antialiased selection:bg-blue-100 selection:text-govblue">
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Speakers />
+        <RegistrationCTA />
+        <FAQ />
+        <SponsorCarousel />
+        <Contact />
+      </main>
+      <Footer />
+      <BackToTop />
+    </div>
   );
 }

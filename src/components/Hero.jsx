@@ -1,154 +1,256 @@
-import GangaJourney from "./GangaJourney";
+import { useState, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
+import "swiper/css";
+
+/* ─── Slide Data ────────────────────────────────────────────── */
+const SLIDES = [
+  { image: "/Images/hero/Hero-1.webp" },
+  { image: "/Images/hero/Hero-2.webp" },
+];
+
+/* ─── Inject global hero styles ─────────────────────────────── */
+if (typeof document !== "undefined" && !document.getElementById("hero-glf-styles")) {
+  const style = document.createElement("style");
+  style.id = "hero-glf-styles";
+  style.textContent = `
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+    .font-cormorant { font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif; }
+
+    @keyframes heroSlowZoom {
+      0%   { transform: scale(1.08); }
+      100% { transform: scale(1.14); }
+    }
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes gentlePulse {
+      0%, 100% { opacity: 0.6; }
+      50%      { opacity: 1; }
+    }
+    @keyframes drawLine {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(8px); }
+    }
+    @keyframes progressFill {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes shimmerBtn {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes divaFlicker {
+      0%, 100% { opacity: 0.8; filter: brightness(1); }
+      25%      { opacity: 1; filter: brightness(1.2); }
+      50%      { opacity: 0.7; filter: brightness(0.9); }
+      75%      { opacity: 0.95; filter: brightness(1.1); }
+    }
+
+    .hero-glf .swiper-slide-active .hero-bg-img {
+      animation: heroSlowZoom 10s ease-out forwards;
+    }
+    .hero-glf .swiper-slide-active .anim-float-up {
+      animation: floatUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .hero-glf .swiper-slide-active .anim-d1 { animation-delay: 0.15s; }
+    .hero-glf .swiper-slide-active .anim-d2 { animation-delay: 0.35s; }
+    .hero-glf .swiper-slide-active .anim-d3 { animation-delay: 0.55s; }
+    .hero-glf .swiper-slide-active .anim-d4 { animation-delay: 0.75s; }
+    .hero-glf .swiper-slide-active .anim-d5 { animation-delay: 0.95s; }
+
+    .diya-glow {
+      animation: divaFlicker 3s ease-in-out infinite;
+    }
+    .line-draw {
+      animation: drawLine 1.2s ease-out 0.6s both;
+      transform-origin: left center;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+/* ─── SVG Decorative Elements ───────────────────────────────── */
+
+/* Ganga waves — bottom of hero */
+function GangaWaves() {
+  return (
+    <div className="absolute bottom-0 left-0 w-full z-10 pointer-events-none overflow-hidden">
+      <svg
+        viewBox="0 0 1440 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-auto block"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,80 C120,100 240,40 360,60 C480,80 600,100 720,80 C840,60 960,20 1080,40 C1200,60 1320,100 1440,80 L1440,120 L0,120 Z"
+          fill="rgba(255,248,240,0.08)"
+        />
+        <path
+          d="M0,90 C160,110 320,60 480,75 C640,90 800,110 960,90 C1120,70 1280,50 1440,70 L1440,120 L0,120 Z"
+          fill="rgba(201,168,76,0.12)"
+        />
+        <path
+          d="M0,100 C200,115 400,85 600,95 C800,105 1000,115 1200,100 C1300,95 1400,90 1440,92 L1440,120 L0,120 Z"
+          fill="#ffffff"
+        />
+      </svg>
+    </div>
+  );
+}
+
+
+/* Mandala corner ornaments */
+function CornerOrnaments() {
+  return (
+    <div className="absolute inset-0 z-[5] pointer-events-none hidden md:block">
+      {/* Top-left ornament */}
+      <svg className="absolute top-24 left-6 w-16 h-16 opacity-20" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="48" stroke="#C9A84C" strokeWidth="0.5" />
+        <circle cx="50" cy="50" r="38" stroke="#C9A84C" strokeWidth="0.5" />
+        <circle cx="50" cy="50" r="28" stroke="#C9A84C" strokeWidth="0.5" />
+        <path d="M50 2 L50 98 M2 50 L98 50" stroke="#C9A84C" strokeWidth="0.3" />
+        <path d="M15 15 L85 85 M85 15 L15 85" stroke="#C9A84C" strokeWidth="0.3" />
+      </svg>
+      {/* Top-right ornament */}
+      <svg className="absolute top-24 right-6 w-16 h-16 opacity-20" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="48" stroke="#C9A84C" strokeWidth="0.5" />
+        <circle cx="50" cy="50" r="38" stroke="#C9A84C" strokeWidth="0.5" />
+        <circle cx="50" cy="50" r="28" stroke="#C9A84C" strokeWidth="0.5" />
+        <path d="M50 2 L50 98 M2 50 L98 50" stroke="#C9A84C" strokeWidth="0.3" />
+        <path d="M15 15 L85 85 M85 15 L15 85" stroke="#C9A84C" strokeWidth="0.3" />
+      </svg>
+    </div>
+  );
+}
+
+/* ─── Slide Component ───────────────────────────────────────── */
+function HeroSlide({ slide, index }) {
+  return (
+    <div className="relative w-full h-screen overflow-hidden">
+      <img
+        src={slide.image}
+        alt="Festival Background"
+        className="hero-bg-img absolute inset-0 w-full h-[110%] object-cover object-center will-change-transform"
+        fetchpriority={index === 0 ? "high" : "auto"}
+        loading={index === 0 ? "eager" : "lazy"}
+      />
+    </div>
+  );
+}
+
+/* ─── Custom Progress Indicators ────────────────────────────── */
+function SlideProgress({ activeIndex, total, duration }) {
+  return (
+    <div className="absolute bottom-[5.5rem] sm:bottom-24 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+      {Array.from({ length: total }).map((_, i) => (
+        <div
+          key={i}
+          className="relative rounded-full overflow-hidden transition-all duration-500 cursor-pointer"
+          style={{
+            width: i === activeIndex ? 52 : 24,
+            height: 4,
+          }}
+        >
+          <div className="absolute inset-0 bg-white/25 rounded-full" />
+          {i === activeIndex && (
+            <div
+              className="absolute inset-0 rounded-full origin-left"
+              style={{
+                background: "linear-gradient(90deg, #C9A84C, #E0C068)",
+                animation: `progressFill ${duration}ms linear forwards`,
+              }}
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ─── Scroll Down Indicator ─────────────────────────────────── */
+function ScrollIndicator() {
+  return (
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1">
+      <span className="text-white/30 text-[9px] font-body font-semibold uppercase tracking-[0.25em]">
+        Explore
+      </span>
+      <div
+        className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5"
+      >
+        <div
+          className="w-1 h-2 bg-[#C9A84C] rounded-full"
+          style={{ animation: "scrollBounce 2s ease-in-out infinite" }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ─── Main Hero Component ───────────────────────────────────── */
 export default function Hero() {
-  const heroBgSrc = "/heroimage.png?v=3";
+  const swiperRef = useRef(null);
+  const activeIndexRef = useRef(0);
+  const AUTOPLAY_DELAY = 7000;
+
+  const [, setTick] = useState(0);
 
   return (
-    <section id="home" className="relative bg-white">
-      <div className="relative min-h-[720px] overflow-hidden bg-black text-white md:min-h-[760px]">
-        <img
-          src={heroBgSrc}
-          alt="Ganga riverfront at sunrise"
-          className="hero-bg-animate absolute inset-0 z-0 h-full w-full object-cover object-center"
+    <section id="home" className="relative">
+      <div className="hero-glf">
+        <Swiper
+          modules={[Autoplay]}
+          effect="slide"
+          speed={1200}
+          cssMode={false}
+          autoplay={{
+            delay: AUTOPLAY_DELAY,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          allowTouchMove={true}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          onSlideChange={(swiper) => {
+            activeIndexRef.current = swiper.realIndex;
+            setTick((t) => t + 1);
+          }}
+          className="w-full h-screen"
+        >
+          {SLIDES.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <HeroSlide slide={slide} index={index} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Decorative Elements */}
+        <CornerOrnaments />
+        <GangaWaves />
+
+        {/* Progress Bar */}
+        <SlideProgress
+          activeIndex={activeIndexRef.current}
+          total={SLIDES.length}
+          duration={AUTOPLAY_DELAY}
         />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/10 via-black/5 to-black/20" />
-        <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(181,139,50,0.08),transparent_46%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[650px] max-w-7xl flex-col items-center justify-center px-5 pt-32 text-center md:pt-36">
-          <div className="festival-arch relative mx-auto flex h-[440px] w-full max-w-[760px] items-center justify-center px-8 pb-14 pt-28 md:h-[500px] md:px-14">
-            <div className="relative z-10 w-[min(92vw,920px)] max-w-none">
-              <div className="-mt-2 mb-5">
-                <div className="flex items-center justify-center gap-3 text-white">
-                  <span className="h-2 w-2 rotate-45 bg-current" />
-                  <span className="text-2xl font-black tracking-[0.32em] md:text-3xl">2026</span>
-                  <span className="h-2 w-2 rotate-45 bg-current" />
-                </div>
-                <p className="mt-2 font-serif text-sm font-black uppercase tracking-wide md:text-base">
-                  11 & 12 November - Patna, Bihar
-                </p>
-              </div>
-              <p className="font-serif text-8xl font-black uppercase leading-[0.86] tracking-tight md:text-7xl">
-                Ganga
-                <span className="block whitespace-nowrap text-[clamp(2.5rem,4vw,4.5rem)]">Literature Festival</span>
-              </p>
-              <h1 className="mt-5 font-serif text-2xl font-black uppercase leading-[0.9] tracking-tight md:text-4xl">
-                Where the river of thought meets the ocean of civilisation
-              </h1>
-              <div className="mt-6 flex flex-wrap justify-center gap-2 text-[11px] font-black uppercase tracking-[0.12em]">
-                <span className="rounded-sm bg-white/90 px-3 py-2 text-black">Presented by BIHAAN</span>
-                <span className="rounded-sm bg-white/90 px-3 py-2 text-black">Publishing Partner BluOne Ink</span>
-                <span className="rounded-sm bg-white/90 px-3 py-2 text-black">Cultural Partner SPIC MACAY</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 right-0 z-20 h-40 md:h-52">
-          <div className="festival-skyline absolute bottom-0 left-1/2 h-full w-[1250px] max-w-none -translate-x-1/2 md:w-[1500px]" />
-        </div>
+        {/* Scroll Indicator */}
+        <ScrollIndicator />
       </div>
-
-      <div className="relative z-30 -mt-8 mx-auto max-w-5xl px-5 md:-mt-14">
-        <div className="flex flex-col gap-4 rounded-lg bg-white p-4 shadow-xl shadow-black/10 md:flex-row md:items-center md:justify-between">
-          <div className="grid grid-cols-2 gap-2">
-            {[
-              ["Wed", "11", "November"],
-              ["Thu", "12", "November"],
-            ].map(([day, date, month], index) => (
-              <button
-                key={day}
-                className={`min-w-0 rounded-md border border-[#b58b32] px-3 py-2 text-center leading-none ${
-                  index === 0 ? "bg-[#b58b32] text-white" : "bg-white text-black"
-                }`}
-              >
-                <span className="block text-[11px] font-bold">{day}</span>
-                <span className="block text-2xl font-black">{date}</span>
-                <span className="block text-[11px] font-semibold">{month}</span>
-              </button>
-            ))}
-          </div>
-          <div className="flex min-w-0 flex-1 items-center gap-3 md:max-w-md">
-            <input
-              className="h-12 min-w-0 flex-1 rounded-md border border-[#b58b32] bg-white px-4 text-sm text-black outline-none focus:border-[#b58b32]"
-              placeholder="Search by title, author, speaker..."
-            />
-            <button className="h-12 rounded-md bg-[#b58b32] px-5 text-sm font-bold text-white">
-              Search
-            </button>
-          </div>
-        </div>
-
-        <div className="relative left-1/2 mt-8 w-[100dvw] -translate-x-1/2 bg-white">
-          <div className="mx-auto max-w-5xl px-5 py-6 md:px-8 md:py-8">
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
-              Ganga in Focus
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-black leading-tight text-black md:text-4xl">
-              The river behind the festival's name
-            </h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-black/70">
-              The Ganga Literature Festival is a civilisational conversation in Patna,
-              where books, ideas, classical arts, and the Viksit Bharat horizon meet.
-            </p>
-          </div>
-          <GangaJourney
-            className="ganga-journey--homepage"
-            scrollStart="top 70%"
-            scrollEnd="bottom bottom"
-            scrollScrub={1.35}
-          />
-        </div>
-      </div>
-
-      <style>{`
-        .festival-arch::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border: 9px solid #b58b32;
-          border-bottom-width: 0;
-          background: rgba(0, 0, 0, 0.08);
-          clip-path: polygon(
-            9% 100%, 9% 48%, 13% 48%, 16% 44%, 17% 36%, 22% 31%, 29% 29%,
-            33% 23%, 41% 21%, 46% 15%, 50% 3%, 54% 15%, 59% 21%, 67% 23%,
-            71% 29%, 78% 31%, 83% 36%, 84% 44%, 88% 48%, 91% 48%, 91% 100%
-          );
-          box-shadow: inset 0 0 0 7px rgba(181, 139, 50, 0.28);
-        }
-
-        .festival-arch::after {
-          content: "";
-          position: absolute;
-          inset: 9px;
-          border: 2px solid rgba(181, 139, 50, 0.45);
-          border-bottom: 0;
-          clip-path: polygon(
-            9% 100%, 9% 48%, 13% 48%, 16% 44%, 17% 36%, 22% 31%, 29% 29%,
-            33% 23%, 41% 21%, 46% 15%, 50% 3%, 54% 15%, 59% 21%, 67% 23%,
-            71% 29%, 78% 31%, 83% 36%, 84% 44%, 88% 48%, 91% 48%, 91% 100%
-          );
-        }
-
-        .festival-skyline {
-          background: #ffffff;
-          clip-path: polygon(
-            0 58%, 1.5% 52%, 3% 54%, 4% 47%, 5% 51%, 6% 48%, 7% 54%, 8% 58%,
-            10% 58%, 10.5% 54%, 12% 54%, 12.5% 59%, 14% 60%, 15% 50%, 16% 46%,
-            17% 52%, 17.8% 58%, 20% 58%, 20% 72%, 22% 72%, 22% 64%, 24% 64%,
-            24% 72%, 26% 72%, 26% 64%, 28% 64%, 28% 72%, 30% 72%, 30% 60%,
-            36% 60%, 36% 55%, 39% 55%, 39% 50%, 41% 50%, 41% 56%, 43% 56%,
-            43% 60%, 46% 60%, 46.8% 54%, 47.6% 60%, 50% 60%, 51% 55%, 52% 60%,
-            55% 60%, 55% 66%, 57% 66%, 57% 72%, 59% 72%, 59% 68%, 61% 68%,
-            61% 61%, 65% 61%, 65% 54%, 66% 49%, 67% 54%, 68% 49%, 69% 54%,
-            70% 49%, 71% 54%, 72% 54%, 72% 45%, 73% 42%, 74% 45%, 74% 55%,
-            77% 55%, 77% 60%, 82% 60%, 82% 78%, 83.2% 78%, 83.2% 65%,
-            84.5% 65%, 84.5% 78%, 86% 78%, 86% 65%, 87.3% 65%, 87.3% 78%,
-            89% 78%, 89% 58%, 91% 58%, 91% 42%, 92% 36%, 93% 42%, 93% 56%,
-            95% 56%, 95% 52%, 96.5% 52%, 96.5% 58%, 98% 58%, 98.5% 48%,
-            99.5% 45%, 100% 50%, 100% 100%, 0 100%
-          );
-        }
-      `}</style>
     </section>
   );
 }

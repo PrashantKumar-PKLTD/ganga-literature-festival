@@ -1,91 +1,149 @@
-﻿import { Search } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import SPEAKERS from "../data/speakers";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { SpeakerCard } from "../components/Speakers";
+import { Search, Feather, Waves } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const YEARS = ["2026"];
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SpeakersPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const pageRef = useRef(null);
+  const gridRef = useRef(null);
+
+  // Filter speakers based on search input
+  const filteredSpeakers = SPEAKERS.filter(
+    (speaker) =>
+      speaker.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      speaker.designation.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useGSAP(() => {
+    // Fade up the hero section elements
+    gsap.fromTo(
+      ".speaker-hero-content",
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", stagger: 0.2 }
+    );
+
+    // Stagger animate the speaker cards
+    if (gridRef.current && gridRef.current.children.length > 0) {
+      gsap.fromTo(
+        gridRef.current.children,
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 85%",
+          },
+        }
+      );
+    }
+  }, { scope: pageRef, dependencies: [filteredSpeakers] });
+
   return (
-    <main className="pt-[78px] md:pt-[82px]">
-      <section
-        className="relative min-h-[620px] overflow-hidden bg-cover bg-center text-white"
-        style={{ backgroundImage: 'url("/gangaimg1.png")' }}
-      >
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(181,139,50,0.22),rgba(0,0,0,0.58))]" />
-        <div className="relative mx-auto flex min-h-[620px] max-w-6xl items-center justify-center px-5 text-center md:px-8">
-          <div className="relative px-8 py-16">
-            <div className="absolute inset-0 border-[8px] border-[#b58b32] opacity-85 [clip-path:polygon(12%_100%,12%_44%,17%_44%,20%_35%,28%_30%,36%_25%,44%_17%,50%_0,56%_17%,64%_25%,72%_30%,80%_35%,83%_44%,88%_44%,88%_100%)]" />
-            <div className="relative">
-              <p className="font-serif text-3xl font-black uppercase leading-none text-white md:text-4xl">
-                Ganga Literature Festival
-              </p>
-              <h1 className="mt-4 font-serif text-6xl font-black uppercase leading-[0.85] text-white md:text-8xl">
-                Speakers
-              </h1>
-            </div>
-          </div>
-        </div>
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-[#f8f6f1] [clip-path:polygon(0_60%,4%_40%,8%_62%,13%_42%,21%_62%,31%_38%,40%_58%,50%_40%,60%_62%,70%_38%,82%_58%,92%_40%,100%_60%,100%_100%,0_100%)]" />
+    <div ref={pageRef} className="bg-[#fcf5f1] min-h-screen flex flex-col font-body relative overflow-hidden">
+      <Navbar />
+
+      {/* Floating Background Elements */}
+      <style>{`
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) rotate(-15deg); }
+          50% { transform: translateY(-30px) rotate(-5deg); }
+        }
+        @keyframes float-delayed {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-25px); }
+        }
+        .animate-float-slow { animation: float-slow 12s ease-in-out infinite; }
+        .animate-float-delayed { animation: float-delayed 14s ease-in-out infinite 2s; }
+      `}</style>
+
+      <div className="absolute top-[30%] left-[-2%] text-[#6b2a5c]/5 animate-float-slow pointer-events-none">
+        <Feather className="w-64 h-64" strokeWidth={0.5} />
+      </div>
+      <div className="absolute bottom-[20%] right-[-5%] text-[#23356e]/5 animate-float-delayed pointer-events-none">
+        <Waves className="w-80 h-80" strokeWidth={0.5} />
+      </div>
+
+      {/* ── Image Hero Banner ── */}
+      <section className="w-full h-screen overflow-hidden relative">
+        <img 
+          src="/Images/speakers/speaker-hero.png" 
+          alt="Meet the Speakers" 
+          className="absolute inset-0 w-full h-[110%] object-cover object-center"
+        />
       </section>
 
-      <section className="relative overflow-hidden bg-[#f8f6f1] px-5 py-20 md:px-8 md:py-28">
-        <span className="absolute left-10 top-20 text-6xl font-black text-[#b58b32]/30">*</span>
-        <span className="absolute right-14 top-32 text-5xl font-black text-[#b58b32]/30">*</span>
+      {/* ── Search & Header Section ── */}
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 py-16 flex-1 relative z-10">
+        
+        <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-16 border-b border-[#23356e]/10 pb-8 speaker-hero-content">
+          <div>
+            <div className="inline-flex items-center gap-3 mb-3">
+              <span className="w-12 h-px bg-[#e23f66]" />
+              <span className="text-[#e23f66] font-bold tracking-[0.2em] uppercase text-xs">
+                Ganga Literature Festival 2026
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-6xl font-heading font-bold text-[#23356e] mb-2 leading-tight">
+              Meet the <span className="text-[#e23f66] italic">Speakers</span>
+            </h1>
+          </div>
 
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            <h2 className="font-serif text-5xl font-black leading-none text-black md:text-6xl">
-              Meet the Speakers
-            </h2>
-            <div className="flex w-full overflow-hidden rounded-md border border-[#b58b32]/40 bg-white md:max-w-sm">
-              <input
-                className="h-14 min-w-0 flex-1 px-5 text-sm outline-none"
-                placeholder="Search by author name"
+          {/* Search Box */}
+          <div className="relative w-full md:w-96 shadow-md rounded-md speaker-hero-content">
+            <input
+              type="text"
+              placeholder="Search By Author Name"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-white border border-gray-100 text-[#101828] rounded-l-md rounded-r-none px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#e23f66] placeholder-gray-400 font-medium"
+            />
+            <button className="absolute right-0 top-0 bottom-0 bg-[#e23f66] text-white px-6 rounded-r-md hover:bg-[#b02f4d] transition-colors flex items-center justify-center">
+              <Search className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* ── Speakers Grid ── */}
+        {filteredSpeakers.length > 0 ? (
+          <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-16 gap-x-8 mb-20">
+            {filteredSpeakers.map((s) => (
+              <SpeakerCard 
+                key={s.id} 
+                speaker={s} 
+                onClick={() => {
+                  navigate(`/speakers/${s.id}`);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }} 
               />
-              <button className="flex h-14 w-16 items-center justify-center bg-[#b58b32] text-white" aria-label="Search speakers">
-                <Search className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-10 overflow-x-auto border-b border-[#b58b32]/35 pb-3">
-            <div className="flex min-w-max gap-9">
-              {YEARS.map((year) => (
-                <button
-                  key={year}
-                  className={`pb-3 text-sm font-bold ${
-                    year === "2026"
-                      ? "border-b-2 border-[#b58b32] text-[#b58b32]"
-                      : "text-black"
-                  }`}
-                >
-                  {year}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-16 grid gap-x-10 gap-y-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {SPEAKERS.map((speaker) => (
-              <article key={speaker.name} className="text-center">
-                <div className="mx-auto h-40 w-40 overflow-hidden rounded-full border-[6px] border-[#b58b32]/30 bg-white shadow-xl shadow-black/10 md:h-44 md:w-44">
-                  <img
-                    src={speaker.img}
-                    alt={speaker.name}
-                    className="h-full w-full object-cover grayscale transition duration-500 hover:scale-105 hover:grayscale-0"
-                  />
-                </div>
-                <h3 className="mx-auto mt-5 max-w-[190px] font-serif text-2xl font-black leading-tight text-black">
-                  {speaker.name}
-                </h3>
-                <p className="mt-2 text-xs font-black uppercase tracking-[0.16em] text-[#b58b32]">
-                  {speaker.role}
-                </p>
-              </article>
             ))}
           </div>
-        </div>
-      </section>
-    </main>
+        ) : (
+          <div className="text-center py-20 text-gray-500 font-medium text-lg">
+            No speakers found matching your search.
+          </div>
+        )}
+
+      </div>
+
+      <Footer />
+    </div>
   );
 }

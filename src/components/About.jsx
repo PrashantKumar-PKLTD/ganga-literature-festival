@@ -1,83 +1,139 @@
-import { BookOpen, Mic2, Music, Users } from "lucide-react";
-import SectionHeading from "./SectionHeading";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight, Feather, Waves } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const FEATURES = [
-  { icon: BookOpen, title: "Civilisational Thought", desc: "Recovering and celebrating India's intellectual inheritance, from the Vedas to Chanakya's Arthashastra to the Bihar renaissance." },
-  { icon: Mic2, title: "National Discourse", desc: "Rigorous conversations on the challenges and possibilities before Bharat in its march toward Viksit Bharat @2047." },
-  { icon: Music, title: "Living Heritage", desc: "World-class classical music and arts evenings curated with SPIC MACAY to nourish the soul as much as the mind." },
-  { icon: Users, title: "Bihar Reborn", desc: "Placing Patna back at the centre of India's intellectual map and honouring Bihar's civilisational promise." },
-];
+import { GeometricBirds, GeometricLotus } from "./Decorations";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const navigate = useNavigate();
+  const sectionRef = useRef(null);
+  const leftContentRef = useRef(null);
+  const rightCollageRef = useRef(null);
+
+  useGSAP(() => {
+    // Left side slides in from left
+    gsap.fromTo(
+      leftContentRef.current,
+      { x: 100, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 3.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      }
+    );
+
+    // Right side slides in from right
+    gsap.fromTo(
+      rightCollageRef.current,
+      { x: 100, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 3.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      }
+    );
+  }, { scope: sectionRef });
+
   return (
-    <section id="about" className="bg-white pb-12 pt-0 md:pb-16">
-      <div className="grid gap-8 lg:grid-cols-[50vw_minmax(0,1fr)] lg:items-start">
-          <div
-            className="relative min-h-[360px] overflow-hidden bg-cover bg-center md:min-h-[420px] lg:h-[660px] lg:min-h-0"
-            style={{ backgroundImage: 'url("/bgimg.png")' }}
+    <section id="about" ref={sectionRef} className="py-24 px-6 md:px-12 w-full bg-white overflow-hidden relative">
+      
+      {/* Decorative Birds */}
+      <GeometricBirds className="absolute right-[-2%] md:right-10 top-20 w-48 hidden md:block opacity-40" />
+
+      {/* Lotus resting at the bottom */}
+      <GeometricLotus className="absolute left-[5%] md:left-[3%] bottom-0 w-48 md:w-64 opacity-90 origin-bottom" />
+      
+
+
+      {/* Moving Background Elements (Ganga & Literature inspired) */}
+      <div className="absolute top-10 left-[-2rem] md:left-10 text-glf-gold/15 animate-float-slow hidden md:block pointer-events-none">
+        <Feather className="w-40 h-40" strokeWidth={0.7} />
+      </div>
+      <div className="absolute bottom-20 right-[-4rem] md:right-5 text-glf-gold/10 animate-float-delayed hidden md:block pointer-events-none">
+        <Waves className="w-64 h-64" strokeWidth={0.7} />
+      </div>
+
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20 items-center relative z-10">
+        
+        {/* Left Content */}
+        <div ref={leftContentRef} className="space-y-8 relative">
+          <div>
+            <div className="inline-flex items-center gap-3 mb-5">
+              <span className="w-12 h-[2px] bg-glf-gold" />
+              <span className="text-glf-gold font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
+                About The Festival
+              </span>
+            </div>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-glf-burgundy leading-tight">
+              A Confluence of <br />
+              <span className="text-glf-charcoal">Thoughts & Flowing</span> <br />
+              <span className="text-glf-gold italic font-light">Narratives</span>
+            </h2>
+          </div>
+
+          <p className="font-body text-lg text-glf-slate leading-relaxed max-w-lg">
+            Nestled on the sacred ghats of Varanasi, the Ganga Literature Festival is a vibrant celebration where the ancient currents of the river meet the modern flow of literature, art, and ideas. 
+            Join us to explore narratives that transcend time and resonate with the eternal spirit of the Ganga.
+          </p>
+
+          <button
+            onClick={() => {
+              navigate("/about");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="inline-flex items-center gap-3 bg-glf-burgundy hover:bg-glf-charcoal text-white font-bold uppercase tracking-[0.15em] text-sm px-8 py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 group relative z-20"
           >
-            <img
-              src="/heroimage.png"
-              alt="Ganga riverfront at sunrise"
-              className="sr-only"
+            Know More
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+          </button>
+        </div>
+
+        {/* Right Collage */}
+        <div ref={rightCollageRef} className="grid grid-cols-2 gap-4 md:gap-6 relative">
+          {/* Decorative background aura */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-glf-gold/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+          
+          <div className="space-y-4 md:space-y-6">
+            <img 
+              src="/Images/speakers/gangaghat2.webp" 
+              alt="GLF Festival scene" 
+              className="w-full aspect-[4/3] object-cover rounded-2xl rounded-tl-[80px] md:rounded-tl-[120px] shadow-lg hover:scale-[1.02] transition-transform duration-500"
             />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-7 text-white">
-              <p className="text-xs font-black uppercase tracking-[0.26em] text-[#b58b32]">
-                Patna, Bihar
-              </p>
-              <p className="mt-2 font-serif text-3xl leading-tight">
-                The Ganga is our oldest library.
-              </p>
-            </div>
+            <img 
+              src="/Images/speakers/gangaghat4.webp" 
+              alt="Ganga River" 
+              className="w-full aspect-square object-cover rounded-2xl shadow-lg hover:scale-[1.02] transition-transform duration-500"
+            />
           </div>
-
-          <div className="px-5 md:px-8 lg:max-w-[720px]">
-            <div className="[&_h2]:text-3xl [&_h2]:leading-[0.95] md:[&_h2]:text-4xl lg:[&_h2]:text-5xl [&_p]:mt-3 [&_p]:text-base [&_p]:leading-6">
-              <SectionHeading
-                align="left"
-                eyebrow="About The Festival"
-                title="India's Civilisation Has Always Been A Conversation"
-                intro="The Ganga Literature Festival was conceived from a simple conviction: Bihar, home to Pataliputra, Nalanda, Vikramashila, and Bodh Gaya, deserves a literature festival equal to its intellectual and spiritual heritage."
-              />
-            </div>
-
-            <div className="mt-4 space-y-2 text-sm font-semibold leading-6 text-black/70">
-              <p>
-                Bihar is not the periphery of India's story. It is its centre. The
-                Arthashastra was written here, the first pan-Indian empire was
-                administered from here, the Buddha attained enlightenment here, and
-                Guru Gobind Singh was born here.
-              </p>
-              <p>
-                GLF brings authors, thinkers, historians, scientists, entrepreneurs,
-                artists, students, publishers, and readers to Patna for a
-                civilisational conversation on books, culture, and India's future.
-              </p>
-            </div>
-
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2">
-              {FEATURES.map((feature) => (
-                <div key={feature.title} className="border border-black/10 bg-white p-3 shadow-sm transition hover:border-[#b58b32] hover:shadow-lg">
-                  <feature.icon className="mb-2 h-5 w-5 text-[#b58b32]" strokeWidth={1.7} />
-                  <h3 className="font-serif text-lg font-semibold leading-tight text-black">{feature.title}</h3>
-                  <p className="mt-2 text-[11px] leading-4 text-black/65">{feature.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-5 grid grid-cols-3 border-y border-black/10 py-3 text-center">
-              {[
-                ["25+", "Sessions"],
-                ["40+", "Speakers"],
-                ["2", "Festival Days"],
-              ].map(([value, label]) => (
-                <div key={label}>
-                  <div className="font-serif text-2xl font-semibold text-[#b58b32]">{value}</div>
-                  <div className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-black/60">{label}</div>
-                </div>
-              ))}
-            </div>
+          <div className="space-y-4 md:space-y-6 pt-12 md:pt-16">
+            <img 
+              src="/Images/speakers/gangaghat3.webp" 
+              alt="Literature Event" 
+              className="w-full aspect-square object-cover rounded-2xl shadow-lg hover:scale-[1.02] transition-transform duration-500"
+            />
+            <img 
+              src="/Images/speakers/gangaghat5.webp" 
+              alt="Cultural Performance" 
+              className="w-full aspect-[4/3] object-cover rounded-2xl rounded-br-[80px] md:rounded-br-[120px] shadow-lg hover:scale-[1.02] transition-transform duration-500"
+            />
           </div>
+        </div>
+
       </div>
     </section>
   );
