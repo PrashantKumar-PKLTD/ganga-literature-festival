@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, PenLine, X } from "lucide-react";
+import { FORMSPREE_ENDPOINT, submitToFormspree } from "../utils/formspree";
 
 const years = ["2026"];
 
@@ -102,6 +103,8 @@ function PartnerCtaCard({ onClick }) {
 
 export default function PartnersPage() {
   const [formOpen, setFormOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   return (
     <main className="pt-[78px] md:pt-[82px]">
@@ -186,7 +189,11 @@ export default function PartnersPage() {
                     className="mt-4 flex justify-center lg:absolute lg:top-1/2 lg:mt-0 lg:-translate-y-1/2"
                     style={{ right: "calc((100vw - 100%) / -2 + 2rem)" }}
                   >
-                    <PartnerCtaCard onClick={() => setFormOpen(true)} />
+                    <PartnerCtaCard onClick={() => {
+                      setSubmitted(false);
+                      setSubmitError("");
+                      setFormOpen(true);
+                    }} />
                   </div>
                 </div>
                 <div className="mx-auto mt-5 grid max-w-5xl grid-cols-2 items-center justify-center gap-x-4 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
@@ -212,45 +219,78 @@ export default function PartnersPage() {
               <X className="h-5 w-5" />
             </button>
 
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#b58b32]">
-              Partner With Us
-            </p>
-            <h3 className="mt-3 font-serif text-4xl font-black leading-tight text-black">
-              Partner with Ganga Literature Festival
-            </h3>
+            {submitted ? (
+              <div className="py-12 text-center">
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#b58b32]">
+                  Received
+                </p>
+                <h3 className="mt-3 font-serif text-4xl font-black leading-tight text-black">
+                  Thank you.
+                </h3>
+                <p className="mx-auto mt-4 max-w-md text-sm font-semibold leading-7 text-black/65">
+                  Your partnership enquiry has been submitted. The festival team
+                  will connect with you soon.
+                </p>
+              </div>
+            ) : (
+              <>
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#b58b32]">
+                  Partner With Us
+                </p>
+                <h3 className="mt-3 font-serif text-4xl font-black leading-tight text-black">
+                  Partner with Ganga Literature Festival
+                </h3>
 
-            <form className="mt-8 grid gap-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                className="border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
-              />
-              <input
-                type="tel"
-                name="number"
-                placeholder="Number"
-                className="border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
-              />
-              <textarea
-                name="message"
-                placeholder="Message"
-                rows="5"
-                className="resize-none border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
-              />
-              <button
-                type="submit"
-                className="mt-2 bg-[#b58b32] px-6 py-4 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-black"
-              >
-                Submit
-              </button>
-            </form>
+                <form
+                  action={FORMSPREE_ENDPOINT}
+                  method="POST"
+                  className="mt-8 grid gap-4"
+                  onSubmit={async (event) => {
+                    setSubmitError("");
+                    try {
+                      await submitToFormspree(event, () => setSubmitted(true));
+                    } catch {
+                      setSubmitError("Something went wrong. Please try again.");
+                    }
+                  }}
+                >
+                  <input type="hidden" name="form_source" value="Partner enquiry" />
+                  <input
+                    required
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    className="border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
+                  />
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    className="border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Number"
+                    className="border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
+                  />
+                  <textarea
+                    name="message"
+                    placeholder="Message"
+                    rows="5"
+                    className="resize-none border border-black/15 px-4 py-3 text-sm font-semibold outline-none focus:border-[#b58b32]"
+                  />
+                  {submitError && <p className="text-sm font-bold text-black">{submitError}</p>}
+                  <button
+                    type="submit"
+                    className="mt-2 bg-[#b58b32] px-6 py-4 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-black"
+                  >
+                    Submit
+                  </button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       )}

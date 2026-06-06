@@ -48,37 +48,8 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative z-30 -mt-8 mx-auto max-w-5xl px-5 md:-mt-14">
-        <div className="flex flex-col gap-4 rounded-lg bg-white p-4 shadow-xl shadow-black/10 md:flex-row md:items-center md:justify-between">
-          <div className="grid grid-cols-2 gap-2">
-            {[
-              ["Wed", "11", "November"],
-              ["Thu", "12", "November"],
-            ].map(([day, date, month], index) => (
-              <button
-                key={day}
-                className={`min-w-0 rounded-md border border-[#b58b32] px-3 py-2 text-center leading-none ${
-                  index === 0 ? "bg-[#b58b32] text-white" : "bg-white text-black"
-                }`}
-              >
-                <span className="block text-[11px] font-bold">{day}</span>
-                <span className="block text-2xl font-black">{date}</span>
-                <span className="block text-[11px] font-semibold">{month}</span>
-              </button>
-            ))}
-          </div>
-          <div className="flex min-w-0 flex-1 items-center gap-3 md:max-w-md">
-            <input
-              className="h-12 min-w-0 flex-1 rounded-md border border-[#b58b32] bg-white px-4 text-sm text-black outline-none focus:border-[#b58b32]"
-              placeholder="Search by title, author, speaker..."
-            />
-            <button className="h-12 rounded-md bg-[#b58b32] px-5 text-sm font-bold text-white">
-              Search
-            </button>
-          </div>
-        </div>
-
-        <div className="relative left-1/2 mt-8 w-[100dvw] -translate-x-1/2 bg-white">
+      <div className="relative z-30 mx-auto max-w-5xl px-5">
+        <div className="relative left-1/2 w-[100dvw] -translate-x-1/2 bg-white">
           <div className="mx-auto max-w-5xl px-5 py-6 md:px-8 md:py-8">
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
               Ganga in Focus

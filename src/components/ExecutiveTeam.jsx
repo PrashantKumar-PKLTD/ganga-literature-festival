@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
+import { FORMSPREE_ENDPOINT, submitToFormspree } from "../utils/formspree";
 
 const teamMembers = [
   {
@@ -281,6 +282,7 @@ function TeamMemberCard({ member }) {
 export default function ExecutiveTeam() {
   const [formOpen, setFormOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   return (
     <section className="bg-[#f8f6f1] py-16 text-black sm:py-20">
@@ -296,6 +298,7 @@ export default function ExecutiveTeam() {
             type="button"
             onClick={() => {
               setSubmitted(false);
+              setSubmitError("");
               setFormOpen(true);
             }}
             className="mt-6 inline-flex items-center justify-center bg-black px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-white transition hover:bg-[#b58b32]"
@@ -429,14 +432,22 @@ export default function ExecutiveTeam() {
                 </div>
 
                 <form
+                  action={FORMSPREE_ENDPOINT}
+                  method="POST"
                   className="mt-7 grid gap-4"
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    setSubmitted(true);
+                  onSubmit={async (event) => {
+                    setSubmitError("");
+                    try {
+                      await submitToFormspree(event, () => setSubmitted(true));
+                    } catch {
+                      setSubmitError("Something went wrong. Please try again.");
+                    }
                   }}
                 >
+                  <input type="hidden" name="form_source" value="Join our team" />
                   <input
                     required
+                    name="name"
                     className="w-full border border-black/15 bg-white px-4 py-4 outline-none focus:border-[#b58b32]"
                     placeholder="Full Name"
                   />
@@ -444,15 +455,17 @@ export default function ExecutiveTeam() {
                     <input
                       required
                       type="email"
+                      name="email"
                       className="w-full border border-black/15 bg-white px-4 py-4 outline-none focus:border-[#b58b32]"
                       placeholder="Email"
                     />
                     <input
+                      name="phone"
                       className="w-full border border-black/15 bg-white px-4 py-4 outline-none focus:border-[#b58b32]"
                       placeholder="Phone"
                     />
                   </div>
-                  <select className="w-full border border-black/15 bg-white px-4 py-4 outline-none focus:border-[#b58b32]">
+                  <select name="interest" className="w-full border border-black/15 bg-white px-4 py-4 outline-none focus:border-[#b58b32]">
                     <option>Volunteer</option>
                     <option>Partnership</option>
                     <option>Programming Support</option>
@@ -460,9 +473,11 @@ export default function ExecutiveTeam() {
                     <option>Operations</option>
                   </select>
                   <textarea
+                    name="message"
                     className="min-h-28 w-full border border-black/15 bg-white px-4 py-4 outline-none focus:border-[#b58b32]"
                     placeholder="Tell us why you would like to join..."
                   />
+                  {submitError && <p className="text-sm font-bold text-black">{submitError}</p>}
                   <button className="bg-black px-6 py-4 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-[#b58b32]">
                     Submit
                   </button>

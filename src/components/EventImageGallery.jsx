@@ -42,18 +42,18 @@ export default function EventImageGallery() {
   }, [activeIndex]);
 
   return (
-    <section className="bg-white px-3 py-12 md:px-5 md:py-16">
+    <section className="bg-white px-2 py-10 sm:px-3 md:px-5 md:py-16">
       <div className="mx-auto max-w-[118rem]">
-        <div className="mb-8 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
+        <div className="mb-6 text-center md:mb-8">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#b58b32] sm:text-xs sm:tracking-[0.28em]">
             Gallery
           </p>
-          <h2 className="mt-3 font-serif text-4xl font-semibold uppercase leading-none text-black md:text-5xl">
+          <h2 className="mt-3 font-serif text-3xl font-semibold uppercase leading-none text-black sm:text-4xl md:text-5xl">
             Festival Moments
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12">
+        <div className="grid grid-cols-5 gap-1 sm:grid-cols-5 sm:gap-2 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12">
           {imageSources.map((src, index) => (
             <button
               key={src}

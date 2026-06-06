@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import { FORMSPREE_ENDPOINT, submitToFormspree } from "../utils/formspree";
 
 export default function JoinUsModal() {
   const [open, setOpen] = useState(true);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     if (!open) {
@@ -87,31 +89,43 @@ export default function JoinUsModal() {
               </div>
 
               <form
+                action={FORMSPREE_ENDPOINT}
+                method="POST"
                 className="mt-8 grid gap-5"
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  setSubmitted(true);
+                onSubmit={async (event) => {
+                  setSubmitError("");
+                  try {
+                    await submitToFormspree(event, () => setSubmitted(true));
+                  } catch {
+                    setSubmitError("Something went wrong. Please try again.");
+                  }
                 }}
               >
+                <input type="hidden" name="form_source" value="Join us modal" />
                 <input
                   required
+                  name="name"
                   className="w-full rounded-xl border border-white/80 bg-black/70 px-4 py-4 text-white outline-none placeholder:text-white/55 focus:border-[#b58b32]"
                   placeholder="Your Name"
                 />
                 <input
                   required
                   type="email"
+                  name="email"
                   className="w-full rounded-xl border border-white/80 bg-black/70 px-4 py-4 text-white outline-none placeholder:text-white/55 focus:border-[#b58b32]"
                   placeholder="Your Email"
                 />
                 <input
+                  name="phone"
                   className="w-full rounded-xl border border-white/80 bg-black/70 px-4 py-4 text-white outline-none placeholder:text-white/55 focus:border-[#b58b32]"
                   placeholder="Your Phone (optional)"
                 />
                 <textarea
+                  name="message"
                   className="min-h-28 w-full rounded-xl border border-white/80 bg-black/70 px-4 py-4 text-white outline-none placeholder:text-white/55 focus:border-[#b58b32]"
                   placeholder="How would you like to be part of the festival?"
                 />
+                {submitError && <p className="text-sm font-bold text-white">{submitError}</p>}
                 <button className="rounded-lg bg-[#b58b32] px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-white">
                   Submit
                 </button>

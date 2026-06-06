@@ -10,6 +10,7 @@ import ContentPage from "./pages/ContentPage";
 import FriendOfFestival from "./pages/FriendOfFestival";
 import Home from "./pages/Home";
 import HotelsPage from "./pages/HotelsPage";
+import HonourableGuestsPage from "./pages/HonourableGuestsPage";
 import NewsPage from "./pages/NewsPage";
 import PartnersPage from "./pages/PartnersPage";
 import ProgrammePage from "./pages/ProgrammePage";
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/festival/register-to-attend" element={<RegistrationPage />} />
           <Route path="/festival/book-your-festival-hotel" element={<HotelsPage />} />
           <Route path="/festival/speakers" element={<SpeakersPage />} />
+          <Route path="/honourable-guests" element={<HonourableGuestsPage />} />
           <Route path="/programme" element={<ProgrammePage />} />
           <Route path="/media/news-updates" element={<NewsPage />} />
           <Route path="/media/blogs" element={<BlogsPage />} />
@@ -45,6 +47,7 @@ export default function App() {
             "/festival/register-to-attend",
             "/festival/book-your-festival-hotel",
             "/festival/speakers",
+            "/honourable-guests",
             "/programme",
             "/media/news-updates",
             "/media/blogs",

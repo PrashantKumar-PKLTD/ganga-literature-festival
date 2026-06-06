@@ -12,6 +12,7 @@ import {
   User,
   Users,
 } from "lucide-react";
+import { FORMSPREE_ENDPOINT, submitToFormspree } from "../utils/formspree";
 
 const tabs = [
   { id: "attendees", label: "Attendees" },
@@ -69,11 +70,13 @@ const festivalHighlights = [
 export default function StudyDestinations() {
   const [activeTab, setActiveTab] = useState("attendees");
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const activeCopy = tabCopy[activeTab];
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
     setSubmitted(false);
+    setSubmitError("");
   };
 
   return (
@@ -205,18 +208,26 @@ export default function StudyDestinations() {
               </div>
             ) : (
               <form
+                action={FORMSPREE_ENDPOINT}
+                method="POST"
                 className="grid gap-3.5"
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  setSubmitted(true);
+                onSubmit={async (event) => {
+                  setSubmitError("");
+                  try {
+                    await submitToFormspree(event, () => setSubmitted(true));
+                  } catch {
+                    setSubmitError("Something went wrong. Please try again.");
+                  }
                 }}
               >
+                <input type="hidden" name="form_source" value="Participation form" />
                 <div>
                   <label className="mb-1.5 block text-sm font-black text-black">Full Name</label>
                   <div className="relative">
                     <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#b58b32]" />
                     <input
                       required
+                      name="name"
                       className="w-full rounded-md border border-[#d59632] bg-white px-4 py-2.5 pl-11 outline-none focus:border-black"
                     />
                   </div>
@@ -229,6 +240,7 @@ export default function StudyDestinations() {
                     <input
                       required
                       type="email"
+                      name="email"
                       className="w-full rounded-md border border-[#d59632] bg-white px-4 py-2.5 pl-11 outline-none focus:border-black"
                     />
                   </div>
@@ -239,6 +251,7 @@ export default function StudyDestinations() {
                   <div className="relative">
                     <Phone className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#b58b32]" />
                     <input
+                      name="phone"
                       className="w-full rounded-md border border-[#d59632] bg-white px-4 py-2.5 pl-11 outline-none focus:border-black"
                       placeholder="+91"
                     />
@@ -250,7 +263,7 @@ export default function StudyDestinations() {
                     <label className="mb-1.5 block text-sm font-black text-black">City</label>
                     <div className="relative">
                       <MapPin className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#b58b32]" />
-                      <input className="w-full rounded-md border border-[#d59632] bg-white px-4 py-2.5 pl-11 outline-none focus:border-black" />
+                      <input name="city" className="w-full rounded-md border border-[#d59632] bg-white px-4 py-2.5 pl-11 outline-none focus:border-black" />
                     </div>
                   </div>
                   <div>
@@ -258,6 +271,7 @@ export default function StudyDestinations() {
                     <input
                       value={activeCopy.role}
                       readOnly
+                      name="role"
                       className="w-full rounded-md border border-[#d59632] bg-white px-4 py-2.5 outline-none"
                     />
                   </div>
@@ -267,7 +281,7 @@ export default function StudyDestinations() {
                   <label className="mb-1.5 block text-sm font-black text-black">
                     {activeCopy.interestLabel}
                   </label>
-                  <select className="w-full rounded-md border border-[#d59632] bg-white px-4 py-2.5 outline-none focus:border-black">
+                  <select name="interest" className="w-full rounded-md border border-[#d59632] bg-white px-4 py-2.5 outline-none focus:border-black">
                     {activeCopy.interestOptions.map((option) => (
                       <option key={option}>{option}</option>
                     ))}
@@ -277,11 +291,13 @@ export default function StudyDestinations() {
                 <div>
                   <label className="mb-1.5 block text-sm font-black text-black">Your Message</label>
                   <textarea
+                    name="message"
                     className="min-h-20 w-full rounded-md border border-[#d59632] bg-white p-3 outline-none focus:border-black"
                     placeholder={activeCopy.message}
                   />
                 </div>
 
+                {submitError && <p className="text-sm font-bold text-black">{submitError}</p>}
                 <button className="mx-auto flex items-center justify-center gap-2 rounded-md bg-[#ffd978] px-8 py-2.5 text-base font-black text-black transition hover:bg-black hover:text-white">
                   {activeCopy.button}
                   <Send className="h-4 w-4" />

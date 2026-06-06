@@ -6,18 +6,18 @@ export default function SectionHeading({ eyebrow, title, align = "center", intro
   return (
     <div className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {eyebrow && (
-        <div className={`mb-4 flex items-center gap-3 ${centered ? "justify-center" : ""}`}>
-          <span className="h-px w-12 bg-[#b58b32]" />
-          <span className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
+        <div className={`mb-4 flex items-center gap-2 sm:gap-3 ${centered ? "justify-center" : ""}`}>
+          <span className="h-px w-7 shrink-0 bg-[#b58b32] sm:w-12" />
+          <span className="min-w-0 text-[10px] font-black uppercase leading-4 tracking-[0.16em] text-[#b58b32] sm:text-xs sm:tracking-[0.28em]">
             {eyebrow}
           </span>
-          <span className="h-px w-12 bg-[#b58b32]" />
+          <span className="h-px w-7 shrink-0 bg-[#b58b32] sm:w-12" />
         </div>
       )}
-      <h2 className={`font-serif text-4xl font-medium uppercase leading-none md:text-6xl ${titleColor}`}>
+      <h2 className={`font-serif text-3xl font-medium uppercase leading-[0.95] sm:text-4xl md:text-6xl ${titleColor}`}>
         {title}
       </h2>
-      {intro && <p className={`mt-5 text-base leading-8 md:text-lg ${introColor}`}>{intro}</p>}
+      {intro && <p className={`mt-4 text-sm leading-7 sm:text-base md:mt-5 md:text-lg md:leading-8 ${introColor}`}>{intro}</p>}
     </div>
   );
 }

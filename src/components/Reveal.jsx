@@ -15,7 +15,7 @@ export default function Reveal({ children, className = "", delay = 0, as: Tag = 
           observer.unobserve(element);
         }
       },
-      { threshold: 0.18, rootMargin: "0px 0px -80px 0px" }
+      { threshold: 0.01, rootMargin: "0px 0px 120px 0px" }
     );
 
     observer.observe(element);

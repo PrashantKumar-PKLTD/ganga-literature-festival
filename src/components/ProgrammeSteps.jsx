@@ -8,7 +8,7 @@ const steps = [
     description:
       "From the Himalayan glaciers, Bhagirathi and Alaknanda unite at Devprayag. There, the river receives her immortal name - Ganga - and descends as the living current of Bharat's soul.",
     image: "/gangaimg1.png",
-    position: "left-0",
+    position: "md:left-0",
   },
   {
     state: "Uttar Pradesh",
@@ -16,7 +16,7 @@ const steps = [
     description:
       "Through Haridwar, Kanpur, Prayagraj, Mirzapur, and Varanasi, the Ganga nourishes the heartland. At the Sangam, the Yamuna joins her, deepening her sacred flow.",
     image: "/gangaimg2.png",
-    position: "left-[19%]",
+    position: "md:left-[19%]",
   },
   {
     state: "Bihar",
@@ -24,7 +24,7 @@ const steps = [
     description:
       "Entering near Buxar, the Ganga moves past Patna and Bhagalpur. Her banks remember Pataliputra, Nalanda, Vikramashila, and Bihar's great inheritance of learning and dharma.",
     image: "/gangaimg3.png",
-    position: "left-[38%]",
+    position: "md:left-[38%]",
   },
   {
     state: "Jharkhand",
@@ -32,7 +32,7 @@ const steps = [
     description:
       "Near Sahibganj and the Rajmahal hills, the Ganga bends along Jharkhand's edge, gathering old trade routes, river communities, and the quiet strength of the land.",
     image: "/gangaimg4.png",
-    position: "left-[57%]",
+    position: "md:left-[57%]",
   },
   {
     state: "West Bengal",
@@ -40,7 +40,7 @@ const steps = [
     description:
       "At Farakka, the Ganga divides into the Hooghly and Padma, spreading across Bengal's delta toward Kolkata, the Sundarbans, and the Bay of Bengal.",
     image: "/gangaimg5.png",
-    position: "left-[76%]",
+    position: "md:left-[76%]",
   },
 ];
 
@@ -48,9 +48,9 @@ export default function ProgrammeSteps() {
   const [activeStep, setActiveStep] = useState(2);
 
   return (
-    <section className="overflow-hidden bg-[#f8f6f1] px-5 py-12 md:px-8 md:py-16">
+    <section className="overflow-hidden bg-[#f8f6f1] px-4 py-10 md:px-8 md:py-16">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-10">
+        <div className="mb-8 md:mb-10">
           <SectionHeading
             eyebrow="Maa Ganga "
             title="Where the Ganga Flows, Bharat Speaks"
@@ -58,7 +58,7 @@ export default function ProgrammeSteps() {
           />
         </div>
 
-        <div className="relative flex flex-col gap-5 md:h-[620px] md:block">
+        <div className="relative flex flex-col gap-4 md:h-[620px] md:block">
           {steps.map((step, index) => {
             const isActive = activeStep === index;
 
@@ -68,29 +68,29 @@ export default function ProgrammeSteps() {
                 onMouseEnter={() => setActiveStep(index)}
                 onFocus={() => setActiveStep(index)}
                 tabIndex={0}
-                className={`group relative flex w-full cursor-pointer flex-col overflow-hidden border border-black/10 outline-none transition duration-300 md:absolute md:top-0 md:h-[580px] md:w-[24%] md:pt-10 ${
+                className={`group relative flex w-full cursor-pointer flex-col overflow-hidden border border-black/10 bg-white outline-none transition duration-300 md:absolute md:top-0 md:h-[580px] md:w-[24%] md:pt-10 ${
                   step.position
                 } ${
                   isActive
-                    ? "z-20 scale-[1.015] bg-white shadow-[0_22px_55px_rgba(181,139,50,0.18)]"
-                    : "z-10 bg-white/75 shadow-sm hover:bg-white hover:shadow-xl"
+                    ? "z-20 shadow-[0_14px_34px_rgba(181,139,50,0.14)] md:scale-[1.015] md:shadow-[0_22px_55px_rgba(181,139,50,0.18)]"
+                    : "z-10 shadow-sm hover:shadow-xl md:bg-white/75 md:hover:bg-white"
                 }`}
               >
-                <div className="flex flex-1 flex-col gap-4 px-6 py-7 md:px-7 md:pb-6 md:pr-8 md:pt-6">
+                <div className="flex flex-1 flex-col gap-3 px-5 py-5 md:gap-4 md:px-7 md:pb-6 md:pr-8 md:pt-6">
                   <div
                     className={`h-px w-full transition-colors duration-300 ${
                       isActive ? "bg-[#b58b32]" : "bg-black/35"
                     }`}
                   />
                   <div
-                    className={`text-sm font-black uppercase tracking-[0.18em] transition-colors duration-300 ${
+                    className={`text-xs font-black uppercase tracking-[0.16em] transition-colors duration-300 md:text-sm md:tracking-[0.18em] ${
                       isActive ? "text-[#b58b32]" : "text-black"
                     }`}
                   >
                     {step.state}
                   </div>
                   <h3
-                    className={`font-serif text-3xl font-semibold leading-none transition-colors duration-300 md:text-[1.9rem] ${
+                    className={`font-serif text-2xl font-semibold leading-tight transition-colors duration-300 sm:text-3xl md:text-[1.9rem] md:leading-none ${
                       isActive ? "text-black" : "text-black/55"
                     }`}
                   >
@@ -108,7 +108,7 @@ export default function ProgrammeSteps() {
                 <img
                   src={step.image}
                   alt=""
-                  className="mt-auto h-[180px] w-full object-cover md:h-[190px]"
+                  className="mt-auto h-[150px] w-full object-cover sm:h-[180px] md:h-[190px]"
                   loading="lazy"
                 />
               </article>
