@@ -46,7 +46,7 @@ export default function FAQ() {
 
       <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.25fr] lg:gap-20">
         <div className="lg:pt-2">
-          <h2 className="text-5xl font-black leading-none tracking-[-0.01em] text-black md:text-6xl">
+          <h2 className="font-serif text-5xl font-black leading-none tracking-[-0.01em] text-black md:text-6xl">
             Festival
             <br />
             FAQs
@@ -66,8 +66,10 @@ export default function FAQ() {
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : index)}
-                  className="grid w-full grid-cols-[44px_1fr] items-start gap-5 py-7 text-left md:grid-cols-[54px_1fr] md:gap-6"
+                  className="grid w-full grid-cols-[44px_1fr] items-start gap-5 py-7 text-left md:grid-cols-[54px_1fr] md:gap-6 focus:outline-none focus:text-[#b58b32] transition-colors"
                   aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
+                  id={`faq-question-${index}`}
                 >
                   <span
                     className={`text-5xl font-light leading-none text-[#b58b32] transition-transform duration-300 ${
@@ -83,6 +85,9 @@ export default function FAQ() {
                 </button>
 
                 <div
+                  id={`faq-answer-${index}`}
+                  role="region"
+                  aria-labelledby={`faq-question-${index}`}
                   className={`grid transition-all duration-300 ease-in-out ${
                     isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                   }`}

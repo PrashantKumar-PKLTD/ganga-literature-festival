@@ -36,9 +36,9 @@ function MotifTitle({ eyebrow, title, inverted = false }) {
       <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
         {eyebrow}
       </p>
-      <h1 className={`mt-4 font-serif text-5xl font-black leading-[0.9] md:text-7xl ${inverted ? "text-white" : "text-black"}`}>
+      <h2 className={`mt-4 font-serif text-5xl font-black leading-[0.9] md:text-7xl ${inverted ? "text-white" : "text-black"}`}>
         {title}
-      </h1>
+      </h2>
     </div>
   );
 }

@@ -12,16 +12,11 @@ const NAV_LINKS = [
       { label: "Register to Attend", to: "/festival/register-to-attend" },
       { label: "Book your Festival Hotel", to: "/festival/book-your-festival-hotel" },
       { label: "Speakers", to: "/festival/speakers" },
+      { label: "Honourable Guests", to: "/honourable-guests" },
     ],
   },
   { label: "Programme", to: "/programme" },
-  {
-    label: "Media",
-    to: "/media",
-    items: [
-      { label: "Blogs", to: "/media/blogs" },
-    ],
-  },
+  { label: "Blog", to: "/media/blogs" },
   {
     label: "About",
     to: "/about",
@@ -53,15 +48,15 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
         <Link
           to="/"
           onClick={handleHomeClick}
-          className="mr-6 flex min-w-[130px] flex-col leading-none md:mr-10 md:min-w-[150px]"
+          className="mr-6 flex min-w-[130px] flex-col leading-none lg:mr-8 xl:mr-10 md:min-w-[150px]"
         >
           <span className="font-serif text-3xl font-medium tracking-[-0.04em] text-black md:text-4xl">GLF</span>
           <span className="mt-1 text-[9px] font-black uppercase tracking-[0.24em] text-[#b58b32] md:text-[10px] md:tracking-[0.34em]">
-            Ganga Literature
+            Literature Festival
           </span>
         </Link>
 
-        <div className="hidden flex-1 items-center gap-5 xl:flex 2xl:gap-7">
+        <div className="hidden flex-1 items-center gap-3 lg:flex xl:gap-5 2xl:gap-7">
           {NAV_LINKS.map((link) => (
             <div key={link.label} className="group relative py-7">
               <NavLink
@@ -93,18 +88,18 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
           ))}
         </div>
 
-        <div className="ml-auto hidden items-center gap-3 xl:flex">
+        <div className="ml-auto hidden items-center gap-3 lg:flex">
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-[#b58b32] px-7 py-5 text-[15px] font-black uppercase tracking-[0.12em] text-[#b58b32] transition hover:bg-[#b58b32] hover:text-black"
+            className="border border-[#b58b32] px-5 py-2.5 text-[15px] font-black uppercase tracking-[0.12em] text-[#b58b32] transition hover:bg-[#b58b32] hover:text-black"
           >
-            Lets Talk
+            Let's Talk
           </a>
           <Link
             to="/festival/register-to-attend"
-            className="bg-[#b58b32] px-9 py-5 text-[15px] font-black uppercase tracking-[0.12em] text-white transition hover:bg-black hover:text-white"
+            className="bg-[#b58b32] px-6 py-2.5 text-[15px] font-black uppercase tracking-[0.12em] text-white transition hover:bg-black hover:text-white"
           >
             Register
           </Link>
@@ -112,7 +107,7 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="ml-auto rounded-none border border-[#b58b32] p-3 text-black xl:hidden"
+          className="ml-auto rounded-none border border-[#b58b32] p-3 text-black lg:hidden"
           aria-label="Toggle menu"
         >
           {menuOpen ? <X size={26} /> : <Menu size={26} />}
@@ -120,15 +115,15 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
       </nav>
 
       <div
-        className={`fixed inset-0 z-[60] h-dvh overflow-y-auto bg-[#071038] px-5 py-5 text-white transition-transform duration-300 sm:px-7 sm:py-6 xl:hidden ${
+        className={`fixed inset-0 z-[60] h-dvh overflow-y-auto bg-[#0b0b0b] px-5 py-5 text-white transition-transform duration-300 sm:px-7 sm:py-6 lg:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="sticky top-0 z-10 -mx-5 mb-5 flex items-center justify-between bg-[#071038] px-5 pb-4 sm:-mx-7 sm:px-7">
+        <div className="sticky top-0 z-10 -mx-5 mb-5 flex items-center justify-between bg-[#0b0b0b] px-5 pb-4 sm:-mx-7 sm:px-7">
           <div>
             <div className="font-serif text-4xl leading-none sm:text-5xl">GLF</div>
             <div className="mt-1 text-[10px] font-black uppercase tracking-[0.22em] text-[#b58b32] sm:text-xs sm:tracking-[0.26em]">
-              Ganga Literature
+              Literature Festival
             </div>
           </div>
           <button
@@ -208,7 +203,7 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
             onClick={closeMenu}
             className="mt-3 border border-[#b58b32] px-6 py-4 text-center text-base font-black uppercase tracking-[0.12em] text-[#b58b32] sm:px-8 sm:py-5 sm:text-lg sm:tracking-[0.14em]"
           >
-            Lets Talk
+            Let's Talk
           </a>
         </div>
       </div>

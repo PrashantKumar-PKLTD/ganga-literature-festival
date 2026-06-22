@@ -35,15 +35,6 @@ const socials = [
       </svg>
     ),
   },
-  {
-    name: "Behance",
-    href: "https://behance.net",
-    icon: (
-      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M0 7.5v9c0 .825.675 1.5 1.5 1.5h21c.825 0 1.5-.675 1.5-1.5v-9c0-.825-.675-1.5-1.5-1.5h-21C.675 6 0 6.675 0 7.5zM6.938 10.5c1.237 0 2.25 1.013 2.25 2.25S8.175 15 6.938 15H4.5v-4.5h2.438zm11.25 0c1.237 0 2.25 1.013 2.25 2.25S19.425 15 18.188 15h-2.438v-4.5h2.5zm-7.5-3h3v1.5h-3V7.5z" />
-      </svg>
-    ),
-  },
 ];
 
 export default function FloatingSocialRail() {

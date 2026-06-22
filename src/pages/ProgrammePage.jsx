@@ -165,7 +165,7 @@ export default function ProgrammePage() {
 
       <section className="bg-white px-5 py-20 md:px-8 md:py-28">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-md bg-[#f8f6f1] p-4">
+          <div className="sticky top-[78px] md:top-[82px] z-20 rounded-md bg-[#f8f6f1]/90 backdrop-blur-md p-4 shadow-sm">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
               <div className="grid grid-cols-2 gap-2">
                 {dayButtons.map(([day, date, month], index) => (
@@ -297,7 +297,7 @@ export default function ProgrammePage() {
                             id={id}
                             key={session.title}
                             className={`relative mb-8 scroll-mt-28 rounded-md border border-black/10 p-6 ${
-                              index === 1 ? "bg-[#f8f6f1]" : "bg-white"
+                              index % 2 === 1 ? "bg-[#f8f6f1]" : "bg-white"
                             }`}
                           >
                             <span className="absolute -left-[34px] top-8 h-4 w-4 rounded-full bg-[#b58b32]" />
