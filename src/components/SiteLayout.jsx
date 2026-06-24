@@ -12,8 +12,16 @@ export default function SiteLayout() {
 
   return (
     <div className="min-h-screen bg-white text-black antialiased selection:bg-[#b58b32] selection:text-white">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#b58b32] focus:text-white focus:px-4 focus:py-2 focus:font-bold focus:rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#b58b32]"
+      >
+        Skip to main content
+      </a>
       <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Outlet />
+      <main id="main-content" tabIndex="-1" className="outline-none">
+        <Outlet />
+      </main>
       <ConnectWithUs />
       <Footer />
       <FloatingSocialRail />

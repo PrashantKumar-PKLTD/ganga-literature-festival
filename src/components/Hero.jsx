@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import GangaJourney from "./GangaJourney";
 
 export default function Hero() {
@@ -9,13 +10,14 @@ export default function Hero() {
         <img
           src={heroBgSrc}
           alt="Ganga riverfront at sunrise"
+          fetchPriority="high"
           className="hero-bg-animate absolute inset-0 z-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/10 via-black/5 to-black/20" />
         <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(181,139,50,0.08),transparent_46%)]" />
 
         <div className="relative z-10 mx-auto flex min-h-[650px] max-w-7xl flex-col items-center justify-center px-5 pt-32 text-center md:pt-36">
-          <div className="festival-arch relative mx-auto flex h-[440px] w-full max-w-[760px] items-center justify-center px-8 pb-14 pt-28 md:h-[500px] md:px-14">
+          <div className="festival-arch relative mx-auto flex min-h-[480px] md:min-h-[520px] h-auto w-full max-w-[760px] items-center justify-center px-8 py-10 md:px-14 md:py-12">
             <div className="relative z-10 w-[min(92vw,920px)] max-w-none">
               <div className="-mt-2 mb-5">
                 <div className="flex items-center justify-center gap-3 text-white">
@@ -27,13 +29,27 @@ export default function Hero() {
                   11 & 12 November - Patna, Bihar
                 </p>
               </div>
-              <p className="font-serif text-8xl font-black uppercase leading-[0.86] tracking-tight md:text-7xl">
+              <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.86] tracking-tight">
                 Ganga
-                <span className="block whitespace-nowrap text-[clamp(2.5rem,4vw,4.5rem)]">Literature Festival</span>
-              </p>
-              <h1 className="mt-5 font-serif text-2xl font-black uppercase leading-[0.9] tracking-tight md:text-4xl">
-                Where the river of thought meets the ocean of civilisation
+                <span className="block whitespace-nowrap text-[clamp(1.75rem,5.5vw,4.5rem)]">Literature Festival</span>
               </h1>
+              <p className="mt-4 font-serif text-lg font-bold uppercase leading-[1.1] tracking-tight md:text-xl lg:text-2xl text-white/90">
+                Where the river of thought meets the ocean of civilisation
+              </p>
+              <div className="mt-6 flex flex-wrap justify-center gap-4">
+                <Link
+                  to="/festival/register-to-attend"
+                  className="bg-[#b58b32] px-6 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-black"
+                >
+                  Register Now
+                </Link>
+                <Link
+                  to="/programme"
+                  className="border border-white px-6 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-black"
+                >
+                  View Programme
+                </Link>
+              </div>
               <div className="mt-6 flex flex-wrap justify-center gap-2 text-[11px] font-black uppercase tracking-[0.12em]">
                 <span className="rounded-sm bg-white/90 px-3 py-2 text-black">Presented by BIHAAN</span>
                 <span className="rounded-sm bg-white/90 px-3 py-2 text-black">Publishing Partner BluOne Ink</span>

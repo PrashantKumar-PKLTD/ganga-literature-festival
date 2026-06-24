@@ -1,9 +1,22 @@
-﻿import { Search } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Search } from "lucide-react";
 import SPEAKERS from "../data/speakers";
 
 const YEARS = ["2026"];
 
 export default function SpeakersPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredSpeakers = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return SPEAKERS;
+    return SPEAKERS.filter(
+      (speaker) =>
+        speaker.name.toLowerCase().includes(query) ||
+        (speaker.role && speaker.role.toLowerCase().includes(query))
+    );
+  }, [searchQuery]);
+
   return (
     <main className="pt-[78px] md:pt-[82px]">
       <section
@@ -39,6 +52,8 @@ export default function SpeakersPage() {
             </h2>
             <div className="flex w-full overflow-hidden rounded-md border border-[#b58b32]/40 bg-white md:max-w-sm">
               <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
                 className="h-14 min-w-0 flex-1 px-5 text-sm outline-none"
                 placeholder="Search by author name"
               />
@@ -65,25 +80,37 @@ export default function SpeakersPage() {
             </div>
           </div>
 
-          <div className="mt-16 grid gap-x-10 gap-y-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {SPEAKERS.map((speaker) => (
-              <article key={speaker.name} className="text-center">
-                <div className="mx-auto h-40 w-40 overflow-hidden rounded-full border-[6px] border-[#b58b32]/30 bg-white shadow-xl shadow-black/10 md:h-44 md:w-44">
-                  <img
-                    src={speaker.img}
-                    alt={speaker.name}
-                    className="h-full w-full object-cover grayscale transition duration-500 hover:scale-105 hover:grayscale-0"
-                  />
-                </div>
-                <h3 className="mx-auto mt-5 max-w-[190px] font-serif text-2xl font-black leading-tight text-black">
-                  {speaker.name}
-                </h3>
-                <p className="mt-2 text-xs font-black uppercase tracking-[0.16em] text-[#b58b32]">
-                  {speaker.role}
-                </p>
-              </article>
-            ))}
-          </div>
+          {filteredSpeakers.length > 0 ? (
+            <div className="mt-16 grid gap-x-10 gap-y-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {filteredSpeakers.map((speaker) => (
+                <article key={speaker.name} className="text-center">
+                  <div className="mx-auto h-40 w-40 overflow-hidden rounded-full border-[6px] border-[#b58b32]/30 bg-white shadow-xl shadow-black/10 md:h-44 md:w-44">
+                    <img
+                      src={speaker.img}
+                      alt={speaker.name}
+                      className="h-full w-full object-cover grayscale transition duration-500 hover:scale-105 hover:grayscale-0"
+                    />
+                  </div>
+                  <h3 className="mx-auto mt-5 max-w-[190px] font-serif text-2xl font-black leading-tight text-black">
+                    {speaker.name}
+                  </h3>
+                  <p className="mt-2 text-xs font-black uppercase tracking-[0.16em] text-[#b58b32]">
+                    {speaker.role}
+                  </p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-16 text-center py-10 bg-white/50 border border-black/5 rounded-md">
+              <p className="text-lg font-bold text-black/60">No speakers found matching "{searchQuery}"</p>
+              <button
+                onClick={() => setSearchQuery("")}
+                className="mt-3 text-sm font-bold text-[#b58b32] underline"
+              >
+                Clear Search
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </main>

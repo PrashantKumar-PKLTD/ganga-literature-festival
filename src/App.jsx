@@ -17,7 +17,6 @@ import ProgrammePage from "./pages/ProgrammePage";
 import RegistrationPage from "./pages/RegistrationPage";
 import SpeakersPage from "./pages/SpeakersPage";
 import SmoothScroll from "./components/SmoothScroll";
-import RiverTest from "./pages/RiverTest";
 
 import CityPage from "./pages/CityPage";
 
@@ -29,7 +28,6 @@ export default function App() {
         <Route element={<SiteLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/city/:slug" element={<CityPage />} />
-          <Route path="/rivertest" element={<RiverTest />} />
           <Route path="/festival/friend-of-the-festival" element={<FriendOfFestival />} />
           <Route path="/festival/register-to-attend" element={<RegistrationPage />} />
           <Route path="/festival/book-your-festival-hotel" element={<HotelsPage />} />
