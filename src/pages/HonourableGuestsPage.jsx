@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import HONOURABLE_GUESTS from "../data/honourableGuests";
+import GuestSocialLinks from "../components/GuestSocialLinks";
 
 export default function HonourableGuestsPage() {
   return (
@@ -61,6 +62,7 @@ export default function HonourableGuestsPage() {
                   <p className="honourable-guest-affiliation mt-2 text-[9px] font-black uppercase tracking-[0.1em] sm:mt-3 sm:text-xs sm:tracking-[0.14em]">
                     {guest.affiliation}
                   </p>
+                  <GuestSocialLinks social={guest.social} name={guest.name} />
                 </div>
               </article>
             ))}
