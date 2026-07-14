@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800;900&family=Noto+Serif+Devanagari:wght@300;400;600;700&family=Lato:wght@300;400;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,6 +10,19 @@
   --site-gold: #b58b32;
   --site-gold-dark: #8f6f27;
   --site-gold-soft: rgba(181, 139, 50, 0.14);
+
+  /* Brand Colors */
+  --saffron: #D4600A;
+  --deep-saffron: #8B3E00;
+  --gold: #C8962B;
+  --river: #1A5276;
+  --river-light: #2E86C1;
+  --cream: #FAF6EE;
+  --parchment: #F2EBD9;
+  --dark: #1C1208;
+  --mid: #4A3728;
+  --muted: #8D7B6A;
+  --accent-teal: #0E7C6A;
 }
 
 * {
@@ -18,16 +31,17 @@
 
 body {
   margin: 0;
-  font-family: 'Lato', Arial, sans-serif !important;
+  font-family: 'Montserrat', 'Lato', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--site-white);
-  color: var(--site-black);
+  background-color: var(--cream);
+  color: var(--dark);
   overflow-x: hidden;
 }
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 #root {
@@ -56,7 +70,7 @@ a,
 p,
 span,
 div {
-  font-family: 'Lato', Arial, sans-serif;
+  font-family: 'Montserrat', 'Lato', Arial, sans-serif;
 }
 
 h1 *,
@@ -68,95 +82,25 @@ h6 * {
   font-family: inherit;
 }
 
-body .text-white,
-body [class*="text-white"] {
-  color: var(--site-white) !important;
+/* Custom premium hover underline animation */
+.hover-underline {
+  position: relative;
 }
-
-body .text-black,
-body [class*="text-black"] {
-  color: var(--site-black) !important;
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
-body [class*="text-gray"],
-body [class*="text-slate"],
-body [class*="text-blue"],
-body [class*="text-emerald"],
-body [class*="text-red"],
-body [class*="text-pink"],
-body [class*="text-purple"],
-body [class*="text-[#0a1a3c]"],
-body [class*="text-[#3b0f6d]"],
-body [class*="text-[#43136f]"] {
-  color: var(--site-black) !important;
-}
-
-body [class*="text-amber"],
-body [class*="text-yellow"],
-body [class*="text-[#ef197d]"],
-body [class*="text-[#f11c7c]"],
-body [class*="text-[#f1197b]"],
-body [class*="text-[#ffb56d]"] {
-  color: var(--site-gold) !important;
-}
-
-body [class*="bg-white"] {
-  background-color: var(--site-white) !important;
-}
-
-body [class*="bg-black"],
-body [class*="bg-gray"],
-body [class*="bg-slate"],
-body [class*="bg-blue"],
-body [class*="bg-emerald"],
-body [class*="bg-purple"],
-body [class*="bg-pink"],
-body [class*="bg-[#0a1a3c]"],
-body [class*="bg-[#3b0f6d]"],
-body [class*="bg-[#4b1680]"] {
-  background-color: var(--site-black) !important;
-}
-
-body [class*="bg-amber"],
-body [class*="bg-yellow"],
-body [class*="bg-[#ef197d]"],
-body [class*="bg-[#f1197b]"],
-body [class*="bg-[#f11c7c]"],
-body [class*="bg-[#ffb56d]"],
-body [class*="bg-accentgreen"],
-body [class*="bg-govblue"] {
-  background-color: var(--site-gold) !important;
-}
-
-body [class*="border-gray"],
-body [class*="border-slate"],
-body [class*="border-blue"],
-body [class*="border-emerald"],
-body [class*="border-purple"],
-body [class*="border-pink"],
-body [class*="border-[#"] {
-  border-color: var(--site-gold) !important;
-}
-
-body [class*="border-white"] {
-  border-color: var(--site-white) !important;
-}
-
-body [class*="focus:border"] {
-  border-color: var(--site-gold) !important;
-}
-
-body input,
-body textarea,
-body select {
-  background: var(--site-white) !important;
-  color: var(--site-black) !important;
-  border-color: var(--site-gold) !important;
-}
-
-body a:hover,
-body button:hover {
-  color: var(--site-gold) !important;
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 html.lenis,

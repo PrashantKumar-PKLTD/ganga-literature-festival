@@ -10,7 +10,7 @@ const FEATURES = [
 
 export default function About() {
   return (
-    <section id="about" className="bg-white pb-12 pt-0 md:pb-16">
+    <section id="about" className="bg-cream pb-16 pt-12 md:pb-24 md:pt-16">
       <div className="grid gap-8 lg:grid-cols-[50vw_minmax(0,1fr)] lg:items-start">
           <div
             className="relative min-h-[360px] overflow-hidden bg-cover bg-center md:min-h-[420px] lg:h-[660px] lg:min-h-0"
@@ -22,7 +22,7 @@ export default function About() {
               className="sr-only"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-7 text-white">
-              <p className="text-xs font-black uppercase tracking-[0.26em] text-[#b58b32]">
+              <p className="text-xs font-bold uppercase tracking-[0.26em] text-saffron">
                 Patna, Bihar
               </p>
               <p className="mt-2 font-serif text-3xl leading-tight">
@@ -41,7 +41,7 @@ export default function About() {
               />
             </div>
 
-            <div className="mt-4 space-y-2 text-sm font-semibold leading-6 text-black/70">
+            <div className="mt-4 space-y-2 text-sm font-semibold leading-6 text-dark/75">
               <p>
                 Bihar is not the periphery of India's story. It is its centre. The
                 Arthashastra was written here, the first pan-Indian empire was
@@ -55,25 +55,25 @@ export default function About() {
               </p>
             </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2">
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2">
               {FEATURES.map((feature) => (
-                <div key={feature.title} className="border border-black/10 bg-white p-3 shadow-sm transition hover:border-[#b58b32] hover:shadow-lg">
-                  <feature.icon className="mb-2 h-5 w-5 text-[#b58b32]" strokeWidth={1.7} />
-                  <h3 className="font-serif text-lg font-semibold leading-tight text-black">{feature.title}</h3>
-                  <p className="mt-2 text-[11px] leading-4 text-black/65">{feature.desc}</p>
+                <div key={feature.title} className="border border-gold/20 bg-cream/40 p-4 rounded-none shadow-sm transition duration-300 hover:border-saffron hover:bg-cream hover:-translate-y-0.5 hover:shadow-md">
+                  <feature.icon className="mb-3 h-6 w-6 text-saffron" strokeWidth={1.7} />
+                  <h3 className="font-serif text-lg font-bold leading-tight text-dark">{feature.title}</h3>
+                  <p className="mt-2 text-xs leading-5 text-dark/70">{feature.desc}</p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-5 grid grid-cols-3 border-y border-black/10 py-3 text-center">
+            <div className="mt-8 grid grid-cols-3 border-y border-dark/10 py-4 text-center">
               {[
                 ["25+", "Sessions"],
                 ["40+", "Speakers"],
                 ["2", "Festival Days"],
               ].map(([value, label]) => (
                 <div key={label}>
-                  <div className="font-serif text-2xl font-semibold text-[#b58b32]">{value}</div>
-                  <div className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-black/60">{label}</div>
+                  <div className="font-serif text-3xl font-light text-saffron">{value}</div>
+                  <div className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-dark/60">{label}</div>
                 </div>
               ))}
             </div>

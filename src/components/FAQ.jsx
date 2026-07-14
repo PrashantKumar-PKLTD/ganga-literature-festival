@@ -33,25 +33,25 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden bg-white px-5 py-20 md:px-8 md:py-28"
+      className="relative overflow-hidden bg-cream px-5 py-16 md:px-8 md:py-24 border-t border-gold/10"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
         style={{
           backgroundImage:
-            "linear-gradient(to right, rgba(15,23,42,0.06) 1px, transparent 1px)",
+            "linear-gradient(to right, rgba(200,150,43,0.06) 1px, transparent 1px)",
           backgroundSize: "22.5% 100%",
         }}
       />
 
       <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.25fr] lg:gap-20">
         <div className="lg:pt-2">
-          <h2 className="font-serif text-5xl font-black leading-none tracking-[-0.01em] text-black md:text-6xl">
+          <h2 className="font-serif text-5xl font-light uppercase leading-none tracking-[-0.01em] text-dark md:text-6xl">
             Festival
             <br />
             FAQs
           </h2>
-          <p className="mt-8 max-w-sm text-base leading-8 text-slate-600">
+          <p className="mt-8 max-w-sm text-base leading-relaxed text-dark/70 font-light">
             Have questions about attending the Ganga Literature Festival? Here
             are the essentials for visitors, students, authors, and partners.
           </p>
@@ -62,24 +62,24 @@ export default function FAQ() {
             const isOpen = open === index;
 
             return (
-              <div key={faq.q} className="border-b-[5px] border-slate-300/80">
+              <div key={faq.q} className="border-b border-gold/20">
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : index)}
-                  className="grid w-full grid-cols-[44px_1fr] items-start gap-5 py-7 text-left md:grid-cols-[54px_1fr] md:gap-6 focus:outline-none focus:text-[#b58b32] transition-colors"
+                  className="grid w-full grid-cols-[44px_1fr] items-center gap-5 py-6 text-left md:grid-cols-[54px_1fr] md:gap-6 focus:outline-none focus:text-saffron transition-colors"
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${index}`}
                   id={`faq-question-${index}`}
                 >
                   <span
-                    className={`text-5xl font-light leading-none text-[#b58b32] transition-transform duration-300 ${
+                    className={`text-4xl font-light leading-none text-saffron transition-transform duration-300 ${
                       isOpen ? "rotate-45" : ""
                     }`}
                     aria-hidden="true"
                   >
                     +
                   </span>
-                  <span className="text-3xl font-normal leading-tight text-black md:text-[2.45rem]">
+                  <span className="font-serif text-lg sm:text-xl lg:text-2xl font-light leading-snug text-dark">
                     {faq.q}
                   </span>
                 </button>
@@ -93,7 +93,7 @@ export default function FAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="ml-[64px] max-w-2xl pb-7 text-base leading-8 text-slate-600 md:ml-[78px] md:text-lg">
+                    <p className="ml-[44px] max-w-2xl pb-6 text-sm leading-relaxed text-dark/70 md:ml-[54px] md:text-base font-light">
                       {faq.a}
                     </p>
                   </div>

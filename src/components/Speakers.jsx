@@ -1,39 +1,55 @@
+import { Link } from "react-router-dom";
 import SectionHeading from "./SectionHeading";
 import SPEAKERS from "../data/speakers";
 
 export default function Speakers() {
+  const previewSpeakers = SPEAKERS.slice(0, 10);
+
   return (
-    <section id="speakers" className="bg-[#f8f6f1] pb-8 pt-12 md:py-16">
+    <section id="speakers" className="bg-parchment/40 pb-16 pt-16 md:py-24 border-t border-gold/10">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             align="left"
-            eyebrow="The Minds Of The Festival Invited By Us"
-            title=""
-            intro="India's compelling writers, thinkers, historians, journalists, and intellectuals, united by a shared commitment to truth, excellence, and the idea of India."
+            eyebrow="The Minds Of The Festival"
+            title="Featured Speakers"
+            intro="India's compelling writers, thinkers, historians, journalists, and intellectuals, united by a shared commitment to truth, excellence, and the civilisational narrative."
           />
-          <a href="#schedule" className="inline-flex w-fit border border-[#b58b32] bg-black px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-[#b58b32]">
-            View Programme
-          </a>
+          <Link
+            to="/festival/speakers"
+            className="inline-flex w-fit border border-saffron bg-dark px-6 py-3.5 text-xs font-bold uppercase tracking-[0.14em] text-cream transition duration-300 hover:bg-saffron hover:-translate-y-0.5 rounded-none shadow-sm"
+          >
+            All Speakers
+          </Link>
         </div>
 
-        <div className="grid grid-cols-4 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-5">
-          {SPEAKERS.map((speaker) => (
-            <article key={speaker.name} className="group bg-white">
-              <div className="overflow-hidden">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {previewSpeakers.map((speaker) => (
+            <article key={speaker.name} className="group bg-cream border border-gold/20 rounded-none overflow-hidden shadow-sm transition duration-300 hover:border-saffron hover:shadow-md hover:-translate-y-0.5">
+              <div className="overflow-hidden aspect-square">
                 <img
                   src={speaker.img}
                   alt={speaker.name}
-                  className="aspect-[4/3.7] w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                  className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                  loading="lazy"
                 />
               </div>
-              <div className="border border-t-0 border-black/10 p-1.5 sm:p-3">
-                <p className="text-[6px] font-black uppercase leading-[1.25] tracking-[0.08em] text-[#b58b32] sm:text-[9px] sm:leading-3 sm:tracking-[0.14em]">{speaker.role}</p>
-                <h3 className="mt-1 font-serif text-[10px] font-semibold leading-tight text-black sm:mt-2 sm:text-lg sm:leading-none">{speaker.name}</h3>
-                <p className="mt-1 line-clamp-2 text-[7px] leading-[1.25] text-black/65 sm:mt-2 sm:text-[11px] sm:leading-4">{speaker.topic}</p>
+              <div className="p-3 sm:p-4">
+                <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-saffron">{speaker.role}</p>
+                <h3 className="mt-1 font-serif text-[15px] font-light leading-tight text-dark sm:text-lg sm:leading-none">{speaker.name}</h3>
+                <p className="mt-2 line-clamp-2 text-[10px] leading-relaxed text-dark/70 sm:text-xs">{speaker.topic}</p>
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-12 text-center md:hidden">
+          <Link
+            to="/festival/speakers"
+            className="inline-flex w-full justify-center border border-saffron bg-dark px-6 py-4 text-xs font-bold uppercase tracking-[0.14em] text-cream transition duration-300 hover:bg-saffron rounded-none"
+          >
+            View All Speakers
+          </Link>
         </div>
       </div>
     </section>
