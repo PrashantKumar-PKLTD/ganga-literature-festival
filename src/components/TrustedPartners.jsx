@@ -12,33 +12,33 @@ const partners = Array.from({ length: 21 }, (_, index) => {
 
 export default function TrustedPartners() {
   return (
-    <section className="relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#b58b32]/35 to-transparent" />
+    <section className="relative overflow-hidden bg-cream py-16 sm:py-20 lg:py-24 border-t border-gold/10">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/35 to-transparent" />
       <div className="mx-auto w-full max-w-[92rem] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h3 className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
+          <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-saffron">
             Partners
           </h3>
-          <h2 className="mt-3 font-serif text-4xl font-semibold leading-none text-black sm:text-5xl">
+          <h2 className="mt-3 font-serif text-4xl font-light leading-none text-dark sm:text-5xl">
             Our Trusted Partners
           </h2>
-          <p className="mt-4 text-sm leading-6 text-black/65 sm:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-dark/70 sm:text-base font-light">
             Institutions, organizations, and collaborators supporting BIHAAN's
             shared platform.
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-3 items-center gap-x-4 gap-y-8 sm:mt-10 sm:grid-cols-4 sm:gap-x-8 sm:gap-y-12 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+        <div className="mt-10 grid grid-cols-3 items-center gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
           {partners.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className="group relative z-20 flex min-h-[4.5rem] items-center justify-center transition duration-300 hover:-translate-y-1 sm:min-h-[7rem] lg:min-h-[9rem]"
+              className="group relative flex h-20 sm:h-28 items-center justify-center border border-gold/20 bg-cream p-3 shadow-sm transition duration-300 hover:border-saffron hover:scale-105 hover:-translate-y-0.5 rounded-none"
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
                 loading="lazy"
-                className="relative z-10 h-full max-h-[5.25rem] w-full max-w-[5.25rem] object-contain transition duration-300 group-hover:scale-110 sm:max-h-[8rem] sm:max-w-[10rem] lg:max-h-[9.5rem] lg:max-w-[12rem]"
+                className="h-full w-full object-contain filter grayscale opacity-70 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
               />
             </div>
           ))}

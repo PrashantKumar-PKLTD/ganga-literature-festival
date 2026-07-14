@@ -82,46 +82,49 @@ function Flower({ className = "" }) {
 
 export default function FriendOfFestival() {
   return (
-    <main className="pt-[78px] md:pt-[82px]">
-      <section className="relative overflow-hidden bg-[#f8f6f1] px-5 py-20 text-center text-black md:px-8 md:py-28">
-        <Flower className="left-10 top-28 text-[#b58b32]" />
-        <Flower className="right-10 top-48 text-[#b58b32]" />
+    <main className="pt-[78px] md:pt-[82px] bg-cream">
+      <section className="relative overflow-hidden bg-cream px-5 py-16 text-center text-dark md:px-8 md:py-24">
+        <Flower className="left-10 top-28 text-saffron/25" />
+        <Flower className="right-10 top-48 text-saffron/25" />
 
         <div className="mx-auto max-w-5xl">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#b58b32]">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-saffron">
             Friend of the Festival
           </p>
-          <h1 className="mx-auto mt-5 max-w-2xl font-serif text-5xl font-black leading-[0.9] text-black md:text-7xl">
+          <h1 className="mx-auto mt-5 max-w-2xl font-serif text-5xl md:text-7xl font-light uppercase tracking-tight text-dark">
             What your Experience includes
           </h1>
-          <p className="mx-auto mt-10 max-w-2xl text-base font-bold leading-7">
+          <p className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-dark/70 sm:text-lg">
             Become a Friend of the Festival and access the finest hospitality,
             curated evenings, lounge benefits, and premium festival support.
           </p>
           <Link
             to="/#register"
-            className="mt-8 inline-flex rounded-md bg-[#b58b32] px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:bg-black"
+            className="mt-8 inline-flex border border-saffron bg-dark text-cream px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] transition duration-300 hover:bg-saffron hover:text-cream rounded-none hover:-translate-y-0.5 shadow-sm"
           >
             Book Package
           </Link>
         </div>
 
-        <div className="mx-auto mt-20 grid max-w-6xl gap-12 lg:grid-cols-3 lg:items-start">
+        <div className="mx-auto mt-20 grid max-w-6xl gap-8 lg:grid-cols-3 lg:items-start">
           {benefits.map((benefit, index) => (
-            <article key={benefit.title} className={index === 1 ? "lg:-mt-14" : ""}>
+            <article key={benefit.title} className={`p-6 border border-gold/20 bg-cream/30 rounded-none shadow-sm transition hover:border-saffron hover:-translate-y-0.5 duration-300 ${index === 1 ? "lg:-translate-y-6" : ""}`}>
               <Ornament />
-              <img
-                src={benefit.image}
-                alt={benefit.title}
-                className="mx-auto aspect-[4/3] w-full max-w-sm object-cover"
-              />
+              <div className="overflow-hidden border border-gold/10">
+                <img
+                  src={benefit.image}
+                  alt={benefit.title}
+                  className="mx-auto aspect-[4/3] w-full max-w-sm object-cover grayscale hover:grayscale-0 transition duration-500"
+                  loading="lazy"
+                />
+              </div>
               <Ornament />
-              <h2 className="font-serif text-3xl font-black leading-tight text-black">
+              <h2 className="font-serif text-2xl font-light uppercase text-dark mt-4">
                 {benefit.title}
               </h2>
-              <div className="mx-auto mt-6 grid max-w-sm gap-4 text-sm font-semibold leading-6">
+              <div className="mx-auto mt-6 grid max-w-sm gap-2 text-sm leading-relaxed text-dark/70 font-light">
                 {benefit.items.map((item) => (
-                  <p key={item} className="border-b border-[#7d5c24]/45 pb-4">
+                  <p key={item} className="border-b border-gold/15 pb-3">
                     {item}
                   </p>
                 ))}
@@ -130,26 +133,26 @@ export default function FriendOfFestival() {
           ))}
         </div>
 
-        <div className="mx-auto mt-16 max-w-3xl rounded-2xl bg-black px-7 py-8 text-white">
-          <p className="text-sm font-bold leading-7">
+        <div className="mx-auto mt-16 max-w-3xl rounded-none border border-gold/30 bg-dark px-7 py-8 text-cream shadow-md">
+          <p className="text-sm font-light leading-relaxed">
             First India News Jaipur Music Stage offers programming on selected
             festival days. Guests must book packages for those dates to avail
             the offer.
           </p>
-          <p className="mt-3 text-sm font-black text-[#b58b32]">
+          <p className="mt-3 text-sm font-bold text-saffron">
             Heritage Evening will be on 18th January and Writers' Ball will be on 19th January.
           </p>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-black px-5 py-20 text-center text-white md:px-8 md:py-28">
-        <Flower className="bottom-10 left-8 text-[#b58b32]" />
-        <Flower className="right-10 top-20 text-[#b58b32]" />
+      <section className="relative overflow-hidden bg-dark px-5 py-16 text-center text-cream md:px-8 md:py-24 border-t border-gold/10">
+        <Flower className="bottom-10 left-8 text-saffron/25" />
+        <Flower className="right-10 top-20 text-saffron/25" />
 
-        <h2 className="mx-auto max-w-xl font-serif text-5xl font-black leading-[0.9] text-[#b58b32] md:text-6xl">
+        <h2 className="mx-auto max-w-xl font-serif text-5xl font-light uppercase leading-[0.9] text-gold md:text-6xl">
           FOF Packages and pricing
         </h2>
-        <p className="mx-auto mt-8 max-w-2xl text-base font-semibold leading-7">
+        <p className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-cream/70">
           Before booking your package, check the schedule of exclusive evening
           programmes available as part of the Friend of the Festival packages.
         </p>
@@ -158,44 +161,44 @@ export default function FriendOfFestival() {
           {packages.map((pkg, index) => (
             <article
               key={pkg.price}
-              className={`rounded-[2rem] border border-[#b58b32] bg-[#f8f6f1] px-7 py-10 text-black ${
+              className={`rounded-none border border-gold/20 bg-cream/5 px-7 py-10 text-cream transition duration-300 hover:border-saffron hover:shadow-2xl ${
                 index === 1 ? "lg:translate-y-8" : ""
               }`}
             >
-              <p className="text-sm font-black text-[#b58b32]">{pkg.date}</p>
-              <h3 className="mt-3 font-serif text-3xl font-black">{pkg.price}</h3>
-              <p className="mt-4 text-sm font-semibold leading-7">{pkg.desc}</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-saffron">{pkg.date}</p>
+              <h3 className="mt-2 font-serif text-3xl font-light text-gold uppercase">{pkg.price}</h3>
+              <p className="mt-4 text-sm font-light leading-relaxed text-cream/70">{pkg.desc}</p>
             </article>
           ))}
         </div>
 
-        <div className="mx-auto mt-16 flex max-w-3xl flex-col gap-5 text-lg font-bold md:flex-row md:items-center md:justify-center">
-          <p>10% discount<br /><span className="text-sm font-normal">book any 2-3 days</span></p>
-          <span className="hidden h-16 w-px bg-white/50 md:block" />
-          <p>15% discount<br /><span className="text-sm font-normal">book any 4 days</span></p>
-          <span className="hidden h-16 w-px bg-white/50 md:block" />
-          <p>20% discount<br /><span className="text-sm font-normal">book all 5 days</span></p>
+        <div className="mx-auto mt-24 flex max-w-3xl flex-col gap-8 text-base font-semibold md:flex-row md:items-center md:justify-center">
+          <p className="tracking-wide">10% discount<br /><span className="text-xs font-light text-cream/60 uppercase tracking-widest mt-1 block">book any 2-3 days</span></p>
+          <span className="hidden h-12 w-px bg-gold/20 md:block" />
+          <p className="tracking-wide">15% discount<br /><span className="text-xs font-light text-cream/60 uppercase tracking-widest mt-1 block">book any 4 days</span></p>
+          <span className="hidden h-12 w-px bg-gold/20 md:block" />
+          <p className="tracking-wide">20% discount<br /><span className="text-xs font-light text-cream/60 uppercase tracking-widest mt-1 block">book all 5 days</span></p>
         </div>
 
-        <p className="mx-auto mt-14 max-w-xl text-sm font-semibold leading-7">
+        <p className="mx-auto mt-16 max-w-xl text-sm font-light text-cream/70">
           For any queries related to your Friend of the Festival experience,
-          please email us at <span className="text-[#b58b32]">info@gangalitfest.in</span>
+          please email us at <span className="text-saffron font-bold">info@gangalitfest.in</span>
         </p>
       </section>
 
-      <section className="relative overflow-hidden bg-white px-5 py-20 text-center text-black md:px-8 md:py-28">
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-black [clip-path:polygon(0_45%,5%_35%,8%_60%,12%_38%,18%_62%,26%_40%,34%_58%,42%_32%,52%_60%,62%_38%,72%_60%,84%_35%,100%_58%,100%_100%,0_100%)]" />
+      <section className="relative overflow-hidden bg-cream px-5 py-16 text-center text-dark md:px-8 md:py-24 border-t border-gold/10">
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-dark [clip-path:polygon(0_45%,5%_35%,8%_60%,12%_38%,18%_62%,26%_40%,34%_58%,42%_32%,52%_60%,62%_38%,72%_60%,84%_35%,100%_58%,100%_100%,0_100%)]" />
 
-        <h2 className="mx-auto max-w-lg font-serif text-5xl font-black leading-[0.9] md:text-6xl">
+        <h2 className="mx-auto max-w-lg font-serif text-5xl font-light uppercase leading-[0.9] md:text-6xl text-dark">
           Festival Partner Hotels
         </h2>
-        <div className="mx-auto mt-10 max-w-3xl text-base font-semibold leading-8 text-black">
+        <div className="mx-auto mt-8 max-w-3xl text-base font-light leading-relaxed text-dark/70">
           <p>
             Choose from official partner hotels to make your festival experience
             comfortable and memorable. These hotels support authors, guests, and
             Friends of the Festival.
           </p>
-          <p className="mt-5">
+          <p className="mt-4">
             Guests staying at partner hotels may receive discounted rates,
             airport transfers, and transport support between hotel and festival venues.
           </p>
@@ -203,22 +206,25 @@ export default function FriendOfFestival() {
 
         <div className="relative z-10 mx-auto mt-14 grid max-w-4xl gap-8 md:grid-cols-2">
           {hotels.map((hotel) => (
-            <article key={hotel.name}>
-              <img
-                src={hotel.image}
-                alt={hotel.name}
-                className="aspect-[4/3] w-full rounded-md object-cover"
-              />
-              <h3 className="mt-4 font-serif text-3xl font-black">{hotel.name}</h3>
-              <p className="mt-2 text-sm font-semibold leading-6 text-black">{hotel.note}</p>
-              <p className="mt-2 text-xl text-[#b58b32]">*****</p>
+            <article key={hotel.name} className="bg-cream border border-gold/20 p-4 rounded-none shadow-sm group hover:border-saffron transition duration-300">
+              <div className="overflow-hidden border border-gold/10">
+                <img
+                  src={hotel.image}
+                  alt={hotel.name}
+                  className="aspect-[4/3] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <h3 className="mt-4 font-serif text-2xl font-light text-dark uppercase">{hotel.name}</h3>
+              <p className="mt-2 text-sm font-light leading-relaxed text-dark/70">{hotel.note}</p>
+              <p className="mt-2 text-xl text-gold">★★★★★</p>
             </article>
           ))}
         </div>
 
         <Link
           to="/festival/book-your-festival-hotel"
-          className="relative z-10 mt-12 inline-flex rounded-md bg-[#b58b32] px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:bg-black"
+          className="relative z-10 mt-12 inline-flex border border-saffron bg-dark text-cream px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] transition duration-300 hover:bg-saffron shadow-sm hover:-translate-y-0.5 rounded-none"
         >
           View Hotels
         </Link>

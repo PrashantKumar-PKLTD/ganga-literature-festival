@@ -48,17 +48,17 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-black border-t border-black/10">
+    <footer className="bg-dark text-cream border-t border-cream/10">
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
         <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-start">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.32em] text-[#b58b32]">
+            <p className="text-xs font-black uppercase tracking-[0.32em] text-saffron">
               Ganga Literature Festival
             </p>
-            <h2 className="mt-4 max-w-2xl font-serif text-5xl font-medium uppercase leading-none md:text-7xl">
+            <h2 className="mt-4 max-w-2xl font-serif text-5xl font-medium uppercase leading-none text-cream md:text-7xl">
               Stories By The River.
             </h2>
-            <p className="mt-6 max-w-xl leading-8 text-black/65 text-sm md:text-base font-semibold">
+            <p className="mt-6 max-w-xl leading-8 text-cream/70 text-sm md:text-base font-semibold">
               A refined festival website for authors, readers, students,
               publishers, partners, and cultural communities.
             </p>
@@ -67,10 +67,10 @@ export default function Footer() {
           <div className="grid w-full max-w-xl grid-cols-2 gap-4 sm:grid-cols-4 md:justify-self-end">
             {footerLogos.map((logo) => (
               <div key={logo.alt}>
-                <p className="mb-3 whitespace-nowrap text-[10px] font-black uppercase tracking-[0.18em] text-[#b58b32]">
+                <p className="mb-3 whitespace-nowrap text-[10px] font-black uppercase tracking-[0.18em] text-saffron">
                   {logo.label}
                 </p>
-                <div className="flex h-24 items-center justify-center border border-[#b58b32]/30 bg-white p-3 shadow-sm">
+                <div className="flex h-24 items-center justify-center border border-gold/20 bg-cream p-3 shadow-md transition duration-300 hover:scale-105">
                   <img
                     src={logo.image}
                     alt={logo.alt}
@@ -83,34 +83,34 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-8 border-t border-black/10 pt-10 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mt-14 grid gap-8 border-t border-cream/10 pt-10 sm:grid-cols-2 md:grid-cols-4">
           <div>
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-[#b58b32]">Festival</p>
-            <ul className="space-y-3 text-sm font-bold text-black/65">
-              <li><Link to="/festival/register-to-attend" className="hover:text-[#b58b32] transition">Register to Attend</Link></li>
-              <li><Link to="/festival/friend-of-the-festival" className="hover:text-[#b58b32] transition">Friend of the Festival</Link></li>
-              <li><Link to="/festival/book-your-festival-hotel" className="hover:text-[#b58b32] transition">Festival Hotels</Link></li>
-              <li><Link to="/festival/speakers" className="hover:text-[#b58b32] transition">Speakers</Link></li>
-              <li><Link to="/honourable-guests" className="hover:text-[#b58b32] transition">Honourable Guests</Link></li>
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-saffron">Festival</p>
+            <ul className="space-y-3 text-sm font-bold text-cream/70">
+              <li><Link to="/festival/register-to-attend" className="hover:text-saffron transition">Register to Attend</Link></li>
+              <li><Link to="/festival/friend-of-the-festival" className="hover:text-saffron transition">Friend of the Festival</Link></li>
+              <li><Link to="/festival/book-your-festival-hotel" className="hover:text-saffron transition">Festival Hotels</Link></li>
+              <li><Link to="/festival/speakers" className="hover:text-saffron transition">Speakers</Link></li>
+              <li><Link to="/honourable-guests" className="hover:text-saffron transition">Honourable Guests</Link></li>
             </ul>
           </div>
           <div>
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-[#b58b32]">Programme & Media</p>
-            <ul className="space-y-3 text-sm font-bold text-black/65">
-              <li><Link to="/programme" className="hover:text-[#b58b32] transition">Programme Schedule</Link></li>
-              <li><Link to="/media/blogs" className="hover:text-[#b58b32] transition">Blogs</Link></li>
-              <li><Link to="/partners" className="hover:text-[#b58b32] transition">Sponsors & Partners</Link></li>
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-saffron">Programme & Media</p>
+            <ul className="space-y-3 text-sm font-bold text-cream/70">
+              <li><Link to="/programme" className="hover:text-saffron transition">Programme Schedule</Link></li>
+              <li><Link to="/media/blogs" className="hover:text-saffron transition">Blogs</Link></li>
+              <li><Link to="/partners" className="hover:text-saffron transition">Sponsors & Partners</Link></li>
             </ul>
           </div>
           <div>
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-[#b58b32]">About</p>
-            <ul className="space-y-3 text-sm font-bold text-black/65">
-              <li><Link to="/about" className="hover:text-[#b58b32] transition">About the Festival</Link></li>
-              <li><Link to="/about/contact-us" className="hover:text-[#b58b32] transition">Contact Us</Link></li>
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-saffron">About</p>
+            <ul className="space-y-3 text-sm font-bold text-cream/70">
+              <li><Link to="/about" className="hover:text-saffron transition">About the Festival</Link></li>
+              <li><Link to="/about/contact-us" className="hover:text-saffron transition">Contact Us</Link></li>
             </ul>
           </div>
           <div>
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-[#b58b32]">Connect with Us</p>
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-saffron">Connect with Us</p>
             <div className="flex flex-wrap gap-3">
               {socials.map((social) => (
                 <a
@@ -119,7 +119,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-[#f8f6f1] text-[#b58b32] hover:bg-[#b58b32] hover:text-white hover:border-[#b58b32] transition duration-200"
+                  className="flex h-10 w-10 items-center justify-center rounded-none border border-cream/15 bg-dark text-saffron hover:bg-saffron hover:text-cream hover:border-saffron transition duration-200"
                 >
                   {social.icon}
                 </a>
@@ -128,7 +128,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-black/10 pt-6 text-xs uppercase tracking-[0.18em] text-black/55 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 flex flex-col gap-3 border-t border-cream/10 pt-6 text-xs uppercase tracking-[0.18em] text-cream/50 md:flex-row md:items-center md:justify-between">
           <p>© 2026 Ganga Literature Festival</p>
           <p>Patna, Bihar</p>
         </div>

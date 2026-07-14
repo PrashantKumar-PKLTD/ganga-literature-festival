@@ -82,10 +82,10 @@ const hotels = [
 function Heading({ eyebrow, title, inverted = false }) {
   return (
     <div className="mx-auto max-w-3xl text-center">
-      <p className={`text-xs font-black uppercase tracking-[0.28em] ${inverted ? "text-[#b58b32]" : "text-[#b58b32]"}`}>
+      <p className="text-xs font-bold uppercase tracking-[0.28em] text-saffron">
         {eyebrow}
       </p>
-      <h2 className={`mt-4 font-serif text-5xl font-black leading-[0.92] md:text-7xl ${inverted ? "text-white" : "text-black"}`}>
+      <h2 className={`mt-4 font-serif text-4xl sm:text-5xl md:text-6xl font-light uppercase leading-[0.92] ${inverted ? "text-cream" : "text-dark"}`}>
         {title}
       </h2>
     </div>
@@ -94,17 +94,17 @@ function Heading({ eyebrow, title, inverted = false }) {
 
 export default function RegistrationPage() {
   return (
-    <main className="pt-[78px] md:pt-[82px]">
-      <section className="relative overflow-hidden bg-[#f8f6f1] px-5 py-20 md:px-8 md:py-28">
+    <main className="pt-[78px] md:pt-[82px] bg-cream">
+      <section className="relative overflow-hidden bg-cream px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="text-center lg:text-left">
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-saffron">
               Registration
             </p>
-            <h1 className="mt-5 font-serif text-5xl font-black leading-[0.9] text-black md:text-7xl">
+            <h1 className="mt-5 font-serif text-5xl font-light leading-[0.9] text-dark md:text-7xl uppercase">
               Celebration of Literature and Culture
             </h1>
-            <div className="mt-8 max-w-xl text-base font-semibold leading-8 text-black/75 lg:mx-0">
+            <div className="mt-8 max-w-xl text-base font-light leading-relaxed text-dark/75 lg:mx-0">
               <p>
                 Immerse yourself in a vibrant atmosphere filled with inspiring talks,
                 performances, workshops, books, and cultural conversations.
@@ -116,14 +116,14 @@ export default function RegistrationPage() {
             </div>
           </div>
 
-          <div className="relative overflow-hidden bg-black">
+          <div className="relative overflow-hidden bg-dark border border-gold/20">
             <img
               src="/gangaimg1.png"
               alt="Festival culture"
-              className="aspect-video w-full object-cover opacity-70"
+              className="aspect-video w-full object-cover opacity-70 grayscale hover:grayscale-0 transition duration-500"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-[#b58b32] bg-black/40 text-3xl text-white">
+              <span className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-saffron bg-black/40 text-3xl text-cream hover:scale-115 transition duration-300 cursor-pointer">
                 ▶
               </span>
             </div>
@@ -133,11 +133,11 @@ export default function RegistrationPage() {
 
       <Registration />
 
-      <section className="relative overflow-hidden bg-white px-5 py-20 md:px-8 md:py-28">
-        <div className="pointer-events-none absolute left-0 top-0 h-40 w-40 rounded-full border border-[#b58b32]/20" />
-        <div className="pointer-events-none absolute right-[-4rem] top-24 h-64 w-64 rounded-full border border-[#b58b32]/20" />
+      <section className="relative overflow-hidden bg-cream px-5 py-16 md:px-8 md:py-24 border-t border-gold/10">
+        <div className="pointer-events-none absolute left-0 top-0 h-40 w-40 rounded-full border border-gold/10" />
+        <div className="pointer-events-none absolute right-[-4rem] top-24 h-64 w-64 rounded-full border border-gold/10" />
         <Heading eyebrow="Choose Your Pass" title="Registration Categories" />
-        <p className="mx-auto mt-8 max-w-3xl text-center text-sm font-semibold leading-7 text-black/70">
+        <p className="mx-auto mt-8 max-w-3xl text-center text-sm font-light leading-relaxed text-dark/70">
           Secure your festival access early. Choose a category based on how you want
           to experience the festival: student access, general entry, media access,
           music events, publishing track, virtual sessions, or premium hospitality.
@@ -147,42 +147,42 @@ export default function RegistrationPage() {
           {categories.map((category) => {
             const content = (
               <article
-                className={`group relative flex h-full min-h-[300px] flex-col overflow-hidden rounded-md border p-6 text-left transition duration-300 hover:-translate-y-1 ${
+                className={`group relative flex h-full min-h-[300px] flex-col overflow-hidden rounded-none border p-6 text-left transition duration-300 hover:-translate-y-1 ${
                   category.featured
-                    ? "border-[#b58b32] bg-black text-white lg:col-span-2 lg:row-span-2 lg:min-h-[625px] lg:p-9"
-                    : "border-[#b58b32]/55 bg-[#f8f6f1] text-black hover:border-[#b58b32]"
+                    ? "border-gold/30 bg-dark text-cream lg:col-span-2 lg:row-span-2 lg:min-h-[625px] lg:p-9 hover:border-saffron"
+                    : "border-gold/25 bg-cream text-dark hover:border-saffron hover:bg-cream"
                 }`}
               >
-                <div className="absolute right-4 top-4 h-16 w-16 rounded-full border border-[#b58b32]/30" />
+                <div className="absolute right-4 top-4 h-16 w-16 rounded-full border border-gold/10" />
                 <div className={`relative mb-8 flex h-14 w-14 items-center justify-center rounded-full border font-serif text-sm font-black ${
-                  category.featured ? "border-[#b58b32] bg-[#b58b32] text-white" : "border-[#b58b32] bg-white text-[#b58b32]"
+                  category.featured ? "border-saffron bg-saffron text-cream" : "border-saffron bg-cream text-saffron"
                 }`}>
                   {category.icon}
                 </div>
 
-                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#b58b32]">
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-saffron">
                   {category.accent}
                 </p>
-                <h2 className={`mt-3 font-serif font-black leading-tight ${
+                <h2 className={`mt-3 font-serif font-light leading-tight uppercase ${
                   category.featured ? "max-w-md text-5xl" : "text-3xl"
                 }`}>
                   {category.title}
                 </h2>
-                <p className={`mt-4 font-black uppercase tracking-[0.12em] text-[#b58b32] ${
+                <p className={`mt-4 font-bold uppercase tracking-[0.12em] text-saffron ${
                   category.featured ? "text-base" : "text-sm"
                 }`}>
                   {category.price}
                 </p>
-                <p className={`mt-5 flex-1 leading-7 ${category.featured ? "max-w-lg text-base text-white/75" : "text-sm text-black/70"}`}>
+                <p className={`mt-5 flex-1 leading-relaxed font-light ${category.featured ? "max-w-lg text-base text-cream/75" : "text-sm text-dark/70"}`}>
                   {category.desc}
                 </p>
                 <div className={`mt-7 flex items-center justify-between border-t pt-5 ${
-                  category.featured ? "border-white/15" : "border-black/10"
+                  category.featured ? "border-white/15" : "border-dark/10"
                 }`}>
-                  <span className="text-xs font-black uppercase tracking-[0.18em] text-[#b58b32]">
+                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-saffron">
                     Opens soon
                   </span>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#b58b32] text-white transition group-hover:bg-black group-hover:text-white">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-saffron text-cream transition group-hover:bg-dark group-hover:text-cream">
                     →
                   </span>
                 </div>
@@ -198,17 +198,20 @@ export default function RegistrationPage() {
         </div>
       </section>
 
-      <section className="bg-[#f8f6f1] px-5 py-20 md:px-8 md:py-28">
+      <section className="bg-cream px-5 py-16 md:px-8 md:py-24 border-t border-gold/10">
         <Heading eyebrow="Featured Voices" title="Festival Speakers" />
         <div className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-8 sm:grid-cols-4">
           {speakers.map((speaker) => (
-            <article key={speaker.name} className="text-center">
-              <img
-                src={speaker.image}
-                alt={speaker.name}
-                className="mx-auto h-32 w-32 rounded-full object-cover grayscale"
-              />
-              <h3 className="mt-4 font-serif text-xl font-black leading-tight text-black">
+            <article key={speaker.name} className="text-center group">
+              <div className="mx-auto h-32 w-32 overflow-hidden rounded-full border border-gold/25 group-hover:border-saffron transition duration-300">
+                <img
+                  src={speaker.image}
+                  alt={speaker.name}
+                  className="h-full w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <h3 className="mt-4 font-serif text-lg font-light leading-tight text-dark transition duration-300 group-hover:text-saffron">
                 {speaker.name}
               </h3>
             </article>
@@ -217,16 +220,16 @@ export default function RegistrationPage() {
         <div className="mt-12 text-center">
           <Link
             to="/festival/speakers"
-            className="inline-flex bg-[#b58b32] px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:bg-black"
+            className="bg-dark text-cream border border-saffron inline-flex px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] transition hover:bg-saffron rounded-none shadow-sm hover:-translate-y-0.5"
           >
             Speakers List
           </Link>
         </div>
       </section>
 
-      <section className="bg-black px-5 py-20 text-white md:px-8 md:py-28">
+      <section className="bg-dark px-5 py-16 text-cream md:px-8 md:py-24 border-t border-gold/10">
         <Heading eyebrow="Stay With Us" title="Festival Partner Hotels" inverted />
-        <p className="mx-auto mt-8 max-w-3xl text-center text-sm font-semibold leading-7 text-white/70">
+        <p className="mx-auto mt-8 max-w-3xl text-center text-sm font-light leading-relaxed text-cream/70">
           Choose from official partner hotels to make your festival experience
           comfortable. Partner hotel guests may receive transport support and
           preferred festival assistance.
@@ -234,15 +237,18 @@ export default function RegistrationPage() {
 
         <div className="mx-auto mt-14 grid max-w-4xl gap-8 md:grid-cols-2">
           {hotels.map((hotel) => (
-            <article key={hotel.name} className="text-center">
-              <img
-                src={hotel.image}
-                alt={hotel.name}
-                className="aspect-[4/3] w-full rounded-md object-cover"
-              />
-              <h3 className="mt-4 font-serif text-3xl font-black text-white">{hotel.name}</h3>
-              <p className="mt-2 text-sm leading-6 text-white/70">{hotel.note}</p>
-              <p className="mt-2 text-xl text-[#b58b32]">*****</p>
+            <article key={hotel.name} className="text-center group">
+              <div className="overflow-hidden border border-gold/20 group-hover:border-saffron transition duration-300">
+                <img
+                  src={hotel.image}
+                  alt={hotel.name}
+                  className="aspect-[4/3] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <h3 className="mt-4 font-serif text-3xl font-light text-cream uppercase">{hotel.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-cream/70 font-light">{hotel.note}</p>
+              <p className="mt-2 text-xl text-gold">★★★★★</p>
             </article>
           ))}
         </div>
@@ -250,7 +256,7 @@ export default function RegistrationPage() {
         <div className="mt-12 text-center">
           <Link
             to="/festival/book-your-festival-hotel"
-            className="inline-flex bg-[#b58b32] px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:bg-white hover:text-black"
+            className="bg-saffron text-cream border border-saffron inline-flex px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] transition hover:bg-cream hover:text-dark rounded-none shadow-sm hover:-translate-y-0.5"
           >
             View Hotels
           </Link>
