@@ -287,7 +287,7 @@ export default function ProgrammePage() {
                       {day.heading}
                     </div>
 
-                    <div className="relative mt-8 border-l border-gold/30 pl-6">
+                    <div className="relative mt-8 border-l border-gold/30 pl-8">
                       {day.sessions.map((session, index) => {
                         const id = sessionId(dayIndex, session);
                         const venue = getVenue(session);
@@ -296,55 +296,57 @@ export default function ProgrammePage() {
                           <article
                             id={id}
                             key={session.title}
-                            className={`relative mb-8 scroll-mt-28 border border-gold/20 p-6 transition duration-300 hover:border-saffron hover:shadow-md ${
-                              index % 2 === 1 ? "bg-parchment/30" : "bg-cream"
-                            }`}
+                            className="relative mb-8 scroll-mt-28 bg-cream p-4 border-double border-4 border-gold/25 shadow-sm hover:border-saffron hover:shadow-xl transition-all duration-500 rounded-none flex flex-col"
                           >
-                            <span className="absolute -left-[31px] top-8 h-3 w-3 rotate-45 border border-gold/30 bg-saffron" />
-                            <div className="flex items-start justify-between gap-4">
+                            <span className="absolute -left-[40px] top-[28px] text-[10px] text-saffron">♦</span>
+                            <div className="border border-gold/15 p-4 flex flex-col justify-between">
                               <div>
-                                <p className="text-xs font-bold text-dark/60">
-                                  {day.heading} | {displayTime(session.time)} {timezone}
-                                </p>
-                                <div className="mt-3 flex flex-wrap gap-2">
-                                  <span className="rounded-none border border-saffron/20 bg-saffron/10 px-2.5 py-1 text-xs font-bold text-saffron uppercase tracking-[0.1em]">
-                                    {session.type}
-                                  </span>
+                                <div className="flex items-start justify-between gap-4">
+                                  <div>
+                                    <p className="text-xs font-bold text-dark/50">
+                                      {day.heading} | {displayTime(session.time)} {timezone}
+                                    </p>
+                                    <div className="mt-2.5 flex flex-wrap gap-2">
+                                      <span className="rounded-none border border-saffron/20 bg-saffron/5 px-2.5 py-0.5 text-[10px] font-bold text-saffron uppercase tracking-[0.1em]">
+                                        {session.type}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <button
+                                    type="button"
+                                    onClick={() => shareSession(day, session, id)}
+                                    className="rounded-none p-2 text-dark transition hover:bg-saffron/10 hover:text-saffron focus:outline-none"
+                                    aria-label={`Share ${session.title}`}
+                                  >
+                                    <Share2 className="h-5 w-5" />
+                                  </button>
                                 </div>
+
+                                <h3 className="mt-4 font-serif text-2xl md:text-3xl font-light leading-tight text-dark transition duration-300 hover:text-saffron">
+                                  {index + 1}. {session.title}
+                                </h3>
+                                <p className="mt-3 text-sm leading-relaxed text-dark/70 font-light">{session.desc}</p>
                               </div>
-                              <button
-                                type="button"
-                                onClick={() => shareSession(day, session, id)}
-                                className="rounded-none p-2 text-dark transition hover:bg-saffron/10 hover:text-saffron focus:outline-none focus:ring-1 focus:ring-saffron"
-                                aria-label={`Share ${session.title}`}
-                              >
-                                <Share2 className="h-5 w-5" />
-                              </button>
-                            </div>
 
-                            <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-dark transition duration-300 hover:text-saffron">
-                              {index + 1}. {session.title}
-                            </h2>
-                            <p className="mt-3 text-sm leading-relaxed text-dark/70 font-light">{session.desc}</p>
+                              {session.people && (
+                                <div className="mt-5 border-t border-gold/20 pt-4">
+                                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-dark/50">
+                                    Participants
+                                  </p>
+                                  <p className="mt-1.5 text-sm font-semibold leading-relaxed text-dark/75">
+                                    {session.people}
+                                  </p>
+                                </div>
+                              )}
 
-                            {session.people && (
-                              <div className="mt-5 border-t border-gold/20 pt-4">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-dark/50">
-                                  Participants
+                              <div className="mt-5 flex flex-col gap-3 border-t border-gold/20 pt-4 text-xs tracking-wider uppercase text-dark/50 md:flex-row md:items-center md:justify-between font-light">
+                                <p>
+                                  <span className="font-bold text-dark">Venue:</span> {venue}
                                 </p>
-                                <p className="mt-2 text-sm font-semibold leading-relaxed text-dark/75">
-                                  {session.people}
+                                <p>
+                                  <span className="font-bold text-dark">Supported by:</span> BIHAAN, BluOne Ink, SPIC MACAY
                                 </p>
                               </div>
-                            )}
-
-                            <div className="mt-5 flex flex-col gap-3 border-t border-gold/20 pt-4 text-xs tracking-wider uppercase text-dark/60 md:flex-row md:items-center md:justify-between">
-                              <p>
-                                <span className="font-bold text-dark">Venue:</span> {venue}
-                              </p>
-                              <p>
-                                <span className="font-bold text-dark">Supported by:</span> BIHAAN, BluOne Ink, SPIC MACAY
-                              </p>
                             </div>
                           </article>
                         );

@@ -45,13 +45,13 @@ function MotifTitle({ eyebrow, title, inverted = false }) {
 
 export default function HotelsPage() {
   return (
-    <main className="pt-[78px] md:pt-[82px] bg-cream">
+    <main className="pt-[78px] md:pt-[82px] bg-cream paper-texture">
       <section
         className="relative min-h-[500px] overflow-hidden bg-cover bg-center text-white md:min-h-[560px]"
         style={{ backgroundImage: 'url("/gangaimg1.png")' }}
       >
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,96,10,0.14),rgba(28,18,8,0.72))]" />
+        <div className="absolute inset-0 bg-dark/65" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,96,10,0.18),rgba(28,18,8,0.85))]" />
         <div className="relative mx-auto flex min-h-[500px] max-w-7xl items-center justify-center px-5 py-16 text-center md:min-h-[560px] md:px-8">
           <div className="relative mx-auto max-w-xl px-8 py-16">
             <div className="absolute inset-0 border-[8px] border-saffron opacity-80 [clip-path:polygon(12%_100%,12%_44%,17%_44%,20%_35%,28%_30%,36%_25%,44%_17%,50%_0,56%_17%,64%_25%,72%_30%,80%_35%,83%_44%,88%_44%,88%_100%)]" />
@@ -68,10 +68,7 @@ export default function HotelsPage() {
         <div className="absolute inset-x-0 bottom-0 h-32 bg-cream [clip-path:polygon(0_60%,4%_40%,8%_62%,13%_42%,21%_62%,31%_38%,40%_58%,50%_40%,60%_62%,70%_38%,82%_58%,92%_40%,100%_60%,100%_100%,0_100%)]" />
       </section>
 
-      <section className="relative overflow-hidden bg-cream px-5 py-16 md:px-8 md:py-24 border-t border-gold/10">
-        <span className="absolute left-10 top-16 text-6xl font-light text-saffron/25">*</span>
-        <span className="absolute right-14 top-28 text-5xl font-light text-saffron/25">*</span>
-
+      <section className="relative overflow-hidden px-5 py-16 md:px-8 md:py-24">
         <MotifTitle eyebrow="Festival Stay" title="Festival Hotels" />
         <div className="mx-auto mt-10 max-w-2xl text-center text-sm font-light leading-relaxed text-dark/70">
           <p>Stay near, book early, and let the festival desk take care of the rest.</p>
@@ -86,8 +83,8 @@ export default function HotelsPage() {
 
         <div className="mx-auto mt-14 grid max-w-5xl gap-10 md:grid-cols-2">
           {hotels.map((hotel) => (
-            <article key={hotel.name} className="text-center bg-cream border border-gold/20 p-6 rounded-none shadow-sm transition duration-300 hover:border-saffron hover:shadow-lg group">
-              <div className="overflow-hidden border border-gold/10 rounded-none">
+            <article key={hotel.name} className="text-center bg-cream border-double border-4 border-gold/25 p-6 rounded-none shadow-sm transition duration-300 hover:border-saffron hover:shadow-lg group">
+              <div className="overflow-hidden border border-gold/10 rounded-none p-2 bg-[#130d07]">
                 <img
                   src={hotel.image}
                   alt={hotel.name}
@@ -116,7 +113,7 @@ export default function HotelsPage() {
         </div>
       </section>
 
-      <section className="bg-cream px-5 py-16 md:px-8 md:py-24 border-t border-gold/10">
+      <section className="px-5 py-16 md:px-8 md:py-24 border-t border-gold/20">
         <MotifTitle eyebrow="Why Book With Us" title="Stay Close, Savour More" />
         <p className="mx-auto mt-8 max-w-2xl text-center text-sm font-light leading-relaxed text-dark/70">
           Book your festival hotel and Friend of the Festival package together to
@@ -127,7 +124,7 @@ export default function HotelsPage() {
           {perks.map((perk, index) => (
             <article
               key={perk.title}
-              className={`border border-gold/20 bg-cream/40 p-7 text-center rounded-none transition duration-300 hover:border-saffron hover:bg-cream ${
+              className={`border-double border-4 border-gold/20 bg-cream/45 p-7 text-center rounded-none transition duration-300 hover:border-saffron hover:bg-cream ${
                 index === 1 ? "md:-mt-8 md:bg-dark md:text-cream md:border-gold/30" : ""
               }`}
             >
@@ -143,7 +140,7 @@ export default function HotelsPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-cream px-5 py-16 md:px-8 md:py-24 border-t border-gold/10">
+      <section className="relative overflow-hidden px-5 py-16 md:px-8 md:py-24 border-t border-gold/20">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <div className="text-center">
             <MotifTitle eyebrow="Travel Desk" title="Distance From The Venue" />

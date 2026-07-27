@@ -82,8 +82,8 @@ function Flower({ className = "" }) {
 
 export default function FriendOfFestival() {
   return (
-    <main className="pt-[78px] md:pt-[82px] bg-cream">
-      <section className="relative overflow-hidden bg-cream px-5 py-16 text-center text-dark md:px-8 md:py-24">
+    <main className="pt-[78px] md:pt-[82px] bg-cream paper-texture">
+      <section className="relative overflow-hidden px-5 py-16 text-center text-dark md:px-8 md:py-24">
         <Flower className="left-10 top-28 text-saffron/25" />
         <Flower className="right-10 top-48 text-saffron/25" />
 
@@ -99,7 +99,7 @@ export default function FriendOfFestival() {
             curated evenings, lounge benefits, and premium festival support.
           </p>
           <Link
-            to="/#register"
+            to="/festival/register-to-attend"
             className="mt-8 inline-flex border border-saffron bg-dark text-cream px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] transition duration-300 hover:bg-saffron hover:text-cream rounded-none hover:-translate-y-0.5 shadow-sm"
           >
             Book Package
@@ -108,9 +108,9 @@ export default function FriendOfFestival() {
 
         <div className="mx-auto mt-20 grid max-w-6xl gap-8 lg:grid-cols-3 lg:items-start">
           {benefits.map((benefit, index) => (
-            <article key={benefit.title} className={`p-6 border border-gold/20 bg-cream/30 rounded-none shadow-sm transition hover:border-saffron hover:-translate-y-0.5 duration-300 ${index === 1 ? "lg:-translate-y-6" : ""}`}>
+            <article key={benefit.title} className={`p-6 border-double border-4 border-gold/25 bg-cream/50 rounded-none shadow-sm transition hover:border-saffron hover:-translate-y-2 hover:shadow-xl duration-500 ${index === 1 ? "lg:-translate-y-6" : ""}`}>
               <Ornament />
-              <div className="overflow-hidden border border-gold/10">
+              <div className="overflow-hidden border border-gold/10 p-2 bg-[#130d07]">
                 <img
                   src={benefit.image}
                   alt={benefit.title}
@@ -145,7 +145,7 @@ export default function FriendOfFestival() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-dark px-5 py-16 text-center text-cream md:px-8 md:py-24 border-t border-gold/10">
+      <section className="relative overflow-hidden bg-dark px-5 py-16 text-center text-cream md:px-8 md:py-24">
         <Flower className="bottom-10 left-8 text-saffron/25" />
         <Flower className="right-10 top-20 text-saffron/25" />
 
@@ -161,7 +161,7 @@ export default function FriendOfFestival() {
           {packages.map((pkg, index) => (
             <article
               key={pkg.price}
-              className={`rounded-none border border-gold/20 bg-cream/5 px-7 py-10 text-cream transition duration-300 hover:border-saffron hover:shadow-2xl ${
+              className={`rounded-none border-double border-4 border-gold/20 bg-cream/5 px-7 py-10 text-cream transition duration-300 hover:border-saffron hover:shadow-2xl ${
                 index === 1 ? "lg:translate-y-8" : ""
               }`}
             >
@@ -186,7 +186,7 @@ export default function FriendOfFestival() {
         </p>
       </section>
 
-      <section className="relative overflow-hidden bg-cream px-5 py-16 text-center text-dark md:px-8 md:py-24 border-t border-gold/10">
+      <section className="relative overflow-hidden bg-cream px-5 py-16 text-center text-dark md:px-8 md:py-24 border-t border-gold/20">
         <div className="absolute inset-x-0 bottom-0 h-32 bg-dark [clip-path:polygon(0_45%,5%_35%,8%_60%,12%_38%,18%_62%,26%_40%,34%_58%,42%_32%,52%_60%,62%_38%,72%_60%,84%_35%,100%_58%,100%_100%,0_100%)]" />
 
         <h2 className="mx-auto max-w-lg font-serif text-5xl font-light uppercase leading-[0.9] md:text-6xl text-dark">
@@ -206,8 +206,8 @@ export default function FriendOfFestival() {
 
         <div className="relative z-10 mx-auto mt-14 grid max-w-4xl gap-8 md:grid-cols-2">
           {hotels.map((hotel) => (
-            <article key={hotel.name} className="bg-cream border border-gold/20 p-4 rounded-none shadow-sm group hover:border-saffron transition duration-300">
-              <div className="overflow-hidden border border-gold/10">
+            <article key={hotel.name} className="bg-cream border-double border-4 border-gold/25 p-4 rounded-none shadow-sm group hover:border-saffron transition duration-300">
+              <div className="overflow-hidden border border-gold/10 p-2 bg-[#130d07]">
                 <img
                   src={hotel.image}
                   alt={hotel.name}

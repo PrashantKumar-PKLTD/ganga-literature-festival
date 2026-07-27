@@ -10,29 +10,38 @@ const FEATURES = [
 
 export default function About() {
   return (
-    <section id="about" className="bg-cream pb-16 pt-12 md:pb-24 md:pt-16">
-      <div className="grid gap-8 lg:grid-cols-[50vw_minmax(0,1fr)] lg:items-start">
-          <div
-            className="relative min-h-[360px] overflow-hidden bg-cover bg-center md:min-h-[420px] lg:h-[660px] lg:min-h-0"
-            style={{ backgroundImage: 'url("/bgimg.png")' }}
-          >
-            <img
-              src="/heroimage.png"
-              alt="Ganga riverfront at sunrise"
-              className="sr-only"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-7 text-white">
-              <p className="text-xs font-bold uppercase tracking-[0.26em] text-saffron">
-                Patna, Bihar
-              </p>
-              <p className="mt-2 font-serif text-3xl leading-tight">
-                The Ganga is our oldest library.
-              </p>
+    <section id="about" className="bg-cream pb-16 pt-16 md:pb-24 md:pt-20 paper-texture">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+          {/* LEFT COLUMN: OVERLAPPING IMAGES */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative overflow-hidden double-gold-border luxury-card-shadow p-3 bg-cream/10 z-10">
+              <img
+                src="/bgimg.png"
+                alt="Ancient library manuscript"
+                className="aspect-[4/3] w-full object-cover grayscale hover:grayscale-0 transition duration-1000 ease-out"
+                loading="lazy"
+              />
+              <div className="absolute bottom-5 left-5 bg-dark/85 border border-gold/20 p-4 text-white max-w-xs">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-saffron">Patna, Bihar</p>
+                <p className="mt-1 font-serif text-xl font-light leading-tight text-gold">The Ganga is our oldest library.</p>
+              </div>
+            </div>
+            
+            {/* Geometric overlapping accent */}
+            <div className="absolute -bottom-8 -right-6 hidden lg:block w-1/2 border-double border-4 border-gold/30 luxury-card-shadow bg-cream p-2 z-20">
+              <img
+                src="/heroimage.png"
+                alt="Ganga riverfront at sunrise"
+                className="aspect-square w-full object-cover grayscale hover:grayscale-0 transition duration-700"
+                loading="lazy"
+              />
             </div>
           </div>
 
-          <div className="px-5 md:px-8 lg:max-w-[720px]">
-            <div className="[&_h2]:text-3xl [&_h2]:leading-[0.95] md:[&_h2]:text-4xl lg:[&_h2]:text-5xl [&_p]:mt-3 [&_p]:text-base [&_p]:leading-6">
+          {/* RIGHT COLUMN: EDITORIAL TYPOGRAPHY */}
+          <div className="lg:col-span-6 lg:pl-10">
+            <div className="[&_h2]:text-4xl [&_h2]:leading-[1] md:[&_h2]:text-5xl lg:[&_h2]:text-6xl [&_p]:mt-3 [&_p]:text-base [&_p]:leading-relaxed [&_p]:font-light">
               <SectionHeading
                 align="left"
                 eyebrow="About The Festival"
@@ -41,7 +50,7 @@ export default function About() {
               />
             </div>
 
-            <div className="mt-4 space-y-2 text-sm font-semibold leading-6 text-dark/75">
+            <div className="mt-6 space-y-4 text-sm font-light leading-relaxed text-dark/75">
               <p>
                 Bihar is not the periphery of India's story. It is its centre. The
                 Arthashastra was written here, the first pan-Indian empire was
@@ -55,17 +64,27 @@ export default function About() {
               </p>
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2">
-              {FEATURES.map((feature) => (
-                <div key={feature.title} className="border border-gold/20 bg-cream/40 p-4 rounded-none shadow-sm transition duration-300 hover:border-saffron hover:bg-cream hover:-translate-y-0.5 hover:shadow-md">
-                  <feature.icon className="mb-3 h-6 w-6 text-saffron" strokeWidth={1.7} />
-                  <h3 className="font-serif text-lg font-bold leading-tight text-dark">{feature.title}</h3>
-                  <p className="mt-2 text-xs leading-5 text-dark/70">{feature.desc}</p>
+            {/* High Contrast Columns */}
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              {FEATURES.map((feature, idx) => (
+                <div key={feature.title} className="flex gap-3 items-start border-l border-gold/30 pl-4 py-1">
+                  <span className="font-serif text-3xl font-light text-saffron leading-none">
+                    0{idx + 1}
+                  </span>
+                  <div>
+                    <h3 className="font-serif text-lg font-medium leading-tight text-dark uppercase tracking-wide">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-1.5 text-xs leading-relaxed text-dark/65 font-light">
+                      {feature.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 grid grid-cols-3 border-y border-dark/10 py-4 text-center">
+            {/* Statistics */}
+            <div className="mt-10 grid grid-cols-3 border-t border-gold/20 pt-6 text-center">
               {[
                 ["25+", "Sessions"],
                 ["40+", "Speakers"],
@@ -73,12 +92,16 @@ export default function About() {
               ].map(([value, label]) => (
                 <div key={label}>
                   <div className="font-serif text-3xl font-light text-saffron">{value}</div>
-                  <div className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-dark/60">{label}</div>
+                  <div className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-dark/50">{label}</div>
                 </div>
               ))}
             </div>
           </div>
+        </div>
       </div>
+      
+      {/* Luxury separating motifs */}
+      <div className="luxury-separator mt-16 md:mt-24" />
     </section>
   );
 }
