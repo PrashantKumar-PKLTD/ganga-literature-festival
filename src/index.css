@@ -1,0 +1,543 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Requested Color System */
+  --ivory: #F8F5EE;
+  --sand: #E9DDC8;
+  --terracotta: #A85032;
+  --deep-maroon: #6A2432;
+  --royal-indigo: #283C63;
+  --river-blue: #5A8FB5;
+  --antique-gold: #C8A24A;
+  --charcoal: #2D2D2D;
+
+  /* Aliased Color Variables for Backward Compatibility */
+  --site-black: #2D2D2D;
+  --site-white: #ffffff;
+  --site-gold: #C8A24A;
+  --site-gold-dark: #9E7C30;
+  --site-gold-soft: rgba(200, 162, 74, 0.16);
+
+  --saffron: #A85032;
+  --deep-saffron: #6A2432;
+  --gold: #C8A24A;
+  --river: #283C63;
+  --river-light: #5A8FB5;
+  --cream: #F8F5EE;
+  --parchment: #E9DDC8;
+  --dark: #2D2D2D;
+  --mid: #6A2432;
+  --muted: #8A7A6D;
+  --accent-teal: #5A8FB5;
+  --natural-beige: #F8F5EE;
+  --handmade-white: #FBF9F4;
+  --earthy-brown: #4A3728;
+}
+
+* {
+  letter-spacing: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Manrope', 'Source Sans 3', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--ivory);
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(200, 162, 74, 0.035) 0%, transparent 65%),
+    radial-gradient(circle at 12% 18%, rgba(168, 80, 50, 0.02) 0%, transparent 45%),
+    radial-gradient(circle at 88% 82%, rgba(106, 36, 50, 0.02) 0%, transparent 45%);
+  color: var(--charcoal);
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-serif {
+  font-family: 'Cormorant Garamond', 'Playfair Display', 'Libre Baskerville', Georgia, serif !important;
+}
+
+.font-sans,
+.font-poppins,
+.about-root,
+button,
+input,
+select,
+textarea,
+a,
+p,
+span,
+div {
+  font-family: 'Inter', 'Manrope', 'Source Sans 3', sans-serif;
+}
+
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 *,
+h6 * {
+  font-family: inherit;
+}
+
+/* Custom premium hover underline animation */
+.hover-underline {
+  position: relative;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 800ms ease,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmerLine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes festivalMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+.hero-bg-animate {
+  animation: slowZoom 18s ease-in-out alternate infinite;
+}
+
+.float-soft {
+  animation: floatSoft 4s ease-in-out infinite;
+}
+
+.gold-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(181, 139, 50, 0.18) 45%, transparent 70%);
+  transform: translateX(-100%);
+  animation: shimmerLine 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.festival-marquee {
+  animation: festivalMarquee 32s linear infinite;
+}
+
+.festival-marquee-fast {
+  animation: festivalMarquee 24s linear infinite reverse;
+}
+
+.dignitary-section {
+  background: #070507;
+  color: #ffffff;
+}
+
+.dignitary-heading,
+.dignitary-title,
+.dignitary-name {
+  color: #ffffff !important;
+}
+
+.dignitary-kicker,
+.dignitary-role {
+  color: #b58b32 !important;
+}
+
+.dignitary-intro,
+.dignitary-body {
+  color: rgba(255, 255, 255, 0.74) !important;
+}
+
+.dignitary-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(181, 139, 50, 0.25);
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.dignitary-card:hover {
+  border-color: rgba(181, 139, 50, 0.62);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34);
+}
+
+.dignitary-photo {
+  background: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .dignitary-section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .dignitary-card {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+  }
+
+  .dignitary-photo img {
+    height: 100%;
+  }
+}
+
+.honourable-guests-section {
+  background: #f8f6f1;
+  color: #0b0b0b;
+}
+
+.honourable-guests-kicker,
+.honourable-guest-affiliation {
+  color: #b58b32 !important;
+}
+
+.honourable-guests-heading,
+.honourable-guest-name {
+  color: #0b0b0b !important;
+}
+
+.honourable-guests-intro,
+.honourable-guest-role {
+  color: rgba(11, 11, 11, 0.68) !important;
+}
+
+.honourable-guest-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(181, 139, 50, 0.22);
+  box-shadow: 0 18px 45px rgba(11, 11, 11, 0.08);
+  transition:
+    transform 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.honourable-guest-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(181, 139, 50, 0.58);
+  box-shadow: 0 24px 60px rgba(11, 11, 11, 0.14);
+}
+
+.honourable-guest-image-wrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #ece7dd;
+}
+
+@media (max-width: 639px) {
+  .honourable-guest-image-wrap {
+    aspect-ratio: 1 / 0.78;
+  }
+}
+
+.honourable-guests-button {
+  background: #0b0b0b;
+  color: #ffffff !important;
+  border: 1px solid #b58b32;
+  transition:
+    background 220ms ease,
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.honourable-guests-button:hover {
+  background: #b58b32;
+  color: #0b0b0b !important;
+  transform: translateY(-2px);
+}
+
+.guest-social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.guest-social-link {
+  display: inline-flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: #ffffff !important;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.guest-social-link svg {
+  width: 0.72rem;
+  height: 0.72rem;
+  fill: currentColor;
+}
+
+.guest-social-link--facebook {
+  background: #345995;
+}
+
+.guest-social-link--x {
+  background: #050505;
+}
+
+.guest-social-link--instagram {
+  background: #f10716;
+}
+
+.guest-social-link--disabled {
+  cursor: default;
+}
+
+a.guest-social-link:hover {
+  color: #ffffff !important;
+  opacity: 0.86;
+  transform: translateY(-1px);
+}
+
+@media (min-width: 768px) {
+  .dignitary-card {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dignitary-card {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .hero-bg-animate,
+  .float-soft,
+  .festival-marquee,
+  .festival-marquee-fast,
+  .gold-sweep::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+  }
+}
+
+/* Print utilities if needed */
+@media print {
+  .no-print {
+    display: none;
+  }
+}
+
+.ganga-journey {
+  position: relative;
+  height: 220vh;
+  background: #ffffff;
+}
+
+.ganga-journey--homepage {
+  height: 760px;
+}
+
+.ganga-journey--homepage .ganga-journey__sticky {
+  height: 760px;
+}
+
+@media (max-width: 640px) {
+  .ganga-journey--homepage {
+    height: 430px;
+  }
+
+  .ganga-journey--homepage .ganga-journey__sticky {
+    height: 430px;
+  }
+}
+
+.ganga-journey__sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ganga-journey__cities {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ganga-city-layer {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+
+.ganga-city {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Thin elegant connector lines — storytelling branches */
+.ganga-city__connector {
+  stroke: rgba(11, 11, 11, 0.55);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Small refined marker dots — not heavy bullets */
+.ganga-city__marker circle {
+  fill: #1a1a1a;
+  stroke: none;
+  vector-effect: non-scaling-stroke;
+  transition:
+    fill 280ms ease,
+    r 280ms ease;
+}
+
+/* City names — clean serif font for storytelling elegance */
+.ganga-city__name {
+  fill: rgba(11, 11, 11, 0.88);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  transition: fill 280ms ease;
+}
+
+.ganga-city__image {
+  filter: none;
+  mix-blend-mode: multiply;
+  opacity: 1;
+}
+
+/* Active city gets subtle emphasis */
+.ganga-city.is-active .ganga-city__name {
+  fill: #0b0b0b;
+  font-weight: 700;
+}
+
+.ganga-city.is-active .ganga-city__marker circle {
+  fill: #0b0b0b;
+}
+
+.ganga-city.is-active .ganga-city__connector {
+  stroke: rgba(11, 11, 11, 0.72);
+}
+
+@media (max-width: 900px) {
+  .ganga-city__name {
+    font-size: 24px;
+    stroke-width: 5;
+  }
+
+  .ganga-city__connector {
+    stroke-width: 1.1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ganga-city__marker circle,
+  .ganga-city__name {
+    transition: none !important;
+  }
+}

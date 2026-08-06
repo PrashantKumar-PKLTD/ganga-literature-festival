@@ -1,0 +1,32 @@
+# Ganga Literature Festival (GLF) Website - UI/UX Enhancements
+
+This branch contains the core UI, UX, mobile responsiveness, web accessibility (WCAG 2.1), and performance optimization updates implemented for the Ganga Literature Festival (GLF) website. All modifications preserve the original design language, branding, routes, and content structures.
+
+---
+
+## Summary of Modifications
+
+### 1. Web Accessibility (WCAG 2.1 AA Compliance)
+*   **Skip-Navigation Link:** Implemented a keyboard-focusable "Skip to main content" link at the top of the layout (`SiteLayout.jsx`) pointing to `<main id="main-content">` wrapper to bypass navbar elements.
+*   **Heading Hierarchy Alignment:**
+    *   Promoted the main title `"Ganga Literature Festival"` in `Hero.jsx` to a single `h1` element.
+    *   Demoted tagline strings to styled paragraph/h2 elements.
+    *   Modified local heading components (`Heading` in `RegistrationPage.jsx` and `MotifTitle` in `HotelsPage.jsx`) from `h1` to `h2` to resolve duplicate `h1` warnings.
+*   **FAQ Accordion Accessibility:** Added matching `aria-controls`, `id`, `role="region"`, and keyboard outline focus highlight classes to accordion toggle buttons and answer regions in `FAQ.jsx`.
+
+### 2. User Experience (UX) & Polish
+*   **Speakers Real-time Live Search:** Mapped search input in `SpeakersPage.jsx` to state and dynamically filtered the speakers list by author name or role. Added an empty search fallback state.
+*   **Sticky Daily Selector Tabs:** Pinned the day filter bar on `ProgrammePage.jsx` at `sticky top-[78px] md:top-[82px] z-20` with glassmorphic background blurs to keep dates visible while scrolling session details.
+*   **Zebra Row Coloring:** Resolved alternating backgrounds bug in `ProgrammePage.jsx` by checking `index % 2 === 1` so color alternates across all listings.
+*   **Footer Expansion Sitemap:** Added category-grouped sitemap link directories (Festival, Programme/Media, About) and active brand social profile icon links (Facebook, Twitter, Instagram, LinkedIn) to `Footer.jsx` as a fallback directory.
+
+### 3. Responsive Layout Adjustments
+*   **Breakpoint Lowering:** Lowered desktop visibility breakpoint threshold in `Navbar.jsx` from `xl:` (1280px) to `lg:` (1024px) to restore navigation on tablet viewports.
+*   **Navbar Spacing Compaction:** Reduced gaps (`gap-3` at tablet sizing) and button paddings (`py-2.5` instead of `py-5`) to fit the desktop header safely at 1024px with zero wrapping or overlaps.
+*   **Mobile Background Color Mismatch:** Changed mobile navigation drawer background from navy blue (`bg-[#071038]`) to brand black (`bg-[#0b0b0b]`).
+*   **Hero Responsive Clamping:** Changed fixed header heights to dynamic `min-h` containers and added viewport fluid font-size clamps to prevent text clipping on mobile screens (320px/375px).
+
+### 4. Performance & Hygiene
+*   **LCP Preload:** Added `fetchPriority="high"` on the main hero background image.
+*   **Route Cleanup:** Removed unused development test route `/rivertest` and associated imports.
+*   **Branding & Spelling Cleanup:** Corrected spelling typos (`Lets Talk` -> `Let's Talk`) and removed generic Behance placeholder social links.

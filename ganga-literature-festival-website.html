@@ -1,0 +1,1718 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ganga Literature Festival — Website Content Draft</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #D4600A;
+    --deep-saffron: #8B3E00;
+    --gold: #C8962B;
+    --river: #1A5276;
+    --river-light: #2E86C1;
+    --cream: #FAF6EE;
+    --parchment: #F2EBD9;
+    --dark: #1C1208;
+    --mid: #4A3728;
+    --muted: #8D7B6A;
+    --accent-teal: #0E7C6A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: #F7F2EA;
+    color: var(--dark);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    padding: 0 1rem;
+    border-bottom: 2px solid var(--saffron);
+  }
+  nav .brand {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 0.85rem 1.5rem 0.85rem 0;
+    border-right: 1px solid #333;
+    margin-right: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+  nav a {
+    color: #C5B8A8;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.85rem 0.9rem;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  nav a:hover, nav a.active { color: var(--gold); }
+
+  /* PAGES */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* HERO */
+  .hero {
+    background: var(--dark);
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 110%, rgba(212,96,10,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 20% 30%, rgba(200,150,43,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-sanskrit {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    opacity: 0.75;
+    letter-spacing: 0.15em;
+    margin-bottom: 2.5rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 7vw, 6rem);
+    font-weight: 300;
+    color: #FFF8EE;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-tagline {
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #B5A08A;
+    margin-bottom: 1.8rem;
+  }
+  .hero-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--saffron);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+  }
+  .hero-venue {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #7A6E62;
+    margin-bottom: 3.5rem;
+  }
+  .hero-partners {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+  }
+  .partner-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6A6055;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,150,43,0.2);
+    padding: 0.45rem 1.1rem;
+    border-radius: 2px;
+  }
+  .partner-tag span {
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--saffron);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 2.2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #B8500A; }
+  .btn-outline {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid rgba(200,150,43,0.5);
+    padding: 0.85rem 2.2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover {
+    background: rgba(200,150,43,0.08);
+    border-color: var(--gold);
+  }
+
+  /* WAVE DIVIDER */
+  .wave-divider {
+    background: var(--dark);
+    height: 60px;
+    clip-path: ellipse(55% 100% at 50% 0%);
+    margin-bottom: -2px;
+  }
+
+  /* SECTION */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  section.full-width {
+    max-width: none;
+    padding: 5rem 0;
+  }
+  section.bg-parchment {
+    background: var(--parchment);
+    max-width: none;
+    padding: 5rem 2rem;
+  }
+  section.bg-dark {
+    background: var(--dark);
+    color: #E8DDD0;
+    max-width: none;
+    padding: 5rem 2rem;
+  }
+  section.bg-dark .section-title { color: var(--gold); }
+  section.bg-dark .section-title::after { background: var(--saffron); }
+  section.bg-dark p, section.bg-dark li { color: #C5B8A8; }
+
+  .section-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--deep-saffron);
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin-top: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .section-subtitle {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .body-text {
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: var(--mid);
+    max-width: 680px;
+  }
+
+  /* ABOUT PAGE */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--saffron);
+    line-height: 1.45;
+    border-left: 3px solid var(--gold);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .pillar-card {
+    background: var(--cream);
+    border: 1px solid rgba(200,150,43,0.2);
+    padding: 1.8rem 1.5rem;
+    border-top: 3px solid var(--saffron);
+  }
+  .pillar-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--deep-saffron);
+    margin-bottom: 0.6rem;
+  }
+  .pillar-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.7; }
+
+  /* PROGRAMME PAGE */
+  .schedule-day {
+    margin-bottom: 4rem;
+  }
+  .day-header {
+    background: var(--dark);
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 0;
+    border-left: 4px solid var(--saffron);
+  }
+  .day-header .day-date {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'Montserrat', sans-serif;
+  }
+  .session {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(200,150,43,0.12);
+    position: relative;
+  }
+  .session:hover { background: rgba(212,96,10,0.03); }
+  .session-time {
+    padding: 1.4rem 1.5rem 1.4rem 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--saffron);
+    text-align: right;
+    border-right: 2px solid rgba(212,96,10,0.15);
+    white-space: nowrap;
+  }
+  .session-content {
+    padding: 1.4rem 1.5rem;
+  }
+  .session-type {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent-teal);
+    padding: 0.2rem 0.6rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    border-radius: 2px;
+  }
+  .session-type.panel { background: var(--river); }
+  .session-type.keynote { background: var(--deep-saffron); }
+  .session-type.workshop { background: #5B4A0A; }
+  .session-type.conversation { background: var(--accent-teal); }
+  .session-type.cultural { background: #4A1B6A; }
+  .session-type.launch { background: #0E5C4A; }
+  .session-type.valedictory { background: #7A0E1A; }
+  .session-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+  }
+  .session-speakers {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+  .session-speakers strong { color: var(--mid); font-weight: 600; }
+  .session-desc {
+    font-size: 0.8rem;
+    color: var(--mid);
+    line-height: 1.65;
+    max-width: 580px;
+  }
+  .viksit-badge {
+    display: inline-block;
+    background: rgba(212,96,10,0.1);
+    border: 1px solid rgba(212,96,10,0.25);
+    color: var(--saffron);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.6rem;
+    border-radius: 2px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* SPEAKERS */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .speaker-card {
+    background: var(--cream);
+    border: 1px solid rgba(200,150,43,0.18);
+    padding: 1.8rem 1.5rem 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .speaker-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(28,18,8,0.1);
+  }
+  .speaker-initial {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--dark);
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border: 2px solid rgba(200,150,43,0.3);
+  }
+  .speaker-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.2rem;
+  }
+  .speaker-title {
+    font-size: 0.72rem;
+    color: var(--saffron);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+    font-weight: 500;
+  }
+  .speaker-bio {
+    font-size: 0.8rem;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+  .speaker-books {
+    margin-top: 0.8rem;
+    font-size: 0.72rem;
+    color: var(--accent-teal);
+    font-style: italic;
+  }
+  .speaker-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(26,82,118,0.08);
+    color: var(--river);
+    border: 1px solid rgba(26,82,118,0.15);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+  }
+
+  /* VENUE */
+  .venue-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 700px) { .venue-grid { grid-template-columns: 1fr; } }
+  .venue-highlight {
+    background: var(--dark);
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    padding: 2rem 2.5rem;
+    border-left: 3px solid var(--saffron);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  .venue-fact {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(200,150,43,0.12);
+  }
+  .venue-fact-icon {
+    color: var(--saffron);
+    font-size: 1.1rem;
+    margin-top: 0.1rem;
+    min-width: 20px;
+  }
+  .venue-fact-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 0.1rem; }
+  .venue-fact-value { font-size: 0.88rem; color: var(--dark); font-weight: 500; }
+
+  /* PARTNERS */
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .partner-card {
+    background: var(--cream);
+    border: 1px solid rgba(200,150,43,0.18);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .partner-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--deep-saffron);
+  }
+  .partner-role { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--saffron); margin-bottom: 0.2rem; }
+  .partner-desc { font-size: 0.83rem; color: var(--mid); line-height: 1.75; }
+  .partner-link { font-size: 0.75rem; color: var(--river-light); text-decoration: none; letter-spacing: 0.05em; }
+  .partner-link:hover { text-decoration: underline; }
+
+  /* VIKSIT BHARAT THEMES */
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .theme-card {
+    border: 1px solid rgba(200,150,43,0.2);
+    padding: 1.8rem 1.5rem;
+    background: #fff;
+    border-top: 4px solid;
+    position: relative;
+    overflow: hidden;
+  }
+  .theme-card::before {
+    content: attr(data-num);
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    opacity: 0.04;
+    color: var(--dark);
+    line-height: 1;
+  }
+  .theme-card:nth-child(1) { border-top-color: var(--saffron); }
+  .theme-card:nth-child(2) { border-top-color: var(--river); }
+  .theme-card:nth-child(3) { border-top-color: var(--accent-teal); }
+  .theme-card:nth-child(4) { border-top-color: var(--gold); }
+  .theme-card:nth-child(5) { border-top-color: #7A1A4A; }
+  .theme-card:nth-child(6) { border-top-color: #1A5E20; }
+  .theme-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .theme-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.7; }
+
+  /* MEDIA / PRESS */
+  .faq-item { border-bottom: 1px solid rgba(200,150,43,0.15); padding: 1.2rem 0; }
+  .faq-q { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: 0.4rem; }
+  .faq-a { font-size: 0.83rem; color: var(--mid); line-height: 1.75; }
+
+  /* REGISTER */
+  .ticket-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .ticket-card {
+    background: var(--cream);
+    border: 1px solid rgba(200,150,43,0.2);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+  .ticket-card.featured {
+    border: 2px solid var(--saffron);
+    background: #fff;
+  }
+  .ticket-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--saffron);
+    color: #fff;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.8rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .ticket-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 0.5rem 0;
+  }
+  .ticket-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--saffron);
+    margin: 0.8rem 0;
+  }
+  .ticket-price span { font-size: 1rem; vertical-align: super; }
+  .ticket-features { list-style: none; text-align: left; margin: 1rem 0 1.5rem; }
+  .ticket-features li {
+    font-size: 0.78rem;
+    color: var(--mid);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(200,150,43,0.08);
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  .tick { color: var(--accent-teal); font-weight: 700; }
+
+  /* FOOTER */
+  footer {
+    background: #0F0B06;
+    color: #6A6055;
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .footer-tagline { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #4A4035; margin-bottom: 2.5rem; }
+  .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .footer-links a { color: #5A5045; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-divider { border: none; border-top: 1px solid #1A1510; margin: 2rem auto; max-width: 300px; }
+  .footer-copy { font-size: 0.7rem; color: #3A3028; }
+  .footer-partners { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .footer-partner { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5A5045; }
+  .footer-partner strong { color: #8A7860; }
+
+  /* UTILITY */
+  .text-center { text-align: center; }
+  .text-center .section-title::after { margin: 0.6rem auto 2rem; }
+  .mt-2 { margin-top: 2rem; }
+  .mt-3 { margin-top: 3rem; }
+  .highlight-saffron { color: var(--saffron); font-weight: 600; }
+  .highlight-gold { color: var(--gold); }
+  .intro-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--mid);
+    line-height: 1.7;
+    max-width: 720px;
+    margin-bottom: 2rem;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--saffron);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #fff;
+    display: block;
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-top: 0.3rem; }
+
+  /* SPICMACAY */
+  .evening-card {
+    background: var(--dark);
+    color: #E8DDD0;
+    padding: 3rem;
+    border-left: 4px solid var(--gold);
+    margin: 2rem 0;
+  }
+  .evening-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .evening-card p { font-size: 0.88rem; line-height: 1.85; color: #B5A08A; }
+
+  .viksit-banner {
+    background: linear-gradient(135deg, #8B3E00 0%, #1C1208 100%);
+    padding: 2.5rem 3rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(200,150,43,0.25);
+  }
+  .viksit-banner h3 {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .viksit-banner p { font-size: 0.85rem; color: #B5A08A; max-width: 680px; line-height: 1.8; }
+
+  /* NAV ACTIVE states via JS */
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="brand">गंगा Lit Fest</div>
+  <a href="#" class="active" onclick="showPage('home',this)">Home</a>
+  <a href="#" onclick="showPage('about',this)">About</a>
+  <a href="#" onclick="showPage('programme',this)">Programme</a>
+  <a href="#" onclick="showPage('speakers',this)">Speakers</a>
+  <a href="#" onclick="showPage('venue',this)">Venue</a>
+  <a href="#" onclick="showPage('partners',this)">Partners</a>
+  <a href="#" onclick="showPage('viksit',this)">Viksit Bharat</a>
+  <a href="#" onclick="showPage('register',this)">Register</a>
+  <a href="#" onclick="showPage('press',this)">Press</a>
+  <a href="#" onclick="showPage('contact',this)">Contact</a>
+</nav>
+
+
+<!-- ============ HOME PAGE ============ -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-sanskrit">सा विद्या या विमुक्तये — Knowledge is that which liberates</div>
+    <h1>Ganga<br><em>Literature Festival</em></h1>
+    <div class="hero-tagline">Where the river of thought meets the ocean of civilisation</div>
+    <div class="hero-date">11 & 12 November 2026</div>
+    <div class="hero-venue">Patna, Bihar — On the Banks of the Holy Ganga</div>
+    <div class="hero-partners">
+      <div class="partner-tag">Presented by <span>BIHAAN</span></div>
+      <div class="partner-tag">Publishing Partner <span>BluOne Ink</span></div>
+      <div class="partner-tag">Cultural Partner <span>SPIC MACAY</span></div>
+    </div>
+    <div class="cta-row">
+      <a href="#" class="btn-primary" onclick="showPage('register',document.querySelectorAll('nav a')[7])">Register Now</a>
+      <a href="#" class="btn-outline" onclick="showPage('programme',document.querySelectorAll('nav a')[2])">View Programme</a>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-num">2</span><div class="stat-label">Days</div></div>
+    <div class="stat-item"><span class="stat-num">40+</span><div class="stat-label">Speakers</div></div>
+    <div class="stat-item"><span class="stat-num">25+</span><div class="stat-label">Sessions</div></div>
+    <div class="stat-item"><span class="stat-num">1</span><div class="stat-label">Grand Evening Concert</div></div>
+    <div class="stat-item"><span class="stat-num">2047</span><div class="stat-label">Viksit Bharat Horizon</div></div>
+  </div>
+
+  <section>
+    <div class="section-subtitle">A Festival Born of a River</div>
+    <h2 class="section-title">Why Patna. Why the Ganga.</h2>
+    <p class="intro-text">"Every civilisation is born at a riverbank. Ours was born here."</p>
+    <p class="body-text">The Ganga does not merely flow — she speaks. For five thousand years she has carried the words of sages, the songs of poets, the debates of philosophers, the prayers of millions. It is only fitting that India's newest and most purposeful literature festival should find its home on her banks — in Patna, ancient Pataliputra, capital of empires, birthplace of Chandragupta, Chanakya's laboratory of governance, Sher Shah Suri's city, Guru Gobind Singh's city.</p>
+    <br>
+    <p class="body-text">The Ganga Literature Festival is not simply a gathering of writers. It is a civilisational conversation. A place where authors, thinkers, historians, scientists, entrepreneurs, and artists come together to ask the questions that matter most: Who are we? Where do we come from? And where — together — can we go?</p>
+    <br>
+    <p class="body-text">Conceived and presented by <strong>BIHAAN</strong> — a movement for the Rising Bharat — in partnership with <strong>BluOne Ink</strong>, India's most purposeful publishing house, and in collaboration with <strong>SPIC MACAY</strong>, the movement that has brought classical heritage to every corner of India, the Ganga Literature Festival is Bihar's gift to the nation's intellectual life.</p>
+    <div class="pillar-grid mt-3">
+      <div class="pillar-card">
+        <div class="pillar-number">01</div>
+        <div class="pillar-title">Civilisational Thought</div>
+        <div class="pillar-desc">Recovering and celebrating India's extraordinary intellectual inheritance — from the Vedas to Chanakya's Arthashastra to the Bihar renaissance.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-number">02</div>
+        <div class="pillar-title">National Discourse</div>
+        <div class="pillar-desc">Rigorous, honest conversations on the challenges and possibilities before Bharat in its march toward Viksit Bharat @2047.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-number">03</div>
+        <div class="pillar-title">Literary Excellence</div>
+        <div class="pillar-desc">Celebrating books that reshape how India thinks about itself — history, science, policy, fiction, philosophy, biography, and everything between.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-number">04</div>
+        <div class="pillar-title">Living Heritage</div>
+        <div class="pillar-desc">World-class classical music and arts evenings curated by SPIC MACAY — because a literature festival must nourish the soul as much as the mind.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-parchment full-width">
+    <div class="section-inner">
+      <div class="viksit-banner">
+        <h3>विकसित भारत @२०४७</h3>
+        <p>The Ganga Literature Festival dedicates itself to Mananiya Pradhan Mantri Narendra Modi Ji's Sankalp of Viksit Bharat by 2047 — India as a fully developed nation, a $30 trillion economy, a global leader in knowledge, technology, culture, and governance. Every session at GLF will ask: how does this conversation bring us closer to that horizon?</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- ============ ABOUT PAGE ============ -->
+<div id="page-about" class="page">
+  <section>
+    <div class="section-subtitle">Our Story</div>
+    <h2 class="section-title">About the Festival</h2>
+    <p class="intro-text">India's civilisation has always been a conversation. GLF is the next chapter.</p>
+    <div class="about-grid">
+      <div>
+        <p class="body-text">The Ganga Literature Festival was conceived from a simple conviction: that Bihar — home to Pataliputra, Nalanda, Vikramashila, and Bodh Gaya — deserves a literature festival commensurate with its extraordinary intellectual and spiritual heritage.</p>
+        <br>
+        <p class="body-text">Bihar is not the periphery of India's story. It is its centre. The Arthashastra was written here. The first pan-Indian empire was administered from here. The Buddha attained enlightenment here. Guru Gobind Singh was born here. In the great tapestry of Indian civilisation, Bihar's thread runs gold.</p>
+        <br>
+        <p class="body-text">And yet, for too long, Bihar's voice in India's national intellectual conversation has been muted. The Ganga Literature Festival changes that. It brings the ideas, the authors, the debates, and the art to Patna — and invites the nation to listen.</p>
+        <div class="about-quote">"The Ganga is not merely a river. She is our oldest library. We do not merely hold a festival on her banks. We open her pages."</div>
+      </div>
+      <div>
+        <p class="body-text"><strong>BIHAAN</strong> — meaning dawn, or new beginning — is a movement dedicated to connecting India's vision for growth with global partnerships, community, culture, causes, and events. BIHAAN believes that a rising Bharat requires not just economic growth but civilisational confidence: a people who know their history, own their identity, and dream boldly.</p>
+        <br>
+        <p class="body-text"><strong>BluOne Ink</strong> is India's fastest-growing publishing house with a purpose — bringing to readers the books that India needs to read. Their catalogue spans national security, civilisational history, political philosophy, Dharmic knowledge systems, fiction, and biography. Over 150 authors. Over 300 titles. All purposeful.</p>
+        <br>
+        <p class="body-text"><strong>SPIC MACAY</strong> — the Society for the Promotion of Indian Classical Music And Culture Amongst Youth — has, for nearly five decades, been taking the best of India's classical arts heritage to schools, colleges, and communities across the nation and the world. Their evening concerts at GLF will be experiences not to be forgotten.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark full-width">
+    <div class="section-inner">
+      <div class="section-subtitle">Our Mission</div>
+      <h2 class="section-title">What GLF Stands For</h2>
+      <p class="body-text" style="max-width: 760px;">The Ganga Literature Festival stands at the intersection of three urgent imperatives of our time.</p>
+      <div class="pillar-grid mt-3">
+        <div class="pillar-card" style="background: rgba(255,255,255,0.04); border-color: rgba(200,150,43,0.15); border-top-color: var(--saffron);">
+          <div class="pillar-title" style="color: var(--gold);">Reclaiming Narrative</div>
+          <div class="pillar-desc" style="color: #9A8E80;">India's history has been filtered through colonial and ideological lenses for too long. GLF creates space for authentic, evidence-based, civilisation-affirming scholarship.</div>
+        </div>
+        <div class="pillar-card" style="background: rgba(255,255,255,0.04); border-color: rgba(200,150,43,0.15); border-top-color: var(--gold);">
+          <div class="pillar-title" style="color: var(--gold);">Accelerating Viksit Bharat</div>
+          <div class="pillar-desc" style="color: #9A8E80;">Every great nation is built first in the minds of its people. GLF creates the intellectual architecture for PM Modi's dream of a fully developed India by 2047.</div>
+        </div>
+        <div class="pillar-card" style="background: rgba(255,255,255,0.04); border-color: rgba(200,150,43,0.15); border-top-color: var(--accent-teal);">
+          <div class="pillar-title" style="color: var(--gold);">Bihar Reborn</div>
+          <div class="pillar-desc" style="color: #9A8E80;">GLF places Patna back at the centre of India's intellectual map, honouring Bihar's heritage and its immense potential as a driver of India's next chapter.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============ PROGRAMME PAGE ============ -->
+<div id="page-programme" class="page">
+  <section>
+    <div class="section-subtitle">11 & 12 November 2026</div>
+    <h2 class="section-title">Festival Programme</h2>
+    <p class="body-text">Two days of transformative conversations, book launches, keynote addresses, panels, masterclasses, and an unforgettable evening of classical arts. Every session is designed to move, provoke, inspire, and illuminate.</p>
+  </section>
+
+  <!-- DAY 1 -->
+  <section class="full-width" style="padding: 0 2rem 3rem; max-width: none;">
+  <div style="max-width: 1080px; margin: 0 auto;">
+  <div class="schedule-day">
+    <div class="day-header">
+      <div>
+        <div class="day-date">Day One · Wednesday</div>
+        11 November 2026
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">08:30</div>
+      <div class="session-content">
+        <span class="session-type">Registration</span>
+        <div class="session-title">Delegate Registration & Welcome Tea</div>
+        <div class="session-desc">On the ghats of the Ganga — delegates arrive to the sound of the river and welcome by BIHAAN volunteers.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">09:30</div>
+      <div class="session-content">
+        <span class="session-type keynote">Inaugural</span>
+        <div class="session-title">Udghatan Samaroh — Opening Ceremony <span class="viksit-badge">Viksit Bharat</span></div>
+        <div class="session-speakers"><strong>Chief Guest:</strong> [Eminent Public Figure, TBC] · <strong>Hosts:</strong> BIHAAN &amp; BluOne Ink Leadership</div>
+        <div class="session-desc">The inaugural lamp-lighting, the invocation of the Ganga, and a keynote address that sets the tone for two days of civilisational conversation. The opening address will frame the festival's central question: What does India need to become Viksit Bharat by 2047 — and what role does knowledge, culture, and literature play in that journey?</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">10:30</div>
+      <div class="session-content">
+        <span class="session-type keynote">Keynote</span>
+        <div class="session-title">Pataliputra to Viksit Bharat: Bihar's Civilisational Destiny <span class="viksit-badge">Viksit Bharat</span></div>
+        <div class="session-speakers"><strong>Speaker:</strong> Dr Anirban Ganguly — Author, Historian &amp; Director, Dr Syama Prasad Mookerjee Research Foundation</div>
+        <div class="session-desc">From Chandragupta's empire to today's Bihar — a sweeping address on the unbroken thread of Bihar's contribution to Indian civilisation, and what it means for the nation's future. Drawing from his books and decades of research, Dr Ganguly will make the case for Bihar's centrality in the Viksit Bharat project.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">11:30</div>
+      <div class="session-content">
+        <span class="session-type panel">Panel</span>
+        <div class="session-title">Dharma, Democracy & Development: India's Triple Helix</div>
+        <div class="session-speakers"><strong>Panellists:</strong> Aditi Banerjee · Ami Ganatra · Aabhas Maldhiyar · <strong>Moderator:</strong> Abhijit Majumder</div>
+        <div class="session-desc">India's civilisational values — Dharma, pluralism, the pursuit of knowledge — are not antithetical to modern development. They are its foundation. This panel asks: what does a truly Dharmic modernity look like? How do we build a $30 trillion economy while remaining distinctly, proudly Indian?</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">12:45</div>
+      <div class="session-content">
+        <span class="session-type">Lunch</span>
+        <div class="session-title">Networking Luncheon — Bihar on a Plate</div>
+        <div class="session-desc">A curated experience of Bihari cuisine and culture — litti chokha, thekua, and conversations that continue at the table.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">14:00</div>
+      <div class="session-content">
+        <span class="session-type launch">Book Launch</span>
+        <div class="session-title">Book Launches: Afternoon Session I</div>
+        <div class="session-speakers"><strong>Authors Present:</strong> Anand Ranganathan · Amit Bagaria · Aniruddh Rawat</div>
+        <div class="session-desc">Three powerful non-fiction titles in conversation with their authors and readers. Anand Ranganathan presents his latest work on India's forgotten scientists; Amit Bagaria discusses Modi's Bharat — A Decade of Achievements; Aniruddh Rawat in conversation about national security and strategic affairs.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">15:00</div>
+      <div class="session-content">
+        <span class="session-type panel">Panel</span>
+        <div class="session-title">Rewriting India's History: Scholarship, Evidence & Civilisational Truth <span class="viksit-badge">National Interest</span></div>
+        <div class="session-speakers"><strong>Panellists:</strong> Aditi Banerjee (Kashi: The Valiant History) · Aabhas Maldhiyar · Ami Ganatra (Mahabharata Unravelled) · <strong>Moderator:</strong> Anand Ranganathan</div>
+        <div class="session-desc">For 200 years, India's history was written by others. The greatest challenge — and opportunity — of our generation is to recover the authentic, evidence-based narrative of India's civilisation. This session brings together four scholar-authors doing exactly that, discussing their methods, findings, and the transformative potential of accurate historiography.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">16:15</div>
+      <div class="session-content">
+        <span class="session-type workshop">Masterclass</span>
+        <div class="session-title">Writing India: How to Tell Stories that Matter</div>
+        <div class="session-speakers"><strong>Facilitators:</strong> Abhijit Majumder · Aditi Banerjee · Ami Ganatra</div>
+        <div class="session-desc">An intimate masterclass for writers, journalists, and storytellers — how to research, write, and publish books that contribute to India's national conversation. Featuring insights from three of India's most impactful non-fiction authors. Limited to 50 participants.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">17:30</div>
+      <div class="session-content">
+        <span class="session-type conversation">In Conversation</span>
+        <div class="session-title">India's New Right: The Ideas Shaping a Nation's Future</div>
+        <div class="session-speakers"><strong>In Conversation:</strong> Abhijit Majumder · Anirban Ganguly</div>
+        <div class="session-desc">A frank, fearless conversation between two of India's most incisive thinkers on nationalism, civilisational revival, the media's role in shaping public discourse, and what it truly means for India to reclaim its civilisational confidence in the 21st century.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">18:30</div>
+      <div class="session-content">
+        <span class="session-type">Break</span>
+        <div class="session-title">Sandhya Break — Evening Tea by the Ganga</div>
+        <div class="session-desc">A pause. The river. The light changing over the water. The perfect prelude to an extraordinary evening.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">19:30</div>
+      <div class="session-content">
+        <span class="session-type cultural">SPIC MACAY Evening</span>
+        <div class="session-title">Sangam — A Three-Hour Evening of Classical Indian Arts</div>
+        <div class="session-speakers"><strong>Curated by:</strong> SPIC MACAY · <strong>Venue:</strong> Open-Air Ganga Amphitheatre</div>
+        <div class="session-desc">BIHAAN, in partnership with SPIC MACAY, presents an extraordinary three-hour evening of world-class classical Indian music, dance, and art — under the open sky, beside the sacred Ganga. SPIC MACAY, in its 49th year, brings to GLF artists of the highest calibre from India's classical traditions: Hindustani classical vocal, Dhrupad, Kathak, and Thumri. An evening not merely to be watched, but to be experienced — and remembered for a lifetime.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="schedule-day">
+    <div class="day-header">
+      <div>
+        <div class="day-date">Day Two · Thursday</div>
+        12 November 2026
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">09:00</div>
+      <div class="session-content">
+        <span class="session-type">Morning</span>
+        <div class="session-title">Prabhat Puja — Morning Ganga Aarti Walk</div>
+        <div class="session-desc">For delegates who wish to begin the day at the river — a guided walk to witness the morning aarti at the ghats. Optional, deeply recommended.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">09:45</div>
+      <div class="session-content">
+        <span class="session-type keynote">Keynote</span>
+        <div class="session-title">Chanakya's Arthashastra and India's 2047 Blueprint <span class="viksit-badge">Viksit Bharat</span></div>
+        <div class="session-speakers"><strong>Speaker:</strong> Ami Ganatra — Author, Mahabharata Unravelled &amp; Why Are We This Way</div>
+        <div class="session-desc">Twenty-three centuries ago, a man in Pataliputra wrote the world's most comprehensive manual of statecraft. His name was Chanakya. His text was the Arthashastra. It is not ancient history. It is a living playbook. This keynote draws the direct lines from Chanakya's vision to PM Modi's Viksit Bharat Sankalp — and asks what the 21st century can learn from a 4th century BCE genius.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">10:45</div>
+      <div class="session-content">
+        <span class="session-type panel">Panel</span>
+        <div class="session-title">National Security, Borders & the Confident Nation <span class="viksit-badge">National Interest</span></div>
+        <div class="session-speakers"><strong>Panellists:</strong> Aniruddh Rawat · Anil Maheshwari · Abhishek Kumar · <strong>Moderator:</strong> Abhijit Majumder</div>
+        <div class="session-desc">A Viksit Bharat is not just an economically prosperous India — it is a strategically secure India. From the Line of Actual Control to the Indian Ocean, from cyber threats to demographic challenges on the border — this panel of national security writers examines the threats India faces and the resolve required to overcome them.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">12:00</div>
+      <div class="session-content">
+        <span class="session-type panel">Panel</span>
+        <div class="session-title">The Economy of a Billion Dreams: Entrepreneurship, Innovation & Viksit Bharat <span class="viksit-badge">Viksit Bharat</span></div>
+        <div class="session-speakers"><strong>Panellists:</strong> Amit Bagaria · Abhinav Agarwal · Ankur Kakkar · <strong>Moderator:</strong> Aarti Heda</div>
+        <div class="session-desc">India's journey to a $30 trillion economy requires a culture of enterprise, risk, and innovation. What are the policy frameworks, the mindset shifts, and the grassroots movements that will drive this transformation? Authors and entrepreneurs in honest conversation about what India must do differently.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">13:15</div>
+      <div class="session-content">
+        <span class="session-type">Lunch</span>
+        <div class="session-title">Grand Networking Luncheon</div>
+        <div class="session-desc">The final networking luncheon — an opportunity for delegates, authors, and partners to connect, collaborate, and continue the conversations that the festival has begun.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">14:30</div>
+      <div class="session-content">
+        <span class="session-type launch">Book Launch</span>
+        <div class="session-title">Book Launches: Afternoon Session II</div>
+        <div class="session-speakers"><strong>Authors Present:</strong> Aditi Banerjee · Anirban Ganguly · Aabhas Maldhiyar</div>
+        <div class="session-desc">Three more landmark titles in conversation with their authors: Aditi Banerjee presents Adrsya: Hidden Marvels of the Mahabharata; Anirban Ganguly on Bengal Matters: The Doctrine of PM Modi; Aabhas Maldhiyar on his most controversial work yet.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">15:30</div>
+      <div class="session-content">
+        <span class="session-type panel">Panel</span>
+        <div class="session-title">Hindus in Their Own Land: Identity, Rights & Constitutional Justice <span class="viksit-badge">National Interest</span></div>
+        <div class="session-speakers"><strong>Panellists:</strong> Anand Ranganathan · Aditi Banerjee · Anirban Ganguly · <strong>Moderator:</strong> Abhijit Majumder</div>
+        <div class="session-desc">One of the most important — and most difficult — conversations in India today: the constitutional and social position of Hindus in the Indian Republic. Drawing from their combined research across history, law, policy, and lived experience, this panel will be a defining moment of the festival.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">16:45</div>
+      <div class="session-content">
+        <span class="session-type conversation">In Conversation</span>
+        <div class="session-title">Bihar: The Next Leap — Literature, Leadership & the State's Future</div>
+        <div class="session-speakers"><strong>Participants:</strong> Distinguished Bihari thinkers, authors, and public figures · <strong>Moderator:</strong> BIHAAN Leadership</div>
+        <div class="session-desc">A special session dedicated to Bihar — its history, its present, its extraordinary potential. Authors, academics, and policymakers in conversation about what Bihar must do to fulfil its civilisational promise and become a true engine of Viksit Bharat.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">18:00</div>
+      <div class="session-content">
+        <span class="session-type valedictory">Valedictory</span>
+        <div class="session-title">Samapan Samaroh — Closing Ceremony & Festival Declaration <span class="viksit-badge">Viksit Bharat</span></div>
+        <div class="session-speakers"><strong>Address by:</strong> BIHAAN Founders · BluOne Ink · SPIC MACAY · Distinguished Guests</div>
+        <div class="session-desc">The closing ceremony of the inaugural Ganga Literature Festival — the reading of the GLF Declaration, a commitment to the values of knowledge, civilisation, and national purpose that have animated these two extraordinary days. And the announcement of the dates for GLF 2026.</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">19:30</div>
+      <div class="session-content">
+        <span class="session-type cultural">SPIC MACAY Evening</span>
+        <div class="session-title">Gangotri — The Grand Farewell Concert</div>
+        <div class="session-speakers"><strong>Curated by:</strong> SPIC MACAY</div>
+        <div class="session-desc">The second and final evening concert by SPIC MACAY — a three-hour masterclass in the sublime. A fitting end to a festival dedicated to the highest aspirations of Indian civilisation. Featuring Carnatic classical music, Odissi dance, and a special performance celebrating the musical heritage of Bihar and the Gangetic plain.</div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </section>
+</div>
+
+
+<!-- ============ SPEAKERS PAGE ============ -->
+<div id="page-speakers" class="page">
+  <section>
+    <div class="section-subtitle">The Minds of the Festival</div>
+    <h2 class="section-title">Speakers & Authors</h2>
+    <p class="body-text">The Ganga Literature Festival brings together India's most compelling writers, thinkers, historians, journalists, and intellectuals — united by a shared commitment to truth, excellence, and the idea of India. All authors below are published by our literary partner BluOne Ink.</p>
+  </section>
+
+  <section style="padding-top: 0;">
+    <div class="section-subtitle" style="margin-bottom: 1rem;">BluOne Ink Authors</div>
+    <div class="speakers-grid">
+
+      <div class="speaker-card">
+        <div class="speaker-tag">Keynote</div>
+        <div class="speaker-initial">AG</div>
+        <div class="speaker-name">Ami Ganatra</div>
+        <div class="speaker-title">Author · Mahabharata & Hindu Shastras Scholar</div>
+        <div class="speaker-bio">IIM Ahmedabad alumna and bestselling author of Mahabharata Unravelled (Vols. 1 & 2) and Ramayana Unravelled. Her work presents the original itihasa without reinterpretation, making them accessible to modern readers. A dedicated yoga practitioner, Sanskrit student, and certified instructor who has spoken at institutions across India.</div>
+        <div class="speaker-books">📚 Mahabharata Unravelled I & II · Ramayana Unravelled · Why Are We This Way · Avadhut and His Teachers</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-tag">Keynote</div>
+        <div class="speaker-initial">AnG</div>
+        <div class="speaker-name">Dr Anirban Ganguly</div>
+        <div class="speaker-title">Historian · Policy Thinker · Author</div>
+        <div class="speaker-bio">Director of the Dr Syama Prasad Mookerjee Research Foundation, Dr Ganguly is one of India's foremost historians of nationalism, partition, and the contemporary Indian state. His work spans Bengal's partition trauma, the CAA, and the BJP's governance philosophy under PM Modi.</div>
+        <div class="speaker-books">📚 From Partition to Progress · Bengal Matters: The Doctrine of PM Modi</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-tag">Moderator</div>
+        <div class="speaker-initial">AbM</div>
+        <div class="speaker-name">Abhijit Majumder</div>
+        <div class="speaker-title">Journalist · Editor · Media Entrepreneur</div>
+        <div class="speaker-bio">Nearly 30 years at India's topmost media houses. Co-founder and Editor-in-Chief of Earshot, India's first Dolby Atmos-enabled audio platform. Consulting Editor, CNNNews18. Former Editor of MidDay, Mail Today, and Asianet News. One of India's most respected and provocative editors.</div>
+        <div class="speaker-books">📚 India's New Right: Powering the Current Wave of Nationalism and Civilisational Revival</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-initial">AR</div>
+        <div class="speaker-name">Anand Ranganathan</div>
+        <div class="speaker-title">Scientist · Author · Public Intellectual</div>
+        <div class="speaker-bio">A scientist by training and one of India's most fearless public intellectuals. Author of three novels and the landmark non-fiction work Hindus in Hindu Rashtra. His forthcoming book on India's forgotten scientists promises to be his most important contribution yet — recovering the names that textbooks erased.</div>
+        <div class="speaker-books">📚 Hindus in Hindu Rashtra (English, Hindi, Marathi, Kannada, Malayalam, Assamese)</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-initial">AdB</div>
+        <div class="speaker-name">Aditi Banerjee</div>
+        <div class="speaker-title">Author · Attorney · Hindu Studies Scholar</div>
+        <div class="speaker-bio">Bestselling author based in the US. Her debut novel The Curse of Gandhari was followed by The Vow of Parvati and Hindu Love Stories. Her non-fiction work on Kashi's history and the hidden marvels of the Mahabharata have established her as one of the most important voices in contemporary Dharmic scholarship. Co-edited Invading the Sacred with Rajiv Malhotra.</div>
+        <div class="speaker-books">📚 Kashi: The Valiant History of a Sacred Geography · Adrsya: Hidden Marvels of the Mahabharata</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-initial">AaM</div>
+        <div class="speaker-name">Aabhas Maldhiyar</div>
+        <div class="speaker-title">Architect · Urban Designer · Historian</div>
+        <div class="speaker-bio">Founding member of the Foundation for Indian Historical and Cultural Research. A former Marxist transformed by the art of Ajanta Caves, Maldhiyar now deploys his architectural training to understand ancient civilisations through their built environment. A uniquely interdisciplinary voice in Indian historical discourse.</div>
+        <div class="speaker-books">📚 Hitler: The Proclaimed Messiah of the Palestinian Cause</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-initial">AmB</div>
+        <div class="speaker-name">Amit Bagaria</div>
+        <div class="speaker-title">Entrepreneur · Author · Policy Analyst</div>
+        <div class="speaker-bio">A serial entrepreneur turned author of fourteen books — twelve non-fiction, nine of them #1 bestsellers. His deep dives into Indian governance, policy, and economic transformation have made him one of the country's most widely read political non-fiction authors. Columnist for five media organisations.</div>
+        <div class="speaker-books">📚 Modi's Bharat: A Decade of Achievements</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-initial">AM</div>
+        <div class="speaker-name">Anil Maheshwari</div>
+        <div class="speaker-title">Author · National Security Analyst</div>
+        <div class="speaker-bio">A distinguished voice on national security, intelligence, and India's strategic imperatives. His writing connects India's security challenges to the broader civilisational questions of national identity, sovereignty, and the will to power that any Viksit Bharat must possess.</div>
+        <div class="speaker-books">📚 Published by BluOne Ink</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-initial">AbK</div>
+        <div class="speaker-name">Abhishek Kumar</div>
+        <div class="speaker-title">Author · Researcher</div>
+        <div class="speaker-bio">A rigorous researcher and author whose work at the intersection of history, policy, and national identity contributes to the reclamation of India's authentic intellectual heritage.</div>
+        <div class="speaker-books">📚 Published by BluOne Ink</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-initial">AaH</div>
+        <div class="speaker-name">Aarti Heda</div>
+        <div class="speaker-title">Author · Moderator</div>
+        <div class="speaker-bio">A sharp intellect and skilled moderator whose contributions to GLF will shape some of the festival's most important economic and entrepreneurship conversations.</div>
+        <div class="speaker-books">📚 Published by BluOne Ink</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-initial">AbA</div>
+        <div class="speaker-name">Abhinav Agarwal</div>
+        <div class="speaker-title">Author · Technology & Policy</div>
+        <div class="speaker-bio">An incisive author whose work bridges technology, policy, and India's digital transformation — a critical voice for the Viksit Bharat conversation about innovation and the knowledge economy.</div>
+        <div class="speaker-books">📚 Published by BluOne Ink</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-initial">AnK</div>
+        <div class="speaker-name">Ankur Kakkar</div>
+        <div class="speaker-title">Author · Entrepreneur</div>
+        <div class="speaker-bio">A boots-on-the-ground entrepreneur and author bringing the lived experience of building businesses in India to GLF's economic and innovation sessions.</div>
+        <div class="speaker-books">📚 Published by BluOne Ink</div>
+      </div>
+
+    </div>
+
+    <div class="section-subtitle mt-3" style="margin-bottom: 1rem;">Additional Recommended Invitees</div>
+    <p class="body-text">Beyond BluOne Ink authors, the following categories of voices are strongly recommended for GLF's programme:</p>
+    <br>
+    <div class="speakers-grid">
+      <div class="speaker-card" style="border-top: 3px solid var(--river);">
+        <div class="speaker-name" style="font-size: 1rem;">Bihari Literary Voices</div>
+        <div class="speaker-title">Regional Authors & Scholars</div>
+        <div class="speaker-bio">Maithili, Bhojpuri, and Hindi authors from Bihar who represent the living literary traditions of the Gangetic plain — the voices closest to GLF's geographic heart.</div>
+      </div>
+      <div class="speaker-card" style="border-top: 3px solid var(--accent-teal);">
+        <div class="speaker-name" style="font-size: 1rem;">Economic Architects</div>
+        <div class="speaker-title">Economists & Development Thinkers</div>
+        <div class="speaker-bio">India's leading economists, development thinkers, and policy architects working on the Viksit Bharat roadmap — from infrastructure to fintech to agricultural transformation.</div>
+      </div>
+      <div class="speaker-card" style="border-top: 3px solid var(--gold);">
+        <div class="speaker-name" style="font-size: 1rem;">Young India Voices</div>
+        <div class="speaker-title">Entrepreneurs & Innovators Under 35</div>
+        <div class="speaker-bio">GLF reserves a dedicated presence for India's next generation of thinkers and builders — the generation that will actually live in Viksit Bharat 2047.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============ VENUE PAGE ============ -->
+<div id="page-venue" class="page">
+  <section>
+    <div class="section-subtitle">Where We Gather</div>
+    <h2 class="section-title">Venue & Location</h2>
+    <div class="venue-highlight">"In the ancient world, every great conversation happened near a river. We return to that tradition."</div>
+    <div class="venue-grid">
+      <div>
+        <p class="body-text">The Ganga Literature Festival takes place in Patna, Bihar — on or near the banks of the Ganga, in a venue that honours the sacred geography of this ancient city.</p>
+        <br>
+        <p class="body-text">Patna is Pataliputra — arguably the greatest city the ancient world ever produced. Capital of the Maurya Empire. Home of Chanakya's Arthashastra. City of Guru Gobind Singh Ji. In the colonial period, birthplace of the Champaran Satyagraha. Today, one of India's fastest-growing cities and the capital of a state of 130 million people.</p>
+        <br>
+        <p class="body-text">The festival venue will be announced in September 2026. Options under consideration include: the historic Gandhi Maidan amphitheatre, a purpose-built riverside pavilion on the Ganga ghats, and Patna's premier convention facilities. All evening SPIC MACAY concerts will take place in the open air, beside the river.</p>
+        <br>
+        <p class="body-text"><strong>The Ganga Amphitheatre</strong> — our evening concert venue — will be set up directly on the ghats, with the Ganga as backdrop and the Patna skyline as witness. Under the stars. Beside the river. There is no more powerful cultural stage in all of India.</p>
+      </div>
+      <div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">📍</div>
+          <div>
+            <div class="venue-fact-label">City</div>
+            <div class="venue-fact-value">Patna, Bihar, India</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">🌊</div>
+          <div>
+            <div class="venue-fact-label">Setting</div>
+            <div class="venue-fact-value">Banks of the Ganga — Riverside Venue TBC</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">📅</div>
+          <div>
+            <div class="venue-fact-label">Dates</div>
+            <div class="venue-fact-value">11–12 November 2026</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">✈️</div>
+          <div>
+            <div class="venue-fact-label">Nearest Airport</div>
+            <div class="venue-fact-value">Jay Prakash Narayan International Airport, Patna (PAT) — 6 km from city centre</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">🚂</div>
+          <div>
+            <div class="venue-fact-label">By Rail</div>
+            <div class="venue-fact-value">Patna Junction — well-connected to all major Indian cities. Rajdhani, Shatabdi and Vande Bharat services available.</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">🏨</div>
+          <div>
+            <div class="venue-fact-label">Accommodation</div>
+            <div class="venue-fact-value">Official hotel partners: Maurya Patna, Hotel Patliputra Continental (TBC). Festival delegate rates available on registration.</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">🌡️</div>
+          <div>
+            <div class="venue-fact-label">Weather in November</div>
+            <div class="venue-fact-value">Perfect. Clear skies, 18–28°C. Patna in November is arguably the most beautiful it ever gets.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-parchment full-width" style="padding: 4rem 2rem;">
+    <div class="section-inner">
+      <div class="section-subtitle">Ancient Pataliputra</div>
+      <h2 class="section-title">The City That Made India</h2>
+      <p class="body-text" style="max-width: 760px;">To attend the Ganga Literature Festival is to walk in the footsteps of Chanakya, Chandragupta, Ashoka, Megasthenes, and Fa Hien. Patna offers delegates an experience no other literature festival city can match — a living, breathing connection to the foundations of Indian civilisation.</p>
+      <div class="pillar-grid mt-3">
+        <div class="pillar-card">
+          <div class="pillar-title">Pataliputra</div>
+          <div class="pillar-desc">Once described by Megasthenes as surpassing all cities of the world in magnificence — the capital of the Maurya Empire and seat of Chanakya's statecraft.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title">Nalanda Legacy</div>
+          <div class="pillar-desc">60km away — the world's first residential university, where scholars from China, Korea, Central Asia and Persia came to learn from India's masters. Now reborn as Nalanda University.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title">Ganga Aarti</div>
+          <div class="pillar-desc">The daily evening aarti at Patna's ghats — an ancient ritual of light, sound, and devotion that has continued for thousands of years, uninterrupted.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title">Guru Gobind Singh's Patna</div>
+          <div class="pillar-desc">Takht Sri Harmandir Ji (Patna Sahib) — the birthplace of the tenth Sikh Guru, one of India's most sacred sites and a living symbol of Bihar's plural heritage.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============ PARTNERS PAGE ============ -->
+<div id="page-partners" class="page">
+  <section>
+    <div class="section-subtitle">The Minds Behind the Festival</div>
+    <h2 class="section-title">Our Partners</h2>
+    <p class="body-text">The Ganga Literature Festival is made possible by the vision and commitment of three remarkable organisations — each a leader in its domain, each united by the belief that India's moment has come.</p>
+  </section>
+
+  <section style="padding-top: 0;">
+    <div class="partners-grid">
+
+      <div class="partner-card">
+        <div class="partner-role">Presenting Organisation</div>
+        <div class="partner-name">BIHAAN</div>
+        <div class="partner-desc">BIHAAN — meaning dawn or new beginning — is a movement for the Rising Bharat. Built on the conviction that India's ascent requires not just economic growth but civilisational confidence, BIHAAN connects India's vision for growth with global partnerships, community, culture, causes, and events. The Ganga Literature Festival is BIHAAN's flagship cultural initiative — a declaration that Bihar is ready to host the conversations that will shape India's future.</div>
+        <a href="https://bihaan.org" class="partner-link">bihaan.org →</a>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-role">Literary & Publishing Partner</div>
+        <div class="partner-name">BluOne Ink</div>
+        <div class="partner-desc">BluOne Ink is India's most purposeful publishing house. Publishing with a Purpose — their tagline is not marketing; it is a manifesto. With over 150 authors and a catalogue that spans civilisational history, national security, Hindu philosophy, political thought, fiction, and biography, BluOne Ink is the intellectual backbone of the Ganga Literature Festival. Their authors are its speakers. Their books are its conversations. GLF is, in many ways, BluOne Ink's greatest festival yet — not between covers, but in the world.</div>
+        <a href="https://bluone.ink" class="partner-link">bluone.ink →</a>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-role">Classical Arts & Cultural Partner</div>
+        <div class="partner-name">SPIC MACAY</div>
+        <div class="partner-desc">In its 49th year, SPIC MACAY — the Society for the Promotion of Indian Classical Music And Culture Amongst Youth — remains the gold standard for classical arts programming in India. Present in every major educational institution in the country, in over 20 countries, SPIC MACAY's partnership with BIHAAN for GLF means that the festival's evening concerts will be events of the highest artistic calibre — world-class classical musicians and dancers, performing under the open sky beside the sacred Ganga. This is value education. This is inspiration. This is India.</div>
+        <a href="https://spicmacay.org" class="partner-link">spicmacay.org →</a>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 4rem;">
+      <div class="section-subtitle">Become a Partner</div>
+      <h3 class="section-title" style="font-size: 1.8rem;">Partner with GLF 2026</h3>
+      <p class="body-text">The Ganga Literature Festival offers a unique platform for organisations that share our values of civilisational pride, national purpose, and intellectual excellence. We invite sponsorship partners across the following categories:</p>
+      <div class="pillar-grid mt-3">
+        <div class="pillar-card">
+          <div class="pillar-title">Presenting Sponsor</div>
+          <div class="pillar-desc">Exclusive brand visibility across all festival communications, naming rights to a flagship session, and premiere placement in all media coverage.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title">Knowledge Partner</div>
+          <div class="pillar-desc">Co-curate a thematic session or masterclass with GLF's programming team. Ideal for think-tanks, universities, and research institutions.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title">Cultural Sponsor</div>
+          <div class="pillar-desc">Associate your brand with the SPIC MACAY evening concerts — the most visually spectacular and emotionally resonant moments of the festival.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title">Community Partner</div>
+          <div class="pillar-desc">Work with BIHAAN to bring schools, colleges, and youth communities to the festival — seeding the next generation of India's intellectual life.</div>
+        </div>
+      </div>
+      <p class="body-text mt-2">For partnership enquiries: <strong style="color: var(--saffron);">partnerships@gangalitfest.org</strong></p>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============ VIKSIT BHARAT PAGE ============ -->
+<div id="page-viksit" class="page">
+  <section>
+    <div class="section-subtitle">Our Guiding Purpose</div>
+    <h2 class="section-title">Viksit Bharat @2047</h2>
+    <p class="intro-text">"A developed India is not just an economic goal. It is a civilisational sankalp."</p>
+    <p class="body-text">Mananiya Pradhan Mantri Narendra Modi Ji's vision of Viksit Bharat — a fully developed India by 2047, the centenary of independence — is the most ambitious national project India has undertaken since the freedom struggle itself. It envisions India as a $30 trillion economy, a global leader in technology and innovation, a nation where every citizen lives with dignity and opportunity, and a civilisation that has recovered its rightful place at the forefront of human progress.</p>
+    <br>
+    <p class="body-text">The Ganga Literature Festival is dedicated to this sankalp. Every session, every conversation, every book, every debate at GLF is framed by a single question: <em>how does this bring us closer to Viksit Bharat?</em></p>
+
+    <div class="viksit-banner mt-3">
+      <h3>विकसित भारत — PM Modi's Vision in His Own Words</h3>
+      <p>"By 2047, when India completes 100 years of independence, I want to see a developed India — not just in infrastructure and economy, but in the hearts and minds of its people. A nation confident of its past, clear-eyed about its present, and bold about its future."</p>
+    </div>
+
+    <div class="section-subtitle mt-3" style="margin-bottom: 1rem;">GLF's Six Pillars of Viksit Bharat Discourse</div>
+    <div class="theme-grid">
+      <div class="theme-card" data-num="01">
+        <div class="theme-title">Civilisational Confidence</div>
+        <div class="theme-desc">A Viksit Bharat begins with a people who know who they are. GLF's civilisational sessions recover India's authentic intellectual, scientific, and artistic heritage — the foundation of national confidence.</div>
+      </div>
+      <div class="theme-card" data-num="02">
+        <div class="theme-title">Economic Transformation</div>
+        <div class="theme-desc">From $3.5 trillion to $30 trillion requires enterprise, innovation, and the right policy environment. GLF brings together the authors and thinkers mapping this economic journey.</div>
+      </div>
+      <div class="theme-card" data-num="03">
+        <div class="theme-title">Strategic Security</div>
+        <div class="theme-desc">A Viksit Bharat must be a secure Bharat. GLF's national security conversations examine the threats, the responses, and the resolve required to protect India's rise.</div>
+      </div>
+      <div class="theme-card" data-num="04">
+        <div class="theme-title">Social Justice & Constitutional Integrity</div>
+        <div class="theme-desc">Viksit Bharat must be Nyayik Bharat — a just India where constitutional rights are guaranteed equally to all citizens, and where historical wrongs are honestly confronted.</div>
+      </div>
+      <div class="theme-card" data-num="05">
+        <div class="theme-title">Cultural Regeneration</div>
+        <div class="theme-desc">India's classical arts, languages, and traditions are not relics. They are living resources for innovation, wellbeing, and national identity. SPIC MACAY's presence at GLF embodies this conviction.</div>
+      </div>
+      <div class="theme-card" data-num="06">
+        <div class="theme-title">Bihar & Eastern India's Rise</div>
+        <div class="theme-desc">Viksit Bharat cannot be achieved without the development of Bihar, Uttar Pradesh, Jharkhand, and Eastern India. GLF is born here, and committed to this conversation above all others.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============ REGISTER PAGE ============ -->
+<div id="page-register" class="page">
+  <section>
+    <div class="section-subtitle">Join the Conversation</div>
+    <h2 class="section-title">Register for GLF 2026</h2>
+    <p class="body-text">The Ganga Literature Festival is a festival for India's thinkers, readers, writers, entrepreneurs, students, and citizens. All are welcome. All are needed. Registration is open.</p>
+  </section>
+
+  <section style="padding-top: 0;">
+    <div class="ticket-grid">
+
+      <div class="ticket-card">
+        <div class="ticket-name">Student Pass</div>
+        <div class="ticket-price"><span>₹</span>299</div>
+        <ul class="ticket-features">
+          <li><span class="tick">✓</span> Full 2-day festival access</li>
+          <li><span class="tick">✓</span> All panel sessions & keynotes</li>
+          <li><span class="tick">✓</span> Book signings access</li>
+          <li><span class="tick">✓</span> SPIC MACAY evening concerts</li>
+          <li><span class="tick">✓</span> Valid student ID required</li>
+        </ul>
+        <button class="btn-primary" style="width: 100%;">Register →</button>
+      </div>
+
+      <div class="ticket-card featured">
+        <div class="ticket-badge">Most Popular</div>
+        <div class="ticket-name">Delegate Pass</div>
+        <div class="ticket-price"><span>₹</span>1,499</div>
+        <ul class="ticket-features">
+          <li><span class="tick">✓</span> Full 2-day festival access</li>
+          <li><span class="tick">✓</span> All sessions including masterclasses</li>
+          <li><span class="tick">✓</span> Networking luncheons (both days)</li>
+          <li><span class="tick">✓</span> SPIC MACAY evening concerts</li>
+          <li><span class="tick">✓</span> Festival book bag (select titles)</li>
+          <li><span class="tick">✓</span> Author meet & greet access</li>
+        </ul>
+        <button class="btn-primary" style="width: 100%;">Register →</button>
+      </div>
+
+      <div class="ticket-card">
+        <div class="ticket-name">Patron Pass</div>
+        <div class="ticket-price"><span>₹</span>4,999</div>
+        <ul class="ticket-features">
+          <li><span class="tick">✓</span> Everything in Delegate Pass</li>
+          <li><span class="tick">✓</span> Reserved front-row seating</li>
+          <li><span class="tick">✓</span> Private author dinners (evenings)</li>
+          <li><span class="tick">✓</span> Full BluOne Ink catalogue gift</li>
+          <li><span class="tick">✓</span> Name in festival programme</li>
+          <li><span class="tick">✓</span> Post-festival GLF community access</li>
+        </ul>
+        <button class="btn-primary" style="width: 100%;">Register →</button>
+      </div>
+
+      <div class="ticket-card" style="border-top: 3px solid var(--river);">
+        <div class="ticket-name">Institutional</div>
+        <div class="ticket-price" style="font-size: 1.5rem;">Custom</div>
+        <ul class="ticket-features">
+          <li><span class="tick">✓</span> Group bookings (10+ delegates)</li>
+          <li><span class="tick">✓</span> School & college group rates</li>
+          <li><span class="tick">✓</span> Corporate delegations</li>
+          <li><span class="tick">✓</span> NGO & think-tank rates</li>
+          <li><span class="tick">✓</span> Custom packages available</li>
+        </ul>
+        <button class="btn-outline" style="width: 100%;">Enquire →</button>
+      </div>
+
+    </div>
+
+    <div class="mt-3">
+      <p class="body-text"><strong>Important:</strong> All registrations include access to both SPIC MACAY evening concerts. The Masterclass (Writing India) is limited to 50 participants and requires a separate booking at the time of registration.</p>
+      <br>
+      <p class="body-text">For group bookings, press credentials, speaker registration, or accessibility requirements: <strong style="color: var(--saffron);">register@gangalitfest.org</strong></p>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============ PRESS PAGE ============ -->
+<div id="page-press" class="page">
+  <section>
+    <div class="section-subtitle">Media & Press</div>
+    <h2 class="section-title">Press Centre</h2>
+    <p class="body-text">The Ganga Literature Festival welcomes media coverage from journalists, bloggers, podcasters, and content creators who share our commitment to intellectual honesty and national purpose. Press credentials are available for accredited media.</p>
+  </section>
+
+  <section style="padding-top: 0;">
+    <div class="about-grid">
+      <div>
+        <div class="section-subtitle" style="margin-bottom: 0.8rem;">Press Credentials</div>
+        <p class="body-text">GLF accredits journalists from print, digital, broadcast, and independent media. Accredited press receive: full festival access, dedicated press area, press conference invitations, author one-on-one interview scheduling, hi-res image downloads, and post-event press kit.</p>
+        <br>
+        <p class="body-text">Apply: <strong style="color: var(--saffron);">press@gangalitfest.org</strong><br>Deadline for applications: 1 October 2026</p>
+
+        <div class="section-subtitle mt-3" style="margin-bottom: 0.8rem;">Press Kit</div>
+        <p class="body-text">The GLF Press Kit includes: official logo files, festival photography guidelines, speaker biographies, programme overview, quotes from organisers, and background on BIHAAN, BluOne Ink, and SPIC MACAY. Available from 1 September 2026.</p>
+      </div>
+      <div>
+        <div class="section-subtitle" style="margin-bottom: 0.8rem;">Frequently Asked Questions</div>
+        <div class="faq-item">
+          <div class="faq-q">Is GLF a free festival?</div>
+          <div class="faq-a">GLF has a nominal registration fee designed to cover logistics and ensure committed attendance. Student rates (₹299) ensure accessibility for all.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I bring my school or college group?</div>
+          <div class="faq-a">Absolutely — and we actively encourage it. Contact institutional@gangalitfest.org for group rates and programmes designed for young audiences.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Will sessions be recorded and available online?</div>
+          <div class="faq-a">Select sessions will be live-streamed and made available on BIHAAN and BluOne Ink's YouTube channels. The SPIC MACAY concerts will not be broadcast — they must be experienced in person.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is GLF affiliated with a political party?</div>
+          <div class="faq-a">GLF is an independent cultural and literary festival. It is guided by the values of civilisational pride, intellectual honesty, and national purpose — values that belong to all Indians, not any party.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How can I propose a session or suggest a speaker?</div>
+          <div class="faq-a">We welcome suggestions from the public. Write to programme@gangalitfest.org with your proposal. While we cannot accommodate every suggestion, every submission is read.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============ CONTACT PAGE ============ -->
+<div id="page-contact" class="page">
+  <section>
+    <div class="section-subtitle">Get in Touch</div>
+    <h2 class="section-title">Contact Us</h2>
+    <div class="about-grid">
+      <div>
+        <p class="body-text">The Ganga Literature Festival team is here to help — whether you are a delegate, a journalist, a potential partner, an author who wishes to participate, or simply someone who cares about India's intellectual life.</p>
+        <br>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">📧</div>
+          <div>
+            <div class="venue-fact-label">General Enquiries</div>
+            <div class="venue-fact-value">hello@gangalitfest.org</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">🎤</div>
+          <div>
+            <div class="venue-fact-label">Speaker & Programme</div>
+            <div class="venue-fact-value">programme@gangalitfest.org</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">🤝</div>
+          <div>
+            <div class="venue-fact-label">Partnerships & Sponsorship</div>
+            <div class="venue-fact-value">partnerships@gangalitfest.org</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">📰</div>
+          <div>
+            <div class="venue-fact-label">Media & Press</div>
+            <div class="venue-fact-value">press@gangalitfest.org</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">🎟️</div>
+          <div>
+            <div class="venue-fact-label">Registration & Ticketing</div>
+            <div class="venue-fact-value">register@gangalitfest.org</div>
+          </div>
+        </div>
+        <div class="venue-fact">
+          <div class="venue-fact-icon">🏫</div>
+          <div>
+            <div class="venue-fact-label">Schools & Institutions</div>
+            <div class="venue-fact-value">institutional@gangalitfest.org</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="evening-card">
+          <h3>Stay Connected</h3>
+          <p>Follow the Ganga Literature Festival on social media for programme announcements, speaker reveals, early-bird registration alerts, and behind-the-scenes moments from Patna's most extraordinary intellectual event.</p>
+          <br>
+          <p style="font-size: 0.8rem; color: #8A7A6A;">
+            🐦 @GangaLitFest<br>
+            📸 @gangaliteraturefestival<br>
+            💼 Ganga Literature Festival<br>
+            ▶️ Ganga Literature Festival
+          </p>
+        </div>
+        <br>
+        <p class="body-text"><strong>Presented by BIHAAN</strong><br><a href="https://bihaan.org" style="color: var(--river-light);">bihaan.org</a></p>
+        <br>
+        <p class="body-text"><strong>Literary Partner: BluOne Ink</strong><br><a href="https://bluone.ink" style="color: var(--river-light);">bluone.ink</a></p>
+        <br>
+        <p class="body-text"><strong>Classical Arts Partner: SPIC MACAY</strong><br><a href="https://spicmacay.org" style="color: var(--river-light);">spicmacay.org</a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- FOOTER (visible on all pages) -->
+<footer>
+  <div class="footer-brand">Ganga Literature Festival</div>
+  <div class="footer-tagline">Patna · 11 & 12 November 2026</div>
+  <div class="footer-partners">
+    <div class="footer-partner">Presented by <strong>BIHAAN</strong></div>
+    <div class="footer-partner">Literary Partner <strong>BluOne Ink</strong></div>
+    <div class="footer-partner">Arts Partner <strong>SPIC MACAY</strong></div>
+  </div>
+  <div class="footer-links">
+    <a href="#" onclick="showPage('home',null)">Home</a>
+    <a href="#" onclick="showPage('about',null)">About</a>
+    <a href="#" onclick="showPage('programme',null)">Programme</a>
+    <a href="#" onclick="showPage('speakers',null)">Speakers</a>
+    <a href="#" onclick="showPage('venue',null)">Venue</a>
+    <a href="#" onclick="showPage('partners',null)">Partners</a>
+    <a href="#" onclick="showPage('viksit',null)">Viksit Bharat</a>
+    <a href="#" onclick="showPage('register',null)">Register</a>
+    <a href="#" onclick="showPage('press',null)">Press</a>
+    <a href="#" onclick="showPage('contact',null)">Contact</a>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-copy">© 2026 Ganga Literature Festival · BIHAAN · All rights reserved · gangalitfest.org</div>
+  <div style="font-size: 0.65rem; color: #2A2018; margin-top: 0.8rem; font-style: italic;">सा विद्या या विमुक्तये — Knowledge is that which liberates</div>
+</footer>
+
+<script>
+function showPage(id, clickedLink) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + id);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  if (clickedLink) clickedLink.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+
+</body>
+</html>
