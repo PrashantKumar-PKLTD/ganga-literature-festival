@@ -1,48 +1,125 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GangaJourney from "./GangaJourney";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const heroBgSrc = "/heroimage.png?v=3";
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Intro animations
+      gsap.from(".hero-reveal-arch", {
+        opacity: 0,
+        scale: 0.96,
+        duration: 1.8,
+        ease: "power3.out"
+      });
+
+      gsap.from(".hero-reveal-quote", {
+        opacity: 0,
+        y: 20,
+        duration: 1.2,
+        ease: "power3.out",
+        delay: 0.3
+      });
+
+      gsap.from(".hero-reveal-title", {
+        opacity: 0,
+        y: 40,
+        duration: 1.5,
+        ease: "power4.out",
+        delay: 0.5
+      });
+
+      gsap.from(".hero-reveal-subtitle", {
+        opacity: 0,
+        y: 20,
+        duration: 1.2,
+        ease: "power3.out",
+        delay: 0.8
+      });
+
+      gsap.from(".hero-reveal-action", {
+        opacity: 0,
+        y: 20,
+        stagger: 0.15,
+        duration: 1,
+        ease: "power3.out",
+        delay: 1
+      });
+
+      gsap.from(".hero-reveal-badge", {
+        opacity: 0,
+        y: 15,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 1.2
+      });
+
+      // Stats Bar scroll triggered stagger
+      gsap.from(".hero-stat-item", {
+        scrollTrigger: {
+          trigger: ".hero-stats-bar",
+          start: "top 95%",
+          toggleActions: "play none none none"
+        },
+        opacity: 0,
+        y: 25,
+        stagger: 0.12,
+        duration: 1,
+        ease: "power3.out"
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="home" className="relative bg-cream">
-      <div className="relative min-h-[720px] overflow-hidden bg-black text-white md:min-h-[760px]">
+    <section id="home" ref={containerRef} className="relative bg-cream paper-texture">
+      <div className="relative h-[100dvh] min-h-[650px] overflow-hidden bg-dark text-white">
         <img
           src={heroBgSrc}
           alt="Ganga riverfront at sunrise"
           fetchPriority="high"
           className="hero-bg-animate absolute inset-0 z-0 h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/20 via-black/10 to-black/30" />
-        <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(181,139,50,0.06),transparent_46%)]" />
+        {/* Layered Lighting overlay */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-dark/40 via-dark/20 to-dark/85" />
+        <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(212,96,10,0.18),transparent_65%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[650px] max-w-7xl flex-col items-center justify-center px-5 pt-32 text-center md:pt-36">
-          <div className="festival-arch relative mx-auto flex min-h-[480px] md:min-h-[520px] h-auto w-full max-w-[760px] items-center justify-center px-8 py-10 md:px-14 md:py-12">
+        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-5 pt-12 text-center">
+          <div className="festival-arch hero-reveal-arch relative mx-auto flex min-h-[460px] md:min-h-[500px] h-auto w-full max-w-[760px] items-center justify-center px-8 py-10 md:px-14 md:py-12">
             <div className="relative z-10 w-[min(92vw,920px)] max-w-none">
               <div className="-mt-2 mb-5">
-                <p className="font-serif text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-gold mb-3">
+                <p className="hero-reveal-quote font-serif text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-gold mb-3">
                   सा विद्या या विमुक्तये — Knowledge is that which liberates
                 </p>
-                <div className="flex items-center justify-center gap-3 text-white">
+                <div className="hero-reveal-subtitle flex items-center justify-center gap-3 text-white">
                   <span className="h-1.5 w-1.5 rotate-45 bg-saffron" />
-                  <span className="text-xl font-bold tracking-[0.24em] md:text-2xl">11 & 12 NOVEMBER 2026</span>
+                  <span className="text-lg font-bold tracking-[0.24em] md:text-xl">11 & 12 NOVEMBER 2026</span>
                   <span className="h-1.5 w-1.5 rotate-45 bg-saffron" />
                 </div>
-                <p className="mt-2 font-serif text-xs font-bold uppercase tracking-widest md:text-sm text-cream/70">
+                <p className="hero-reveal-subtitle mt-2 font-serif text-xs font-bold uppercase tracking-widest md:text-sm text-cream/70">
                   Patna, Bihar — On the Banks of the Holy Ganga
                 </p>
               </div>
-              <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light uppercase leading-[0.95] tracking-tight text-white mb-2">
+              <h1 className="hero-reveal-title font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light uppercase leading-[0.95] tracking-tight text-white mb-2">
                 Ganga <br />
                 <span className="font-serif italic font-light text-gold text-[0.85em] normal-case">Literature Festival</span>
               </h1>
-              <p className="mt-4 font-serif text-[13px] md:text-[15px] font-bold uppercase tracking-[0.16em] text-cream/80 max-w-xl mx-auto leading-relaxed">
+              <p className="hero-reveal-subtitle mt-4 font-serif text-[13px] md:text-[15px] font-bold uppercase tracking-[0.16em] text-cream/80 max-w-xl mx-auto leading-relaxed">
                 Where the river of thought meets the ocean of civilisation
               </p>
-              <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <div className="mt-6 flex flex-wrap justify-center gap-4 hero-reveal-action">
                 <Link
                   to="/festival/register-to-attend"
-                  className="bg-saffron px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] text-cream transition-all duration-300 hover:bg-gold hover:text-dark hover:-translate-y-0.5 rounded-none"
+                  className="border border-saffron bg-saffron px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] text-cream transition-all duration-300 hover:bg-gold hover:border-gold hover:text-dark hover:-translate-y-0.5 rounded-none shadow-sm"
                 >
                   Register Now
                 </Link>
@@ -53,13 +130,19 @@ export default function Hero() {
                   View Programme
                 </Link>
               </div>
-              <div className="mt-8 flex flex-wrap justify-center gap-3 text-[10px] font-bold uppercase tracking-[0.14em]">
-                <span className="border border-gold/30 bg-dark/40 px-4 py-2 text-cream rounded-none">Presented by <strong className="text-gold">BIHAAN</strong></span>
-                <span className="border border-gold/30 bg-dark/40 px-4 py-2 text-cream rounded-none">Publishing Partner <strong className="text-gold">BluOne Ink</strong></span>
-                <span className="border border-gold/30 bg-dark/40 px-4 py-2 text-cream rounded-none">Cultural Partner <strong className="text-gold">SPIC MACAY</strong></span>
+              <div className="mt-8 flex flex-wrap justify-center gap-3 text-[9px] font-bold uppercase tracking-[0.14em] hero-reveal-badge">
+                <span className="border border-gold/20 bg-dark/65 px-4 py-2 text-cream rounded-none">Presented by <strong className="text-gold">BIHAAN</strong></span>
+                <span className="border border-gold/20 bg-dark/65 px-4 py-2 text-cream rounded-none">Publishing Partner <strong className="text-gold">BluOne Ink</strong></span>
+                <span className="border border-gold/20 bg-dark/65 px-4 py-2 text-cream rounded-none">Cultural Partner <strong className="text-gold">SPIC MACAY</strong></span>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-1.5 text-cream/45 select-none animate-bounce">
+          <span className="text-[9px] font-bold uppercase tracking-[0.25em]">Scroll to Enter</span>
+          <span className="text-saffron text-sm">♦</span>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 z-20 h-40 md:h-52">
@@ -68,26 +151,26 @@ export default function Hero() {
       </div>
 
       {/* STATS BAR */}
-      <div className="relative z-30 mx-auto max-w-7xl px-5 -mt-10 sm:-mt-14 mb-14">
-        <div className="bg-dark text-cream border border-gold/20 p-8 shadow-xl">
+      <div className="hero-stats-bar relative z-30 mx-auto max-w-7xl px-5 -mt-10 sm:-mt-14 mb-14">
+        <div className="bg-[#130d07] text-cream border-double border-4 border-gold/20 p-8 shadow-xl">
           <div className="grid grid-cols-2 gap-y-6 gap-x-4 text-center sm:grid-cols-5 sm:divide-x sm:divide-cream/10">
-            <div className="flex flex-col items-center">
+            <div className="hero-stat-item flex flex-col items-center">
               <span className="font-serif text-3xl md:text-4xl font-light text-gold">2</span>
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cream/60 mt-1">Days</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="hero-stat-item flex flex-col items-center">
               <span className="font-serif text-3xl md:text-4xl font-light text-gold">40+</span>
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cream/60 mt-1">Speakers</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="hero-stat-item flex flex-col items-center">
               <span className="font-serif text-3xl md:text-4xl font-light text-gold">25+</span>
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cream/60 mt-1">Sessions</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="hero-stat-item flex flex-col items-center">
               <span className="font-serif text-3xl md:text-4xl font-light text-gold">1</span>
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cream/60 mt-1">Evening Concert</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="hero-stat-item flex flex-col items-center">
               <span className="font-serif text-3xl md:text-4xl font-light text-gold">2047</span>
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cream/60 mt-1">Viksit Horizon</span>
             </div>
@@ -104,7 +187,7 @@ export default function Hero() {
             <h2 className="mt-3 font-serif text-4xl font-light leading-tight text-dark md:text-5xl">
               The river behind the festival's name
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-dark/70">
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-dark/70 font-light">
               The Ganga Literature Festival is a civilisational conversation in Patna,
               where books, ideas, classical arts, and the Viksit Bharat horizon meet.
             </p>
@@ -148,7 +231,7 @@ export default function Hero() {
         }
 
         .festival-skyline {
-          background: #ffffff;
+          background: var(--cream);
           clip-path: polygon(
             0 58%, 1.5% 52%, 3% 54%, 4% 47%, 5% 51%, 6% 48%, 7% 54%, 8% 58%,
             10% 58%, 10.5% 54%, 12% 54%, 12.5% 59%, 14% 60%, 15% 50%, 16% 46%,

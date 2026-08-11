@@ -33,17 +33,8 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden bg-cream px-5 py-16 md:px-8 md:py-24 border-t border-gold/10"
+      className="relative overflow-hidden bg-cream px-5 py-16 md:px-8 md:py-24 paper-texture"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-70"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(200,150,43,0.06) 1px, transparent 1px)",
-          backgroundSize: "22.5% 100%",
-        }}
-      />
-
       <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.25fr] lg:gap-20">
         <div className="lg:pt-2">
           <h2 className="font-serif text-5xl font-light uppercase leading-none tracking-[-0.01em] text-dark md:text-6xl">
@@ -79,7 +70,7 @@ export default function FAQ() {
                   >
                     +
                   </span>
-                  <span className="font-serif text-lg sm:text-xl lg:text-2xl font-light leading-snug text-dark">
+                  <span className="font-serif text-lg sm:text-xl lg:text-2xl font-light leading-snug text-dark group-hover:text-saffron transition-colors">
                     {faq.q}
                   </span>
                 </button>

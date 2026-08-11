@@ -1,74 +1,125 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { X, Award, ExternalLink } from "lucide-react";
 import HONOURABLE_GUESTS from "../data/honourableGuests";
 import GuestSocialLinks from "../components/GuestSocialLinks";
+import PageHero from "../components/PageHero";
+import MadhubaniDivider from "../components/MadhubaniDivider";
+import SectionHeading from "../components/SectionHeading";
 
 export default function HonourableGuestsPage() {
+  const [selectedGuest, setSelectedGuest] = useState(null);
+
   return (
-    <main className="pt-[78px] md:pt-[82px]">
-      <section className="relative overflow-hidden bg-dark px-5 py-20 text-center text-cream md:px-8 md:py-28 border-t border-gold/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,150,43,0.22),transparent_55%)]" />
-        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(181,139,50,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(181,139,50,0.08)_1px,transparent_1px)] [background-size:42px_42px]" />
-        <div className="relative z-10 mx-auto max-w-4xl">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-saffron">
-            Public Leadership
-          </p>
-          <h1 className="mt-5 font-serif text-5xl md:text-7xl font-light uppercase tracking-tight text-white">
-            Our Honourable Guests
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-sm font-light leading-relaxed text-cream/75 md:text-base">
-            Leaders and public representatives joining the wider conversation
-            around Bihar's future, culture, knowledge, and civic imagination.
-          </p>
-        </div>
-      </section>
+    <main className="bg-cream paper-texture min-h-screen">
+      {/* Hero Header */}
+      <PageHero
+        eyebrow="Public Leadership & Patronage"
+        title="Honourable"
+        italicTitle="Guests & Dignitaries"
+        intro="Distinguished leaders, public representatives, policy thinkers, and cultural patrons joining the Ganga Literature Festival conversation."
+        badge="Patna • 11 & 12 November 2026"
+      />
 
-      <section className="bg-cream px-4 py-16 sm:px-6 md:px-8 md:py-24 border-t border-gold/10">
+      <section className="relative px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-saffron font-bold text-xs uppercase tracking-[0.24em]">
-                Guest Directory
-              </p>
-              <h2 className="text-dark mt-3 font-serif text-4xl font-light uppercase leading-none md:text-5xl">
-                Invited Dignitaries
-              </h2>
-            </div>
-            <Link
-              to="/"
-              className="bg-dark text-cream border border-saffron inline-flex w-fit items-center justify-center px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] transition duration-300 hover:bg-saffron hover:text-cream rounded-none"
-            >
-              Back Home
-            </Link>
-          </div>
+          <SectionHeading
+            eyebrow="Leadership Directory"
+            title="Invited Public Dignitaries"
+            intro="Honouring leaders who shape civic imagination, public service, and civilisational progress."
+          />
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <MadhubaniDivider variant="compact" />
+
+          {/* Guests Grid */}
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {HONOURABLE_GUESTS.map((guest) => (
-              <article key={guest.name} className="bg-cream border border-gold/20 rounded-none overflow-hidden shadow-sm group transition duration-300 hover:border-saffron hover:shadow-lg hover:-translate-y-1">
-                <div className="aspect-[4/3.5] overflow-hidden bg-dark">
+              <div
+                key={guest.name}
+                onClick={() => setSelectedGuest(guest)}
+                className="group relative cursor-pointer border border-gold/30 bg-white p-4 transition-all duration-500 hover:-translate-y-1 hover:border-saffron hover:shadow-xl"
+              >
+                <div className="aspect-[4/3.5] overflow-hidden border border-gold/20 bg-parchment">
                   <img
                     src={guest.image}
                     alt={guest.name}
                     loading="lazy"
-                    className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover object-top grayscale contrast-105 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 opacity-90 group-hover:opacity-100"
                   />
                 </div>
-                <div className="p-3 sm:p-5">
-                  <h3 className="text-dark font-serif text-lg font-light leading-tight sm:text-2xl">
-                    {guest.name}
-                  </h3>
-                  <p className="text-saffron mt-2 text-[10px] font-bold leading-4 sm:mt-3 sm:text-xs sm:leading-5">
-                    {guest.role}
-                  </p>
-                  <p className="text-dark/70 mt-2 text-[9px] font-bold uppercase tracking-[0.1em] sm:mt-3 sm:text-xs sm:tracking-[0.14em]">
-                    {guest.affiliation}
-                  </p>
-                  <GuestSocialLinks social={guest.social} name={guest.name} />
+
+                <div className="mt-4 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-serif text-2xl font-bold leading-tight text-dark group-hover:text-deep-saffron transition-colors">
+                      {guest.name}
+                    </h3>
+                    <p className="mt-1.5 text-[11px] font-bold uppercase tracking-wider text-saffron leading-tight">
+                      {guest.role}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-gold/20 flex items-center justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-dark/60 truncate max-w-[170px]">
+                      {guest.affiliation}
+                    </span>
+                    <GuestSocialLinks social={guest.social} name={guest.name} />
+                  </div>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Guest Modal */}
+      {selectedGuest && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-dark/80 p-4 backdrop-blur-sm">
+          <div className="relative w-full max-w-2xl border-2 border-gold bg-cream p-6 sm:p-8 shadow-2xl text-dark">
+            <button
+              onClick={() => setSelectedGuest(null)}
+              className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center border border-gold/40 text-dark hover:bg-saffron hover:text-white transition"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            <div className="grid gap-6 sm:grid-cols-[200px_1fr] items-start">
+              <div className="overflow-hidden border-2 border-gold/40 aspect-[4/4.5] bg-dark">
+                <img
+                  src={selectedGuest.image}
+                  alt={selectedGuest.name}
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-saffron">
+                  {selectedGuest.affiliation}
+                </span>
+                <h3 className="mt-1 font-serif text-3xl font-bold leading-none text-dark">
+                  {selectedGuest.name}
+                </h3>
+                <p className="mt-2 text-xs font-bold uppercase tracking-wider text-deep-saffron">
+                  {selectedGuest.role}
+                </p>
+
+                <p className="mt-4 text-xs leading-relaxed text-dark/80 font-sans">
+                  Invited guest to the Ganga Literature Festival 2026, participating in public sessions, civilisational discourse, and state reception events in Patna.
+                </p>
+
+                <div className="mt-6 flex items-center justify-between border-t border-gold/30 pt-4">
+                  <GuestSocialLinks social={selectedGuest.social} name={selectedGuest.name} />
+                  <button
+                    onClick={() => setSelectedGuest(null)}
+                    className="border border-dark/30 px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-dark hover:bg-dark hover:text-white transition"
+                  >
+                    Close Profile
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

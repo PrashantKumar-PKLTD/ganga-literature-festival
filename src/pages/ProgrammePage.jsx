@@ -1,10 +1,13 @@
 import { useMemo, useState } from "react";
-import { Download, Search, Share2 } from "lucide-react";
+import { Download, Search, Share2, Calendar, MapPin, Sparkles } from "lucide-react";
 import { SCHEDULE_DAYS } from "../data/schedule";
+import PageHero from "../components/PageHero";
+import MadhubaniDivider from "../components/MadhubaniDivider";
+import SectionHeading from "../components/SectionHeading";
 
 const dayButtons = [
-  ["Wed", "11", "November"],
-  ["Thu", "12", "November"],
+  ["Wed", "11", "November 2026"],
+  ["Thu", "12", "November 2026"],
 ];
 
 function sessionId(dayIndex, session) {
@@ -16,7 +19,7 @@ function sessionId(dayIndex, session) {
 
 function getVenue(session) {
   if (session.title.includes("Sangam")) return "Open-Air Ganga Amphitheatre";
-  return "Ganga Literature Festival, Patna";
+  return "Main Auditorium, Patna";
 }
 
 function toGmtTime(time) {
@@ -137,76 +140,61 @@ export default function ProgrammePage() {
   };
 
   return (
-    <main className="pt-[78px] md:pt-[82px] bg-cream">
-      <section
-        className="relative min-h-[500px] overflow-hidden bg-cover bg-center text-white md:min-h-[560px]"
-        style={{ backgroundImage: 'url("/gangaimg1.png")' }}
-      >
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,96,10,0.14),rgba(28,18,8,0.72))]" />
-        <div className="relative mx-auto flex min-h-[500px] max-w-6xl items-center justify-center px-5 text-center md:min-h-[560px] md:px-8">
-          <div className="relative px-8 py-16">
-            <div className="absolute inset-0 border-[8px] border-saffron opacity-85 [clip-path:polygon(12%_100%,12%_44%,17%_44%,20%_35%,28%_30%,36%_25%,44%_17%,50%_0,56%_17%,64%_25%,72%_30%,80%_35%,83%_44%,88%_44%,88%_100%)]" />
-            <div className="relative">
-              <p className="font-serif text-3xl font-light uppercase leading-none text-white md:text-4xl">
-                Ganga Literature Festival
-              </p>
-              <h1 className="mt-4 font-serif text-5xl md:text-7xl font-light uppercase tracking-tight text-white">
-                Programme
-              </h1>
-              <p className="mt-5 text-sm font-bold uppercase tracking-[0.22em] text-gold">
-                11 & 12 November 2026
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-cream [clip-path:polygon(0_60%,4%_40%,8%_62%,13%_42%,21%_62%,31%_38%,40%_58%,50%_40%,60%_62%,70%_38%,82%_58%,92%_40%,100%_60%,100%_100%,0_100%)]" />
-      </section>
+    <main className="bg-cream paper-texture min-h-screen">
+      {/* Page Hero Header */}
+      <PageHero
+        eyebrow="Editorial Schedule"
+        title="Festival"
+        italicTitle="Programme"
+        intro="Explore talks, keynote discourses, book launches, poetry readings, and SPIC MACAY cultural evenings across 11 & 12 November 2026 in Patna."
+        badge="Patna • 11 & 12 November 2026"
+      />
 
-      <section className="bg-cream px-5 py-16 md:px-8 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="sticky top-[78px] md:top-[82px] z-20 rounded-none bg-cream/95 backdrop-blur-md p-4 border border-gold/20 shadow-sm">
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-              <div className="grid grid-cols-2 gap-2">
+      <section className="relative px-5 py-12 md:px-8 md:py-20">
+        <div className="mx-auto max-w-7xl">
+          {/* Sticky Navigation & Control Toolbar */}
+          <div className="sticky top-[78px] md:top-[82px] z-30 bg-cream/95 backdrop-blur-md p-4 sm:p-6 border border-gold/30 shadow-md">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              {/* Day Selector Buttons */}
+              <div className="grid grid-cols-2 gap-3">
                 {dayButtons.map(([day, date, month], index) => (
                   <button
                     type="button"
                     key={day}
                     onClick={() => setActiveDay(index)}
-                    className={`rounded-none border px-3 py-2.5 text-center leading-none transition-colors duration-300 ${
-                      activeDay === index ? "bg-saffron border-saffron text-cream" : "bg-cream border-gold/30 text-dark hover:border-saffron hover:text-saffron"
+                    className={`flex flex-col items-center justify-center px-6 py-3 border transition-all duration-300 ${
+                      activeDay === index
+                        ? "bg-saffron border-saffron text-cream shadow-md"
+                        : "bg-white border-gold/30 text-dark hover:border-gold hover:text-saffron"
                     }`}
                   >
-                    <span className="block text-[11px] font-bold">{day}</span>
-                    <span className="block text-2xl font-black">{date}</span>
-                    <span className="block text-[11px] font-semibold">{month}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest">{day}</span>
+                    <span className="font-serif text-3xl font-bold leading-none my-0.5">{date}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest">{month}</span>
                   </button>
                 ))}
               </div>
 
-              <div className="flex flex-col gap-4 md:flex-row md:items-center">
+              {/* Timezone Toggle, Search & Export */}
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <button
                   type="button"
                   onClick={() => setTimezone((current) => (current === "IST" ? "GMT" : "IST"))}
-                  className="flex items-center gap-2 text-sm text-dark font-medium"
-                  aria-pressed={timezone === "IST"}
+                  className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-dark bg-white px-4 py-3 border border-gold/30"
                 >
-                  <span className={timezone === "GMT" ? "font-bold text-saffron" : "text-dark/55"}>
-                    Local (GMT)
-                  </span>
-                  <span className="h-5 w-10 rounded-full bg-saffron p-1">
+                  <span className={timezone === "GMT" ? "text-saffron" : "text-dark/50"}>GMT</span>
+                  <span className="h-4 w-8 rounded-full bg-saffron p-0.5 inline-flex items-center">
                     <span
                       className={`block h-3 w-3 rounded-full bg-white transition-transform ${
-                        timezone === "IST" ? "translate-x-5" : "translate-x-0"
+                        timezone === "IST" ? "translate-x-4" : "translate-x-0"
                       }`}
                     />
                   </span>
-                  <strong className={timezone === "IST" ? "text-saffron" : "text-dark/55"}>
-                    Conference (IST)
-                  </strong>
+                  <span className={timezone === "IST" ? "text-saffron" : "text-dark/50"}>IST (UTC+5:30)</span>
                 </button>
+
                 <form
-                  className="flex overflow-hidden border border-gold/30 bg-cream rounded-none focus-within:border-saffron focus-within:ring-1 focus-within:ring-saffron transition"
+                  className="flex overflow-hidden border border-gold/30 bg-white"
                   onSubmit={(event) => {
                     event.preventDefault();
                     setSubmittedQuery(query);
@@ -218,76 +206,95 @@ export default function ProgrammePage() {
                       setQuery(event.target.value);
                       setSubmittedQuery(event.target.value);
                     }}
-                    className="h-12 min-w-0 px-4 text-sm outline-none bg-transparent text-dark md:w-72"
-                    placeholder="Search by title, author, speaker..."
+                    className="h-11 min-w-0 px-4 text-xs outline-none text-dark bg-transparent md:w-64 placeholder:text-dark/40"
+                    placeholder="Search session title or speaker..."
                   />
-                  <button type="submit" className="flex h-12 w-14 items-center justify-center bg-saffron text-cream transition hover:bg-dark">
-                    <Search className="h-5 w-5" />
+                  <button type="submit" className="flex h-11 w-11 items-center justify-center bg-saffron text-white hover:bg-gold hover:text-dark transition">
+                    <Search className="h-4 w-4" />
                   </button>
                   <button
                     type="button"
                     onClick={downloadSchedule}
-                    className="flex h-12 w-14 items-center justify-center border-l border-gold/20 bg-dark text-cream transition hover:bg-saffron"
-                    aria-label="Download visible programme"
+                    className="flex h-11 w-11 items-center justify-center border-l border-gold/20 bg-dark text-white hover:bg-saffron transition"
+                    title="Download CSV Schedule"
                   >
-                    <Download className="h-5 w-5" />
+                    <Download className="h-4 w-4" />
                   </button>
                 </form>
               </div>
             </div>
           </div>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-[240px_1fr]">
-            <aside className="grid h-fit gap-4">
-              <select
-                value={venueFilter}
-                onChange={(event) => setVenueFilter(event.target.value)}
-                className="rounded-none border border-gold/20 bg-cream px-4 py-3.5 text-sm font-semibold text-dark outline-none focus:border-saffron transition"
-              >
-                <option value="all">Select Hall</option>
-                <option value="Ganga Literature Festival, Patna">Ganga Literature Festival, Patna</option>
-                <option value="Open-Air Ganga Amphitheatre">Open-Air Ganga Amphitheatre</option>
-              </select>
-              <select
-                value={themeFilter}
-                onChange={(event) => setThemeFilter(event.target.value)}
-                className="rounded-none border border-gold/20 bg-cream px-4 py-3.5 text-sm font-semibold text-dark outline-none focus:border-saffron transition"
-              >
-                <option value="all">Select Theme</option>
-                {themes.map((theme) => (
-                  <option key={theme} value={theme}>
-                    {theme}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={specialFilter}
-                onChange={(event) => setSpecialFilter(event.target.value)}
-                className="rounded-none border border-gold/20 bg-cream px-4 py-3.5 text-sm font-semibold text-dark outline-none focus:border-saffron transition"
-              >
-                <option value="all">All Sessions</option>
-                <option value="spic">SPIC MACAY Evening</option>
-              </select>
-              <button
-                type="button"
-                onClick={resetFilters}
-                className="mt-4 w-fit text-sm font-bold text-saffron underline underline-offset-4 hover:text-dark transition"
-              >
-                Reset Filter
-              </button>
+          <MadhubaniDivider variant="compact" />
+
+          {/* Sidebar Filters & Timeline Content */}
+          <div className="mt-10 grid gap-8 lg:grid-cols-[250px_1fr]">
+            {/* Sidebar Filters */}
+            <aside className="space-y-4">
+              <div className="border border-gold/30 bg-white p-5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-saffron block mb-3">
+                  Filter Stage / Venue
+                </span>
+                <select
+                  value={venueFilter}
+                  onChange={(e) => setVenueFilter(e.target.value)}
+                  className="w-full border border-gold/30 bg-cream p-2.5 text-xs font-sans text-dark outline-none focus:border-saffron"
+                >
+                  <option value="all">All Venues</option>
+                  <option value="Main Auditorium, Patna">Main Auditorium</option>
+                  <option value="Open-Air Ganga Amphitheatre">Open-Air Ganga Amphitheatre</option>
+                </select>
+
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-saffron block mt-5 mb-3">
+                  Filter Theme
+                </span>
+                <select
+                  value={themeFilter}
+                  onChange={(e) => setThemeFilter(e.target.value)}
+                  className="w-full border border-gold/30 bg-cream p-2.5 text-xs font-sans text-dark outline-none focus:border-saffron"
+                >
+                  <option value="all">All Themes</option>
+                  {themes.map((theme) => (
+                    <option key={theme} value={theme}>
+                      {theme}
+                    </option>
+                  ))}
+                </select>
+
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-saffron block mt-5 mb-3">
+                  Special Category
+                </span>
+                <select
+                  value={specialFilter}
+                  onChange={(e) => setSpecialFilter(e.target.value)}
+                  className="w-full border border-gold/30 bg-cream p-2.5 text-xs font-sans text-dark outline-none focus:border-saffron"
+                >
+                  <option value="all">All Sessions</option>
+                  <option value="spic">SPIC MACAY Cultural Evening</option>
+                </select>
+
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="mt-6 w-full border border-saffron/40 py-2 text-xs font-bold uppercase tracking-wider text-saffron hover:bg-saffron hover:text-white transition"
+                >
+                  Reset All Filters
+                </button>
+              </div>
             </aside>
 
+            {/* Timeline Stream */}
             <div>
               {filteredDays.map((day, dayIndex) => {
                 if (day.sessions.length === 0) return null;
 
                 return (
                   <div key={day.heading} className="mb-12">
-                    <div className="rounded-none bg-dark border border-gold/20 px-6 py-4 text-center font-serif text-2xl font-light text-cream uppercase tracking-wider">
+                    <div className="border border-gold/30 bg-dark px-6 py-4 text-center font-serif text-2xl font-bold text-gold uppercase tracking-wider">
                       {day.heading}
                     </div>
 
-                    <div className="relative mt-8 border-l border-gold/30 pl-6">
+                    <div className="relative mt-8 border-l-2 border-gold/40 pl-6 sm:pl-8 space-y-8">
                       {day.sessions.map((session, index) => {
                         const id = sessionId(dayIndex, session);
                         const venue = getVenue(session);
@@ -296,55 +303,58 @@ export default function ProgrammePage() {
                           <article
                             id={id}
                             key={session.title}
-                            className={`relative mb-8 scroll-mt-28 border border-gold/20 p-6 transition duration-300 hover:border-saffron hover:shadow-md ${
-                              index % 2 === 1 ? "bg-parchment/30" : "bg-cream"
-                            }`}
+                            className="relative scroll-mt-32 border border-gold/30 bg-white p-6 shadow-sm transition-all duration-300 hover:border-saffron hover:shadow-md"
                           >
-                            <span className="absolute -left-[31px] top-8 h-3 w-3 rotate-45 border border-gold/30 bg-saffron" />
-                            <div className="flex items-start justify-between gap-4">
-                              <div>
-                                <p className="text-xs font-bold text-dark/60">
-                                  {day.heading} | {displayTime(session.time)} {timezone}
-                                </p>
-                                <div className="mt-3 flex flex-wrap gap-2">
-                                  <span className="rounded-none border border-saffron/20 bg-saffron/10 px-2.5 py-1 text-xs font-bold text-saffron uppercase tracking-[0.1em]">
-                                    {session.type}
-                                  </span>
-                                </div>
+                            {/* Diamond Timeline Marker */}
+                            <span className="absolute -left-[31px] sm:-left-[39px] top-6 flex h-4 w-4 items-center justify-center bg-saffron text-white text-[10px] rotate-45">
+                              ♦
+                            </span>
+
+                            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gold/20 pb-4">
+                              <div className="flex items-center gap-3">
+                                <span className="bg-dark px-3 py-1 text-xs font-bold uppercase tracking-wider text-gold">
+                                  {displayTime(session.time)} {timezone}
+                                </span>
+                                <span className="border border-saffron/40 bg-saffron/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-saffron">
+                                  {session.type}
+                                </span>
                               </div>
+
                               <button
                                 type="button"
                                 onClick={() => shareSession(day, session, id)}
-                                className="rounded-none p-2 text-dark transition hover:bg-saffron/10 hover:text-saffron focus:outline-none focus:ring-1 focus:ring-saffron"
-                                aria-label={`Share ${session.title}`}
+                                className="flex items-center gap-1.5 border border-gold/30 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-dark/70 hover:border-saffron hover:text-saffron transition"
                               >
-                                <Share2 className="h-5 w-5" />
+                                <Share2 className="h-3.5 w-3.5" /> Share
                               </button>
                             </div>
 
-                            <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-dark transition duration-300 hover:text-saffron">
+                            <h3 className="mt-4 font-serif text-2xl sm:text-3xl font-bold leading-tight text-dark">
                               {index + 1}. {session.title}
-                            </h2>
-                            <p className="mt-3 text-sm leading-relaxed text-dark/70 font-light">{session.desc}</p>
+                            </h3>
+
+                            <p className="mt-3 text-xs sm:text-sm leading-relaxed text-dark/80 font-sans">
+                              {session.desc}
+                            </p>
 
                             {session.people && (
-                              <div className="mt-5 border-t border-gold/20 pt-4">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-dark/50">
-                                  Participants
+                              <div className="mt-5 border-l-2 border-saffron bg-parchment/60 p-3">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-deep-saffron">
+                                  Featured Speakers & Discussants
                                 </p>
-                                <p className="mt-2 text-sm font-semibold leading-relaxed text-dark/75">
+                                <p className="mt-1 text-xs sm:text-sm font-semibold leading-relaxed text-dark">
                                   {session.people}
                                 </p>
                               </div>
                             )}
 
-                            <div className="mt-5 flex flex-col gap-3 border-t border-gold/20 pt-4 text-xs tracking-wider uppercase text-dark/60 md:flex-row md:items-center md:justify-between">
-                              <p>
-                                <span className="font-bold text-dark">Venue:</span> {venue}
-                              </p>
-                              <p>
-                                <span className="font-bold text-dark">Supported by:</span> BIHAAN, BluOne Ink, SPIC MACAY
-                              </p>
+                            <div className="mt-5 flex flex-wrap items-center justify-between gap-2 border-t border-gold/20 pt-4 text-[11px] text-dark/70 font-sans">
+                              <span className="flex items-center gap-1.5 font-semibold text-dark">
+                                <MapPin className="h-3.5 w-3.5 text-saffron" /> {venue}
+                              </span>
+                              <span className="text-[10px] font-bold uppercase tracking-widest text-gold-dark">
+                                Ganga Literature Festival 2026
+                              </span>
                             </div>
                           </article>
                         );
@@ -355,17 +365,17 @@ export default function ProgrammePage() {
               })}
 
               {visibleSessionCount === 0 && (
-                <div className="rounded-none border border-gold/20 bg-cream p-8 text-center shadow-sm">
-                  <h2 className="font-serif text-3xl font-light text-dark uppercase">No sessions found</h2>
-                  <p className="mt-3 text-sm text-dark/65 font-light">
-                    Try another search term or reset the filters.
+                <div className="border border-gold/30 bg-white p-12 text-center">
+                  <h3 className="font-serif text-3xl font-bold text-dark">No sessions match your search</h3>
+                  <p className="mt-2 text-xs sm:text-sm text-dark/70 font-sans">
+                    Try refining your search terms or clearing your venue and theme filters.
                   </p>
                   <button
                     type="button"
                     onClick={resetFilters}
-                    className="mt-5 text-xs font-bold uppercase tracking-[0.14em] text-saffron hover:text-dark transition underline underline-offset-4"
+                    className="mt-6 border border-saffron bg-saffron px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-gold hover:border-gold hover:text-dark transition"
                   >
-                    Reset Filter
+                    Reset Filters
                   </button>
                 </div>
               )}
@@ -374,14 +384,13 @@ export default function ProgrammePage() {
         </div>
       </section>
 
+      {/* Share Toast Notification */}
       <div
-        className={`fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-none bg-dark border border-gold/20 px-5 py-3 text-sm font-semibold text-cream shadow-xl transition ${
+        className={`fixed bottom-6 left-1/2 z-50 -translate-x-1/2 border border-gold bg-dark px-6 py-3 text-xs font-bold uppercase tracking-wider text-gold shadow-2xl transition-all duration-300 ${
           shareStatus ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
         }`}
-        role="status"
-        aria-live="polite"
       >
-        Link copied: {shareStatus}
+        Session Link Copied to Clipboard
       </div>
     </main>
   );

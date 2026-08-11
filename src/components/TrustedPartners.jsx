@@ -12,8 +12,7 @@ const partners = Array.from({ length: 21 }, (_, index) => {
 
 export default function TrustedPartners() {
   return (
-    <section className="relative overflow-hidden bg-cream py-16 sm:py-20 lg:py-24 border-t border-gold/10">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/35 to-transparent" />
+    <section className="relative overflow-hidden bg-cream py-16 sm:py-20 lg:py-24 paper-texture">
       <div className="mx-auto w-full max-w-[92rem] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-saffron">
@@ -28,11 +27,11 @@ export default function TrustedPartners() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-3 items-center gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+        <div className="mt-12 grid grid-cols-3 items-center gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
           {partners.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className="group relative flex h-20 sm:h-28 items-center justify-center border border-gold/20 bg-cream p-3 shadow-sm transition duration-300 hover:border-saffron hover:scale-105 hover:-translate-y-0.5 rounded-none"
+              className="group relative flex h-20 sm:h-24 items-center justify-center border-double border-4 border-gold/25 bg-cream/50 p-4 shadow-sm transition-all duration-300 hover:border-saffron hover:shadow-md rounded-none"
             >
               <img
                 src={partner.logo}
@@ -44,6 +43,9 @@ export default function TrustedPartners() {
           ))}
         </div>
       </div>
+      
+      {/* Luxury separating motifs */}
+      <div className="luxury-separator mt-16 md:mt-24" />
     </section>
   );
 }
