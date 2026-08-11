@@ -1,233 +1,173 @@
 import { Link } from "react-router-dom";
+import { Sparkles, ShieldCheck, Wine, Heart, Award, ArrowRight } from "lucide-react";
+import PageHero from "../components/PageHero";
+import MadhubaniDivider from "../components/MadhubaniDivider";
+import SectionHeading from "../components/SectionHeading";
 
 const benefits = [
   {
-    title: "Exclusive Festival Access",
-    image: "/gangaimg1.png",
+    title: "Exclusive Gate & Pass Access",
     items: [
-      "Receive your gate pass in advance.",
-      "Enjoy exclusive access badges and a welcome kit.",
-      "Avail transport assistance with the festival team.",
+      "Advance priority gate pass delivery.",
+      "Custom engraved brass name badge & gift hamper.",
+      "Dedicated concierge transport desk.",
     ],
   },
   {
-    title: "Dedicated Hospitality",
-    image: "/gangaimg3.png",
+    title: "Dedicated Patron Hospitality",
     items: [
-      "Access the private Friend of the Festival Lounge.",
-      "All-day tea and coffee bar with like-minded guests.",
-      "Private lunch and dinner hospitality during festival days.",
-      "Festival programme brochure and merchandise.",
+      "Access to private Friend of Festival Air-Conditioned Lounge.",
+      "All-day artisanal tea, coffee & gourmet regional buffet.",
+      "Hosted author lunches & private seating areas.",
     ],
   },
   {
-    title: "Specially Curated Evenings",
-    image: "/gangaimg5.png",
+    title: "Curated Cultural Evenings",
     items: [
-      "Entry to selected evening cultural programmes.",
-      "Cocktail hours with musical performances.",
-      "Author interviews and intimate conversations.",
-      "Heritage evening and writers' ball experiences.",
+      "Front-row reserved seating at SPIC MACAY classical evenings.",
+      "Cocktail hours with musical fusion performances.",
+      "Entry to the official Writers' Gala Dinner in Patna.",
     ],
   },
 ];
 
 const packages = [
   {
-    date: "15th, 16th & 17th Jan 2026",
-    price: "INR 14,000 per day",
-    desc: "Festival lounge access, priority support, refreshments, and selected music stage programming.",
+    date: "Day 1 Pass • 11 November 2026",
+    price: "INR 14,000",
+    desc: "Full Hosted Lounge access, priority front-row seating, author lunch, and SPIC MACAY evening entry.",
   },
   {
-    date: "18th Jan 2026",
-    price: "INR 18,000",
-    desc: "A majestic evening inclusive of cultural performances, dinner, and premium hospitality.",
+    date: "Day 2 Pass • 12 November 2026",
+    price: "INR 14,000",
+    desc: "Closing day Hosted Lounge access, keynotes, author lunch, and entry to the Writers' Gala Reception.",
   },
   {
-    date: "19th Jan 2026",
-    price: "INR 18,000",
-    desc: "A closing celebration with authors, speakers, readers, cultural performances, and dinner.",
+    date: "Full Festival Patron • Both Days",
+    price: "INR 25,000",
+    desc: "Complete 2-day VIP experience including hosted lounge, author lunches, classical evenings, and private networking.",
+    featured: true,
   },
 ];
-
-const hotels = [
-  {
-    name: "Clarks Amer",
-    image: "/gangaimg2.png",
-    note: "Jawahar Lal Nehru Marg, opposite Fortis Escorts Hospital",
-  },
-  {
-    name: "Marriott",
-    image: "/gangaimg4.png",
-    note: "Distance from festival venue: 3 mins drive",
-  },
-];
-
-function Ornament() {
-  return (
-    <div className="mx-auto my-5 h-10 w-28 bg-[#b58b32] [clip-path:polygon(50%_0,62%_35%,100%_45%,62%_55%,50%_100%,38%_55%,0_45%,38%_35%)]" />
-  );
-}
-
-function Flower({ className = "" }) {
-  return (
-    <span
-      className={`pointer-events-none absolute h-14 w-14 text-5xl font-black leading-none text-[#b58b32] ${className}`}
-      aria-hidden="true"
-    >
-      *
-    </span>
-  );
-}
 
 export default function FriendOfFestival() {
   return (
-    <main className="pt-[78px] md:pt-[82px] bg-cream paper-texture">
-      <section className="relative overflow-hidden px-5 py-16 text-center text-dark md:px-8 md:py-24">
-        <Flower className="left-10 top-28 text-saffron/25" />
-        <Flower className="right-10 top-48 text-saffron/25" />
+    <main className="bg-cream paper-texture min-h-screen">
+      {/* Hero Header */}
+      <PageHero
+        eyebrow="Patron & Hosted Experience"
+        title="Friend of the"
+        italicTitle="Festival"
+        intro="An exclusive hosted experience for patrons, scholars, and cultural supporters seeking dedicated hospitality, VIP lounge access, and intimate author interactions."
+        badge="VIP Patron Delegate Pass"
+      />
 
-        <div className="mx-auto max-w-5xl">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-saffron">
-            Friend of the Festival
-          </p>
-          <h1 className="mx-auto mt-5 max-w-2xl font-serif text-5xl md:text-7xl font-light uppercase tracking-tight text-dark">
-            What your Experience includes
-          </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-dark/70 sm:text-lg">
-            Become a Friend of the Festival and access the finest hospitality,
-            curated evenings, lounge benefits, and premium festival support.
-          </p>
-          <Link
-            to="/festival/register-to-attend"
-            className="mt-8 inline-flex border border-saffron bg-dark text-cream px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] transition duration-300 hover:bg-saffron hover:text-cream rounded-none hover:-translate-y-0.5 shadow-sm"
-          >
-            Book Package
-          </Link>
-        </div>
+      <section className="relative px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Privileges & Hospitality"
+            title="What Your Experience Includes"
+            intro="Designed for patrons who want a seamless, high-touch literature festival experience on the banks of the Ganga."
+          />
 
-        <div className="mx-auto mt-20 grid max-w-6xl gap-8 lg:grid-cols-3 lg:items-start">
-          {benefits.map((benefit, index) => (
-            <article key={benefit.title} className={`p-6 border-double border-4 border-gold/25 bg-cream/50 rounded-none shadow-sm transition hover:border-saffron hover:-translate-y-2 hover:shadow-xl duration-500 ${index === 1 ? "lg:-translate-y-6" : ""}`}>
-              <Ornament />
-              <div className="overflow-hidden border border-gold/10 p-2 bg-[#130d07]">
-                <img
-                  src={benefit.image}
-                  alt={benefit.title}
-                  className="mx-auto aspect-[4/3] w-full max-w-sm object-cover grayscale hover:grayscale-0 transition duration-500"
-                  loading="lazy"
-                />
+          <MadhubaniDivider variant="compact" />
+
+          {/* Benefits Cards */}
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {benefits.map((benefit, index) => (
+              <div
+                key={benefit.title}
+                className="border border-gold/30 bg-white p-8 shadow-sm transition-all duration-300 hover:border-saffron hover:shadow-lg"
+              >
+                <div className="flex items-center justify-between border-b border-gold/20 pb-4 mb-6">
+                  <span className="font-serif text-2xl font-bold text-dark">
+                    {benefit.title}
+                  </span>
+                  <Sparkles className="h-5 w-5 text-saffron" />
+                </div>
+
+                <ul className="space-y-4 font-sans text-xs sm:text-sm text-dark/80">
+                  {benefit.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <span className="text-saffron mt-0.5">♦</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <Ornament />
-              <h2 className="font-serif text-2xl font-light uppercase text-dark mt-4">
-                {benefit.title}
-              </h2>
-              <div className="mx-auto mt-6 grid max-w-sm gap-2 text-sm leading-relaxed text-dark/70 font-light">
-                {benefit.items.map((item) => (
-                  <p key={item} className="border-b border-gold/15 pb-3">
-                    {item}
+            ))}
+          </div>
+
+          {/* Special Note Box */}
+          <div className="mt-14 border border-gold bg-dark p-8 text-cream max-w-3xl mx-auto shadow-md">
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold">
+              Hosted Programme Notice
+            </span>
+            <h4 className="font-serif text-2xl font-bold text-white mt-1">
+              SPIC MACAY Evening & Writers' Gala
+            </h4>
+            <p className="mt-2 text-xs sm:text-sm leading-relaxed text-cream/75 font-sans">
+              Friend of the Festival passes include complimentary entry and reserved front-row seating for all evening classical arts performances and hosted receptions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Package Tier Options */}
+      <section className="relative overflow-hidden bg-dark px-5 py-20 text-white md:px-8 md:py-28">
+        <div className="mx-auto max-w-6xl text-center">
+          <SectionHeading
+            eyebrow="Hosted Tiers"
+            title="Patron Passes & Pricing"
+            intro="Choose your delegate duration for Patna 2026."
+            inverted={true}
+          />
+
+          <div className="mt-14 grid gap-8 lg:grid-cols-3">
+            {packages.map((pkg) => (
+              <div
+                key={pkg.date}
+                className={`relative flex flex-col justify-between border p-8 transition-all duration-300 ${
+                  pkg.featured
+                    ? "border-gold bg-dark/95 shadow-2xl scale-105"
+                    : "border-gold/30 bg-dark/60 hover:border-gold"
+                }`}
+              >
+                {pkg.featured && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-saffron px-4 py-1 text-[9px] font-bold uppercase tracking-[0.2em] text-white">
+                    Recommended Patron Pass
+                  </span>
+                )}
+
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
+                    {pkg.date}
+                  </span>
+                  <h3 className="mt-3 font-serif text-4xl font-bold text-white">
+                    {pkg.price}
+                  </h3>
+                  <p className="mt-4 text-xs sm:text-sm leading-relaxed text-cream/75 font-sans">
+                    {pkg.desc}
                   </p>
-                ))}
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-gold/20">
+                  <Link
+                    to="/festival/register-to-attend"
+                    className="block w-full border border-saffron bg-saffron py-3 text-center text-xs font-bold uppercase tracking-widest text-white hover:bg-gold hover:border-gold hover:text-dark transition"
+                  >
+                    Enquire Patron Pass
+                  </Link>
+                </div>
               </div>
-            </article>
-          ))}
+            ))}
+          </div>
+
+          <div className="mt-16 text-center text-xs text-cream/70 font-sans">
+            For patron desk assistance or group institutional passes, write to{" "}
+            <span className="text-gold font-bold">info@gangalitfest.in</span>
+          </div>
         </div>
-
-        <div className="mx-auto mt-16 max-w-3xl rounded-none border border-gold/30 bg-dark px-7 py-8 text-cream shadow-md">
-          <p className="text-sm font-light leading-relaxed">
-            First India News Jaipur Music Stage offers programming on selected
-            festival days. Guests must book packages for those dates to avail
-            the offer.
-          </p>
-          <p className="mt-3 text-sm font-bold text-saffron">
-            Heritage Evening will be on 18th January and Writers' Ball will be on 19th January.
-          </p>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-dark px-5 py-16 text-center text-cream md:px-8 md:py-24">
-        <Flower className="bottom-10 left-8 text-saffron/25" />
-        <Flower className="right-10 top-20 text-saffron/25" />
-
-        <h2 className="mx-auto max-w-xl font-serif text-5xl font-light uppercase leading-[0.9] text-gold md:text-6xl">
-          FOF Packages and pricing
-        </h2>
-        <p className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-cream/70">
-          Before booking your package, check the schedule of exclusive evening
-          programmes available as part of the Friend of the Festival packages.
-        </p>
-
-        <div className="mx-auto mt-14 grid max-w-5xl gap-8 lg:grid-cols-3 lg:items-center">
-          {packages.map((pkg, index) => (
-            <article
-              key={pkg.price}
-              className={`rounded-none border-double border-4 border-gold/20 bg-cream/5 px-7 py-10 text-cream transition duration-300 hover:border-saffron hover:shadow-2xl ${
-                index === 1 ? "lg:translate-y-8" : ""
-              }`}
-            >
-              <p className="text-xs font-bold uppercase tracking-wider text-saffron">{pkg.date}</p>
-              <h3 className="mt-2 font-serif text-3xl font-light text-gold uppercase">{pkg.price}</h3>
-              <p className="mt-4 text-sm font-light leading-relaxed text-cream/70">{pkg.desc}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className="mx-auto mt-24 flex max-w-3xl flex-col gap-8 text-base font-semibold md:flex-row md:items-center md:justify-center">
-          <p className="tracking-wide">10% discount<br /><span className="text-xs font-light text-cream/60 uppercase tracking-widest mt-1 block">book any 2-3 days</span></p>
-          <span className="hidden h-12 w-px bg-gold/20 md:block" />
-          <p className="tracking-wide">15% discount<br /><span className="text-xs font-light text-cream/60 uppercase tracking-widest mt-1 block">book any 4 days</span></p>
-          <span className="hidden h-12 w-px bg-gold/20 md:block" />
-          <p className="tracking-wide">20% discount<br /><span className="text-xs font-light text-cream/60 uppercase tracking-widest mt-1 block">book all 5 days</span></p>
-        </div>
-
-        <p className="mx-auto mt-16 max-w-xl text-sm font-light text-cream/70">
-          For any queries related to your Friend of the Festival experience,
-          please email us at <span className="text-saffron font-bold">info@gangalitfest.in</span>
-        </p>
-      </section>
-
-      <section className="relative overflow-hidden bg-cream px-5 py-16 text-center text-dark md:px-8 md:py-24 border-t border-gold/20">
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-dark [clip-path:polygon(0_45%,5%_35%,8%_60%,12%_38%,18%_62%,26%_40%,34%_58%,42%_32%,52%_60%,62%_38%,72%_60%,84%_35%,100%_58%,100%_100%,0_100%)]" />
-
-        <h2 className="mx-auto max-w-lg font-serif text-5xl font-light uppercase leading-[0.9] md:text-6xl text-dark">
-          Festival Partner Hotels
-        </h2>
-        <div className="mx-auto mt-8 max-w-3xl text-base font-light leading-relaxed text-dark/70">
-          <p>
-            Choose from official partner hotels to make your festival experience
-            comfortable and memorable. These hotels support authors, guests, and
-            Friends of the Festival.
-          </p>
-          <p className="mt-4">
-            Guests staying at partner hotels may receive discounted rates,
-            airport transfers, and transport support between hotel and festival venues.
-          </p>
-        </div>
-
-        <div className="relative z-10 mx-auto mt-14 grid max-w-4xl gap-8 md:grid-cols-2">
-          {hotels.map((hotel) => (
-            <article key={hotel.name} className="bg-cream border-double border-4 border-gold/25 p-4 rounded-none shadow-sm group hover:border-saffron transition duration-300">
-              <div className="overflow-hidden border border-gold/10 p-2 bg-[#130d07]">
-                <img
-                  src={hotel.image}
-                  alt={hotel.name}
-                  className="aspect-[4/3] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <h3 className="mt-4 font-serif text-2xl font-light text-dark uppercase">{hotel.name}</h3>
-              <p className="mt-2 text-sm font-light leading-relaxed text-dark/70">{hotel.note}</p>
-              <p className="mt-2 text-xl text-gold">★★★★★</p>
-            </article>
-          ))}
-        </div>
-
-        <Link
-          to="/festival/book-your-festival-hotel"
-          className="relative z-10 mt-12 inline-flex border border-saffron bg-dark text-cream px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] transition duration-300 hover:bg-saffron shadow-sm hover:-translate-y-0.5 rounded-none"
-        >
-          View Hotels
-        </Link>
       </section>
     </main>
   );

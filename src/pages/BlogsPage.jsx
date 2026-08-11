@@ -1,96 +1,166 @@
-import { Search } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Search, ArrowRight, BookOpen, Clock, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { BLOGS } from "../data/blogs";
-
-const YEARS = ["2026"];
+import PageHero from "../components/PageHero";
+import MadhubaniDivider from "../components/MadhubaniDivider";
+import SectionHeading from "../components/SectionHeading";
 
 export default function BlogsPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredBlogs = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return BLOGS;
+    return BLOGS.filter(
+      (b) =>
+        b.title.toLowerCase().includes(query) ||
+        b.excerpt.toLowerCase().includes(query) ||
+        b.author.toLowerCase().includes(query)
+    );
+  }, [searchQuery]);
+
+  const featuredBlog = BLOGS[0];
+
   return (
-    <main className="pt-[78px] md:pt-[82px]">
-      <section
-        className="relative min-h-[620px] overflow-hidden bg-cover bg-center text-white"
-        style={{ backgroundImage: 'url("/gangaimg1.png")' }}
-      >
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(181,139,50,0.22),rgba(0,0,0,0.6))]" />
-        <div className="relative mx-auto flex min-h-[620px] max-w-6xl items-center justify-center px-5 text-center md:px-8">
-          <div className="relative px-8 py-16">
-            <div className="absolute inset-0 border-[8px] border-[#b58b32] opacity-85 [clip-path:polygon(12%_100%,12%_44%,17%_44%,20%_35%,28%_30%,36%_25%,44%_17%,50%_0,56%_17%,64%_25%,72%_30%,80%_35%,83%_44%,88%_44%,88%_100%)]" />
-            <div className="relative">
-              <p className="font-serif text-3xl font-black uppercase leading-none text-white md:text-4xl">
-                Ganga Literature Festival
-              </p>
-              <h1 className="mt-4 font-serif text-6xl font-black uppercase leading-[0.85] text-white md:text-8xl">
-                Blogs
-              </h1>
-            </div>
-          </div>
-        </div>
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-white [clip-path:polygon(0_60%,4%_40%,8%_62%,13%_42%,21%_62%,31%_38%,40%_58%,50%_40%,60%_62%,70%_38%,82%_58%,92%_40%,100%_60%,100%_100%,0_100%)]" />
-      </section>
+    <main className="bg-cream paper-texture min-h-screen">
+      {/* Page Hero Header */}
+      <PageHero
+        eyebrow="Literary Reflections & Essays"
+        title="Festival"
+        italicTitle="Journal & Essays"
+        intro="Read reflections, interviews, author features, and civilisational perspectives published by writers and readers of the Ganga Literature Festival."
+        badge="GLF Literary Publication"
+      />
 
-      <section className="bg-white px-5 py-20 md:px-8 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            <h2 className="font-serif text-5xl font-black leading-none text-black md:text-6xl">
-              Blog
-            </h2>
-            <div className="flex w-full overflow-hidden rounded-md border border-[#b58b32]/40 bg-white md:max-w-sm">
+      <section className="relative px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          {/* Featured Article Banner */}
+          {featuredBlog && !searchQuery && (
+            <div className="mb-16 border border-gold/40 bg-white p-6 md:p-10 shadow-lg transition-all duration-300 hover:border-saffron">
+              <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
+                <div className="lg:col-span-7 overflow-hidden border border-gold/20 aspect-[16/10] bg-parchment">
+                  <img
+                    src={featuredBlog.image}
+                    alt={featuredBlog.title}
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
+                <div className="lg:col-span-5 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-saffron">
+                      <span>Featured Story</span>
+                      <span className="h-1 w-1 bg-saffron rounded-full" />
+                      <span>{featuredBlog.date}</span>
+                    </div>
+
+                    <Link to={`/media/blogs/${featuredBlog.slug}`}>
+                      <h2 className="mt-3 font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-dark hover:text-deep-saffron transition-colors">
+                        {featuredBlog.title}
+                      </h2>
+                    </Link>
+
+                    <p className="mt-4 text-xs sm:text-sm leading-relaxed text-dark/75 font-sans">
+                      {featuredBlog.excerpt}
+                    </p>
+
+                    <div className="mt-6 flex items-center gap-3 pt-4 border-t border-gold/20 text-xs font-semibold text-dark/60">
+                      <span>By {featuredBlog.author}</span>
+                      <span className="h-1 w-1 bg-gold rounded-full" />
+                      <span>5 min read</span>
+                    </div>
+                  </div>
+
+                  <Link
+                    to={`/media/blogs/${featuredBlog.slug}`}
+                    className="mt-8 inline-flex items-center gap-2 border border-saffron bg-saffron px-6 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-gold hover:border-gold hover:text-dark transition w-fit"
+                  >
+                    Read Full Essay <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <SectionHeading
+            eyebrow="Recent Publications"
+            title="Literary Journal & Articles"
+          />
+
+          {/* Search Bar */}
+          <div className="mt-8 flex justify-center">
+            <div className="flex w-full max-w-md items-center border border-gold/40 bg-white">
               <input
-                className="h-14 min-w-0 flex-1 px-5 text-sm outline-none"
-                placeholder="Search by blog name..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-12 flex-1 px-4 text-xs font-sans outline-none text-dark bg-transparent placeholder:text-dark/40"
+                placeholder="Search essays by title or author..."
               />
-              <button className="flex h-14 w-16 items-center justify-center bg-[#b58b32] text-white" aria-label="Search blogs">
-                <Search className="h-5 w-5" />
-              </button>
+              <div className="flex h-12 w-12 items-center justify-center bg-saffron text-white">
+                <Search className="h-4 w-4" />
+              </div>
             </div>
           </div>
 
-          <div className="mt-10 overflow-x-auto border-b border-[#b58b32]/35 pb-3">
-            <div className="flex min-w-max gap-9">
-              {YEARS.map((year) => (
-                <button
-                  key={year}
-                  className={`pb-3 text-sm font-bold ${
-                    year === "2026"
-                      ? "border-b-2 border-[#b58b32] text-[#b58b32]"
-                      : "text-black"
-                  }`}
+          <MadhubaniDivider variant="compact" />
+
+          {/* Articles Grid */}
+          {filteredBlogs.length > 0 ? (
+            <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {filteredBlogs.map((blog) => (
+                <article
+                  key={blog.slug}
+                  className="group flex flex-col justify-between border border-gold/30 bg-white p-5 transition-all duration-300 hover:border-saffron hover:-translate-y-1 hover:shadow-lg"
                 >
-                  {year}
-                </button>
+                  <div>
+                    <Link to={`/media/blogs/${blog.slug}`} className="block overflow-hidden aspect-[16/10] bg-parchment border border-gold/20">
+                      <img
+                        src={blog.image}
+                        alt={blog.title}
+                        className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                      />
+                    </Link>
+
+                    <div className="mt-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.16em] text-saffron">
+                      <span>{blog.author}</span>
+                      <span>{blog.date}</span>
+                    </div>
+
+                    <Link to={`/media/blogs/${blog.slug}`}>
+                      <h3 className="mt-2 font-serif text-2xl font-bold leading-tight text-dark group-hover:text-deep-saffron transition-colors">
+                        {blog.title}
+                      </h3>
+                    </Link>
+
+                    <p className="mt-3 text-xs sm:text-sm leading-relaxed text-dark/70 font-sans line-clamp-3">
+                      {blog.excerpt}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-gold/20 flex items-center justify-between">
+                    <Link
+                      to={`/media/blogs/${blog.slug}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-saffron hover:text-dark transition"
+                    >
+                      Read Essay <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </article>
               ))}
             </div>
-          </div>
-
-          <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
-            {BLOGS.map((blog) => (
-              <article key={blog.title} className="group">
-                <Link to={`/media/blogs/${blog.slug}`} className="block overflow-hidden rounded-md bg-[#f8f6f1]">
-                  <img
-                    src={blog.image}
-                    alt={blog.title}
-                    className="aspect-[16/9] w-full object-cover transition duration-500 group-hover:scale-105"
-                  />
-                </Link>
-                <p className="mt-4 text-xs font-bold text-black/45">
-                  {blog.author} | {blog.date}
-                </p>
-                <Link to={`/media/blogs/${blog.slug}`}>
-                  <h3 className="mt-2 font-serif text-2xl font-black leading-tight text-black transition hover:text-[#b58b32]">
-                    {blog.title}
-                  </h3>
-                </Link>
-                <p className="mt-3 text-sm leading-7 text-black/65">{blog.excerpt}</p>
-                <Link
-                  to={`/media/blogs/${blog.slug}`}
-                  className="mt-5 inline-flex text-sm font-black uppercase tracking-[0.14em] text-[#b58b32]"
-                >
-                  Read More →
-                </Link>
-              </article>
-            ))}
-          </div>
+          ) : (
+            <div className="mt-12 text-center py-12 bg-white border border-gold/30 p-6">
+              <p className="text-sm font-bold text-dark/60 font-sans">
+                No essays found matching "{searchQuery}"
+              </p>
+              <button
+                onClick={() => setSearchQuery("")}
+                className="mt-4 text-xs font-bold uppercase tracking-wider text-saffron underline hover:text-dark transition"
+              >
+                Clear Search
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </main>
