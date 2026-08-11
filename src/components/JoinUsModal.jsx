@@ -3,9 +3,16 @@ import { X } from "lucide-react";
 import { FORMSPREE_ENDPOINT, submitToFormspree } from "../utils/formspree";
 
 export default function JoinUsModal() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(() => {
+    return !sessionStorage.getItem("glf_modal_dismissed");
+  });
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  const handleClose = () => {
+    sessionStorage.setItem("glf_modal_dismissed", "true");
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (!open) {
@@ -24,6 +31,7 @@ export default function JoinUsModal() {
     return null;
   }
 
+
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-5 py-8 backdrop-blur-sm"
@@ -35,7 +43,7 @@ export default function JoinUsModal() {
         type="button"
         className="absolute inset-0 cursor-default"
         aria-label="Close join us form"
-        onClick={() => setOpen(false)}
+        onClick={handleClose}
       />
 
       <div className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-black/88 p-7 text-white shadow-[0_28px_90px_rgba(0,0,0,0.45)] md:p-9">
@@ -52,7 +60,7 @@ export default function JoinUsModal() {
           type="button"
           className="absolute right-5 top-5 z-10 flex h-9 w-9 items-center justify-center rounded-full text-white transition hover:bg-white/10"
           aria-label="Close join us form"
-          onClick={() => setOpen(false)}
+          onClick={handleClose}
         >
           <X className="h-5 w-5" />
         </button>

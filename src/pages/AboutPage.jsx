@@ -1,4 +1,8 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen, Compass, Feather, Award } from "lucide-react";
+import PageHero from "../components/PageHero";
+import MadhubaniDivider from "../components/MadhubaniDivider";
+import DecorativeFrame from "../components/DecorativeFrame";
+import SectionHeading from "../components/SectionHeading";
 
 const partners = [
   {
@@ -25,223 +29,111 @@ const values = [
   {
     title: "Reclaiming Narrative",
     text: "India's history has been filtered through colonial and ideological lenses for too long. GLF creates space for authentic, evidence-based, civilisation-affirming scholarship.",
+    icon: Feather,
   },
   {
     title: "Accelerating Viksit Bharat",
     text: "Every great nation is built first in the minds of its people. GLF creates an intellectual platform for the national dream of a fully developed India by 2047.",
+    icon: Compass,
   },
   {
     title: "Bihar Reborn",
     text: "GLF places Patna back at the centre of India's intellectual map, honouring Bihar's heritage and its potential as a driver of India's next chapter.",
+    icon: Award,
   },
 ];
 
 const heritage = [
-  ["Pataliputra", "Capital of empires and a seat of political imagination."],
-  ["Nalanda", "A global university tradition rooted in inquiry and learning."],
-  ["Vikramashila", "A reminder that Bihar shaped the knowledge routes of Asia."],
-  ["Bodh Gaya", "The land where enlightenment became a civilisational force."],
-];
-
-const heroWords = [
-  "Ganga",
-  "Patna",
-  "Pataliputra",
-  "Nalanda",
-  "Vikramashila",
-  "Bodh Gaya",
-  "Viksit Bharat",
-  "Literature",
+  { title: "Pataliputra", subtitle: "Imperial Capital", text: "Capital of ancient empires and the seat of political imagination & Arthashastra." },
+  { title: "Nalanda", subtitle: "Global Seat of Learning", text: "A global university tradition rooted in inquiry, debate, and universal wisdom." },
+  { title: "Vikramashila", subtitle: "Buddhist Knowledge Hub", text: "A reminder that Bihar shaped the maritime and Asian knowledge routes." },
+  { title: "Bodh Gaya", subtitle: "Spiritual Awakening", text: "The sacred land where enlightenment became a civilisational beacon for humanity." },
 ];
 
 export default function AboutPage() {
   return (
-    <main className="pt-[78px] md:pt-[82px]">
-      <section className="relative min-h-[calc(100vh-78px)] overflow-hidden bg-white md:min-h-[calc(100vh-82px)]">
-        <div
-          className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-80 md:block"
-          style={{
-            background:
-              "radial-gradient(50% 50% at 50% 50%, rgba(181,139,50,0.35) 0%, rgba(248,246,241,0.78) 36%, rgba(255,255,255,0) 72%)",
-          }}
-        />
-        <div className="relative mx-auto grid min-h-[calc(100vh-78px)] max-w-[1500px] px-5 py-10 md:min-h-[calc(100vh-82px)] md:px-10 md:py-0">
-          <div className="relative z-10 hidden min-h-[calc(100vh-82px)] items-stretch pb-20 pt-8 md:flex">
-            <div className="grid w-full grid-cols-8 items-stretch gap-4 lg:gap-7">
-              {heroWords.map((word, index) => (
-                <div
-                  key={word}
-                  className="flex min-w-0 justify-center border-l border-black/10 pl-3"
-                >
-                  <div className="relative h-full w-full overflow-visible">
-                    <span className="absolute left-1 top-0 text-[11px] font-black text-[#b58b32]/70">
-                      0{index + 1}
-                    </span>
-                    <span
-                      className={`absolute bottom-44 left-1/2 -translate-x-1/2 -rotate-90 origin-bottom whitespace-nowrap font-black leading-none tracking-[-0.03em] ${
-                        index === 4
-                          ? "text-white [-webkit-text-stroke:1px_#0b0b0b]"
-                          : "text-black"
-                      } text-[clamp(44px,5.6vw,82px)]`}
-                      style={{ transformOrigin: "bottom center" }}
-                    >
-                      {word}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+    <main className="bg-cream paper-texture min-h-screen">
+      {/* Page Hero */}
+      <PageHero
+        eyebrow="Civilisational Legacy"
+        title="About Ganga"
+        italicTitle="Literature Festival"
+        intro=" Bihar is not the periphery of India's story — it is its beating heart. GLF brings literature, public ideas, and living arts back to the riverbanks of Pataliputra."
+        badge="Patna, Bihar • 11 & 12 November 2026"
+      />
 
-          <div className="relative z-10 mt-10 grid gap-3 md:hidden">
-            {heroWords.map((word, index) => (
-              <div
-                key={word}
-                className="flex items-center justify-between border border-[#b58b32]/35 bg-[#f8f6f1] px-4 py-3"
-              >
-                <span className="font-serif text-3xl font-black leading-none text-black">
-                  {word}
-                </span>
-                <span className="text-xs font-black text-[#b58b32]">
-                  0{index + 1}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-[#f8f6f1] px-5 pb-20 pt-24 md:px-8 md:pb-28 md:pt-32">
-        <span className="absolute left-10 top-24 text-7xl font-black leading-none text-[#b58b32]/25">
-          *
-        </span>
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
-              Festival Story
-            </p>
-            <h2 className="mt-5 font-serif text-5xl font-black leading-[0.95] text-black md:text-6xl">
-              India's civilisation has always been a conversation. GLF is the next chapter.
-            </h2>
-          </div>
-
-          <div className="space-y-6 text-base font-semibold leading-8 text-black/75">
-            <p>
-              The Ganga Literature Festival was conceived from a simple conviction:
-              Bihar, home to Pataliputra, Nalanda, Vikramashila, and Bodh Gaya,
-              deserves a literature festival commensurate with its extraordinary
-              intellectual and spiritual heritage.
-            </p>
-            <p>
-              Bihar is not the periphery of India's story. It is its centre. The
-              Arthashastra was written here. The first pan-Indian empire was
-              administered from here. The Buddha attained enlightenment here. Guru
-              Gobind Singh was born here. In the great tapestry of Indian
-              civilisation, Bihar's thread runs gold.
-            </p>
-            <p>
-              And yet, for too long, Bihar's voice in India's national intellectual
-              conversation has been muted. The Ganga Literature Festival changes
-              that. It brings the ideas, the authors, the debates, and the art to
-              Patna, and invites the nation to listen.
-            </p>
-            <blockquote className="border-l-4 border-[#b58b32] bg-white px-6 py-5 font-serif text-2xl font-black leading-tight text-black shadow-sm">
-              "The Ganga is not merely a river. She is our oldest library. We do not
-              merely hold a festival on her banks. We open her pages."
-            </blockquote>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white px-5 py-20 md:px-8 md:py-28">
+      {/* Festival Story Section */}
+      <section className="relative px-5 py-20 md:px-8 md:py-28">
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-5 md:grid-cols-4">
-            {heritage.map(([title, text]) => (
-              <article key={title} className="border border-black/10 bg-[#f8f6f1] p-6">
-                <h3 className="font-serif text-3xl font-black leading-tight text-black">
-                  {title}
-                </h3>
-                <p className="mt-4 text-sm font-semibold leading-7 text-black/65">
-                  {text}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f8f6f1] px-5 py-20 text-center md:px-8 md:py-28">
-        <div className="mx-auto mb-10 flex h-28 w-28 items-center justify-center bg-white p-4 shadow-sm md:h-36 md:w-36">
-          <img
-            src="/logo.png"
-            alt="Ganga Literature Festival"
-            className="h-full w-full object-contain"
+          <SectionHeading
+            eyebrow="The Genesis"
+            title="India's civilisation has always been a conversation"
+            intro="GLF is the next chapter in Bihar's millennia-old tradition of public inquiry."
           />
-        </div>
-        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
-          Built By
-        </p>
-        <h2 className="mt-6 font-serif text-5xl font-black leading-none text-black">
-          BIHAAN, BluOne Ink, and SPIC MACAY
-        </h2>
-        <p className="mx-auto mt-8 max-w-3xl text-base font-semibold leading-8 text-black/75">
-          Conceived and presented by BIHAAN, in partnership with BluOne Ink and in
-          collaboration with SPIC MACAY, the Ganga Literature Festival is Bihar's
-          gift to the nation's intellectual life.
-        </p>
-        <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3">
-          {partners.map((partner) => (
-            <article key={partner.name} className="bg-white p-7 text-left shadow-sm">
-              <div className="flex h-24 items-center">
-                <img
-                  src={partner.image}
-                  alt={partner.name}
-                  className="max-h-24 max-w-[260px] object-contain object-left"
-                />
+
+          <div className="mt-14 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div className="space-y-6 text-base leading-8 text-dark/80 font-sans">
+              <p>
+                The Ganga Literature Festival was conceived from a simple conviction:
+                Bihar, home to Pataliputra, Nalanda, Vikramashila, and Bodh Gaya,
+                deserves a literature festival commensurate with its extraordinary
+                intellectual and spiritual heritage.
+              </p>
+              <p>
+                The Arthashastra was written here. The first pan-Indian empire was
+                administered from here. The Buddha attained enlightenment here. Guru
+                Gobind Singh was born here. In the great tapestry of Indian
+                civilisation, Bihar's thread runs gold.
+              </p>
+              <p>
+                And yet, for too long, Bihar's voice in India's national intellectual
+                conversation has been muted. The Ganga Literature Festival changes
+                that. It brings the ideas, the authors, the debates, and the art to
+                Patna, and invites the nation to listen.
+              </p>
+            </div>
+
+            <DecorativeFrame dark={false} className="shadow-lg">
+              <blockquote className="font-serif text-2xl md:text-3xl font-light italic leading-snug text-dark">
+                "The Ganga is not merely a river. She is our oldest library. We do not
+                merely hold a festival on her banks. We open her pages."
+              </blockquote>
+              <div className="mt-6 flex items-center gap-3">
+                <span className="h-px w-8 bg-saffron" />
+                <span className="text-xs font-bold uppercase tracking-[0.24em] text-saffron">
+                  GLF Curatorial Vision
+                </span>
               </div>
-              <p className="mt-6 text-xs font-black uppercase tracking-[0.2em] text-[#b58b32]">
-                {partner.role}
-              </p>
-              <h3 className="mt-3 font-serif text-3xl font-black text-black">
-                {partner.name}
-              </h3>
-              <p className="mt-4 text-sm font-semibold leading-7 text-black/65">
-                {partner.text}
-              </p>
-            </article>
-          ))}
+            </DecorativeFrame>
+          </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-black px-5 py-24 text-white md:px-8 md:py-32">
-        <div className="absolute inset-x-0 top-0 h-24 bg-[#f8f6f1] [clip-path:polygon(0_0,100%_0,100%_35%,90%_55%,78%_35%,65%_60%,52%_38%,40%_58%,26%_35%,14%_60%,0_35%)]" />
-        <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
-              What Drives Us
-            </p>
-            <h2 className="mt-5 font-serif text-5xl font-black leading-[0.92] text-white md:text-6xl">
-              What GLF stands for.
-            </h2>
-            <p className="mt-8 text-base font-semibold leading-8 text-white/72">
-              The festival stands at the intersection of three urgent imperatives:
-              reclaiming India's narrative, accelerating the Viksit Bharat
-              conversation, and placing Bihar back at the centre of India's
-              intellectual map.
-            </p>
-          </div>
+      <MadhubaniDivider variant="floral" />
 
-          <div className="grid gap-5">
-            {values.map((value, index) => (
-              <div key={value.title} className="border border-[#b58b32]/45 bg-white p-6 shadow-sm">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#b58b32] text-sm font-black text-black">
-                  {index + 1}
+      {/* Heritage Pillar Grid */}
+      <section className="px-5 py-16 md:px-8 md:py-24 bg-white/60 backdrop-blur-sm">
+        <div className="mx-auto max-w-6xl">
+          <SectionHeading
+            eyebrow="Sacred Heritage"
+            title="Four Pillars of Pataliputra Wisdom"
+          />
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {heritage.map((item) => (
+              <div
+                key={item.title}
+                className="group relative overflow-hidden border border-gold/30 bg-cream p-7 transition-all duration-300 hover:border-saffron hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="absolute top-0 right-0 h-16 w-16 bg-gradient-to-bl from-gold/15 to-transparent pointer-events-none" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-saffron">
+                  {item.subtitle}
                 </span>
-                <h3 className="mt-5 font-serif text-3xl font-black text-black">
-                  {value.title}
+                <h3 className="mt-2 font-serif text-3xl font-bold text-dark group-hover:text-deep-saffron transition-colors">
+                  {item.title}
                 </h3>
-                <p className="mt-3 text-sm font-semibold leading-7 text-black/70">
-                  {value.text}
+                <p className="mt-4 text-xs sm:text-sm leading-relaxed text-dark/70">
+                  {item.text}
                 </p>
               </div>
             ))}
@@ -249,37 +141,112 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white px-5 py-20 text-center md:px-8 md:py-28">
-        <span className="absolute right-12 top-16 text-6xl font-black leading-none text-[#b58b32]/25">
-          *
-        </span>
-        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
-          Festival Work
-        </p>
-        <h2 className="mx-auto mt-4 max-w-2xl font-serif text-5xl font-black leading-[0.95] text-black md:text-6xl">
-          A public platform for books, ideas, and living heritage.
-        </h2>
-        <div className="mx-auto mt-10 max-w-4xl space-y-6 text-left text-base font-semibold leading-8 text-black/70">
-          <p>
-            GLF brings authors, thinkers, historians, scientists, entrepreneurs,
-            artists, students, publishers, and readers into the same civic space.
-            Its sessions ask the questions that matter most: who are we, where do
-            we come from, and where can we go together?
-          </p>
-          <p>
-            The programme combines keynotes, panels, masterclasses, book launches,
-            publishing conversations, networking moments, and classical arts
-            evenings. It is designed not as a passive event, but as a purposeful
-            meeting ground for civilisational confidence and national imagination.
-          </p>
+      <MadhubaniDivider variant="compact" />
+
+      {/* Organisers & Partners */}
+      <section className="px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-6xl text-center">
+          <SectionHeading
+            eyebrow="Organising Coalition"
+            title="Built By BIHAAN, BluOne Ink & SPIC MACAY"
+            intro="Conceived and presented by BIHAAN, in partnership with BluOne Ink and in collaboration with SPIC MACAY, the Ganga Literature Festival is Bihar's gift to the nation's intellectual life."
+          />
+
+          <div className="mt-14 grid gap-8 md:grid-cols-3 text-left">
+            {partners.map((partner) => (
+              <div
+                key={partner.name}
+                className="flex flex-col justify-between border border-gold/30 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:border-gold"
+              >
+                <div>
+                  <div className="flex h-20 items-center mb-6">
+                    <img
+                      src={partner.image}
+                      alt={partner.name}
+                      className="max-h-20 max-w-[200px] object-contain object-left"
+                    />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-saffron">
+                    {partner.role}
+                  </span>
+                  <h3 className="mt-1 font-serif text-3xl font-bold text-dark">
+                    {partner.name}
+                  </h3>
+                  <p className="mt-4 text-xs sm:text-sm leading-relaxed text-dark/70">
+                    {partner.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <a
-          href="/about/contact-us"
-          className="mx-auto mt-14 inline-flex items-center gap-3 bg-black px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-white transition hover:bg-[#b58b32] hover:text-black"
-        >
-          Contact Team
-          <ArrowRight className="h-4 w-4" />
-        </a>
+      </section>
+
+      {/* Pillars of Imperatives (Dark Section) */}
+      <section className="relative overflow-hidden bg-dark px-5 py-24 text-white md:px-8 md:py-32">
+        <div className="relative mx-auto max-w-6xl">
+          <SectionHeading
+            eyebrow="What Drives Us"
+            title="What GLF Stands For"
+            intro="The festival stands at the intersection of three urgent imperatives."
+            inverted={true}
+          />
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {values.map((val, idx) => {
+              const IconComp = val.icon;
+              return (
+                <div
+                  key={val.title}
+                  className="border border-gold/30 bg-dark/80 p-8 backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-dark"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="flex h-10 w-10 items-center justify-center border border-gold/40 bg-saffron/20 font-serif text-lg font-bold text-gold">
+                      0{idx + 1}
+                    </span>
+                    <IconComp className="h-6 w-6 text-gold opacity-80" />
+                  </div>
+                  <h3 className="font-serif text-2xl font-bold text-white mb-3">
+                    {val.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm leading-relaxed text-cream/75">
+                    {val.text}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-5 py-20 text-center md:px-8 md:py-28">
+        <div className="mx-auto max-w-3xl">
+          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-saffron">
+            Be Part of the Story
+          </span>
+          <h2 className="mt-4 font-serif text-4xl sm:text-5xl font-light uppercase leading-tight text-dark">
+            A Public Platform for Books, Ideas, & Living Heritage
+          </h2>
+          <p className="mt-6 text-sm sm:text-base leading-relaxed text-dark/75">
+            GLF brings authors, thinkers, historians, artists, students, and readers into the same civic space. Join us on 11 & 12 November 2026 in Patna.
+          </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <a
+              href="/festival/register-to-attend"
+              className="border border-saffron bg-saffron px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] text-cream transition-all duration-300 hover:bg-gold hover:border-gold hover:text-dark"
+            >
+              Register to Attend
+            </a>
+            <a
+              href="/about/contact-us"
+              className="inline-flex items-center gap-2 border border-dark/30 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.14em] text-dark transition-all duration-300 hover:bg-dark hover:text-cream"
+            >
+              Contact Team
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
       </section>
     </main>
   );

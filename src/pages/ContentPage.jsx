@@ -1,87 +1,95 @@
 import { Link } from "react-router-dom";
+import { ArrowRight, BookOpen, ExternalLink } from "lucide-react";
+import PageHero from "../components/PageHero";
+import MadhubaniDivider from "../components/MadhubaniDivider";
 
 export default function ContentPage({ page }) {
   return (
-    <main className="pt-[86px]">
-      <section className="relative overflow-hidden bg-black px-5 py-24 text-white md:px-8 md:py-32">
-        <img
-          src="/heroimage.png"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-35"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative mx-auto max-w-6xl">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b58b32]">
-            {page.eyebrow}
-          </p>
-          <h1 className="mt-5 max-w-4xl font-serif text-5xl font-black leading-none text-white md:text-7xl">
-            {page.title}
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-white/80 md:text-lg">
-            {page.intro}
-          </p>
-        </div>
-      </section>
+    <main className="bg-cream paper-texture min-h-screen">
+      {/* Page Hero */}
+      <PageHero
+        eyebrow={page.eyebrow || "Ganga Literature Festival"}
+        title={page.title}
+        intro={page.intro}
+        badge="Patna • 11 & 12 November 2026"
+      />
 
-      <section className="px-5 py-16 md:px-8 md:py-24">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.72fr_0.28fr]">
-          <article className="border border-black/10 bg-white p-7 md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#b58b32]">
-              Details
-            </p>
-            <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight text-black">
+      <section className="relative px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl grid gap-10 lg:grid-cols-[1fr_340px]">
+          {/* Main Article Content */}
+          <article className="border border-gold/30 bg-white p-7 sm:p-10 shadow-sm">
+            <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-saffron">
+              Overview & Key Context
+            </span>
+            <h2 className="mt-2 font-serif text-3xl sm:text-4xl font-bold leading-tight text-dark">
               {page.title}
             </h2>
-            <p className="mt-5 text-base leading-8 text-black/70">
+            <p className="mt-4 text-sm leading-relaxed text-dark/80 font-sans">
               {page.intro}
             </p>
 
             {page.facts?.length > 0 && (
-              <div className="mt-8 grid gap-3">
-                {page.facts.map((fact) => (
-                  <div key={fact} className="border-l-4 border-[#b58b32] bg-[#f8f6f1] px-5 py-4 text-sm leading-7 text-black/75">
-                    {fact}
+              <div className="mt-8 space-y-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-dark block mb-2">
+                  Key Festival Facts
+                </span>
+                {page.facts.map((fact, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-3 border-l-2 border-saffron bg-cream p-4 text-xs sm:text-sm text-dark/80 font-sans leading-relaxed"
+                  >
+                    <span className="text-saffron mt-0.5">♦</span>
+                    <span>{fact}</span>
                   </div>
                 ))}
               </div>
             )}
 
+            <MadhubaniDivider variant="compact" />
+
             {page.sections?.length > 0 && (
-              <div className="mt-10 grid gap-6">
+              <div className="mt-8 space-y-8">
                 {page.sections.map(([heading, body]) => (
-                  <section key={heading}>
-                    <h3 className="font-serif text-3xl font-semibold text-black">
+                  <div key={heading}>
+                    <h3 className="font-serif text-2xl font-bold text-dark">
                       {heading}
                     </h3>
-                    <p className="mt-3 text-base leading-8 text-black/70">{body}</p>
-                  </section>
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-dark/75 font-sans">
+                      {body}
+                    </p>
+                  </div>
                 ))}
               </div>
             )}
           </article>
 
-          <aside className="h-fit border border-[#b58b32]/40 bg-[#b58b32]/10 p-7">
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#b58b32]">Quick Action</p>
-            <h3 className="mt-4 font-serif text-3xl font-semibold leading-tight text-black">
-              Plan your festival visit
+          {/* Quick Action Sidebar */}
+          <aside className="border border-gold/40 bg-dark p-7 text-white h-fit shadow-md">
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold block mb-1">
+              Festival Action
+            </span>
+            <h3 className="font-serif text-2xl font-bold text-white">
+              Plan Your Festival Visit
             </h3>
-            <p className="mt-4 text-sm leading-7 text-black/70">
-              Use this page as a working detail page. Replace or expand the researched draft copy as final festival information is confirmed.
+            <p className="mt-3 text-xs leading-relaxed text-cream/75 font-sans">
+              Join thinkers, writers, and cultural enthusiasts in Patna on 11 & 12 November 2026.
             </p>
+
             <Link
               to="/festival/register-to-attend"
-              className="mt-5 inline-flex bg-[#b58b32] px-6 py-4 text-sm font-black uppercase tracking-[0.12em] text-white"
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 border border-saffron bg-saffron py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-gold hover:border-gold hover:text-dark transition"
             >
-              {page.cta || "Register"}
+              {page.cta || "Register Now"} <ArrowRight className="h-4 w-4" />
             </Link>
+
             {page.source && (
               <a
                 href={page.source}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 block text-sm font-bold text-black underline decoration-[#b58b32] underline-offset-4"
+                className="mt-6 flex items-center gap-1.5 text-xs font-bold text-gold hover:text-white transition"
               >
-                Reference source
+                Reference Source <ExternalLink className="h-3 w-3" />
               </a>
             )}
           </aside>
